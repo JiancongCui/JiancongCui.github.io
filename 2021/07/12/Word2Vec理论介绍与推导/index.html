@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Author Name,name@example.com"><title>Word2Vec理论介绍与推导 · Jiancong Cui - Homepage</title><meta name="description" content="本文主要根据论文《word2vec Parameter Learning Explained》进行介绍，部分内容添加了自己的理解与思考，还望大家批评指正。
+概念反向传播基础Back Propagation Basics
+单一神经元
+如图为人工神经元（artificial  neuron unit） "><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Jiancong Cui - Homepage</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Word2Vec理论介绍与推导</a></h3></div><div class="post-content"><p>本文主要根据论文《word2vec Parameter Learning Explained》进行介绍，部分内容添加了自己的理解与思考，还望大家批评指正。</p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="反向传播基础"><a href="#反向传播基础" class="headerlink" title="反向传播基础"></a>反向传播基础</h2><p><strong>Back Propagation Basics</strong></p>
+<h3 id="单一神经元"><a href="#单一神经元" class="headerlink" title="单一神经元"></a>单一神经元</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210711175018396.png" alt="image-20210711175018396"></p>
+<p>如图为人工神经元（artificial  neuron unit） ${x_1,…,x_k}$ 为输入向量，${w_1,…,w_k}$ 为对应的权重，$f$ 为激活（非线性）函数，$y$ 是输出结果</p>
+<ol>
+<li>输入向量与权重向量进行内积操作，其结果我们赋值给$u$：</li>
+</ol>
+<p>$$<br>\sum_{i&#x3D;1}^{K}x_iw_i &#x3D; \mathbf{w}^T\mathbf{x}:&#x3D; u<br>$$</p>
+<ol start="2">
+<li>$u$ 输入到神经元中，进行激活：</li>
+</ol>
+<p>$$<br>y &#x3D; f(u)<br>$$</p>
+<ol start="3">
+<li>求导更新权重，其中 $t$ 为真实标签，$y$ 表示预测的标签值，$y$ 对 $\mathbf{w}$ 求偏导为 $\mathbf{x}$</li>
+</ol>
+<p>$$<br>\mathbf{w}^{new} &#x3D; \mathbf{w}^{old}-\eta \cdot (y-t) \cdot \mathbf{x}<br>$$</p>
+<p>这里我们没有考虑到激活函数和损失函数，只简单的让误分类样本作反向传播。如果激活函数连续可导或有具体的损失函数，还是需要考虑进来的。</p>
+<p>例如我们引入激活函数 Sigmoid 激活函数：$\sigma (u) &#x3D; \dfrac{1}{1+e^{-u} }$ ，其函数图像为：</p>
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210711181646466.png" alt="image-20210711181646466" style="zoom:50%;" />
+
+<p>单从函数图像可以看出：其处处连续可导，值域 $y \in [0,1]$ </p>
+<p>在引入简单的平方差损失函数：$E &#x3D; \frac{1}{2}(t-y)^2$</p>
+<blockquote>
+<p>为什么有个 $\frac{1}{2}$ 呢？是为了后续反向传播求导方便而添加的，对结果显然没有较大影响</p>
+</blockquote>
+<ol start="3">
+<li>求导更新权重，其中 $t$ 为真实标签，$y$ 表示预测的标签值，$y$ 对 $\mathbf{w}$ 求偏导为 $\mathbf{x}$</li>
+</ol>
+<p>$$<br>\dfrac{\partial{E} }{\partial{w_i} } &#x3D; \dfrac{\partial{E} }{\partial{y} } \cdot \dfrac{\partial{y} }{\partial{u} } \cdot \dfrac{\partial{u} }{\partial{w_i} } &#x3D; (y-t) \cdot y(1-y) \cdot x_i<br>$$</p>
+<blockquote>
+<p>$$<br>\dfrac{\partial{y} }{\partial{u} }&#x3D; [(1+e^{-u})^{-1}]’ &#x3D; -(1+e^{-u})^{-2} \times (-e^{-u}) \&#x3D; \dfrac{1}{1+e^{-u} } \times \dfrac{(1 + e^{-u}) - 1}{1+e^{-u} } &#x3D; y \cdot (1-y)<br>$$</p>
+</blockquote>
+<p>也就得到了权重的更新策略：<br>$$<br>\mathbf{w}^{new} &#x3D; \mathbf{w}^{old} - \eta \cdot (y-t) \cdot y(1-y) \cdot \mathbf{x}<br>$$</p>
+<h3 id="多层神经网络"><a href="#多层神经网络" class="headerlink" title="多层神经网络"></a>多层神经网络</h3><p>单一神经元下的反向传播求导大致明白啦，那接下来推广到多神经元多层网络的情况：</p>
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210711190544339.png" alt="image-20210711190544339" style="zoom: 80%;" />
+
+<p>我们的输入为 ${x_k} &#x3D; {x_1,\dots,x_K}$ ，隐藏层神经元为：${h_i} &#x3D; {h_1,\dots,h_N}$，输出层为 ${y_j}&#x3D;{y_1,\dots y_M}$</p>
+<blockquote>
+<p>需要注意的是，现在的操作都还没有矩阵化，一次仅处理一个输入，得到一个 $M$ 维的输出，以此完成一次 $M$ 分类任务</p>
+</blockquote>
+<p>与单一神经元类似</p>
+<ol>
+<li>对输入层进行加权求和并激活得到隐藏层的结果 $h_i$</li>
+</ol>
+<p>$$<br>h_i &#x3D; \sigma(u_i) &#x3D; \sigma(\sum_{k&#x3D;1}^{K} w_{ki}x_k) &#x3D; \sigma(\mathbf{W}\mathbf{x})<br>$$</p>
+<ol start="2">
+<li>再次前向传播，得到输出层的结果 $y_j$</li>
+</ol>
+<p>$$<br>y_j &#x3D; \sigma(u_j^{‘}) &#x3D; \sigma\left(\sum_{i&#x3D;1}^{N} w_{ij}h_i\right) &#x3D; \sigma(\mathbf{W’}\mathbf{h})<br>$$</p>
+<ol start="3">
+<li>使用平方差损失函数：</li>
+</ol>
+<p>$$<br>E(\mathbf{x},\mathbf{t},\mathbf{W},\mathbf{W’})&#x3D; \frac{1}{2}\sum_{j&#x3D;1}^{M}(y_j - t_j) ^2<br>$$</p>
+<ol start="4">
+<li>反向传播，输出层到隐藏层：</li>
+</ol>
+<p>4.1首先是损失函数对输出层的反向传播求导：</p>
+<blockquote>
+<p>注意这里对 $y_j$ 求偏导，相当于 $j$ 已知，因此可以消除求和符号</p>
+</blockquote>
+<p>$$<br>\dfrac{\partial{E} }{\partial{y_j} } &#x3D; y_j - t_j<br>$$</p>
+<p>4.2 继续向下，反向传播到激活函数层（和上述单一神经元一致嗷），结果记为$EI^{‘}<em>{j}$：<br>$$<br>\dfrac{\partial{E} }{\partial{u_j^{‘} } } &#x3D; \dfrac{\partial{E} }{\partial{y_j} } \cdot \dfrac{\partial{y_j} }{\partial{u_j^{‘} } } &#x3D; (y_j - t_j) \cdot y_j(1-y_j) :&#x3D; EI^{‘}<em>j<br>$$<br>4.3 继续向下，到达了隐藏层和输出层之间的权值矩阵（和上述单一神经元一致嗷）：<br>$$<br>\dfrac{\partial{E} }{\partial{w</em>{ij}^{‘} } } &#x3D; \dfrac{\partial{E} }{\partial{u_j^{‘} } } \cdot \dfrac{\partial{u_j^{‘} } }{\partial{w</em>{ij}^{‘} } } &#x3D; EI^{‘}_j \cdot h_i<br>$$</p>
+<ol start="5">
+<li>到这里即可完成对 $W^{‘}$ 的更新</li>
+</ol>
+<p>$$<br>{w’}<em>{ij}^{(new)} &#x3D; {w’}</em>{ij}^{(old)} - \eta \cdot EI^{‘}_j \cdot h_i<br>$$</p>
+<ol start="6">
+<li>继续向下，我们以 $h_i$ 为连接点，尝试反向传播到输入层</li>
+</ol>
+<p>6.1 首先完成对 $h_i$ 的反向传播</p>
+<blockquote>
+<p>注意这里对 $h_i$ 求偏导，相当于 $i$ 已知，但是 $j$ 未知，因此其偏导数来源于所有链接的输出层</p>
+</blockquote>
+<p>$$<br>\dfrac{\partial{E} }{\partial{h_{i} } } &#x3D; \sum_{j&#x3D;1}^{M}\dfrac{\partial{E} }{\partial{u_j^{‘} } } \cdot \dfrac{\partial{u_j^{‘} } }{\partial{h_{i} } } &#x3D; \sum_{j&#x3D;1}^{M}EI^{‘}<em>j \cdot w</em>{ij}^{‘}<br>$$</p>
+<p>6.2 打通了 $h_i$ ，然后走到输入层与隐层之间的激活函数，结果记为$EI^{‘}<em>{i}$：<br>$$<br>\dfrac{\partial{E} }{\partial{u</em>{i} } } &#x3D; \dfrac{\partial{E} }{\partial{h_i} } \cdot \dfrac{\partial{h_i} }{\partial{u_{i} } } &#x3D; \sum_{j&#x3D;1}^{M}EI^{‘}<em>j \cdot h_i(1-h_i) :&#x3D; EI_i<br>$$<br>6.3 然后就触碰到了输入层与隐层之间的权值矩阵 $w</em>{ki}$ ：<br>$$<br>\dfrac{\partial{E} }{\partial{w_{ki} } } &#x3D; \dfrac{\partial{E} }{\partial{u_i} } \cdot \dfrac{\partial{u_i} }{\partial{w_{ki} } } &#x3D; EI_i \cdot x_k<br>$$</p>
+<ol start="7">
+<li>至此即可完成输入层与隐层之间权值矩阵的更新：</li>
+</ol>
+<p>$$<br>{w’}<em>{ki}^{(new)} &#x3D; {w’}</em>{ki}^{(old)} - \eta \cdot EI^{‘}_i \cdot x_k<br>$$</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>word2vec 模型被越来越多的科研工作者解除和使用，并且效果十分不错：能够捕获到语义信息</p>
+<h1 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h1><p>模型虽然优秀，但是截至目前却缺少对“词嵌入模型”参数学习过程的全面解释，从而使非神经网络专家无法理解这种模型的工作机制。</p>
+<blockquote>
+<p>I notice that there lacks a material that comprehensively explains the parameter learning process of word embedding models in details, thus preventing researchers that are non-experts in neural networks from understanding the working mechanism of such models.</p>
+</blockquote>
+<h1 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h1><h2 id="Continuous-Bag-of-Word-Model"><a href="#Continuous-Bag-of-Word-Model" class="headerlink" title="Continuous Bag-of-Word Model"></a>Continuous Bag-of-Word Model</h2><h3 id="One-word-Context"><a href="#One-word-Context" class="headerlink" title="One-word Context"></a>One-word Context</h3><p>依旧是由简入繁，首先模型的输入也就是目标单词的上下文仅一个单词</p>
+<blockquote>
+<p>We assume that there is only one word considered per context, which means the model will predict one target word given one context word, which is like a bigram model.</p>
+</blockquote>
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210711195544139.png" alt="image-20210711195544139" style="zoom:67%;" />
+
+<p>模型图如上所示，其中：$\mathbf{x} &#x3D; {x_1,\dots,x_V}$ 为输入的词向量（one-hot），嵌入维度为 $V$ (词典的长度)；$h&#x3D;{h_1,\dots, h_n}$ 为隐层神经元</p>
+<ol>
+<li>首先完成输入到隐层的前向传播：词向量与权值矩阵相乘，因为是 one-hot编码，不妨令词向量 $k$ 位为 $1$ 其余位为 $0$ 那么结果就是权值矩阵的第 $k$ 行向量（ $\mathbf{W}^T_{(k,·)}$ 我理解的是表示 $W$ 矩阵的第 $k$ 行行向量）并将结果记作 $v_{W_I}^T$</li>
+</ol>
+<p>$$<br>\mathbf{h} &#x3D; \mathbf{W}^T\mathbf{x}  &#x3D; \mathbf{W}^T_{(k,·)} :&#x3D; v_{w_I}^T<br>$$</p>
+<ol start="2">
+<li><p>然后完成隐层到输出层的前向传播</p>
+<ol>
+<li><p>先与权值矩阵 $W’$ 进行矩阵乘法：一个维度是 $(N, 1)$ 一个维度是 $(N, V)$，我们记第 $j$ 个输出为 $u_j$ (是一个标量哦，激活后对应 $y_j$，表示第 $j$ 个词是目标词的概率大小）<br>$$<br>u_j &#x3D; {v’}<em>{w_j}^T\mathbf{h}<br>$$<br>其中 ${v’}</em>{w_j}$ 是 $W’$ 的第 $j$ 列</p>
+</li>
+<li><p>然后我们对第 $j$ 个输出进行激活 (Softmax 函数)：（这里面的 $w$ 表示 word ）<br>$$<br>p(w_j|w_I) &#x3D; y_j &#x3D; \dfrac{exp(u_j)}{\sum_{j’&#x3D;1}^{V}exp(u_{j’})}<br>$$</p>
+</li>
+</ol>
+</li>
+<li><p>将中间变量 $u_j, u_j’$ 作一下替换得到详细形式：</p>
+</li>
+</ol>
+<p>$$<br>p(w_j|w_I) &#x3D; \dfrac{exp({v’}<em>{w_j}^T v</em>{w_I})}{\sum_{j’&#x3D;1}^{V}exp({v’}<em>{w</em>{j’} }^T v_{w_I}^T)}<br>$$</p>
+<ol start="4">
+<li><p>选择最优化目标，得到损失函数：</p>
+<p>令 $w_O$ 表示目标单词，其索引记为 $j^*$ ，因此我们要最大化如下这一概率值：<br>$$<br>\mathop{max} p(w_O|w_I) &#x3D; \mathop{max}y_{j^*}<br>$$<br>为了简化运算，我们引入的对数函数消除了除法，在这里默认以 $e$ 为底，方便求导<br>$$<br>&#x3D; \mathop{max} \mathop{log} y_{j*} &#x3D; u_{j*} - \mathop{log} \sum_{j’&#x3D;1}^{V}exp(u_{j’})<br>$$<br>最后，最大化转为最小化得到损失函数：<br>$$<br>E &#x3D; -\mathop{log}p(w_O|w_I) &#x3D; \mathop{log} \sum_{j’&#x3D;1}^{V}exp(u_{j’}) - u_{j*}<br>$$</p>
+</li>
+<li><p>执行反向传播，输出层到激活函数，将其结果记为 $e_j$<br>$$<br>\dfrac{\partial{E} }{\partial{u_j} } &#x3D; y_j - t_j :&#x3D; e_j<br>$$<br>这里 $t_j &#x3D; 1$ 当且仅当 $j &#x3D; j*$ 否则 $t_j &#x3D; 0$</p>
+<blockquote>
+<p>这里对 $u_j$ 求偏导，对于 $j’ \neq j$ 的 $u_{j’}$ 都看做常数<br>$$<br>\dfrac{\partial{(\mathop{log} \sum_{j’&#x3D;1}^{V}exp(u_{j’}))} }{\partial{u_j} } &#x3D; \dfrac{1}{\sum_{j’&#x3D;1}^{V}exp(u_{j’})} \times (C + exp(u_j))’ \ &#x3D;  \dfrac{exp(u_j)}{\sum_{j’&#x3D;1}^{V}exp(u_{j’})} &#x3D; y_j<br>$$</p>
+</blockquote>
+</li>
+<li><p>执行反向传播，激活函数到权值矩阵 $W’$<br>$$<br>\dfrac{\partial{E} }{\partial{ {v’}<em>{w_j} } } &#x3D; \dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{ {v’}</em>{w_j} } }&#x3D; e_j \cdot \mathbf{h}<br>$$</p>
+</li>
+<li><p>至此我们就可以完成对权值矩阵 $W’$ 的更新了<br>$$<br>{v’}<em>{w_j}^{(new)} &#x3D; {v’}</em>{w_j}^{(old)} - \eta \cdot e_j \cdot \mathbf{h} \ \ (\mathop{for}\ j\ \mathop{in}\ {1, 2, \dots, V})<br>$$</p>
+<blockquote>
+<p>从这里我们也能看出，第 $j$ 列的权值跟新主要来源于其输入向量 $h$ ,而其系数 $y_j - t_j$ 则判断其更新方向（$y_j \in [0, 1]$）</p>
+<ol>
+<li>当 $t_j &#x3D; 1$ 时，如果 $y_j \rightarrow 1$ 那么效果很好，对该权值的更新也就很小</li>
+<li>当 $t_j &#x3D; 1$ 时，如果 $y_j$ 不趋近于1，表示 $y_j$ 有点偏小，则 $u_j$ 偏小，而 $u_j &#x3D; {v’}<em>{w_j}^T\mathbf{h}$ 因此要适度增加 ${v’}</em>{w_j}$</li>
+<li>当 $t_j &#x3D; 0$ 时，$y_j - t_j$ 必定为正，只不多将视程度减小 ${v’}_{w_j}$</li>
+</ol>
+</blockquote>
+</li>
+<li><p>执行反向传播，激活函数到隐层 $\mathbf{h}$ , 结果记为 $EH$<br>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{h} } } &#x3D; \sum_{j&#x3D;1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }&#x3D; \sum_{j&#x3D;1}^{V}e_j \cdot {v’}_{w_j} :&#x3D; EH<br>$$</p>
+</li>
+<li><p>隐层到权值矩阵 $\mathbf{W}$<br>$$<br>\dfrac{\partial{E} }{\partial{v_{w_I}^T} } &#x3D; \dfrac{\partial{E} }{\partial{\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I}^T} }&#x3D; \sum_{j&#x3D;1}^{V}e_j \cdot {v’}_{w_j} :&#x3D; EH<br>$$</p>
+</li>
+<li><p>至此我们就可以完成对权值矩阵 $\mathbf{W}$ 的更新了：<br>$$<br>{v}<em>{w_I}^{(new)} &#x3D; {v}</em>{w_I}^{(old)} - \eta EH^T &#x3D; {v}<em>{w_I}^{(old)} - \eta(\sum</em>{j&#x3D;1}^{V}e_j \cdot {v’}_{w_j})^T<br>$$</p>
+<blockquote>
+<p>虽然有个求和符号，这时第 $I$ 列的权值的更新依旧取决于 $y_{j*}$, </p>
+<ol>
+<li>当 $y_{j*} \rightarrow 1$ 那么其余 $y_j \rightarrow 0$, 从而 $y_j - t_j \rightarrow 0$ 那么更新幅度很低</li>
+<li>当 $y_{j*}$ 不趋近于1时，其会产生一个 （$y_{j*} - t_{j*}$ ）小于 0 的更新幅度，而对于其余 $y_j$ 必然产生较大的大于 0 的更新幅度，根据这两个幅度以及隐层与输出层间权值矩阵的信息，动态调节权值信息</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h3 id="Multi-word-context"><a href="#Multi-word-context" class="headerlink" title="Multi-word context"></a>Multi-word context</h3><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210711232406495.png" alt="image-20210711232406495" style="zoom: 67%;" />
+
+<p>上图即为 CBOW 的模型图，可以看出主要变化就是多个词向量的输入</p>
+<ol>
+<li>前向传播，输入层到隐层，将输入的多个词向量统一加权求和求平均后得到隐层结果：</li>
+</ol>
+<p>$$<br>\mathbf{h} &#x3D; \frac{1}{C} \mathbf{W}(\mathbf{x_1+x_2+\dots x_C}) \ &#x3D; \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C} })<br>$$</p>
+<p>​	其中 $C$ 表示与目标词相关的上下文单词个数</p>
+<ol start="2">
+<li>然后完成隐层到激活层的传播：$u_j &#x3D; {v’}_{w_j}^T\mathbf{h}$</li>
+<li>然后进行激活：$p(w_O|w_{I,1},\dots,w_{I,C}) &#x3D; y_j &#x3D; \dfrac{exp(u_j)}{\sum_{j’&#x3D;1}^{V}exp(u_{j’})}$</li>
+<li>展开，看下最终的前向传播结果：</li>
+</ol>
+<p>$$<br>p(w_O|w_{I,1},\dots,w_{I,C}) &#x3D; \dfrac{exp({v’}<em>{w_j}^T \frac{1}{C} (\mathbf{v</em>{w_1}+v_{w_2}+\dots v_{w_C} }))}{\sum_{j’&#x3D;1}^{V}exp({v’}<em>{w</em>{j’} }^T \frac{1}{C} (\mathbf{v_{w_1}+v_{w_2}+\dots v_{w_C} })^T)}<br>$$</p>
+<ol start="5">
+<li>得到我们的损失函数：</li>
+</ol>
+<p>$$<br>E &#x3D; \mathop{log} \sum_{j’&#x3D;1}^{V}exp(u_{j’}) - u_{j*} &#x3D; \mathop{log} \sum_{j’&#x3D;1}^{V}exp({v’}<em>{w</em>{j’} }^T\mathbf{h}) - {v’}<em>{w</em>{O} }^T\mathbf{h}<br>$$</p>
+<ol start="6">
+<li><p>执行反向传播，输出层到激活函数，将其结果记为 $e_j$<br>$$<br>\dfrac{\partial{E} }{\partial{u_j} } &#x3D; y_j - t_j :&#x3D; e_j<br>$$</p>
+</li>
+<li><p>执行反向传播，激活函数到权值矩阵 $W’$</p>
+</li>
+</ol>
+<p>$$<br>\dfrac{\partial{E} }{\partial{ {v’}<em>{w_j} } } &#x3D; \dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{ {v’}</em>{w_j} } }&#x3D; e_j \cdot \mathbf{h}<br>$$</p>
+<ol start="8">
+<li>至此我们就可以完成对权值矩阵 $W’$ 的更新了</li>
+</ol>
+<p>$$<br>{v’}<em>{w_j}^{(new)} &#x3D; {v’}</em>{w_j}^{(old)} - \eta \cdot e_j \cdot \mathbf{h} \ \ (\mathop{for}\ j\ \mathop{in}\ {1, 2, \dots, V})<br>$$</p>
+<ol start="9">
+<li>执行反向传播，激活函数到隐层 $\mathbf{h}$ , 结果记为 $EH$</li>
+</ol>
+<p>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{h} } } &#x3D; \sum_{j&#x3D;1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }&#x3D; \sum_{j&#x3D;1}^{V}e_j \cdot {v’}_{w_j} :&#x3D; EH<br>$$</p>
+<ol start="10">
+<li><p>隐层到权值矩阵 $\mathbf{W}$</p>
+<p>注意这里对权值矩阵 $W$ 针对单词 $w_I$ 所作用的列求偏导，那么以它列相当于常数，因此 $\dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I}^T} } &#x3D; \frac{1}{C}$</p>
+</li>
+</ol>
+<p>$$<br>\dfrac{\partial{E} }{\partial{v_{w_I}^T} } &#x3D; \dfrac{\partial{E} }{\partial{\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I}^T} }&#x3D; EH \cdot \dfrac{1}{C}<br>$$</p>
+<ol start="11">
+<li>至此我们就可以完成对权值矩阵 $\mathbf{W}$ 的更新了：</li>
+</ol>
+<p>$$<br>{v}<em>{w</em>{I,c} }^{(new)} &#x3D; {v}<em>{w</em>{I,c} }^{(old)} - \eta \cdot \frac{1}{C} EH^T &#x3D; {v}<em>{w</em>{I,c} }^{(old)} - \eta \cdot \frac{1}{C} (\sum_{j&#x3D;1}^{V}e_j \cdot {v’}_{w_j})^T<br>$$</p>
+<p>可以看出来多个单词的输入对最终词向量的影响不仅仅在于 $\frac{1}{C}$ 而且还有 ${v’}_{w_j}$ , 即权值矩阵 $W’$, 其反向传播中也将以众多输入向量的隐藏表达为指导，配以 $e_j &#x3D; y_j - t_j$ 这一 “程度稀疏” 来更新权重，进而影响到权值矩阵 $W$。这一现象也符合我对 word2vec 模型的假象逻辑。推理至此应该是成功的。</p>
+<h2 id="Skip-Gram-Model"><a href="#Skip-Gram-Model" class="headerlink" title="Skip-Gram Model"></a>Skip-Gram Model</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210712094615755.png" alt="image-20210712094615755"></p>
+<p>Skip-Gram 模型图如上图所示，可以看出它和 CBOW 正好相反，以中间词（一个词）作为输入，输出确实中间词的上下文单词（多个词）。</p>
+<blockquote>
+<p>It is the opposite of the CBOW model. The target word is now at the input layer, and the context words are on the output layer.</p>
+</blockquote>
+<p>需要注意的是，模型图中隐层与输出层之间的权值矩阵 $W’$ 仅有一个，因此我们有着相同的输入 $\mathbf{x}$ 进行加权求和后有着相同的隐层表达 $\mathbf{h}$，再加权求和激活或就有着 $C$ 个相同的输出 $\mathbf{y}$ ,为什么要这么设计呢？</p>
+<p>我认为的是，我们最终的输出不是尽可能去完整的匹配到具体的一个词向量，而是去学习到输入词 $w_I$ 的一个上下文语境的表达 $\mathbf{y}$（一个词对应一个语境表达），而让这个 $\mathbf{y}$ 尽可能的和上下文单词表达差距最小，这样反复迭代，即可达到词向量间语义的抓取。</p>
+<p>那这样就和Continuous Bag-of-Word Model【One-word Context】的前后向传播一致了</p>
+<ol>
+<li>输入到隐层的前向传播：</li>
+</ol>
+<p>$$<br>\mathbf{h} &#x3D; \mathbf{W}^T\mathbf{x}  &#x3D; \mathbf{W}^T_{(k,·)} :&#x3D; v_{w_I}^T<br>$$</p>
+<ol start="2">
+<li><p>然后完成隐层到输出层的前向传播</p>
+<ol>
+<li><p>第 $c$ 个输出层表达：<br>$$<br>u_{c,j} &#x3D; u_j &#x3D; {v’}_{w_j}^T\mathbf{h}<br>$$</p>
+</li>
+<li><p>对第 $c$ 个输出进行激活 (Softmax 函数)：<br>$$<br>p(w_{c,j}| w_{I}) &#x3D; y_{c,j} &#x3D; \dfrac{exp(u_{j})}{\sum_{j’&#x3D;1}^{V}exp(u_{j’})}<br>$$</p>
+<p>这里变量有些过多了：输出层一共有 $C$ 个，我们现在考虑第 $c$  个输出层，一共有 $V$ 个单词，我们现在考虑第 $c$  个输出层的表达是第 $j$ 个单词的概率</p>
+</li>
+</ol>
+</li>
+<li><p>接下来直接进入到损失函数环节：</p>
+</li>
+</ol>
+<p>$$<br>E &#x3D; -\mathop{log} p(w_{O,1},w_{O,2},\dots,w_{O,C}|w_I) &#x3D; -log \prod_{c&#x3D;1}^{C} \dfrac{exp(u_{c,j_c^*})}{\sum_{j’&#x3D;1}^{V}exp(u_{j’})} \ &#x3D; C \cdot \mathop{log}\sum_{j’&#x3D;1}^{V}exp(u_{j’}) - \sum_{c&#x3D;1}^{C} u_{c,j_c^*}<br>$$</p>
+<ol start="4">
+<li><p>执行反向传播，输出层到激活函数，将其结果记为 $e_{c,j}$<br>$$<br>\dfrac{\partial{E} }{\partial{u_{c,j} } } &#x3D; y_{c,j} - t_{c,j} :&#x3D; e_{c,j}<br>$$</p>
+</li>
+<li><p>合并各个输出层 $c$ 的反向传播结果：<br>$$<br>EI_j &#x3D; \sum_{c&#x3D;1}^{C}e_{c,j} &#x3D; \dfrac{\partial{E} }{\partial{u_j} }<br>$$</p>
+</li>
+<li><p>执行反向传播，激活函数到权值矩阵 $W’$<br>$$<br>\dfrac{\partial{E} }{\partial{ {v’}<em>{w_j} } } &#x3D; \dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{ {v’}</em>{w_j} } }&#x3D; EI_j \cdot \mathbf{h}<br>$$</p>
+</li>
+<li><p>至此我们就可以完成对权值矩阵 $W’$ 的更新了</p>
+</li>
+</ol>
+<p>$$<br>{v’}<em>{w_j}^{(new)} &#x3D; {v’}</em>{w_j}^{(old)} - \eta \cdot EI_j \cdot \mathbf{h} \ \ (\mathop{for}\ j\ \mathop{in}\ {1, 2, \dots, V})<br>$$</p>
+<ol start="8">
+<li>执行反向传播，激活函数到隐层 $\mathbf{h}$ , 结果记为 $EH$</li>
+</ol>
+<p>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{h} } } &#x3D; \sum_{j&#x3D;1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }&#x3D; \sum_{j&#x3D;1}^{V}EI_j \cdot {v’}_{w_j} :&#x3D; EH<br>$$</p>
+<ol start="9">
+<li>隐层到权值矩阵 $\mathbf{W}$</li>
+</ol>
+<p>$$<br>\dfrac{\partial{E} }{\partial{v_{w_I} } } &#x3D; \dfrac{\partial{E} }{\partial{\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{h} } }{\partial{v_{w_I} } }&#x3D; EH<br>$$</p>
+<ol start="10">
+<li>至此我们就可以完成对权值矩阵 $\mathbf{W}$ 的更新了：</li>
+</ol>
+<p>$$<br>{v}<em>{w_I}^{(new)} &#x3D; {v}</em>{w_I}^{(old)} - \eta EH^T &#x3D; {v}<em>{w_I}^{(old)} - \eta(\sum</em>{j&#x3D;1}^{V}EI_j \cdot {v’}_{w_j})^T<br>$$</p>
+<blockquote>
+<p>可以看出 “程度系数“ $EI_j$ 将考虑到输入词的上下文表达 $\mathbf{y}$ 与真实上下文单词 $j_{c}^*$ 的相差程度，来利用 $v’_{w_j}$ 更新权值矩阵</p>
+</blockquote>
+<h1 id="优化计算效率"><a href="#优化计算效率" class="headerlink" title="优化计算效率"></a>优化计算效率</h1><p>Optimizing Computational Efficiency</p>
+<p>在前面的学习过程中，就可以看出我们模型对第 $j$ 个单词的预测概率需要去计算其余所有单词的概率和 $\dfrac{exp(u_{j})}{\sum_{j’&#x3D;1}^{V}exp(u_{j’})}$，虽然都通过矩阵运算一次性计算出来了，但是字典 $V$ 通常是 million 级别的应用，因此还是会大大影响了计算效率</p>
+<h2 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h2><p>这是解决方案之一，看名字能够知道是要在 softmax 上做文章，最终实现 softmax 的高效计算</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210712113315199.png" alt="image-20210712113315199"></p>
+<p>数据结构为二叉树，叶子节点为词典中的词，一共有 $V$ 个词，因此二叉树内部节点个数为 $V-1$</p>
+<blockquote>
+<p>证明：</p>
+<p>设节点总数为 $n$，叶子节点个数为：$n_0$，度为 1 的节点个数为：$n_1$，度为 2 的节点个数为 $n_2$，边的个数为 $b$，度为 1 的节点生出一条边，度为 2 的节点生出两条边<br>$$<br>n &#x3D; n_0 + n_1 + n_2 \<br>b &#x3D; n - 1 &#x3D; n_1 + 2n_2<br>$$<br>等量代换得到：$n_0 &#x3D; n_2 + 1$</p>
+</blockquote>
+<p>对于每一个叶子节点，都存在到达根节点的唯一一条（不重复）路径，这一条路径就将用来估计叶节点所代表单词表达的概率。图中的 $n(w_2, j)$ 表示到达 $w_2$ 叶节点途径的第 $j$ 个节点。每一个中间节点都存在着一个输出变量：$\mathbf{v’}_{n(w, j)}$</p>
+<p>计算单词 $w$ 为本模型输出单词 $w_O$ 的概率为：$L(w)$ 表示路径长度，$ch(n)$ 表示节点的左孩子，$[![x]!]$ 表示如果 $x$ 为真，其值为 1，否则为 -1</p>
+<ol>
+<li>从根节点 $n$ 出发，我们要根据单词的隐层表达，计算下一步的方向（左 OR 右）：</li>
+</ol>
+<p>$$<br>p(n, left) &#x3D; \sigma({v’}_n^T \cdot \mathbf{h}) \<br>p(n, right) &#x3D; 1 - p(n, left) &#x3D; \sigma(-{v’}_n^T \cdot \mathbf{h})<br>$$</p>
+<p>​	在这里如果是 CBOW 模型，$\mathbf{h} &#x3D; \frac{1}{C} \sum_{c&#x3D;1}^{C} v_{w_c}$ ; 如果是 skip-gram 模型，$\mathbf{h} &#x3D; \mathbf{v}_{w_I}$, $\sigma$ 表示 sigmoid 激活函数，进行二分类选择</p>
+<ol start="2">
+<li>因此我们用乘法连接路径，定义公式处理下符号问题即可得到：</li>
+</ol>
+<p>$$<br>p(w&#x3D;w_O) &#x3D; \prod_{j&#x3D;1}^{L(w)-1} \sigma([![n(w,j+1) &#x3D; ch(n(w,j))]!] \cdot {v’}_{n(w,j)}^T\cdot\mathbf{h})<br>$$</p>
+<p>接下来我们以 One-word Context 为例演算下反向传播，为了简化表达并且向 One-word Context 中定义的变量考虑，采用了以下缩写：<br>$$<br>[![\cdot]!] &#x3D; [![n(w,j+1) :&#x3D; ch(n(w,j))]!] \<br>v_j’ :&#x3D; {v’}_{n(w,j)}<br>$$</p>
+<p>2.1 得到我们的损失函数：<br>$$<br>E &#x3D; -\mathop{log} p(w&#x3D;w_O | w_I) &#x3D; -\sum_{j&#x3D;1}^{L(w)-1} \mathop{log} \sigma ([![\cdot]!] \cdot {v’}_{j}^T\cdot\mathbf{h})<br>$$</p>
+<p>2.2 然后对隐层与输出层之间的权值矩阵进行更新：</p>
+<p>$E$ 中的求和不可怕，非 $j$ 的都看作常数：先来对 $\mathbf{v}’_j\mathbf{h}$ 求偏导，然后再对 $\mathbf{v}’_j$ 求偏导<br>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{v}’_j\mathbf{h} } } &#x3D; - [\mathop{log} \sigma([![·]!]\mathbf{v}’_j\mathbf{h})]’ &#x3D; - \frac{1}{A} \cdot A’ &#x3D; - \frac{1}{A} \cdot A(1-A) \cdot ([![·]!]\mathbf{v}’_j\mathbf{h})’ \&#x3D; (A-1) \cdot [![·]!] &#x3D; \left(\sigma([![·]!]\mathbf{v}’_j\mathbf{h}) - 1\right) [![·]!]<br>$$</p>
+<p>化简 $[![·]!]$</p>
+<p>当 $[![·]!] &#x3D; 1$ 时 $\dfrac{\partial{E} }{\partial{\mathbf{v}’_j\mathbf{h} } } &#x3D; \sigma(\mathbf{v}’_j\mathbf{h}) - 1$ ；	</p>
+<p>当 $[![·]!] &#x3D; -1$ 时 $\dfrac{\partial{E} }{\partial{\mathbf{v}’_j\mathbf{h} } } &#x3D; 1 - \sigma(-\mathbf{v}’_j\mathbf{h}) &#x3D; \sigma(\mathbf{v}’_j\mathbf{h})$；</p>
+<p>这时候就和 $ y_j - t_j$ 碰上了，我们定义此时的 $t_j &#x3D; 1$ 当且仅当 $[![·]!] &#x3D; 1$ 时，否则$t_j &#x3D; 0$</p>
+<p>因此对 $\mathbf{v}’_j\mathbf{h}$ 求偏导的结果如下：<br>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{v}’_j\mathbf{h} } } &#x3D; \sigma(\mathbf{v}’_j\mathbf{h}) - t_j<br>$$</p>
+<p>然后对 $\mathbf{v}’_j$ 求偏导，这个就比较简单啦：<br>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{v}’_j} } &#x3D; \dfrac{\partial{E} }{\partial{\mathbf{v}’_j\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{v}’_j\mathbf{h} } }{\partial{\mathbf{v}’_j} } &#x3D; \left(\sigma(\mathbf{v}’_j\mathbf{h}) - t_j\right) \cdot \mathbf{h}<br>$$</p>
+<ol start="3">
+<li>更新隐层与输出层之间的权值矩阵：</li>
+</ol>
+<p>$$<br>{v’}<em>{j}^{(new)} &#x3D; {v’}</em>{j}^{(old)} - \eta \cdot \left(\sigma(\mathbf{v}’_j\mathbf{h}) - t_j\right) \cdot \mathbf{h}<br>$$</p>
+<p>对比一下优化前，可以看出优化前我们要计算 $V$ 次，而采用了 Hierarchical softmax 我们只需要计算 $log_2(V)$ 次，实际上是 $1, 2, \dots, L(w) -1 $ 次（下方为优化前更新公式）<br>$$<br>{v’}<em>{w_j}^{(new)} &#x3D; {v’}</em>{w_j}^{(old)} - \eta \cdot e_j \cdot \mathbf{h} \ \ (\mathop{for}\ j\ \mathop{in}\ {1, 2, \dots, V})<br>$$</p>
+<blockquote>
+<p>当 $[![·]!] &#x3D; 1$ 时 $t_j &#x3D; 1$ 表示应该向左走，而 $\sigma(\mathbf{v}’_j\mathbf{h}) &#x3D; p(n, left)$ 表示向左走的概率，如果 $ p \rightarrow 1$ 那么对权重没有太大更新，反之，则应根据 $\mathbf{h}, \eta$ 增大权重，以增加 $\sigma(\mathbf{v}’_j\mathbf{h})$ 的值</p>
+<p>当 $[![·]!] &#x3D; -1$ 时 $t_j &#x3D; 0$ 表示应该向右走，而 $\sigma(\mathbf{v}’_j\mathbf{h}) &#x3D; p(n, left)$ 表示向左走的概率，如果 $ p \rightarrow 0$ 那么符合正确情况，对权重没有太大更新，反之，则应根据 $\mathbf{h}, \eta$ 减小权重，以减小 $\sigma(\mathbf{v}’_j\mathbf{h})$ 的值</p>
+</blockquote>
+<ol start="4">
+<li>继续向后传递，计算对 $\mathbf{h}$ 的偏导数：</li>
+</ol>
+<p>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{h} } } &#x3D; \sum_{j-1}^{L(w)-1}\dfrac{\partial{E} }{\partial{\mathbf{v}’_j\mathbf{h} } } \cdot \dfrac{\partial{\mathbf{v}’<em>j\mathbf{h} } }{\partial{\mathbf{h} } } &#x3D; \sum</em>{j-1}^{L(w)-1}\left(\sigma(\mathbf{v}’_j\mathbf{h}) - t_j\right) \cdot \mathbf{v}’_j :&#x3D; EH<br>$$</p>
+<p>对比一下优化前的，可以看出来大体的一致性：<br>$$<br>\dfrac{\partial{E} }{\partial{\mathbf{h} } } &#x3D; \sum_{j&#x3D;1}^{V}\dfrac{\partial{E} }{\partial{u_j} } \cdot \dfrac{\partial{u_j} }{\partial{\mathbf{h} } }&#x3D; \sum_{j&#x3D;1}^{V}e_j \cdot {v’}_{w_j} :&#x3D; EH<br>$$</p>
+<ol start="5">
+<li>后续的应当一致了，有时间补充完整（等下次回顾的时候吧….)</li>
+</ol>
+<h2 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h2><p>为了解决因词典数目导致的算力问题，我们只需要将目标词典做一个采样，当成本次更新的词典即可，那么问题来了，我们如何采样呢？除了正样本需要更新被采样到之外，其余的就能随便采吗？并不是。Word2vec 使用了 <code>unigram distribution raised to the 3/4 powre</code> 的采样模型，具体在这里也没介绍。</p>
+<p>我觉得负采样这里需要钻研的是如何采样，采样完成后，后续的更新就与前面基本一致了~<br>$$<br>E &#x3D; - \mathop{log} \sigma(\mathbf{v’}<em>{w_O}^T \mathbf{h}) - \sum</em>{w_j\in W_{neg} } \mathop{log} \sigma(-\mathbf{v’}_{w_j}^T \mathbf{h})<br>$$<br> 可以看出后续权值矩阵的更新将只会涉及到 $w_j$ 前向传播所经的权值向量。</p>
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><p>无</p>
+<h1 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h1><p>无</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-07-12</span><i class="fa fa-tag"></i><a class="tag" href="/categories/NLP/" title="NLP">NLP </a><a class="tag" href="/tags/python/" title="python">python </a><a class="tag" href="/tags/DL/" title="DL">DL </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://example.com/2021/07/12/Word2Vec理论介绍与推导/,Jiancong Cui - Homepage,Word2Vec理论介绍与推导,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/07/24/%E6%96%B0%E9%97%BB%E4%B8%BB%E9%A2%98%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1/" title="新闻主题分类任务">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/07/09/%E6%84%9F%E7%9F%A5%E6%9C%BA%E6%A8%A1%E5%9E%8B/" title="感知机模型">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

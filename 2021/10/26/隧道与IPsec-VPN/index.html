@@ -1,0 +1,186 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Author Name,name@example.com"><title>隧道与IPsec VPN · Jiancong Cui - Homepage</title><meta name="description" content="Prepare虚拟专用网络，Virtual Private Network，VPN
+1、在内部网络各个子网之间建立点对点 IP 隧道，解决由互联网互联的内部网络各个子网之间的通信问题
+2、通过在点对点 IP 隧道两端之间建立安全关联，解决内部网络各个子网之间的安全通信问题
+3、通过 VPN 接入技术"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Jiancong Cui - Homepage</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>隧道与IPsec VPN</a></h3></div><div class="post-content"><h1 id="Prepare"><a href="#Prepare" class="headerlink" title="Prepare"></a>Prepare</h1><p>虚拟专用网络，Virtual Private Network，VPN</p>
+<p>1、在内部网络各个子网之间建立点对点 IP 隧道，解决由互联网互联的内部网络各个子网之间的通信问题</p>
+<p>2、通过在点对点 IP 隧道两端之间建立安全关联，解决内部网络各个子网之间的安全通信问题</p>
+<p>3、通过 VPN 接入技术解决远程终端访问内部网络资源的问题</p>
+<h1 id="点对点-IP-隧道实验"><a href="#点对点-IP-隧道实验" class="headerlink" title="点对点 IP 隧道实验"></a>点对点 IP 隧道实验</h1><h2 id="1、路由器添加接口卡"><a href="#1、路由器添加接口卡" class="headerlink" title="1、路由器添加接口卡"></a>1、路由器添加接口卡</h2><p><strong>需要对公网路由器 R4，R5，R6 添加额外的接口卡</strong></p>
+<p>a、点开路由器的配置界面，先关闭路由器</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017173557977.png" alt="image-20211017173557977"></p>
+<p>b、左侧选择 NM - 2FE2W 将其拖动进指定的插槽</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017173647869.png" alt="image-20211017173647869"></p>
+<p>c、再次启动路由器</p>
+<h2 id="2、配置外网路由器"><a href="#2、配置外网路由器" class="headerlink" title="2、配置外网路由器"></a>2、配置外网路由器</h2><p>主要配置 R4，R5，R6 路由器全球 IP 地址与子网掩码</p>
+<p>Tips：配置时推荐打开接口：<code>no shut</code></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017184925520.png" alt="image-20211017184925520"></p>
+<p>最终配置结果如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017194622660.png" alt="image-20211017194622660"></p>
+<h2 id="3、配置内网路由器"><a href="#3、配置内网路由器" class="headerlink" title="3、配置内网路由器"></a>3、配置内网路由器</h2><p>主要配置 R1，R2，R3 路由器连接公共网络接口与内网接口的 IP 与 子网掩码</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017190327310.png" alt="image-20211017190327310"></p>
+<h2 id="4、OSPF-配置"><a href="#4、OSPF-配置" class="headerlink" title="4、OSPF 配置"></a>4、OSPF 配置</h2><blockquote>
+<p>OSPF，开放最短路径优先，其路由过程如下：</p>
+<p>1、寻找邻居</p>
+<p>2、建立邻接关系</p>
+<p>3、链路状态信息传递</p>
+<p>4、计算路由</p>
+<p>因此对 R1-6 路由器配置 OSPF 后，能够自动寻找邻居（路由器），交换路由信息，保证路由器之间的连通性</p>
+</blockquote>
+<p>以 R2 为例，配置过程如下：将 192.1.2.0 &#x2F; 24 配置为一个 OSPF 区域（或者是自治系统 AS）</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017192234046.png" alt="image-20211017192234046"></p>
+<p>最终整体的初始架构如下：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017194711614.png" alt="image-20211017194711614"></p>
+<p>以 R4 的路由表为例，我们查看一下是否配置正确：其中 O 表示 OSPF</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017194746959.png" alt="image-20211017194746959"></p>
+<h2 id="5、隧道配置"><a href="#5、隧道配置" class="headerlink" title="5、隧道配置"></a>5、隧道配置</h2><p>对 R1，R2 与 R3 配置隧道</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">interface tunnel 1 # 创建编号为 1 的 IP 隧道接口并进入配置模式</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">为隧道接口配置私有 IP 地址 192.168.4.1 和子网掩码 255.255.255.0</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">因为我们发送的</span></span><br><span class="line">ip address 192.168.4.1 255.255.255.0 </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定隧道源端的公网 IP （与路由器接口绑定）</span></span><br><span class="line">tunnel source FastEthernet 0/1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定隧道目的端的公网 IP</span></span><br><span class="line">tunnel destination 192.1.2.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017202015250.png" alt="image-20211017202015250"></p>
+<h2 id="6、RIP-配置"><a href="#6、RIP-配置" class="headerlink" title="6、RIP 配置"></a>6、RIP 配置</h2><p>为什么要进行 RIP 配置，为了能使得 R1-3 发现（直连）隧道的私有 IP 地址</p>
+<blockquote>
+<p>RIP，Routing Information Protocol，是一种距离向量协议</p>
+</blockquote>
+<p>以 R1 为例</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router rip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下方表示该路由器直连的网段</span></span><br><span class="line">network 192.168.1.0 # 自身内网私有地址</span><br><span class="line">network 192.168.4.0 # Tunnel 1 的私有地址</span><br><span class="line">network 192.168.5.0 # Tunnel 2 的私有地址</span><br></pre></td></tr></table></figure>
+
+<h2 id="7、路由表分析"><a href="#7、路由表分析" class="headerlink" title="7、路由表分析"></a>7、路由表分析</h2><p>以 R1 为例</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017202946682.png" alt="image-20211017202946682"></p>
+<p>C 类路由表项，表示直接连接的网络路邮项目，有 外部网段 <code>192.1.1.0</code> 走接口 <code>0/1</code>，有内部网段 <code>192.168.1.0</code> 走接口 <code>0/0</code> ，还有隧道 1 的 <code>192.168.4.0</code> 隧道源端，隧道 2 的 <code>192.168.5.0</code> 隧道源端；</p>
+<p>O 类路由表项，表示通往公共子网的传输路径（非直连），对于 R1 除了 <code>192.1.1.0</code> 网段直连外 <code>2.0, 3.0, 4.0, 5.0, 6.0</code> 均是通过OSPF 配置得到的动态路由项</p>
+<p>R 类路由表项，表示通往内部子网的传输路径（非直连），有 RIP 动态路由习得，对于 R1 除了 <code>192.1.1.0</code> 这一内部子网直连外，还能习得 <code>192.168.2.0, 192.168.2.0</code> 这两个，这是通过 RIP 配置的 <code>192.168.4.0, 192.168.5.0</code>  隧道直连得到；看到底部还有一个 <code>192.168.6.0</code> 这是 R3 那边配置隧道和 RIP 后，R1 习得的结果。</p>
+<h2 id="8、配置-PC-与-Server"><a href="#8、配置-PC-与-Server" class="headerlink" title="8、配置 PC 与 Server"></a>8、配置 PC 与 Server</h2><table>
+<thead>
+<tr>
+<th>HOST</th>
+<th>IP</th>
+<th>Gateway</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PC0</td>
+<td>192.168.1.1</td>
+<td>192.168.1.254</td>
+</tr>
+<tr>
+<td>PC1</td>
+<td>192.168.1.2</td>
+<td>192.168.1.254</td>
+</tr>
+<tr>
+<td>PC2</td>
+<td>192.168.2.1</td>
+<td>192.168.2.254</td>
+</tr>
+<tr>
+<td>PC3</td>
+<td>192.168.2.2</td>
+<td>192.168.2.254</td>
+</tr>
+<tr>
+<td>PC4</td>
+<td>192.168.3.1</td>
+<td>192.168.3.254</td>
+</tr>
+<tr>
+<td>PC5</td>
+<td>192.168.3.2</td>
+<td>192.168.3.254</td>
+</tr>
+<tr>
+<td>Server0</td>
+<td>192.168.1.3</td>
+<td>192.168.1.254</td>
+</tr>
+<tr>
+<td>Server1</td>
+<td>192.168.2.3</td>
+<td>192.168.2.254</td>
+</tr>
+<tr>
+<td>Server2</td>
+<td>192.168.3.3</td>
+<td>192.168.3.254</td>
+</tr>
+</tbody></table>
+<h2 id="9、隧道测试"><a href="#9、隧道测试" class="headerlink" title="9、隧道测试"></a>9、隧道测试</h2><p>使用 PC0 ping PC4 <code>192.168.3.1</code></p>
+<p>在内网中 先给交换机，交换机给网关，没有问题</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017205508453.png" alt="image-20211017205508453"></p>
+<p>进入公网，需要隧道 2 配合换上公网 IP <code>192.1.1.1</code></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017223314685.png" alt="image-20211017223314685"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018085748762.png" alt="image-20211018085748762"></p>
+<p>真实的行动轨迹</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017223418362.png" alt="image-20211017223418362"></p>
+<p>到了 Router 3 后：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211017223512176.png" alt="image-20211017223512176"></p>
+<p>Tips：如果没有这条 Tunnel2 私有地址（<code>192.168.1.1 - 192.168.3.1</code>）是无法在公网上路由的，但是他应该能找寻到 Tunnel1 -&gt; Tunnel3 -&gt; PC3 这样一条路径，我们来尝试下：</p>
+<h2 id="10、智能路由测试"><a href="#10、智能路由测试" class="headerlink" title="10、智能路由测试"></a>10、智能路由测试</h2><p>关闭 Tunnel2 很简单：在 R1 与 R3 中输入如下命令，重启 Packet Tracer 后，R1 和 R3 就无法发现Tunnel 2 了。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">router rip</span><br><span class="line">no network 192.168.5.0</span><br></pre></td></tr></table></figure>
+
+<p>随后我们尝试 PC0 Ping PC3，第一个关键节点是 R1 输出的 IP 包：可以看出他的确没有识别到 Tunnel 2，但是通过路由器之间互学习（路由表交换），R1 能够学习到通往 192.168.3.0&#x2F;24 的路由项。</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018091036921.png" alt="image-20211018091036921"></p>
+<p>R1 的部分路由表，192.168.3.0 &#x2F;24 走 Tunnel1 即可</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018091244762.png" alt="image-20211018091244762"></p>
+<p>随后能在公网上顺利到达 192.1.2.1 （R2），R2 能够通过 Tunnel 3，传给 R3，进而到达 PC3</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211018091415881.png" alt="image-20211018091415881"></p>
+<h1 id="IPSec"><a href="#IPSec" class="headerlink" title="IPSec"></a>IPSec</h1><p>Target：通过 IPSec 实现经过点对点 IP 隧道传输内容的保密性以及完整性，分两个阶段完成，第一个阶段建立点对点 IP 隧道两端之间的安全传输通道；第二阶段是建立点对点 IP 隧道两端之间的双向安全关联。</p>
+<p>具体包括：</p>
+<p>a、建立安全传输通道：完成身份鉴别协议、密钥交换算法和加密&#x2F;解密算法等协商过程</p>
+<p>b、建立安全关联：确认安全协议、加密算法、HMAC 算法等</p>
+<blockquote>
+<p>选择 AH 为安全协议时不需要选择加密算法</p>
+</blockquote>
+<p>c、配置分组过滤器：筛选出需要经过 IPSec 安全关联传输的一组 IP 分组，只有与实现内部子网之间通信相关的 IP 分组才需要经过 IPSec 安全关联进行传输</p>
+<h2 id="相关命令解释"><a href="#相关命令解释" class="headerlink" title="相关命令解释"></a>相关命令解释</h2><h3 id="安全策略"><a href="#安全策略" class="headerlink" title="安全策略"></a>安全策略</h3><p>协商安全传输通道所需的安全策略，然后协商安全策略中的身份鉴别机制，加密算法，hash 算法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">两端可定义多个安全策略编号越小表示的优先级越高</span></span><br><span class="line">crypto isakmp policy 1  # 定义编号和优先级为 1 的安全策略并进入其配置模式</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可选的鉴别机制有很多：基于 RSA 的数值签名等</span></span><br><span class="line">authentication pre-share # 指定身份鉴别机制 pre-share 表示共享密钥鉴别机制</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">支持的加密算法有很多：3DES、AES、DES</span></span><br><span class="line">encryption 3des # 指定加密算法</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可选 MD5 SHA 等</span></span><br><span class="line">hash md5 # 指定报文摘要算法 MD5</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">预定义了 1 2 5 号组标识符</span></span><br><span class="line">group 2 # 指定 Diffie-Hellman 组表示符，在 DH 算法同步密钥时，使用组标识符 2 对应的参数</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">超时后需要重新建立安全传输通道（安全关联）</span></span><br><span class="line">lifetime 3600 # 指定该安全策略的失效时间 3600s</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">为需要建立安全传输通道 且 采用共享秘钥鉴别机制的隧道两端配置共享秘钥 1234</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">0.0.0.0/0.0.0.0 表示另一端 IP 任意</span></span><br><span class="line">crypto isakmap key 1234 address 0.0.0.0 0.0.0.0 </span><br></pre></td></tr></table></figure>
+
+<h3 id="IPSec-变换集"><a href="#IPSec-变换集" class="headerlink" title="IPSec 变换集"></a>IPSec 变换集</h3><p>指定安全协议，以及使用的加密算法和 HMAC 算法</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">crypto ipsec transform-set tunnel esp-3des esp-md5-hmac</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">transform-set 表示变换集</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tunnel 为变换集的名称</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">选择 ESP 作为安全协议，可选的加密算法有：esp-3des, esp-des, esp-aes 可选的 HMAC 算法有：esp-md5-hmac, esp-sha-hmac</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">选择 AH 作为安全协议，可选的 HMAC 算法有：esp-md5-hmac, esp-sha-hmac</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="分组过滤器"><a href="#分组过滤器" class="headerlink" title="分组过滤器"></a>分组过滤器</h3><p>指定需要经过安全关联传输的 IP 分组集，只有与实现内部子网之间通信相关的 IP 分组才需要经过 IPSec 安全关联进行传输</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">access-list 101 permit gre host 192.1.1.1 host 192.1.2.1</span><br><span class="line">access-list 101 deny ip any any</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">101 组过滤，指定源 IP 为 192.1.1.1 目的 IP 为 192.1.2.1</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">gre 表示 以 GRE 格式封装内层 IP分组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="加密映射"><a href="#加密映射" class="headerlink" title="加密映射"></a>加密映射</h3><p>指定安全关联所 使用的安全协议和相关算法的 IPSec 变换集与过滤后 IP 分组的绑定</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建名为 tunnel 序号为 10 的 ipsec-isakmp 环境下的加密映射并进入其配置模式</span></span><br><span class="line">crypto map tunnel 10 ipsec-isakmp</span><br><span class="line"></span><br><span class="line">set peer 192.1.2.1 # 指定安全关联的另一端 为 192.1.2.1</span><br><span class="line"></span><br><span class="line">set pfs group2 # 指定 DH 算法和组标识符 2 对应的参数, 重新建立安全关联时使用 DH 算法交换同步密钥，并使用组标识符 2 对应的参数重新建立安全关联</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定安全关联的失效时间</span></span><br><span class="line">set security-association lifetime seconds 900</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定安全关联使用的安全协议及加密，HMAC算法的变换集为 tunnel</span></span><br><span class="line">set transform-set tunnel</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定经过安全关联传输的 IP 分组集为 101 分组过滤器</span></span><br><span class="line">match address 101</span><br></pre></td></tr></table></figure>
+
+<h2 id="1、安全策略配置"><a href="#1、安全策略配置" class="headerlink" title="1、安全策略配置"></a>1、安全策略配置</h2><p>隧道两端都需要完成相应的 ISAKMP 安全策略配置过程，包括安全通道传输所使用的加密算法，报文摘要算法，共享秘钥鉴别机制和 DH 组号。</p>
+<p>隧道每一端可以配置多个安全 策略，但两端必须存在匹配的安全策略</p>
+<p><strong>Router 1</strong>：R1 上定义编号为 1 优先级最高的安全策略，身份鉴别机制采用共享秘钥鉴别机制，加密算法采用 3des，hash 采用 md5，DH 秘钥交换算法</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020083237656.png" alt="image-20211020083237656"></p>
+<p><strong>Route 2</strong>：匹配 Tunnel 1 的 R1 端，采用相同的安全策略即可</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020084427570.png" alt="image-20211020084427570"></p>
+<p><strong>Route 3</strong>：匹配 Tunnel 2 的 R1 端，与 Tunnel 3 的 R2 端，采用相同的安全策略即可</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020084337530.png" alt="image-20211020084337530"></p>
+<h2 id="2、变换集配置"><a href="#2、变换集配置" class="headerlink" title="2、变换集配置"></a>2、变换集配置</h2><p>IPSec 参数配置：这属于阶段二中安全关联相关配置过程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crypto ipsec transform-set tunnel esp-3des esp-md5-hmac</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、分组过滤器配置"><a href="#3、分组过滤器配置" class="headerlink" title="3、分组过滤器配置"></a>3、分组过滤器配置</h2><p>指定两端需要进行安全传输的 IP 分组范围</p>
+<p>R1：配置 Tunnel 1 与 Tunnel 2 的源端 IP 与 目的端 IP</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tunnel 1</span></span><br><span class="line">access-list 101 permit gre host 192.1.1.1 host 192.1.2.1</span><br><span class="line">access-list 101 deny ip any any</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tunnel 2</span></span><br><span class="line">access-list 102 permit gre host 192.1.1.1 host 192.1.3.1</span><br><span class="line">access-list 102 deny ip any any</span><br></pre></td></tr></table></figure>
+
+<p>R2：配置 Tunnel 1 与 Tunnel 3 的源端 IP 与 目的端 IP</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tunnel 1</span></span><br><span class="line">access-list 101 permit gre host 192.1.2.1 host 192.1.1.1</span><br><span class="line">access-list 101 deny ip any any</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tunnel 3</span></span><br><span class="line">access-list 102 permit gre host 192.1.2.1 host 192.1.3.1</span><br><span class="line">access-list 102 deny ip any any</span><br></pre></td></tr></table></figure>
+
+<p>R3：配置 Tunnel 2 与 Tunnel 3 的源端 IP 与 目的端 IP</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tunnel 2</span></span><br><span class="line">access-list 101 permit gre host 192.1.3.1 host 192.1.1.1</span><br><span class="line">access-list 101 deny ip any any</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">tunnel 3</span></span><br><span class="line">access-list 102 permit gre host 192.1.3.1 host 192.1.2.1</span><br><span class="line">access-list 102 deny ip any any</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、加密映射配置"><a href="#4、加密映射配置" class="headerlink" title="4、加密映射配置"></a>4、加密映射配置</h2><p>将分组过滤器与变换集配置选项绑定至加密映射中</p>
+<p>R1：需要配置 Tunnel 1 与 Tunnel 2 的加密映射</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020091651843.png" alt="image-20211020091651843"></p>
+<p>R2：需要配置 Tunnel 1 与 Tunnel 3 的加密映射</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020091911504.png" alt="image-20211020091911504"></p>
+<p>R3：需要配置 Tunnel 2 与 Tunnel 3 的加密映射</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020092049086.png" alt="image-20211020092049086"></p>
+<h2 id="5、绑定接口"><a href="#5、绑定接口" class="headerlink" title="5、绑定接口"></a>5、绑定接口</h2><p>将配置好的加密映射作用到路由器目标接口上</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">interface FastEthernet 0/1</span><br><span class="line">crypto map tunnel </span><br></pre></td></tr></table></figure>
+
+<h2 id="6、测试"><a href="#6、测试" class="headerlink" title="6、测试"></a>6、测试</h2><p>使用 PC0 ping PC4 <code>192.168.3.1</code></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093157410.png" alt="image-20211020093157410"></p>
+<p>首先能够看到初始的内层 IP 分组：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020092955818.png" alt="image-20211020092955818"></p>
+<p>随后能够看到 R1 将原始 IP 分组封装后的报文：内部的信息（私有地址）已然看不到了</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093116200.png" alt="image-20211020093116200"></p>
+<p>然后该报文在公网上安全加密传输：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093245915.png" alt="image-20211020093245915"></p>
+<p>直到 R3 开始解开外部 IP 报文，解密获取了内部 IP 分组，故而继续在私网上传输</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211020093419574.png" alt="image-20211020093419574"></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-10-26</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security </a><a class="tag" href="/tags/security/" title="security">security </a><a class="tag" href="/tags/experiment/" title="experiment">experiment </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://example.com/2021/10/26/隧道与IPsec-VPN/,Jiancong Cui - Homepage,隧道与IPsec VPN,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/10/28/torch-scatter/" title="torch.scatter">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/10/10/MAC-Spoofing-and-Vlan-Defense/" title="MAC Spoofing and Vlan Defense">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

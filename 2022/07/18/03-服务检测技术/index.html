@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Author Name,name@example.com"><title>03-服务检测技术 · Jiancong Cui - Homepage</title><meta name="description" content="操作系统检测没有一种工具可以提供绝对准确的远程操作系统信息：
+
+检查的细节包括初始序列号（ISN）、TCO选项、IP标识符（ID）数字时间戳、显示拥塞通知（ECN）、窗口大小等
+每个操作系统对于这些探针都会做出不同的响应
+通过 -O 参数进行检测
+
+
+提供额外选项如下:
+
+--osscan-limi"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Jiancong Cui - Homepage</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>03-服务检测技术</a></h3></div><div class="post-content"><h1 id="操作系统检测"><a href="#操作系统检测" class="headerlink" title="操作系统检测"></a>操作系统检测</h1><p>没有一种工具可以提供绝对准确的远程操作系统信息：</p>
+<ul>
+<li>检查的细节包括初始序列号（ISN）、TCO选项、IP标识符（ID）数字时间戳、显示拥塞通知（ECN）、窗口大小等</li>
+<li>每个操作系统对于这些探针都会做出不同的响应</li>
+<li>通过 <code>-O</code> 参数进行检测</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171122383.png"></p>
+<p>提供额外选项如下:</p>
+<ul>
+<li><code>--osscan-limit</code>: 只对满足 “同时具有状态为 open 和 closed 的端口” 条件的主机进行操作系统检测</li>
+<li><code>--osscan-guess</code>: 猜测认为最接近目标的匹配操作系统类型</li>
+<li><code>--max-retries</code>: 对操作系统检测尝试的次数, 默认为 5</li>
+</ul>
+<h2 id="操作系统指纹"><a href="#操作系统指纹" class="headerlink" title="操作系统指纹"></a>操作系统指纹</h2><p>操作系统指纹: 每一种类型的操作系统都有自己的特征, 通过向一台计算机发送特定格式的探针（数据包）来查看目标主机的响应数据，这一过程就是操作系统指纹分析的过程</p>
+<ul>
+<li>精心构造：窗口大小、窗口字段、分片标识、时间戳、序号以及其他一些细节，例如 TTL 等</li>
+<li>nmap-os-db 中存储这些操作系统独特的特征</li>
+</ul>
+<h1 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h1><p>需要进行精确的服务发现, 而不是根据开放端口常用的服务绑定信息来推断</p>
+<ul>
+<li>使用 <code>-sV</code> 参数: 端口扫描 + 服务识别 + 版本识别</li>
+<li><code>-A</code> 参数: 同时打开操作系统探测和服务发现</li>
+<li>辅助 <code>--allports</code>: 不为版本探测排除任何端口</li>
+<li>辅助 <code>--version-intensity N</code>：设定扫描的强度(<code>[0, 9]</code>, 默认是 7)<ul>
+<li><code>--version-light</code>: 轻量级模式, 扫描强度为 2, 速度块</li>
+<li><code>--version-all</code>: 扫描强度为 9, 保证对每个端口尝试所有探测报文</li>
+<li><code>--version-trace</code>: 跟踪版本扫描活动, 使 nmap 打印出关于正在进行的扫描的详细调试信息(是用<code>--packet-trace</code> 所得到的信息的子集)</li>
+</ul>
+</li>
+<li><code>-sR</code>: 对所有被发现开放的 TCP&#x2F;UDP 端口执行 SunRPC 程序 NULL 命令，试图确定它们是否 RPC 端口，如果是，可以确定是什么程序和版本号</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171145951.png"></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-07-18</span><i class="fa fa-tag"></i><a class="tag" href="/categories/Kali/" title="Kali">Kali </a><a class="tag" href="/tags/nmap/" title="nmap">nmap </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://example.com/2022/07/18/03-服务检测技术/,Jiancong Cui - Homepage,03-服务检测技术,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/07/18/04-Zenmap/" title="04-Zenmap">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/07/17/02-%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E6%8A%80%E6%9C%AF/" title="02-端口扫描技术">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

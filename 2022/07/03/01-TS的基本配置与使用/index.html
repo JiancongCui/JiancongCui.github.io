@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Author Name,name@example.com"><title>01-TS的基本配置与使用 · Jiancong Cui - Homepage</title><meta name="description" content="TypeScriptBackdrop：JS 没有表达不同代码单元之间关系的能力，因此引申出来 TS, 目标是成为 JS 的静态类型检查器
+
+以 Javascript 为基础构建的语言
+Javascript 的超集
+可以在任何支持 Javascript 的平台中执行(不代表能被 JS 解析器直接执行,"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Jiancong Cui - Homepage</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>01-TS的基本配置与使用</a></h3></div><div class="post-content"><h1 id="TypeScript"><a href="#TypeScript" class="headerlink" title="TypeScript"></a>TypeScript</h1><p>Backdrop：JS 没有表达不同代码单元之间关系的能力，因此引申出来 TS, 目标是成为 JS 的静态类型检查器</p>
+<ul>
+<li>以 Javascript 为基础构建的语言</li>
+<li>Javascript 的超集</li>
+<li>可以在任何支持 Javascript 的平台中执行(不代表能被 JS 解析器直接执行, .ts -&gt; .js -&gt; 浏览器执行)</li>
+<li>Typescript 扩展了 Javascript 并添加了类型</li>
+</ul>
+<h2 id="JS-ES-TS"><a href="#JS-ES-TS" class="headerlink" title="JS\ES\TS"></a>JS\ES\TS</h2><ul>
+<li>JS, JavaScript</li>
+<li>ES, ECMAScript, 为 JS 制定标准, 一年一个新版本</li>
+<li>TS, TypeScript</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202206222129869.png"></p>
+<h2 id="同类竞品"><a href="#同类竞品" class="headerlink" title="同类竞品"></a>同类竞品</h2><ul>
+<li>ESLint, TSLint</li>
+<li>CoffeeScript, Flow</li>
+</ul>
+<ol>
+<li>TypeScript 的定位是静态类型语言，在<strong>写代码阶段就能检查错误</strong>，而非运行阶段(边解析边执行)</li>
+<li>类型系统是最好的文档，增加了代码的<strong>可读性</strong>和可维护性</li>
+<li>有一定的学习成本，需要理解接口(Interfaces)、泛型(Generics)、类(Classes)等</li>
+<li>ts 最后被编译成 js</li>
+</ol>
+<h1 id="为什么需要-TypeScript"><a href="#为什么需要-TypeScript" class="headerlink" title="为什么需要 TypeScript"></a>为什么需要 TypeScript</h1><ol>
+<li>JS 只支持动态类型：编写 JS 代码时通常需要知道变量或对象的所有细节（拥有的函数，是否可调用）</li>
+<li>静态类型检查：在代码执行前就能检查代码是否有问题</li>
+<li>逻辑错误检查：</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202206282010687.png"></p>
+<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><p>全局环境配置：</p>
+<ul>
+<li><code>npm install -g typescript</code></li>
+</ul>
+<p>脚手架中使用</p>
+<ul>
+<li><code>create-react-app my-app --template typescript</code></li>
+</ul>
+<h2 id="编译执行"><a href="#编译执行" class="headerlink" title="编译执行"></a>编译执行</h2><ol>
+<li>命令行中通过 <code>tsc</code> 将目标 <code>ts</code> 文件编译为 <code>js</code> 文件: <code>tsc 01-hello.ts</code> -&gt; <code>01-hello.js</code></li>
+<li>通过 <code>node</code> 命令即可执行目标 <code>js</code> 文件: <code>node 01-hello.js</code></li>
+</ol>
+<h1 id="配置与使用"><a href="#配置与使用" class="headerlink" title="配置与使用"></a>配置与使用</h1><h2 id="tsconfig-json"><a href="#tsconfig-json" class="headerlink" title="tsconfig.json"></a>tsconfig.json</h2><p>输入命令 <code>tsc --init</code> -即可生成-&gt; <code>tsconfig.json</code></p>
+<ul>
+<li>解决 TS 与 JS 的冲突：注释掉 <code>strict</code> 即可关闭严格模式，但不推荐使用，推荐手动避免冲突</li>
+<li>降级编译：为了更好的兼容, 在 <code>tsconfig.json</code> 中可以通过 <code>target: </code> 来指定想要编译出的 <code>ES</code> 版本</li>
+<li>严格程度控制：建议检查全部开启: 否则还不如直接用 JavaScript<ul>
+<li><code>strict: true</code>: 开启类型检查</li>
+<li><code>noImplicitAny: true</code>: 更加严格, 禁用 any 类型</li>
+<li><code>strictNullChecks: true</code>:</li>
+</ul>
+</li>
+</ul>
+<h3 id="编译配置"><a href="#编译配置" class="headerlink" title="编译配置"></a>编译配置</h3><ul>
+<li>include: 数组, 里面存放要进行编译的 ts 文件, 支持 ** 表示任意文件夹, * 表示任意文件</li>
+<li>exclude: 数组, 里面存放不需要进行编译的 ts 文件, 通常为默认值即可</li>
+<li>files: 数组, 指定需要编译的文件</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;include&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;./src/**/*&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;exclude&quot;</span>: [],</span><br><span class="line">  <span class="string">&quot;files&quot;</span>: [],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译器配置"><a href="#编译器配置" class="headerlink" title="编译器配置"></a>编译器配置</h3><p>compilerOptions：</p>
+<ul>
+<li>target: 设置 ts 代码编译的目标版本: <code>ES3, ES5, ES6(ES2015), ES7(ES2016), ES2017, ES2018, ES2019, ES2020, ESNext</code><ul>
+<li>ESNext 表示最新版本</li>
+</ul>
+</li>
+<li>lib: 指定代码运行时所包含的库(宿主环境): <code>DOM, WebWorker, ScriptHost, ES3, ES5, ES6(ES2015), ES7(ES2016), ES2017, ES2018, ES2019, ES2020, ESNext, ...</code></li>
+<li>module: 设置编译后代码使用的模块化系统: <code>CommonJS, UMD, AMD, System, ES2020, ESNext, None</code></li>
+<li>outDir: 编译后生成的 js 文件所在的目录, 默认会在同一目录</li>
+<li>outFile: 将所有 ts 文件合并生成为一个 js 文件</li>
+<li>allowJS: 是否对 js 文件进行编译生成到 outDir, 默认为 false</li>
+<li>checkJs: 是否对 js 代码进行语法规范检查（像 TS 一样检查）, 默认为 false</li>
+<li><strong>removeComments</strong>: 编译后是否移除注释</li>
+<li>noEmit: 不生产编译后的文件</li>
+<li>noEmitOnError: 当有错误时不生成编译错误的文件</li>
+<li>alwaysStrict: 设置编译后的文件是否使用严格模式</li>
+<li>noImplicitAny: 不指定类型时默认其类型为 any （隐式）</li>
+<li>noImplicitThis: 不允许不明确类型的 this</li>
+<li>strictNullChecks: 严格的检查空值, 比如根据 id 获取目标组件对象, 可能返回的是 null</li>
+<li>strict: 所有严格检查的总开关, 如果是 true 则开启最高的严格检查, 推荐打开</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> box1 = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;box1&quot;</span>)</span><br><span class="line">box1?.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&quot;BOX&quot;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;target&quot;</span>: <span class="string">&quot;ES6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;lib&quot;</span>: [<span class="string">&quot;DOM&quot;</span>, ],</span><br><span class="line">    <span class="string">&quot;module&quot;</span>: [<span class="string">&quot;es2015&quot;</span>],</span><br><span class="line">    <span class="string">&quot;outDir&quot;</span>: <span class="string">&quot;./dist&quot;</span>,</span><br><span class="line">    <span class="string">&quot;outFile&quot;</span>: <span class="string">&quot;./app.js&quot;</span>,</span><br><span class="line">    <span class="string">&quot;allowJs&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;checkJs&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自动编译与禁止错误更新"><a href="#自动编译与禁止错误更新" class="headerlink" title="自动编译与禁止错误更新"></a>自动编译与禁止错误更新</h2><ul>
+<li>开启自动编译：<code>tsc --watch</code>，将检查 <code>rootDir</code> 中 <code>.ts</code> 文件的更改，并自动对其进行编译</li>
+<li>禁止错误更新：<code>tsc -noEmitOnError hello.ts</code> 如果目标 TS 文件中存在错误，则不会生成或替换现有的 <code>hello.js</code> 文件</li>
+<li>结合使用：<code>tsc --noEmitOnError --watch</code></li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-07-03</span><i class="fa fa-tag"></i><a class="tag" href="/categories/TypeScript/" title="TypeScript">TypeScript </a><a class="tag" href="/tags/typescript-basic/" title="typescript-basic">typescript-basic </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://example.com/2022/07/03/01-TS的基本配置与使用/,Jiancong Cui - Homepage,01-TS的基本配置与使用,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/07/04/02-TS%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="02-TS的类型声明与基本操作">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/02/06/PubSub/" title="PubSub">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

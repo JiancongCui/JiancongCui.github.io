@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Author Name,name@example.com"><title>【统计学习方法】概论篇 · Jiancong Cui - Homepage</title><meta name="description" content="概论-学前须知本文可以充当一个对较小知识点的速查速忆，大部分知识点并不会讲解细致~
+统计学习方法学习过程中记录的基础知识，保持更新~
+综述准备
+数据：得到一个有限的训练数据集合；
+模型：包含所有可能的模型的假设空间，即学习模型的集合；
+损失函数：确定模型选择的准则，即学习的策略；
+优化算法：实现求解"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Jiancong Cui - Homepage</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>【统计学习方法】概论篇</a></h3></div><div class="post-content"><h1 id="概论-学前须知"><a href="#概论-学前须知" class="headerlink" title="概论-学前须知"></a>概论-学前须知</h1><p>本文可以充当一个对较小知识点的速查速忆，大部分知识点并不会讲解细致~</p>
+<p>统计学习方法学习过程中记录的基础知识，保持更新~</p>
+<h1 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li>数据：得到一个有限的训练数据集合；</li>
+<li>模型：包含所有可能的模型的假设空间，即学习模型的集合；</li>
+<li>损失函数：确定模型选择的准则，即学习的策略；</li>
+<li>优化算法：实现求解最优模型的算法，即学习的算法：</li>
+<li>最优模型：通过学习方法选择最优模型：</li>
+<li>预测：利用学习的最优模型对新数据进行预测或分析。</li>
+</ol>
+<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709201408068.png" alt="image-20210709201408068"></p>
+<p>如上图所示：</p>
+<ol>
+<li>从给定的、有限的、用于学习的<strong>训练数据集</strong>（training data）合出发</li>
+<li>从<strong>假设空间</strong>（hypothesis space）取出一个模型</li>
+<li>将数据输入模型，并应用到某个评价标准上（<strong>损失函数</strong>）</li>
+<li>利用选定的优化算法，不断的优化模型</li>
+<li>最终得到最终（最优）模型</li>
+</ol>
+<h1 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h1><h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><p>模型就是所要学习的条件概率分布或决策函数</p>
+<p>针对概率模型，模型为条件概率分布</p>
+<p>针对非概率 模型，模型为决策函数</p>
+<h2 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h2><p>选择最优模型的方法（策略）</p>
+<p><strong>期望风险</strong>：又名风险函数，度量平均意义下模型预测的好坏，是模型关于联合分布的期望损失。<br>$$<br>R_{exp}(f) &#x3D; E_p[L(Y, f(X))] &#x3D; \int_{x \times y} L(y, f(x)) P(x, y) dxdy<br>$$<br>但是问题中实际分布 $P(x,y)$ 通常是未知的，实际中常使用经验风险来代替期望风险</p>
+<p><strong>经验风险</strong>：给定模型关于训练数据集的平均损失，当样本容量N趋于无穷时，经验风险趋近于期望风险（大数定律）<br>$$<br>R_{emp}(f) &#x3D; \frac{1}{N} \sum_{i&#x3D;1}^{N} L(y_i, f(x_i))<br>$$<br>策略便可以推出：经验风险最小化 - $\mathop{min}\limits_{f \in \mathcal{F}} \frac{1}{N} \sum_{i&#x3D;1}^{N} L(y_i, f(x_i))$</p>
+<p>但是会存在过拟合的现象，因此加入对决策函数的约束，引入结构风险最小化：<br>$$<br>\mathop{min}\limits_{f \in \mathcal{F}} \frac{1}{N} \sum_{i&#x3D;1}^{N} L(y_i, f(x_i)) + \lambda J(f)<br>$$</p>
+<p>期望风险与经验风险的联系：由于实际分布P(x,y)不知道实际中常用经验风险代替期望风险</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210707215504624.png" alt="image-20210707215504624"></p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>学习模型的具体计算方法：梯度下降…</p>
+<h1 id="概率"><a href="#概率" class="headerlink" title="概率"></a>概率</h1><h2 id="Theory"><a href="#Theory" class="headerlink" title="Theory"></a>Theory</h2><p><strong>独立</strong>：两不同随机变量的取值互不影响：第一次抛硬币和第二次抛硬币得到的结果是相互独立的。</p>
+<p><strong>独立同分布</strong>：指一组随机变量中每个变量的概率分布都相同，且这些随机变量互相独立</p>
+<p><strong>过拟合现象</strong>：一味追求提高对训练数据的预测能力，所选模型的复杂度则往往会比真模型更高。对已知数据预测很好，对未知数据预测很差</p>
+<p><strong>正则化项</strong>：选择经验风险和模型复杂度同时较小的模型</p>
+<p><strong>先验概率</strong>：指根据以往经验和分析得到的概率，如全概率公式</p>
+<p><strong>后验概率</strong>：指在得到“结果”的信息后重新修正的概率，是“执果寻因”问题中的”果”</p>
+<blockquote>
+<p>目标事件还没有发生，求这件事情发生的可能性的大小，是先验概率。</p>
+<p>目标事件已发生，求事情发生的原因是由某因素引起的可能性大小，是后验概率。</p>
+<p>Example：目标事件是用苹果电脑的人是不是程序员 - $P(dev|apple)$</p>
+<p>现实中我们可以知道使用苹果的人数占比即：$P(apple)$，以及使用苹果电脑的人是程序员的概率：$P(dev|apple)$ - 先验</p>
+<p>而需求是已知一个人是程序员，问他使用苹果电脑的概率 $P(apple|dev)$ - 后验<br>$$<br>P(apple|dev) &#x3D; \frac{P(dev|apple)P(apple)}{P(dev|apple)P(apple)+P(dev|!apple)P(!apple)}<br>$$</p>
+</blockquote>
+<h2 id="Equation"><a href="#Equation" class="headerlink" title="Equation"></a>Equation</h2><p><strong>贝叶斯公式</strong>：$P(X|Y) &#x3D; \frac{P(Y|X) \times P(X) }{P(Y)}$</p>
+<p><strong>全概率公式</strong>：$P(Y) &#x3D; P(Y|X_1)P(X_1) + P(Y|X_2)P(X_2) + \dots + P(Y |X_n)P(X_n)$</p>
+<p><strong>结合</strong>：$P(X_i|Y) &#x3D; \frac{P(Y|X_i)P(X_i) }{P(Y|X_1)P(X_1) + P(Y|X_2)P(X_2) + \dots + P(Y |X_n)P(X_n)}$</p>
+<p><strong>切比雪夫大数定理</strong>：随着样本容量n的增加，样本平均数接近于总体平均数，从而根据样本平均数估计总体平均数。</p>
+<h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><ul>
+<li>L1 范数：向量元素绝对值之和</li>
+</ul>
+<p>$$<br>||x||<em>1 &#x3D; \sum</em>{i&#x3D;1}^{n}|x_i|<br>$$</p>
+<ul>
+<li>L2 范数：欧几里得范数，常用于计算向量长度，向量元素绝对值的平方再开方</li>
+</ul>
+<p>$$<br>||x||<em>2 &#x3D; \left(\sum</em>{i&#x3D;1}^{n}|x_i|^2 \right)^{\frac{1}{2}}<br>$$</p>
+<ul>
+<li>$+\infty$ 范数：所有向量元素绝对值中最大值</li>
+</ul>
+<p>$$<br>||x||<em>{+\infin} &#x3D; \mathop{max}\limits</em>{i}|x_i|<br>$$</p>
+<ul>
+<li>$-\infty$ 范数：所有向量元素绝对值中最小值</li>
+</ul>
+<p>$$<br>||x||<em>{-\infin} &#x3D; \mathop{min}\limits</em>{i}|x_i|<br>$$</p>
+<ul>
+<li>$L_p$ 范数：即统一形式，向量元素绝对值的p次方和的1&#x2F;p次幂</li>
+</ul>
+<p>$$<br>||x||<em>p &#x3D; \left(\sum</em>{i&#x3D;1}^{n}|x_i|^p \right)^{\frac{1}{p}}<br>$$</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-07-07</span><i class="fa fa-tag"></i><a class="tag" href="/categories/统计学习方法/" title="统计学习方法">统计学习方法 </a><a class="tag" href="/tags/ML/" title="ML">ML </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://example.com/2021/07/07/91-统计学习方法-93-概论篇/,Jiancong Cui - Homepage,【统计学习方法】概论篇,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/07/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8Latex%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="Hexo博客中使用Latex配置方法">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/07/07/%E5%88%86%E8%AF%8D%E5%99%A8Tokenizer%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E8%B7%B5/" title="分词器Tokenizer使用方法与实践">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>

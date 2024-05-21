@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Author Name,name@example.com"><title>感知机模型 · Jiancong Cui - Homepage</title><meta name="description" content="本文来自于书籍以及自己的一些想法，内容不一定正确，还请大家批评指正。
+定义
+初识：二类分类的简单线性分类模型，属于判别模型
+
+输入：$\mathcal{X} \subseteq \mathbf{R}^n$ 
+
+$\mathcal{X}$ 为样本空间或状态空间，$\mathbf{R}^n$ 为 $n$"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.2.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">Jiancong Cui - Homepage</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="/images/favicon.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>感知机模型</a></h3></div><div class="post-content"><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709204458015.png" alt="image-20210709204458015"></p>
+<p>本文来自于书籍以及自己的一些想法，内容不一定正确，还请大家批评指正。</p>
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><ul>
+<li><p>初识：二类分类的简单线性分类模型，属于判别模型</p>
+</li>
+<li><p>输入：$\mathcal{X} \subseteq \mathbf{R}^n$ </p>
+<blockquote>
+<p>$\mathcal{X}$ 为样本空间或状态空间，$\mathbf{R}^n$ 为 $n$ 维向量空间（实数空间）</p>
+<p>$\mathcal{X} &#x3D; {x_1, x_2, \dots, x_n}$</p>
+</blockquote>
+</li>
+<li><p>输出：$\mathcal{Y} \in \left{ +1, -1 \right}$</p>
+<blockquote>
+<p>输出为实例的类别</p>
+</blockquote>
+</li>
+<li><p>目标：<strong>假设数据集是线性可分的</strong>，寻找一个超平面，将训练数据全部分类正确</p>
+<blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709210455875.png" alt="image-20210709210455875"></p>
+</blockquote>
+</li>
+<li><p>扩展：感知机可以称为单层的神经网络，而多层的感知机则称为神经网络；是神经网络与支持向量机的基础。</p>
+</li>
+</ul>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>$$<br>f(x) &#x3D; sign(w \cdot x + b)<br>$$</p>
+<p>模型的产生来源于目标：寻找一个超平面，将训练数据全部分类正确，针对二维线性可分数据，我们可以寻找到 $Ax+By+C&#x3D;0$ 这样一个平面，将数据集完全分开。而 $Ax+By+C&#x3D;0$  不就是 $w_1x_1+w_2x_2+b&#x3D;0$ 即 $wx+b$ 吗，因此我们成功将二维问题扩展开来。</p>
+<ul>
+<li>$w$ 为权值向量，为每一维度特征向量分配权重 (weight)</li>
+<li>$b$ 为偏置，提供一个平移变换</li>
+</ul>
+<p>现在我们能够依靠 $wx+b &gt; 0$ 或  $wx+b &lt; 0$ 将数据集简单分割开来，为了实现分类效果，引入了符号函数 $\mathop{sign}$<br>$$<br>sign(x)&#x3D;<br>\begin{cases}<br>1&amp; \text{x&gt;0}\<br>0&amp; \text{x&lt;&#x3D;0}<br>\end{cases}<br>$$<br>到此，我们便构造出了以 “假设数据集是线性可分的，寻找一个超平面，将训练数据全部分类正确” 这一目的为导向的假设空间，也就是说，针对这样一类我们，感知机模型认为，解决这类问题的最优函数一定存在与假设空间之中，也就是函数集合 ${f | f(x) &#x3D; w \cdot x + b}$</p>
+<h1 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h1><p>再次回顾 前提 与 目标。</p>
+<ul>
+<li>前提：数据集具有线性可分性</li>
+<li>目标：求得一个能将训练集正实例点和负实例点完全正确分开的超平面</li>
+</ul>
+<p>那么应该怎么评判我们选择的模型的好坏呢？</p>
+<ul>
+<li>初始的感觉是：模型误分类点的个数，但是这样的函数离散，并非参数 $w,b$ 的连续可到函数，不易用于选择参数 $w,b$ ，或者说我们如何评判分类错误的点对参数 $w, b$ 更新的指导程度？假定 $M$ 为误分类点的集合，那我们的 $loss &#x3D; \sum\limits_{x_i\in M} 1$，很显然这样的策略或者损失函数，对参数 $w, b$ 更新没有指导意义？</li>
+<li>后续思考，那我应该将参数 $w, b$ 用于计算 $loss$，所以可能会想到使用误分类点到平面的距离作为 loss function &#x3D; $\dfrac{1}{||w||}|w \cdot x_0 + b|$ ，进一步优化一下去掉绝对值 &#x3D; $-\dfrac{y_i}{||w||}|w \cdot x_0 + b|$ (注意这是针对误分类点来说的嗷)</li>
+<li>继续优化 $\dfrac{1}{||w||}$ 对于后续的梯度下降求导来说较为复杂，针对 $x_i$ 的函数，$w, b$ 在进行 loss 计算时充当常数，因此可否将 $\dfrac{1}{||w||}$ 舍去呢？答案是肯定的<ol>
+<li>$\dfrac{1}{||w||}$ 在 loss function 中充当系数，消除后仅仅缩放的结果域，将当于 $3x+6y+9&#x3D;0$ 变为 $x+2y+3&#x3D;0$，但是每个误分类点对参数 $w, b$ 更新的指导程度确实是降低了。</li>
+<li>而感知机学习算法是误分类驱动的, 目标是分类是否完全正确。因此，存在一个分类不正确的点都是不允许的，不用看那个点产生多少 Loss 值。</li>
+</ol>
+</li>
+<li>最终确定了损失函数：$L(w, b) &#x3D; -\sum\limits_{x_i\in M}y_i(w \cdot x_i + b)$</li>
+</ul>
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>采用我们熟知的梯度下降法，计算梯度，更新参数。</p>
+<p>目标最小化 loss 直至 0，因此需要向梯度的负方向更新参数</p>
+<p><strong>梯度</strong>：<br>$$<br>\bigtriangledown_{w}L(w,b)&#x3D;-\sum\limits_{x_i \in M} y_ix_i \<br>\bigtriangledown_{b}L(w,b)&#x3D;-\sum\limits_{x_i \in M} y_i<br>$$<br><strong>针对误分类点 $\mathbf{x_i}$ 执行更新</strong><br>$$<br>w \leftarrow w + \eta y_i x_i \<br>b \leftarrow b + \eta y_i<br>$$</p>
+<h1 id="感知机原始形式"><a href="#感知机原始形式" class="headerlink" title="感知机原始形式"></a>感知机原始形式</h1><p>我们的策略是经验风险最小化：<br>$$<br>\mathop{min}\limits_{w,b}L(w,b) &#x3D; -\sum\limits_{x_i\in M}y_i(w \cdot x_i + b)<br>$$<br>算法的基本流程图如下所示：</p>
+<ol>
+<li><p>初始化 $w$ 和 $b$ 的值</p>
+</li>
+<li><p>在训练数据集中选取数据 $(xi, yi)$</p>
+</li>
+<li><p>如果 $y_i(w\cdot x_i + b) \le 0$ </p>
+<p>T：表示该数据误分类，采用梯度下降法进行更新<br>F：进行步骤 4</p>
+</li>
+<li><p>跳转至步骤2，直至训练集中没有误分类点</p>
+</li>
+</ol>
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709220511277.png" alt="image-20210709220511277" style="zoom:50%;" />
+
+<h2 id="函数实现"><a href="#函数实现" class="headerlink" title="函数实现"></a>函数实现</h2><h3 id="预准备"><a href="#预准备" class="headerlink" title="预准备"></a>预准备</h3><p>首先可以定义一个函数，感知机模型最终就要找到这个函数的表示形式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">Fun</span>(<span class="params">x_1, x_2</span>):</span><br><span class="line">    <span class="comment"># w = (3, -4)  b = 5</span></span><br><span class="line">    y = <span class="number">3</span> * x_1 - <span class="number">4</span> * x_2 + <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>追加符号函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sign</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="comment"># 代入点进入如果值为0表示在线上，如果值 &gt; 0表示在线的一侧，小于 0 在另一侧</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> Fun(*x) &gt;= <span class="number">0</span> <span class="keyword">else</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>生成数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size = (<span class="number">500</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment"># (, 2) # 坐标面生成随机点</span></span><br><span class="line">X = np.random.randint(low = -<span class="number">11</span>, high = <span class="number">10</span>, size = size) </span><br><span class="line">y = np.array([sign(x) <span class="keyword">for</span> x <span class="keyword">in</span> X]) <span class="comment"># 按照预设线条分点</span></span><br></pre></td></tr></table></figure>
+
+<p>可视化展示期望的最终效果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">showPerceptron</span>(<span class="params">X, y, w, b</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;w = &#x27;</span>, w)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;b = &#x27;</span>, b)</span><br><span class="line">    plt.scatter(X[:, <span class="number">0</span>][y &gt; <span class="number">0</span>], X[:, <span class="number">1</span>][y &gt; <span class="number">0</span>], color = <span class="string">&#x27;r&#x27;</span>, s=<span class="number">3.</span>)</span><br><span class="line">    plt.scatter(X[:, <span class="number">0</span>][y &lt; <span class="number">0</span>], X[:, <span class="number">1</span>][y &lt; <span class="number">0</span>], color = <span class="string">&#x27;b&#x27;</span>, s=<span class="number">3.</span>)</span><br><span class="line">    x_axis = np.linspace(np.<span class="built_in">min</span>(X)-<span class="number">1</span>, np.<span class="built_in">max</span>(X)+<span class="number">1</span>, <span class="number">300</span>)</span><br><span class="line">    <span class="comment"># 一般式转化为斜截式</span></span><br><span class="line">    y_axis = [-w[<span class="number">0</span>]/w[<span class="number">1</span>] * x - b / w[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> x_axis]</span><br><span class="line">    plt.plot(x_axis, y_axis)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709221404570.png" alt="image-20210709221404570"></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Perceptron_1</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, learning_rate = <span class="number">1.0</span></span>):</span><br><span class="line">        self.w = <span class="number">0.</span></span><br><span class="line">        self.b = <span class="number">0.</span></span><br><span class="line">        self.learning_rate = <span class="number">1.</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="comment"># 一个样本</span></span><br><span class="line">        <span class="keyword">return</span> np.dot(x, self.w) + self.b</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">self, X, y</span>):</span><br><span class="line">        self.w = np.zeros(<span class="built_in">len</span>(X[<span class="number">0</span>])) <span class="comment"># 真正初始化权重值</span></span><br><span class="line">        flag = <span class="literal">True</span> <span class="comment"># 表示继续学习</span></span><br><span class="line">        <span class="keyword">while</span> flag:</span><br><span class="line">            flag = <span class="literal">False</span> <span class="comment"># 猜测本次能够学习完毕</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(X)):</span><br><span class="line">                x_i = X[i] <span class="comment"># (2, )</span></span><br><span class="line">                y_i = y[i] <span class="comment"># (1, )</span></span><br><span class="line">                <span class="keyword">if</span>(y_i * self.fun(x_i) &lt;= <span class="number">0.</span>):</span><br><span class="line">                    self.w += self.learning_rate * y_i * x_i</span><br><span class="line">                    self.b += self.learning_rate * y_i</span><br><span class="line">                    flag = <span class="literal">True</span> <span class="comment"># 猜测失误</span></span><br><span class="line">        <span class="comment"># 展示结果</span></span><br><span class="line">        showPerceptron(X, y, self.w, self.b)</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果展示如下</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_perceptron = Perceptron_1()</span><br><span class="line">my_perceptron.train(X, y)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709221558656.png" alt="image-20210709221558656"></p>
+<h1 id="感知机对偶形式"><a href="#感知机对偶形式" class="headerlink" title="感知机对偶形式"></a>感知机对偶形式</h1><p>（确实还未能理解换形式表达的真正原因，仅仅记录些书面看到的信息啦~）</p>
+<ul>
+<li>创新点：将 $w$ 和 $b$ 表示为实例 $x_i$ 和 $y_i$ 的线性组合的形式，通过求解其系数而求得 $w$ 和 $b$</li>
+</ul>
+<p>例如 $w$ 和 $b$ 初始值为 0，在第本次更新时的取值如下：<br>$$<br>\begin{aligned}<br>w &amp;&#x3D; \sum_{i&#x3D;1}^{N} \alpha_i y_i x_i \<br>b &amp;&#x3D; \sum_{i&#x3D;1}^{N} \alpha_i y_i \<br>\alpha_i &amp;&#x3D; n_i \eta_i<br>\end{aligned}<br>$$<br>在这要注意 $N$ 表示实例总数，我们更新的总次数未知，只知道截止目前各个样本点用于更新的次数，因此遍历样本，通过当前样本 $x_i$ 对参数的更新贡献次数，计算参数的值</p>
+<p>算法的基本流程图如下所示：</p>
+<ol>
+<li><p>初始化 alpha 和 b 的值</p>
+</li>
+<li><p>在训练数据集中选取数据 $(x_i, y_i)$</p>
+</li>
+<li><p>如果 $y_i(\sum_{i&#x3D;1}^{N} \alpha_i y_i x_i\cdot x_i + b) \le 0$ </p>
+<p>T：表示该数据误分类，采用梯度下降法进行更新<br>F：进行步骤 4</p>
+</li>
+<li><p>跳转至步骤2，直至训练集中没有误分类点</p>
+</li>
+</ol>
+<img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709223032341.png" alt="image-20210709223032341" style="zoom:50%;" />
+
+<h3 id="函数实现-1"><a href="#函数实现-1" class="headerlink" title="函数实现"></a>函数实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Perceptron_2</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, learning_rate=<span class="number">1.</span></span>):</span><br><span class="line">        self.alpha = <span class="number">0.</span></span><br><span class="line">        self.b = <span class="number">0.</span></span><br><span class="line">        self.learning_rate = <span class="number">1.</span></span><br><span class="line">        self.gram = <span class="number">0.</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_w_b</span>(<span class="params">self, X, y</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; </span></span><br><span class="line"><span class="string">            采用矩阵计算的形式提高速度，并且简化运算，不必封装</span></span><br><span class="line"><span class="string">            length = len(self.alpha)</span></span><br><span class="line"><span class="string">            w, b = 0, 0</span></span><br><span class="line"><span class="string">            for i in range(length):</span></span><br><span class="line"><span class="string">                w += self.alpha[i] * y[i] * X[i]</span></span><br><span class="line"><span class="string">                b += self.alpha[i] * y[i]</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        w = np.dot((self.alpha * y).T, X)</span><br><span class="line">        b = np.dot(self.alpha, y.T)</span><br><span class="line">        <span class="keyword">return</span> (w, b)</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">self, X, y, aim_index</span>):</span><br><span class="line">        <span class="comment"># return np.dot(w, X[aim_index]) + b</span></span><br><span class="line">        <span class="comment"># alpha, y, x转为矩阵运算的形式：alpha与y直接内积运算，然后与gram矩阵对应相乘并相加（矩阵乘法）</span></span><br><span class="line">        <span class="keyword">return</span> np.dot((self.alpha * y).T, self.gram[aim_index]) + np.dot(self.alpha, y.T)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">train</span>(<span class="params">self, X, y</span>):</span><br><span class="line">        self.alpha = np.zeros(<span class="built_in">len</span>(X)) <span class="comment"># 表明每个节点被误分类的次数 * learning-rate</span></span><br><span class="line">        self.b = <span class="number">0.</span></span><br><span class="line">        self.gram = np.dot(X, X.T) <span class="comment"># 快速的运算</span></span><br><span class="line">        flag = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">while</span> flag:</span><br><span class="line">            flag = <span class="literal">False</span></span><br><span class="line">            <span class="keyword">for</span> i, data <span class="keyword">in</span> <span class="built_in">enumerate</span>(X):</span><br><span class="line">                <span class="keyword">if</span>(y[i] * self.fun(X, y, i) &lt;= <span class="number">0</span>):</span><br><span class="line">                    self.alpha[i] += self.learning_rate</span><br><span class="line">                    self.b += self.learning_rate * y[i]</span><br><span class="line">                    flag = <span class="literal">True</span></span><br><span class="line">        w, b = self.get_w_b(X, y)</span><br><span class="line">        showPerceptron(X, y, w, b)</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果展示</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_perceptron = Perceptron_2()</span><br><span class="line">my_perceptron.train(X, y)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709223249283.png" alt="image-20210709223249283"></p>
+<p>书上 P45 页例子的展示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">X_1 = np.array([</span><br><span class="line">    [<span class="number">3</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">4</span>, <span class="number">3</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">])</span><br><span class="line">y_1 = np.array([<span class="number">1</span>, <span class="number">1</span>, -<span class="number">1</span>])</span><br><span class="line">my_perceptron = Perceptron_2()</span><br><span class="line">my_perceptron.train(X_1, y_1)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210709223338511.png" alt="image-20210709223338511"></p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="点到超平面的距离"><a href="#点到超平面的距离" class="headerlink" title="点到超平面的距离"></a>点到超平面的距离</h2><p>求点 $x_0$ 到超平面 $S$：$w·\mathbf{x}+b&#x3D;0$ 的距离</p>
+<ol>
+<li><p>设点 $\mathbf{x}_0$ 在平面 $S$ 上的投影为 $\mathbf{x}_1$，则$w\cdot \mathbf{x}_1+b&#x3D;0$</p>
+</li>
+<li><p>向量 $\overrightarrow{\mathbf{x}_0\mathbf{x}_1}$ 与 $S$ 的法向量平行，夹角为 0</p>
+</li>
+<li><p>通过 1 2 构造等式</p>
+</li>
+</ol>
+<p>$$<br>|w \cdot \overrightarrow{\mathbf{x}_0\mathbf{x}_1} | &#x3D; |w|\times|\overrightarrow{\mathbf{x}_0\mathbf{x}_1}|cos(0) &#x3D; ||w|| \times d<br>$$</p>
+<ol start="4">
+<li>另一方面</li>
+</ol>
+<p>$$<br>w \cdot \overrightarrow{\mathbf{x}_0\mathbf{x}_1} &#x3D; w^1(x_0^1-x_1^1)+\dots+w^n(x_0^n-x_1^n)<br>&#x3D; w \cdot \mathbf{x}_0 - w \cdot \mathbf{x}_1<br>$$</p>
+<p>由第 1 点可得 $w \cdot \mathbf{x}_1 &#x3D; -b$ , 因此：<br>$$<br>w \cdot \overrightarrow{\mathbf{x}_0\mathbf{x}_1} &#x3D; w \cdot \mathbf{x}_0 + b<br>$$</p>
+<ol start="5">
+<li>所以距离 $d$ 也就因此得出</li>
+</ol>
+<p>$$<br>d &#x3D; \dfrac{1}{||w||}|w \cdot \mathbf{x}_0 + b|<br>$$</p>
+<hr>
+<p>Thanks !</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-07-09</span><i class="fa fa-tag"></i><a class="tag" href="/categories/统计学习方法/" title="统计学习方法">统计学习方法 </a><a class="tag" href="/tags/ML/" title="ML">ML </a></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,http://example.com/2021/07/09/感知机模型/,Jiancong Cui - Homepage,感知机模型,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/07/12/Word2Vec%E7%90%86%E8%AE%BA%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%8E%A8%E5%AF%BC/" title="Word2Vec理论介绍与推导">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/07/07/Hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E4%BD%BF%E7%94%A8Latex%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/" title="Hexo博客中使用Latex配置方法">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
