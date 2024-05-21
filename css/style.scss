@@ -128,12 +128,12 @@ a:hover, a:active {
 .content {
 	height: auto;
 	float: right;
-	width: 60%;
+	width: 70%;
 	margin-top:60px;
 }
 
 .page-top{
-	width: 60%;
+	width: 70%;
 	position: fixed;
 	right: 0;
 	z-index: 3;
@@ -193,7 +193,7 @@ a:hover, a:active {
 
 }
 .sidebar {
-	width: 40%;
+	width: 30%;
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-color: #fff;
@@ -475,6 +475,10 @@ a:hover, a:active {
 	}
 	a:hover{
 		color: #4786D6;
+	}
+	span{
+	}
+	.by_farbox{
 	}
 }
 
@@ -774,8 +778,8 @@ a.btn {
 	.footer{
 		display: none;
 	}
-}
+	.share{
+		display: grid;
+	}
 
-.utterances {
-	margin-left: 30px;
 }
