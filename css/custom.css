@@ -1,0 +1,780 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: roboto, sans-serif;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+ul ul {
+    list-style-type: circle;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+
+html,
+body {
+    height: 100%;
+    font-family: Lato, Arial;
+}
+
+body {
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Lato", "PingHei", "PingFang SC", Helvetica Neue, "Work Sans",
+        "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+    font-size: 16px;
+    width: 100%;
+    background-color: #fff;
+}
+
+/* 导航栏 */
+.page-top {
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    border-bottom: 1px solid #f2f2f2;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 99;
+
+}
+
+#main-container {
+    box-sizing: border-box;
+    padding-top: 60px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* 内容展示区 */
+.main-content {
+    /* margin: 0 auto; */
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+}
+
+/* footer */
+.footer {
+    margin: 0 auto;
+    height: 60px;
+    min-height: 60px;
+    flex-shrink: 0;
+
+    /* margin-bottom: 10px; */
+    padding-top: 15px;
+    padding-bottom: 10px;
+
+    clear: both;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.2;
+    color: rgba(0, 0, 0, .54);
+
+    letter-spacing: 1px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer .by_farbox a {
+    color: #80C4E9;
+}
+
+.footer a:hover {
+    text-decoration-line: underline;
+}
+
+/* 顶部导航栏 */
+
+.page-top .nav-container {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-top .nav-container .nav {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    letter-spacing: 0.1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+.page-top .nav-container .nav .nav-item {
+    height: 100%;
+    color: #424242;
+    padding: 0 15px;
+
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-top .nav-container .nav .logo {
+    color: #2b2b2b;
+    font-weight: 700;
+    font-size: 22px;
+    white-space: nowrap;
+    letter-spacing: 0;
+    font-family: roboto, sans-serif;
+    padding: 0;
+    margin: 0 15px;
+
+}
+
+.page-top .nav-container .nav .nav-item:hover {
+    cursor: pointer;
+    background-color: #80c4e9;
+}
+
+.page-top .nav-container .nav .logo:hover {
+    cursor: pointer;
+    background-color: inherit;
+    color: #604cc3;
+    user-select: text;
+}
+
+.page-top .nav-container .nav .nav-item.current {
+    color: #604cc3;
+    font-weight: bold;
+}
+
+.page-top .information {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.page-top .information .avatar {
+    line-height: 1;
+}
+
+.page-top .information .avatar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 300px;
+}
+
+.page-top .information .back_btn {
+    margin-right: 40px;
+    display: flex;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* index.pug 个人主页*/
+
+/* 个人主页的整个 container */
+.about-me-container {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* 个人主页第一部分  About Me 特殊左右结构 */
+.about-me-container .about-me-block-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 个人主页其余部分 常规上下结构 */
+.block-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.block-container:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.block-container:nth-child(even) {
+    background-color: rgba(247, 247, 247, 0.8);
+}
+
+
+/* 个人主页的整个 container */
+/* 左侧 - sidebar */
+.about-me-container .sidebar {
+    flex: 7;
+    /* border-right: 1px solid #f2f2f2; */
+    line-height: 1.6;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-me-container .sidebar .sidebar-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-me-container .sidebar .sidebar-content .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 38px;
+}
+
+.about-me-container .sidebar .sidebar-content .image-container img {
+    width: 70%;
+}
+
+.about-me-container .sidebar .sidebar-content .name {
+    font-family: Lato;
+    font-weight: 700;
+    vertical-align: baseline;
+    font-size: 24pt;
+    line-height: 1.2;
+    text-align: center;
+    color: black;
+    margin-bottom: 24px;
+}
+
+.about-me-container .sidebar .sidebar-content .description {
+    font-family: Lato;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1.5;
+    text-indent: 0.0pt;
+    font-size: 14.0pt;
+    color: rgba(28, 28, 28, 1);
+
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.about-me-container .sidebar .sidebar-content .social-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-me-container .sidebar .sidebar-content .social-links a {
+    margin: 0 15px;
+    color: #032cf5;
+    transition: transform 0.3s ease;
+    opacity: 70%;
+
+    /* Smooth animation */
+}
+
+.about-me-container .sidebar .sidebar-content .social-links i {
+    font-size: 36px;
+}
+
+.about-me-container .sidebar .sidebar-content .social-links a:hover {
+    /* color: #604CC3; */
+    transform: translateY(-10px);
+    opacity: 90%;
+    /* Makes the icon "jump" up */
+}
+
+/* 个人主页的整个 container */
+/* 右侧的主体内容 */
+.about-me-block-container {
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+.about-me-block-container .content,
+.block-container .content {
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.about-me-block-container .content {
+    flex: 10;
+}
+
+.block-container .content {
+    padding: 20px 10px 20px 60px;
+    width: 100%;
+}
+
+.about-me-container .content .header {
+
+    margin-top: 50px;
+
+    color: #000000;
+    font-weight: 700;
+    font-size: 34.0pt;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1.38;
+    text-align: left;
+    text-indent: 0.0pt;
+    word-wrap: break-word;
+
+    margin-bottom: 30px;
+
+}
+
+.about-me-container .content .paragraph {
+    color: #212121;
+    line-height: 2.20004;
+    text-align: justify;
+    font-family: Lato;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    text-indent: 0.0pt;
+    font-size: 14.0pt;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.about-me-container .content .paragraph a {
+    color: #032cf5;
+}
+
+.about-me-container .content .paragraph a:hover {
+    color: #032cf5;
+    text-decoration: underline;
+}
+
+.block-container .content .pub-item {
+    width: 100%;
+    padding: 15px 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: first baseline;
+}
+
+.block-container .content .pub-item .pub-item-content {
+    padding-left: 6px;
+    padding-right: 15px;
+
+    position: relative;
+    width: 92%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: first baseline;
+}
+
+.block-container .content .pub-item .pub-item-content,
+.block-container .content .pub-item-links {
+    line-height: 2.4;
+    text-indent: 0.0pt;
+    font-family: Lato;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    text-align: left;
+    font-size: 14.0pt;
+    color: rgba(28, 28, 28, 1);
+}
+
+.block-container .content .pub-item .pub-item-content::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: -16px;
+    width: 6px;
+    /* 正方形的宽度 */
+    height: 6px;
+    /* 正方形的高度 */
+    background-color: #000;
+    /* 正方形的颜色 */
+}
+
+.block-container .content .pub-item .pub-item-content div {
+    width: 100%;
+    /* white-space: nowrap; 防止换行 */
+    /* overflow: hidden; 隐藏溢出内容 */
+    /* text-overflow: ellipsis; 多余内容用省略号表示 */
+}
+
+.block-container .content .pub-item a {
+    color: #604CC3;
+}
+
+.block-container .content .pub-item a:hover {
+    text-decoration: underline;
+}
+
+
+.block-container .content .pub-item .pub-item-links {
+    padding-left: 15px;
+    padding-right: 6px;
+    width: 8%;
+    height: 100%;
+
+    flex-shrink: 0;
+    flex-wrap: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    align-items: first baseline;
+}
+
+.block-container .content .blessing-quote {
+
+    width: 100%;
+    font-family: 'Comic Sans MS', Arial;
+    font-weight: 700;
+    vertical-align: baseline;
+    font-size: 24.0pt;
+    text-align: center;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1.5;
+    text-indent: 0.0pt;
+}
+
+.block-container .content .blessing-quote span:nth-child(1) {
+    color: #ff0000;
+}
+
+.block-container .content .blessing-quote span:nth-child(2) {
+    color: #ff9900;
+}
+
+.block-container .content .blessing-quote span:nth-child(3) {
+    color: #ffc800;
+}
+
+.block-container .content .blessing-quote span:nth-child(4) {
+    color: #00ff00;
+}
+
+.block-container .content .blessing-quote span:nth-child(5) {
+    color: #00d7ff;
+}
+
+.block-container .content .blessing-quote span:nth-child(6) {
+    color: #4a86e8;
+}
+
+.block-container .content .blessing-quote span:nth-child(7) {
+    color: #9900ff;
+}
+
+/* BLOGS 主页 浏览 */
+
+.blog {
+    width: 60%;
+    margin: 30px;
+}
+
+.blog .post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: first baseline;
+}
+
+/* 标题 */
+.post .post-title {
+    width: 100%;
+    box-sizing: border-box;
+    /*text-transform: uppercase;*/
+    color: #000000;
+    font-weight: 500;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1.18;
+    text-align: left;
+    text-indent: 0.0pt;
+    word-wrap: break-word;
+    letter-spacing: 1px;
+    font-size: 1.55em;
+}
+
+.post .post-labels {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 1em 0;
+    font-size: 1em;
+    color: #858585;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: first baseline;
+    align-items: center;
+}
+
+.post .post-description {
+    width: 100%;
+    box-sizing: border-box;
+    color: #8F8F8F;
+    font-weight: 350;
+    font-size: 15px;
+    line-height: 25px;
+
+    padding-bottom: 0.5em;
+
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.post .post-labels .label-item {
+    /* margin: 0 10px; */
+    display: flex;
+    align-items: center;
+}
+
+.post .post-labels .label-item:nth-child(1) {
+    margin: 0;
+}
+
+.post .post-labels .label-item i {
+    padding-top: 2px;
+}
+
+.post .post-labels .label-item span,
+.post .post-labels .label-item a {
+    padding-left: 6px;
+}
+
+/* 归档页面 */
+
+.archive {
+    width: 60%;
+
+    font-size: 15px;
+    margin: 30px;
+    padding: 0;
+    line-height: 25px;
+}
+
+.list-with-title {
+    font-size: 15px;
+    margin: 24px;
+    padding: 0;
+    line-height: 25px;
+}
+
+/* // 留言板 */
+
+.post-page {
+    width: 60%;
+    margin: 30px;
+}
+
+@media (min-width: 1901px) {
+
+    .post-page,
+    .archive,
+    .blog,
+    .about-me-block-container,
+    .block-container,
+    .page-top .nav-container .nav {
+        /* width: 65%; */
+        padding-left: 24.5%;
+        padding-right: 24.5%;
+        /* 中等屏幕的留白 */
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1900px) {
+
+    .post-page,
+    .archive,
+    .blog,
+    .about-me-block-container,
+    .block-container,
+    .page-top .nav-container .nav {
+        /* width: 65%; */
+        padding-left: 14.5%;
+        padding-right: 14.5%;
+        /* 中等屏幕的留白 */
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+
+    .post-page,
+    .archive,
+    .blog,
+    .about-me-block-container,
+    .block-container,
+    .page-top .nav-container .nav {
+        /* width: 80%; */
+        padding-left: 17.5%;
+        padding-right: 17.5%;
+        /* 中等屏幕的留白 */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .post-page,
+    .archive,
+    .blog,
+    .about-me-block-container,
+    .block-container,
+    .page-top .nav-container .nav {
+        /* width: 90%; */
+        padding-left: 12%;
+        padding-right: 12%;
+        /* 中等屏幕的留白 */
+    }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+
+    .post-page,
+    .archive,
+    .blog,
+    .about-me-block-container,
+    .block-container,
+    .page-top .nav-container .nav {
+        /* width: 95%; */
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        /* 小屏幕的留白 */
+    }
+}
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.text-skyblue-bg {
+    background-color: #c6ddea;
+}
+
+.text-orange-bg {
+    background-color: #f6b26b;
+}
+
+
+/* Markdown */
+
+.post-content {
+    line-height: 1.6em;
+}
+
+
+.post-content p {
+    line-height: 1.9em;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+
+/* Tag */
+.tag-header {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    font-size: 24px;
+    color: #666666;
+    font-weight: 600;
+    line-height: 2.2em;
+    margin-bottom: 20px;
+}
+
+/* Quotes */
+
+.quote-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: first baseline;
+    /* align-items: center; */
+    flex-wrap: wrap;
+
+    padding: 14px;
+}
+
+.quote-card {
+    font-family: Inter;
+    letter-spacing: 0.55px;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+
+.quote-card:hover {
+    background: #f1f4f6;
+    cursor: pointer;
+}
+
+.quote-content {
+    width: 100%;
+    word-wrap: wrap;
+    text-wrap: pretty;
+    margin-bottom: 4px;
+    color: black;
+}
+
+.quote-info {
+    width: 100%;
+    text-align: right;
+    word-wrap: nowrap;
+    font-size: 13px;
+}
+
+.quote-from {
+
+    cursor: pointer;
+    flex: 0 0 15%;
+    word-wrap: nowrap;
+    margin-right: 10px;
+    align-items: center;
+
+}

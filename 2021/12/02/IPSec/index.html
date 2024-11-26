@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>IPSec · Jiancong Cui</title><meta name="description" content="IPSECIPSec，IP Security，是 IETF 制定的一系列协议，端到端的确保 IP 层通信安全的机制&amp;#x2F;框架，用于保证在 Internet 上传送数据的安全保密性能
+
+因为 IPv4 缺乏对通信双方身份真实性的鉴别能力；缺乏对传输数据的完整性和机密性保护的机制；IP 层存在业务"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>IPSec</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-02</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="IPSEC"><a href="#IPSEC" class="headerlink" title="IPSEC"></a>IPSEC</h1><p>IPSec，IP Security，是 IETF 制定的一系列协议，端到端的确保 IP 层通信安全的机制&#x2F;框架，用于保证在 Internet 上传送数据的安全保密性能</p>
+<blockquote>
+<p>因为 IPv4 缺乏对通信双方身份真实性的鉴别能力；缺乏对传输数据的完整性和机密性保护的机制；IP 层存在业务流被监听和捕获、重放、IP 地址欺骗、信息泄露和数据项篡改等攻击</p>
+</blockquote>
+<p>Process：特定的通信方之间，在 IP 层通过加密与数据源验证来保证数据包在 Internet 上传输的<strong>机密性、完整性和真实性</strong></p>
+<p>私有性 &#x2F; 机密性：IPSec 在传输数据包之前，将其加密以保证数据的私有性</p>
+<p>完整性：IPSec 在目的地使用单向散列函数验证数据包的完整性</p>
+<p>身份验证：单向散列函数、数字签名和公开密钥加密来判断一份数据是否源于正确的创建者</p>
+<p>防重放：通过查阅序列号，目的地会拒绝老的或重复的数据包</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007150244277.png" alt="image-20211007150244277"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007164204042.png" alt="image-20211007164204042"></p>
+<h2 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h2><p>对称加密算法：加密密钥与解密密钥相同；由于对称加密的运算速度快，所以 IPSec 使用对称加密算法来加密数据；Example ：DES，3DES，AES</p>
+<p>非对称加密算法：加密密钥与解密密钥不同；由于非对称加密的运算速度慢，所以主要用来交换秘钥和身份认证；Example ：RSA，DH</p>
+<h3 id="DH"><a href="#DH" class="headerlink" title="DH"></a>DH</h3><p>Diffie-Hellman 密钥交换算法</p>
+<p>1、主机1，产生一个很大的数 $a$ 一个素数 $p$ 和一个整数 $g$，计算得到 $A&#x3D;g^a \mod p$</p>
+<blockquote>
+<p>公钥：A，私钥：a</p>
+</blockquote>
+<p>2、发送 $A, p, g$ 给主机2</p>
+<p>3、主机2，产生一个很大的数 b，计算得到 $B&#x3D;g^b \mod p$</p>
+<blockquote>
+<p>公钥：B，私钥：b</p>
+</blockquote>
+<p>4、发送 B 给主机1</p>
+<p>5、$K_B &#x3D; A^b \mod p &#x3D; g^{ab} \mod p$</p>
+<p>6、$K_A &#x3D; B^a \mod p &#x3D; g^{ab} \mod p$</p>
+<p>End：得到共享密钥，$Key &#x3D; g^{ab} \mod p$</p>
+<h2 id="验证算法"><a href="#验证算法" class="headerlink" title="验证算法"></a>验证算法</h2><h3 id="HMAC"><a href="#HMAC" class="headerlink" title="HMAC"></a>HMAC</h3><p>HMAC，Hash-based Message Authentication Code，一种基于Hash函数和密钥进行消息认证的方法，实现数据完整性验证与身份验证，Example ：MD5，SHA</p>
+<blockquote>
+<p>对加密后的数据进行哈希（通常加 salt），得到数字签名；然后将加密后的数据与数字签名一起发送过去，供接收方进行验证。</p>
+</blockquote>
+<h2 id="密钥交换"><a href="#密钥交换" class="headerlink" title="密钥交换"></a>密钥交换</h2><p>通过非对称加密算法加密对称加密算法的密钥完成密钥共享后再用对称加密算法加密实际要传输的数据，但是如何对抗中间人攻击呢？</p>
+<blockquote>
+<p>中间人完全可以更改非对称加密算法的过程，非对称加密算法共享公钥的过程</p>
+</blockquote>
+<p>1、预共享密钥，PSK，Pre-shared key，指通信双方在配置时手工输入相同的密钥</p>
+<p>2、数字证书，CA，Certificate authority，其将身份标识与公钥绑定在一起，并由可信任的第三方权威机构用其私钥签名，这样就可验证证书自身的有效性</p>
+<blockquote>
+<p>由于一个 CA 不能满足所有的需求，因此形成了一个类似于 DNS 的层次 CA 结构</p>
+</blockquote>
+<h1 id="IPSec-工作模式"><a href="#IPSec-工作模式" class="headerlink" title="IPSec 工作模式"></a>IPSec 工作模式</h1><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181505022.png" alt="image-20211013181505022"></p>
+<h2 id="传输模式"><a href="#传输模式" class="headerlink" title="传输模式"></a>传输模式</h2><p>实现端到端的保护：封装简单，传输效率不高，只对有效载荷进行了保护，IP 头未被保护</p>
+<p>Application：较适用于两台主机之间的数据保护</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181231672.png" alt="image-20211013181231672"></p>
+<h2 id="隧道模式"><a href="#隧道模式" class="headerlink" title="隧道模式"></a>隧道模式</h2><p>实现站点到站点保护：对整个报文进行了封装，IP 头被保护（实现了匿名）</p>
+<p>Application：较适用于站点间建立安全 VPN 隧道，以保护多台主机</p>
+<blockquote>
+<p>站点和站点之间（网关之上），一个站点的所有主机都指代同一个公网 IP 地址</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181308850.png" alt="image-20211013181308850"></p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p>传输模式适用于两台主机之间的数据保护；隧道模式适宜于在站点间建立安全 VPN 隧道：保护多台主机</p>
+<h1 id="AH"><a href="#AH" class="headerlink" title="AH"></a>AH</h1><p>AH 协议：Authentication Header，认证头协议，协议号：51</p>
+<p>提的服务如下：数据完整性服务（哈希校验），数据源身份认证（共享秘钥），防止数据重放攻击（ESP 头中序列号字段），数据机密性服务（加密）</p>
+<blockquote>
+<p>提供报头验证工能，但是不能提供数据加密工能，使得数据可以读取但是无法修改</p>
+</blockquote>
+<h2 id="AH-头"><a href="#AH-头" class="headerlink" title="AH 头"></a>AH 头</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181648238.png" alt="image-20211013181648238"></p>
+<p><strong>下一头部</strong>（8位）：表示紧跟在 AH 头部后面的协议类型：传输模式下，该字段是处于保护中的传输层协议的值，如6（TCP），17（UDP）或 50（ESP）；在隧道模式下，AH 保护整个 IP 包，该值是4，表示是 IP-in-IP 协议</p>
+<p><strong>有效载荷长度</strong>（8位）：其值是以 32 位为单位的整个 AH 数据（包括头部和变长验证数据）的长度再减 2。</p>
+<p><strong>安全参数索引</strong>，SPI，表示对安全策略的索引</p>
+<blockquote>
+<p>用于标识有相同 IP 地址和相同安全协议的不同 SA（由 SA 的创建者定义，只有逻辑意义）</p>
+</blockquote>
+<p><strong>序列号</strong>，由单向递增的计数器进行维护，用于防重放攻击</p>
+<p><strong>验证数据</strong>：可变长，取决于采用何种消息验证算法。包含完整性验证码，也就是 HMAC 算法的结果，称为 ICV，它的生成算法由 SA 指定。</p>
+<h2 id="传输模式-1"><a href="#传输模式-1" class="headerlink" title="传输模式"></a>传输模式</h2><p>保护有效载荷，验证时还需要验证 IP 报文的数据部分，以及 IP 头中的不变部分（ 可变部分预先置0）</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013181938033.png" alt="image-20211013181938033"></p>
+<h2 id="隧道模式-1"><a href="#隧道模式-1" class="headerlink" title="隧道模式"></a>隧道模式</h2><p>验证全部的内部 IP 报文，以及外部新 IP 头中的不变部分，对于可变部分如 TTL 等应提前置位为 0</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013182402554.png" alt="image-20211013182402554"></p>
+<h1 id="ESP"><a href="#ESP" class="headerlink" title="ESP"></a>ESP</h1><p>ESP 协议：Encapsulating Security Payload，封装安全载荷安全协议，协议号：50</p>
+<p>提的服务如下：数据完整性服务（哈希校验），数据源身份认证（共享秘钥），防止数据重放攻击（ESP 头中序列号字段），数据机密性服务（加密）</p>
+<blockquote>
+<p>数据包（IP包）加密，（路由器端）数据流加密 —— 需要从 SA 处获取秘钥</p>
+<p>但是传输模式中的 ESP 不对整个数据包进行签名，不提供报头验证</p>
+</blockquote>
+<h2 id="ESP-头"><a href="#ESP-头" class="headerlink" title="ESP 头"></a>ESP 头</h2><p>安全参数索引 SPI 与 序列号与 AH 头作用一致</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183211644.png" alt="image-20211013183211644"></p>
+<h2 id="传输模式-2"><a href="#传输模式-2" class="headerlink" title="传输模式"></a>传输模式</h2><p>传输模式下对原始 IP 头不进行保护，仅对 IP 报文的有效数据部分提供加密</p>
+<p>Tips ：ESP 头不加密只认证；ESP 尾部加密也认证；原始 IP 头不加密也不认证；</p>
+<blockquote>
+<p>ESP 头中有安全参数索引与序列号，传输过程中需要知道索引与序列号得知安全加密策略与序列号信息</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183359384.png" alt="image-20211013183359384"></p>
+<h2 id="隧道模式-2"><a href="#隧道模式-2" class="headerlink" title="隧道模式"></a>隧道模式</h2><p>对整个内部 IP 报文进行加密，新 IP 头不加密也不认证</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183443513.png" alt="image-20211013183443513"></p>
+<h1 id="AH-ESP"><a href="#AH-ESP" class="headerlink" title="AH + ESP"></a>AH + ESP</h1><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127155954664.png" alt="image-20211127155954664"></p>
+<p>AH 相较于 ESP 提供了 IP 头的认证，ESP 相较于 AH 提供了数据加密</p>
+<blockquote>
+<p>所以需要结合使用 AH 和 ESP 才能保证 IP 报头的机密性和完整性</p>
+<p>AH 为 IP 报头提供尽可能多的验证保护，验证失败的包将被丢弃，不交给上层协议解密，这种操作模式可以减少拒绝服务攻击成功的机会。</p>
+</blockquote>
+<h2 id="传输模式下"><a href="#传输模式下" class="headerlink" title="传输模式下"></a>传输模式下</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183714583.png" alt="image-20211013183714583"></p>
+<p>这里把 ESP 头也加密了，是因为 AH 头在外面呢，只需要用一个头即可</p>
+<h2 id="隧道模式下"><a href="#隧道模式下" class="headerlink" title="隧道模式下"></a>隧道模式下</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211013183817158.png" alt="image-20211013183817158"></p>
+<h2 id="NAT-穿越问题"><a href="#NAT-穿越问题" class="headerlink" title="NAT 穿越问题"></a>NAT 穿越问题</h2><p><strong>Q：使用 IPSec 在跨域 NAT 出现什么问题？NAT 要变换 IP，如何保证 IPSec 认证依然成功？</strong></p>
+<p>NAT 实现了私有地址向公有地址的映射，会对 IP 头进行更改，因此使用对 IP 报头进行验证的 AH 协议的 IPsec 是不能穿越 NAT 的；</p>
+<p>而 ESP 不对外部的 IP 头进行完整性检查，IP 地址转换不会破坏 ESP 的 Hash 值。但 ESP 报文中 TCP&#x2F;UDP 的端口已经加密无法修改，所以对于同时转换端口及 IP 地址的 NAT 来说，ESP 无法穿越 NAT（端口地址转换）。如果 NAT 只转换 IP 地址，那么不管是传输模式还是隧道模式，基于 ESP 的 IPSec 均能穿越 NAT</p>
+<p><strong>Q：对于同时转换IP地址及端口的NAT而言，IPsec如何穿越：NAT-T（NAT Traversal）</strong></p>
+<p>当需要穿越 NAT 设备时，ESP 报文会被封装在一个 UDP 头中，源和目的端口号均是 4500，有了这个 UDP 头就可以正常进行转换</p>
+<p><strong>补充：穿越 NAT 后出现的问题：</strong></p>
+<p>1、身份确认问题：在 IP 网络中 IP 地址是最好的身份标识，IPsec VPN 中标准身份标识也是 IP 地址。NAT 处理过程中会改变 IP 地址，因此 IPsec 的身份确认机制必须能够适应 IP 地址变化。目前解决此问题的方法主要有两种，第一种是使用数字证书替代 IP 地址作为身份标识，第二种是使用字符串取代 IP 地址作为身份标识</p>
+<p>2、IP 地址复用问题：ESP 的 IP 协议号是 50，并不是基于 UDP 和 TCP 的协议（虽然其封装的是整个 IP 层数据，包含 TCP&#x2F;UDP 等传输层协议），因此当 NAT 网关背后存在多个 ESP 应用端时，无法只根据协议号进行反向映射，为了使 ESP 能够在 NAT 环境中进行地址复用，ESP 必须做出改变</p>
+<p>ref：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u014023993/article/details/86634339">https://blog.csdn.net/u014023993/article/details/86634339</a></p>
+<h1 id="IKE"><a href="#IKE" class="headerlink" title="IKE"></a>IKE</h1><p>IKE 协议：Internet Key Exchange，因特网密钥交换协议，<strong>用于动态建立 SA</strong> 实现秘钥交换</p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="混合协议"><a href="#混合协议" class="headerlink" title="混合协议"></a>混合协议</h3><p>IKE 属于混合协议：</p>
+<p>1、<strong>ISAKMP</strong>（在两个实体间进行分组格式及状态转换的消息交换的体系结构）</p>
+<p>2、<strong>Oakley</strong>（基于到达两个对等体间的加密密钥的机制）</p>
+<p>3、<strong>SKEME</strong>（实现公钥加密认证的机制）</p>
+<p>Strength: IPsec 需要的很多参数（密钥，算法）都可以自动协商建立，降低了手工配置的复杂度，还提供了失效时间这一机制</p>
+<h3 id="IKE-的来源"><a href="#IKE-的来源" class="headerlink" title="IKE 的来源"></a>IKE 的来源</h3><p>IPSec SA 负责具体的数据流加密，能够使得 IPSec 区分对不同数据流提供的安全服务，并且 IPSec 能够对不同的数据流提供不同级别的安全保护；因此建立 IPSec 之前需要先建立相对应的安全联盟（SA），手工配置的方式非常繁琐困难，因此引入了 IKE，实现自动进行安全联盟建立与密钥交换的过程</p>
+<h3 id="IKE-的用途"><a href="#IKE-的用途" class="headerlink" title="IKE 的用途"></a>IKE 的用途</h3><p>1、为 IPSec 协商生成密钥，供 AH&#x2F;ESP 加解密和验证使用</p>
+<blockquote>
+<p>AH 和 ESP 两个协议都使用 SA 来保护通信，而 IKE 的主要功能就是在通信双方协商 SA</p>
+</blockquote>
+<p>2、在 IPSec 通信双方之间，动态地建立安全关联（SA：Security Association），对 SA 进行管理和维护</p>
+<blockquote>
+<p>IPSec 需要 SA 来对不同数据流提供不同级别的安全保护</p>
+</blockquote>
+<h2 id="一句话解释"><a href="#一句话解释" class="headerlink" title="一句话解释"></a>一句话解释</h2><p>IPSec：端到端的确保 IP 层通信安全的机制&#x2F;框架</p>
+<p>IKE：用于动态建立 SA 实现秘钥交换，辅助 IPSec 的实施执行</p>
+<p>ISAKMP：定义了一个通用的可以被任何密钥交换协议使用的框架（协商、建立、修改和删除SA的过程和包格式）辅助了 IKE 的实施执行</p>
+<p>SA：是两个 IPSec 实体之间，经过协商建立起来的一种协定（内容包括各种 IPSec 用到的参数算发等）</p>
+<p>SAD：将所有的 SA 以某种数据结构集中存储的一个列表</p>
+<p>SP：决定对 IP 数据包提供何种保护，并以何种方式实施保护</p>
+<p>SPD：SP 以某种数据结构集中存储的列表</p>
+<h2 id="SA"><a href="#SA" class="headerlink" title="SA"></a>SA</h2><p>SA，Security Association，安全联盟，负责 IPSec SA 的建立和维护，起控制作用，是两个 IPSec 实体（主机、安全网关）之间，经过协商建立起来的一种协定</p>
+<blockquote>
+<p>内容包括：采用何种 IPSec 协议（AH，ESP）；运行模式（传输模式、隧道模式）；验证算法；加密算法；加密密钥；密钥生存期；抗重放窗口；计数器等；</p>
+</blockquote>
+<h3 id="唯一标识"><a href="#唯一标识" class="headerlink" title="唯一标识"></a>唯一标识</h3><p>SA 是单向的，每个通信双方都要有两种 SA，<strong>三元组唯一标识</strong>（SPI，目的 IP 地址，IPSec 协议）</p>
+<p>1、SPI，Security Parameter Index，安全参数索引，用于标识具有相同 IP 地址和相同安全协议的不同的 SA</p>
+<blockquote>
+<p>绑定统一 IP 下同一安全协议下的不同参数</p>
+</blockquote>
+<p>2、目的 IP 地址，SA 的终端地址</p>
+<p>3、IPSec 协议，采用 AH, ESP, AH-ESP</p>
+<h3 id="SAD"><a href="#SAD" class="headerlink" title="SAD"></a>SAD</h3><p><strong>SAD</strong>：存储 SA 的数据库（database）</p>
+<p><strong>对于外出的流量</strong>，如果需要使用 IPSec 处理，然而相应的 SA 不存在，则 IPSec 将启动IKE来协商出一个 SA，并存储到 SAD 中。</p>
+<p><strong>对于进入的流量</strong>，如果需要进行 IPSec 处理，IPSec 将从 IP 包中得到三元组（SPI,DST,Protocol），并利用这个三元组在 SAD 中查找一个 SA</p>
+<h2 id="SP"><a href="#SP" class="headerlink" title="SP"></a>SP</h2><p>Security Policy，安全策略，决定对 IP 数据包是否提供保护，提供何种保护，以何种方式保护（指向 SA）</p>
+<blockquote>
+<p>主要根据源IP地址、目的IP地址、入数据还是出数据等来标识</p>
+</blockquote>
+<h3 id="SPD"><a href="#SPD" class="headerlink" title="SPD"></a>SPD</h3><p>SPD，Security Policy Database，安全策略数据库，将所有的 SP 以某种数据结构集中存储的列表</p>
+<p>当接收或将要发出IP包时，首先要查找SPD来决定如何进行处理</p>
+<p>1、丢弃：流量不能离开主机或者发送到应用程序，也不能进行转发</p>
+<p>2、不用 IPSec：对流量作为普通流量处理，不需要额外的 IPSec 保护</p>
+<p>3、使用 IPSec：对流量应用 IPSec 保护，此时这条安全策略要指向一个 SA。<strong>对于外出流量</strong>，如果该 SA 尚不存在，则启动 IKE 进行协商，把协商的结果连接到该安全策略上；</p>
+<h2 id="ISAKMP"><a href="#ISAKMP" class="headerlink" title="ISAKMP"></a>ISAKMP</h2><p>Internet Security Association Key Management Protocol，Internet 安全联盟密钥管理协议，定义了协商、建立、修改和删除 SA 的过程和包格式</p>
+<blockquote>
+<p>IKE 真正定义了一个密钥交换的过程，而 ISAKMP 只是定义了一个通用的可以被任何密钥交换协议使用的框架</p>
+</blockquote>
+<h2 id="IKE’s-Process"><a href="#IKE’s-Process" class="headerlink" title="IKE’s Process"></a>IKE’s Process</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211014090730684.png" alt="image-20211014090730684"></p>
+<p>1、对等体之间建立一个 IKE SA 完成身份验证和密钥信息交换后，</p>
+<p>2、在 IKE SA 的保护下，根据配置的 AH&#x2F;ESP 安全协议等参数协商出一对 IPSec SA</p>
+<p>此后，对等体间的数据将在IPSec隧道中加密传输</p>
+<h3 id="宏观流程"><a href="#宏观流程" class="headerlink" title="宏观流程"></a>宏观流程</h3><p>1、流量触发 IPSec VPN</p>
+<blockquote>
+<p>并非主动建立，有流量过来走 VPN 才会触发被动建立</p>
+</blockquote>
+<p>2、建立管理连接</p>
+<blockquote>
+<p>即进行阶段 1，用于保证隧道的安全性</p>
+</blockquote>
+<p>3、建立数据连接</p>
+<blockquote>
+<p>阶段2，保证数据的安全</p>
+</blockquote>
+<h3 id="阶段-1-主动协商模式"><a href="#阶段-1-主动协商模式" class="headerlink" title="阶段 1 - 主动协商模式"></a>阶段 1 - 主动协商模式</h3><p>通信双方协商和建立 IKE 协议本身使用的安全通道，即建立一个IKE SA，总共是三次交换过程，总共有 6 个消息交互</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202165713.png" alt="阶段 1 主动协商模式"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211015090109438.png" alt="阶段 1 主动协商模式2"></p>
+<p>1、协商对等体间的管理连接使用何种安全策略：A 发送一个或多个 IKE 安全提议；B 收到后查找最先匹配的 IKE 安全提议，并进行确认返回；A 将接收对端确认的策略</p>
+<blockquote>
+<p>交换 ISAKMP &#x2F; IKE 传输集<br>加密算法、HMAC 功能、设备验证的类型、DH 密钥组、管理连接的生存周期<br>匹配的原则为协商双方具有相同的加密算法、认证算法、认证方法和 Diffie-Hellman 组标识</p>
+</blockquote>
+<p>2、通过 DH 算法产生并交换加密算法和 HMAC 功能所需的密钥：A 先发送本端秘钥生成的信息；B 收到后进行秘钥生成，然后返回 B 秘钥生成信息；A 收到后完成秘钥生成；</p>
+<blockquote>
+<p>通常使用预共享秘钥防止中间人攻击：因为是网关之间所以方便实现，证书实现麻烦成本较高</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">根据DH的公开信息都算出了双方相等的秘钥后，连通预共享密钥生成第一个skey_ID</span><br><span class="line">SKEYID - 表示基准密钥，</span><br><span class="line">HDR拆解为Ci，Cr，分别代表Initiator cookie和Responder Cookie。第一个包Cr为0</span><br><span class="line">通过SKEYID推导三个密钥</span><br><span class="line">SKEYID_d = prf(SKEYID, K | Ci | Cr | 0) -----------推导密钥，衍生密钥</span><br><span class="line">SKEYID_a = prf(SKEYID, SKEYID_d | K | Ci | Cr | 1)---------验证密钥</span><br><span class="line">SKEYID_e = prf(SKEYID, SKEYID_a | K | Ci | Cr | 2)---------加密密钥</span><br></pre></td></tr></table></figure>
+
+<p>3、使用预共享秘钥等方式执行对等体间的身份验证：A 发送本端身份和验证信息；B 端进行身份验证和交换过程验证，随后发送 B 的身份和验证信息；A 收到后完成身份验证和交换过程验证；</p>
+<blockquote>
+<p>DH 算法后，此消息就使用 SKEYID_e 加密传输了：使用密钥加密用户身份信息；使用密钥和用户信息通过 hash 算法计算数字签名;对方比对数字签名确认身份</p>
+</blockquote>
+<p><strong>前四个报文为明文信息，后续报文为密文传输</strong></p>
+<p>Q：为什么有了预共享秘钥还要用 DH 生成 skey_ID 然后在生成三个子秘钥呢？</p>
+<p>A：预共享秘钥是预设并不能经常改变，而其它的秘钥是需要经常改变来保证安全性（随机生成），因此使用预共享秘钥负责身份认证，后续的秘钥随机生成使用</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211015090753216.png" alt="image-20211015090753216"></p>
+<h3 id="阶段-1-野蛮模式"><a href="#阶段-1-野蛮模式" class="headerlink" title="阶段 1 - 野蛮模式"></a>阶段 1 - 野蛮模式</h3><p>野蛮模式交互过程少，所以在传输过程中，其传输的数据比较多，并且前两个数据为明文传输，仅消息3为加密传输。</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202170905.png" alt="阶段 1 - 野蛮模式"></p>
+<p>1、发起方建议SA，发起DH交换：发起者发送 5 元组（IKE SA的各项参数），DH 公共值，辅助随机数 nonce 以及身份资料。响应者可以选择接受或者拒绝该建议</p>
+<p>2、接收方接受SA, 认证接收方：回应一个选定的 5 元组，DH 公共值，辅助随机数nonce，身份材料以及一个“认证散列值”。</p>
+<blockquote>
+<p>Tips: 包含身份信息的消息未被加密, 所以和主模式不同，野蛮模式不提供身份保护</p>
+</blockquote>
+<p>3、发起方认证接受方：发起者发送一个“认证散列值”，该消息被验证，让应答方能够确定其中的散列值是否与计算得到的散列值相同，进而确定消息是否有问题。实际上，这个消息认证发起者并且证明它是交换的参与者。这个消息使用前两个消息交换的密钥信息生成的密钥进行加密。</p>
+<h3 id="阶段-1-对比"><a href="#阶段-1-对比" class="headerlink" title="阶段 1 - 对比"></a>阶段 1 - 对比</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202171632.png"></p>
+<h3 id="阶段-2"><a href="#阶段-2" class="headerlink" title="阶段 2"></a>阶段 2</h3><p>双方协商 IPSec SA 安全参数，称为变换集 transform set，包括：加密算法、Hash算法、安全协议、封装模式、存活时间；其次还需要周期性的对数据连接更新密钥信息；</p>
+<p>1、A 向 B 认证自己、建议安全关联、交换公开值、选择 nonce 等</p>
+<p>2、B 向 A 认证自己、建议安全关联、交换公开值、选择 nonce 等</p>
+<p>3、A 向 B 发送一个消息来证明自己的活性，该消息只包含一个 Hash 值</p>
+<blockquote>
+<p>快速模式的协商是受 IKE SA 保护的，所以协商飞快<br>当第二阶段协商完毕之后，第一阶段的策略将暂时不会被使用，直到有新的VPN连接建立时或IPSEC SA加密密钥超时时，才会用第一阶段的策略重新生成并传递新的加密数据和认证的密钥。</p>
+</blockquote>
+<p>Q：为什么又要协商 IPSec 的参数？</p>
+<p>A：一个 IKE 下可以承载多个 IPSec（quick 模式），使得 IKE 可以复用；第一个 SA 作用与 IKE 保证了通道安全；随后的 IPSec SA 使得 IKE 可以复用；</p>
+<h2 id="Demo-分析"><a href="#Demo-分析" class="headerlink" title="Demo 分析"></a>Demo 分析</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211202172856.png" alt="Demo 分析"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211014134933959.png" alt="image-20211014134933959"></p>
+<p>1、数据传输</p>
+<p>2、到 SPD 中查找安全策略：发现源地址为 <code>1.25</code> 目的地址为 <code>2.34</code> 的需要使用安全策略</p>
+<p>3、需要建立相应的 IKE SA（安全关联）：查找策略表中是否存在 SA</p>
+<blockquote>
+<p>如果没有，需要进行阶段 1 六步的关联</p>
+<p>如果有，只需要进行阶段 2</p>
+</blockquote>
+<p>4、建立关联后建立了相应的 SA</p>
+<p>5、在 SAD 中查找对应 SA 的参数</p>
+<p>6、基于 SPD 与 SAD 协商建立 IPSec SA</p>
+<p>7、对原有数据报进行相应的安全处理</p>
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><p>[1] <a target="_blank" rel="noopener" href="https://blog.csdn.net/NEUChords/article/details/92968314">CSDN - NEUChords - IPSec介绍
+</a></p>
+<p>[2] <a target="_blank" rel="noopener" href="https://blog.csdn.net/s2603898260/article/details/105831370">CSDN - 叨陪鲤 - IPSec 专栏目录锦集(openswan)</a></p>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/02/IPSec/,Jiancong Cui,IPSec,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/03/TCP-and-TCP-Security/" title="TCP and TCP Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/10/29/Same-Origin-Policy/" title="Same Origin Policy">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

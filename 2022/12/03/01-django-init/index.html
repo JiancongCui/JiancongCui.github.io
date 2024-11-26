@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>01-django-init · Jiancong Cui</title><meta name="description" content="安装安装 django: pip install django
+验证 django 版本: python -m django --version
+主要关注两个文件夹：
+
+Scripts/django-admin.exe: 脚手架, 自动化创建 django 项目
+site-packages/djan"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>01-django-init</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-03</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Django/" title="Django">Django</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/python/" title="python">python</a>&nbsp;&nbsp;&nbsp;<i class="fa fa-bookmark"></i><a class="tag" href="/tags/INIT/" title="INIT">INIT</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 django: <code>pip install django</code></p>
+<p>验证 django 版本: <code>python -m django --version</code></p>
+<p>主要关注两个文件夹：</p>
+<ul>
+<li><code>Scripts/django-admin.exe</code>: 脚手架, 自动化创建 django 项目</li>
+<li><code>site-packages/django</code>: 源码文件, 引用使用</li>
+</ul>
+<h1 id="APP"><a href="#APP" class="headerlink" title="APP"></a>APP</h1><p>TODO: 后续可以研究多 APP 项目</p>
+<p>使用 APP 进行后台各功能的划分, 每个 APP 中可以拥有独立的表结构、函数、HTML 模板、CSS 等</p>
+<ul>
+<li>创建 APP: <code>python manage.py startapp appName</code></li>
+</ul>
+<p>The difference between a project and an app:</p>
+<ul>
+<li>An app is a web application that does something – e.g., a blog system, a database of public records or a small poll app</li>
+<li>A project is a collection of configuration and apps for a particular website. </li>
+<li>A project can contain multiple apps. An app can be in multiple projects.</li>
+</ul>
+<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><ol>
+<li>创建项目: <code>django-admin startproject projectName</code>; 项目名称后续可以任意更改(you can rename it to anything you like)</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysite/</span><br><span class="line">    manage.py</span><br><span class="line">    mysite/</span><br><span class="line">        __init__.py</span><br><span class="line">        settings.py</span><br><span class="line">        urls.py</span><br><span class="line">        asgi.py</span><br><span class="line">        wsgi.py</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/ref/django-admin/">manage.py</a>: 项目的管理，启动项目、创建 APP、数据管理</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/settings/">settings.py</a>: 项目的配置文件, 数据库管理、注册 APP</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/http/urls/">urls.py</a>: 管理 url 与 func 的对应关系</li>
+<li><a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/howto/deployment/asgi/">asgi.py</a> 与 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/">wsgi.py</a>: 接收网络请求, 不用更改</li>
+</ul>
+<ol start="2">
+<li>创建 APP: <code>python manage.py startapp appName</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>models.py</code>: 对数据库的操作</li>
+<li><code>view.py</code>: func 相关的定义</li>
+</ul>
+<ol start="3">
+<li>注册 APP: 在主项目中 <code>settings.py</code> 中的 <code>INSTALLED_APPS</code> 列表中注册; <code>appName.apps.AppConfigName</code></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071742844.png"></p>
+<ol start="4">
+<li>编写 URL 与 视图函数的对应关系：在 app 中 <code>urls.py</code>（自行新建） 中的 <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/http/urls/">urlpatterns</a> 列表中编写</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;&quot;</span>, views.index, name=<span class="string">&quot;index&quot;</span>)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>编写函数体：在相关 <code>app</code> 下的 <code>views.py</code> 中</p>
+</li>
+<li><p>在主项目中引入 app 的路由信息</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path, include</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&quot;admin/&quot;</span>, admin.site.urls),</span><br><span class="line">    path(<span class="string">&quot;polls/&quot;</span>, include(<span class="string">&quot;polls.urls&quot;</span>))</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>the path() function is passed four arguments, two required: route and view, and two optional: kwargs, and name<ul>
+<li>route: 待匹配的 URL pattern, 按照注册顺序从上到下匹配</li>
+<li>view: 匹配成功后调用的函数</li>
+<li>kwargs: 其它参数, 后续介绍…</li>
+<li>name: TODO, 还不大清楚其作用, Naming your URL lets you refer to it unambiguously from elsewhere in Django, especially from within templates. This powerful feature allows you to make global changes to the URL patterns of your project while only touching a single file.</li>
+</ul>
+</li>
+<li>The include() function allows referencing other URLconfs. Whenever Django encounters include(), it chops off whatever part of the URL matched up to that point and sends the remaining string to the included URLconf for further processing.</li>
+</ul>
+<ol start="7">
+<li>启动 APP: <code>python manage.py runserver [port]</code></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032323367.png"></p>
+<blockquote>
+<p>don’t use this server in anything resembling a production environment. It’s intended only for use while developing.<br>We’re in the business of making web frameworks, not web servers.</p>
+</blockquote>
+<h1 id="Django-Shell"><a href="#Django-Shell" class="headerlink" title="Django Shell"></a>Django Shell</h1><p>使用 <code>python manage.py shell</code> 打开与当前项目的交互, 可以通过 django 内置的 API 进行功能测试</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071757229.png"></p>
+<h2 id="Database-API"><a href="#Database-API" class="headerlink" title="Database API"></a>Database API</h2><ol>
+<li>引入数据模型: <code>from polls.models import Choice, Question</code></li>
+<li>创建数据条目: <code>q = Question(question_text=&quot;What&#39;s new?&quot;, pub_date=timezone.now())</code></li>
+<li>将条目保存到数据库中: <code>q.save()</code></li>
+<li>将条目删除: <code>q.delete()</code></li>
+<li>根据数据模型查看&#x2F;更改属性值(更改后要 save)</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071800325.png"></p>
+<ol start="5">
+<li>查看表中的所有信息: <code>Question.objects.all()</code>; 如果要修改展示效果, 可以重写数据模型中的 <strong>str</strong> 方法</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="keyword">return</span> self.question_text</span><br></pre></td></tr></table></figure>
+
+<p>重启一下 shell 即可看到效果</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071809453.png"></p>
+<ol start="6">
+<li>表支持过滤与筛选:</li>
+</ol>
+<ul>
+<li><code>Question.objects.filter(id=1)</code></li>
+<li><code>Question.objects.filter(question_text__startswith=&#39;What&#39;)</code></li>
+<li><code>Question.objects.get(pub_date__year=timezone.now().year)</code></li>
+<li>通过主键筛选是较为常用的, 因此简化了改命令: <code>Question.objects.get(pk=1)</code></li>
+</ul>
+<ol start="7">
+<li>在 Django 中会自动为外键的对象创建一个集合, 用于存放目标数据条目, 例如 Question_id 是 Choice 的外键, 因此每一个 question 对象都会有一个 choice_set 属性</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071818369.png"></p>
+<ol start="8">
+<li>为这个集合添加数据就能自动作用到 Choice 表中</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071821430.png"></p>
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S44y1K7Hd/?vd_source=b982c5b9804c7552564e69b7b5d8a2e0">Bilibili</a></li>
+</ul>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/03/01-django-init/,Jiancong Cui,01-django-init,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/03/02-Basic-Knowledge-of-Compilation-Principles/" title="02-Basic Knowledge of Compilation Principles">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/03/01-Overview-of-Compilation-Principles/" title="01-Overview-of-Compilation-Principles">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

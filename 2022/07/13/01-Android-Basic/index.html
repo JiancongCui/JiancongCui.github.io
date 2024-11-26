@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>01-Android Basic · Jiancong Cui</title><meta name="description" content="Android 系统架构四层架构：
+
+Linux 内核层：为 Android 设备的各种硬件提供了底层的驱动，如驱动、电源管理等
+硬件抽象层: Hardware Abstraction Layer, HAL, 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能
+HAL 包含多个库模块"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>01-Android Basic</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-07-14</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Android-系统架构"><a href="#Android-系统架构" class="headerlink" title="Android 系统架构"></a>Android 系统架构</h1><p>四层架构：</p>
+<ul>
+<li>Linux 内核层：为 Android 设备的各种硬件提供了底层的驱动，如驱动、电源管理等</li>
+<li>硬件抽象层: Hardware Abstraction Layer, HAL, 提供标准界面，向更高级别的 Java API 框架显示设备硬件功能<ul>
+<li>HAL 包含多个库模块，其中每个模块都为特定类型的硬件组件实现一个界面，例如相机或蓝牙模块</li>
+<li>当框架 API 要求访问设备硬件时，Android 系统将为该硬件组件加载库模块</li>
+</ul>
+</li>
+<li>Android Runtime<ul>
+<li>Android 5.0（API 级别 21）或更高版本的设备，每个应用都在其自己的进程中运行，并且有其自己的 Android Runtime (ART) 实例</li>
+</ul>
+</li>
+<li>Native Layer: C&#x2F;C++ Libraries, <ul>
+<li>许多核心 Android 系统组件和服务（例如 ART 和 HAL）构建自原生代码，需要以 C 和 C++ 编写的原生库</li>
+<li>Android 平台提供 Java 框架 API 以向应用显示其中部分原生库的功能</li>
+</ul>
+</li>
+<li>Java layer:<ul>
+<li>通过以 Java 语言编写的 API 使用 Android OS 的整个功能集</li>
+</ul>
+</li>
+<li>应用层: 手机上的应用程序</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208050902709.png"></p>
+<h1 id="Android-系统四大组件"><a href="#Android-系统四大组件" class="headerlink" title="Android 系统四大组件"></a>Android 系统四大组件</h1><ul>
+<li>Activity: 程序的界面</li>
+<li>Service: 后台服务, 逻辑处理</li>
+<li>BroadcastReceiver: 接收&#x2F;发出广播消息</li>
+<li>ContentProvider: 应用程序间数据共享</li>
+</ul>
+<h1 id="SQLite-数据库"><a href="#SQLite-数据库" class="headerlink" title="SQLite 数据库"></a>SQLite 数据库</h1><p>自带轻量级、运算速度极快的嵌入式关系型数据库：</p>
+<ul>
+<li>支持标准的 SQL 语法</li>
+<li>通过 Android 封装好的 API 进行操作，让存储和读取数据变得非常方便</li>
+</ul>
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><ul>
+<li>JDK: Java 语言的软件开发包, 包含了 Java 的运行环境、工具集合、基础类库等</li>
+<li>Android SDK: Google 提供的 Android 开发工具包，在开发 Android 程序时，我们需要通过引入该工具包来使用 Android 相关的 API</li>
+<li>Android Studio: <a target="_blank" rel="noopener" href="https://developer.android.google.cn/studio">Android 程序开发</a></li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li>Android 系统就是通过包名来区分不同应用程序</li>
+<li>Android 程序的涉及讲究逻辑和视图分离</li>
+</ul>
+<h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><ul>
+<li><code>app</code>: 项目中的代码、资源等内容都放置在这个目录下</li>
+<li><code>.gradle &amp; .idea</code>：存放自动生成的文件，不必关心</li>
+<li><code>build</code>: 编译时自动生成的文件，不必关心</li>
+<li><code>gradle</code>: 包含了 gradle wrapper 的配置文件</li>
+<li><code>.gitignore</code>: 将指定的目录或文件排除在版本控制之外</li>
+<li><code>build.gradle</code>: 全局的 gradle 构建脚本，通常不需要修改</li>
+<li><code>gradle.properties</code>: 全局的 gradle 配置文件，在这里配置的属性会影响到项目中所有的 gradle 编译脚本</li>
+<li><code>gradlew &amp; gradlew.bat</code>: 在命令行界面中执行 gradle 命令</li>
+<li><code>*.iml</code>: Android Studio 基于 IntelliJ IDEA 开发，每个项目都会自动生成一些 iml 文件</li>
+<li><code>local.properties</code>: 指定本机中 Android SDK 路径</li>
+<li><code>settings.gradle</code>: 指定项目中所有引入的模块（app模块）自动完成引入</li>
+<li></li>
+</ul>
+<h2 id="app"><a href="#app" class="headerlink" title="app"></a>app</h2><ul>
+<li><code>java</code>: Java 代码</li>
+<li><code>build</code>: 与外层 build 类似，包含了一些在编译时自动生成的文件</li>
+<li><code>libs</code>: 第三方 jar 包</li>
+<li><code>androidTest</code>: 编写 AndroidTest 测试用例，自动化测试</li>
+<li><code>res</code>: 项目中使用到的所有图片、布局、字符串等资源</li>
+<li><code>AndroidManifest.xml</code>: Android 项目配置文件，其余组件需要在此进行注册&#x2F;添加权限声明</li>
+<li><code>test</code>: 编写 Unit Test 测试用例，自动化测试的另一种方法</li>
+<li><code>build.gradle</code>: app 模块的 gradle 构建脚本，指定项目构建相关配置</li>
+<li><code>proguard-rules.pro</code>: 指定项目代码的混淆规则, 保护代码</li>
+</ul>
+<h2 id="AndroidManifest-xml"><a href="#AndroidManifest-xml" class="headerlink" title="AndroidManifest.xml"></a>AndroidManifest.xml</h2><p>规则:</p>
+<ul>
+<li>没有在 AndroidManifest.xml 里注册的 Activity 是不能使用的</li>
+</ul>
+<p>对 Activity 的声明 <code>&lt;activity/&gt;</code>: </p>
+<ul>
+<li>声明项目的主 Activity &#96;<intent-filter/></li>
+<li>指定活动的标题栏内容 <code>android:label</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:label</span>=<span class="string">&quot;This is FirstActivity&quot;</span>&gt;</span>  // 指定标题栏的内容</span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Res"><a href="#Res" class="headerlink" title="Res"></a>Res</h2><ul>
+<li><code>drawable-*</code>：存放图片</li>
+</ul>
+<ul>
+<li><code>mipmap-*</code>：存放图标</li>
+<li><code>values-*</code>：存放字符串、样式、颜色等配置</li>
+<li><code>layout-*</code>：存放布局文件</li>
+</ul>
+<h3 id="strings-xml"><a href="#strings-xml" class="headerlink" title="strings.xml"></a>strings.xml</h3><p>在 <code>res/values/strings.xml</code> 中对静态字符串进行定义</p>
+<ul>
+<li>在代码中通过 <code>R.string.app_name</code> 引用</li>
+<li>在 XML 中通过 <code>@string/app_name</code> 进行引用</li>
+</ul>
+<p>Tips: drawable 与 mipmap 同理, <code>R.drawable.app_name</code></p>
+<h2 id="build-gradle"><a href="#build-gradle" class="headerlink" title="build.gradle"></a>build.gradle</h2><p>Gradle 是项目构建工具，基于 Groovy 的领域特定语言（DSL）来声明项目设置，摒弃了传统基于 XML（如Ant和Maven）的各种繁琐配置</p>
+<h3 id="外层-build-gradle"><a href="#外层-build-gradle" class="headerlink" title="外层 build.gradle"></a>外层 build.gradle</h3><ul>
+<li>jcenter：代码托管仓库，Android 开源项目都会将代码托管到 jcenter 上。声明后可以在项目中轻松引用任何 jcenter 上的开源项目</li>
+<li>gradle 插件：用于构建 Android 项目</li>
+</ul>
+<h3 id="内部-build-gradle"><a href="#内部-build-gradle" class="headerlink" title="内部 build.gradle"></a>内部 build.gradle</h3><ul>
+<li>应用程序模块：com.android.applicatioin、可以直接运行</li>
+<li>库模块：com.android.library、作为代码库依附于别的应用程序模块来运行</li>
+<li>compileSdkVersion：项目的编译版本</li>
+<li>buildToolsVersion：指定项目构建工具的版本</li>
+<li>applicationId：指定项目的包名</li>
+<li>minSdkVersion：指定项目最低兼容的 Android 系统版本</li>
+<li>targetSdkVersion：目标上线版本</li>
+<li>versionCode：指定项目的版本号</li>
+<li>versionName：指定项目的版本名</li>
+<li>buildType：指定生成安装文件的相关配置</li>
+<li>debug：指定生成测试版安装文件的配置</li>
+<li>release：指定生成正式版安装文件的配置</li>
+<li>minifyEnabled：指定是否对项目进行混淆</li>
+<li>proguardFiles：指定混淆时使用的规则</li>
+<li>proguard-android.txt：在Android SDK目录下，包含所有项目通用的混淆规则</li>
+<li>proguard-rules.pro：当前项目的混淆规则</li>
+<li>dependencies：指定当前项目所有的依赖关系<ul>
+<li>本地依赖：对本地jar包或目录添加依赖关系</li>
+<li>库依赖：对项目中的库模块添加依赖关系</li>
+<li>远程依赖：对jcenter库上的开源项目添加依赖关系</li>
+</ul>
+</li>
+</ul>
+<h1 id="日志工具"><a href="#日志工具" class="headerlink" title="日志工具"></a>日志工具</h1><ul>
+<li><code>Log.v()</code>: verbose, 最为琐碎的、意义最小的日志信息</li>
+<li><code>Log.d()</code>: debug, 调试信息</li>
+<li><code>Log.o()</code>: info, 比较重要的数据，这些数据应该是你非常想看到的、可以帮你分析用户行为的数据</li>
+<li><code>Log.w()</code>: warn, 警告信息, 提示程序在这个地方可能会有潜在的风险，最好去修复一下这些出现警告的地方</li>
+<li><code>Log.e()</code>: error, 错误信息</li>
+</ul>
+<p>参数一般两个: tag + msg</p>
+<ul>
+<li>tag: 一般传入当前的类名就好，主要用于对打印信息进行过滤</li>
+<li>msg: 具体内容</li>
+</ul>
+<h2 id="定制自己的日志工具"><a href="#定制自己的日志工具" class="headerlink" title="定制自己的日志工具"></a>定制自己的日志工具</h2><p>Targets</p>
+<ul>
+<li>当程序处于开发阶段时就让日志打印出来，当程序上线之后就把日志屏蔽掉</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> LogUtil &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">val</span> VERBOSE = <span class="number">1</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">val</span> DEBUG = <span class="number">2</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">val</span> INFO = <span class="number">3</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">val</span> WARN = <span class="number">4</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">val</span> ERROR = <span class="number">5</span></span><br><span class="line">    <span class="comment">// 开发阶段将 level 手动指定成 VERBOSE</span></span><br><span class="line">    <span class="comment">// 项目正式上线的时候将 level 指定成 ERROR 就可以了</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> level = VERBOSE</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">v</span><span class="params">(tag: <span class="type">String</span>, msg: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= VERBOSE) &#123;</span><br><span class="line">            Log.v(tag, msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">d</span><span class="params">(tag: <span class="type">String</span>, msg: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= DEBUG) &#123;</span><br><span class="line">            Log.d(tag, msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">i</span><span class="params">(tag: <span class="type">String</span>, msg: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= INFO) &#123;</span><br><span class="line">            Log.i(tag, msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">w</span><span class="params">(tag: <span class="type">String</span>, msg: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= WARN) &#123;</span><br><span class="line">            Log.w(tag, msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">e</span><span class="params">(tag: <span class="type">String</span>, msg: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (level &lt;= ERROR) &#123;</span><br><span class="line">            Log.e(tag, msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/07/13/01-Android-Basic/,Jiancong Cui,01-Android Basic,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/07/13/02-Kotlin/" title="02-Kotlin">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/02/06/PubSub/" title="PubSub">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

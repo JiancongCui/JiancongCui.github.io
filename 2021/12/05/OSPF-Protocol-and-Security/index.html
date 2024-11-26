@@ -1,0 +1,113 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>OSPF Protocol and Security · Jiancong Cui</title><meta name="description" content="OSPFOpen Shorted Path First，开放最短路径优先，是 IETF 开发的基于链路状态的自治系统内部路由协议，直接工作于 IP 层之上，IP 协议号为 89；以组播地址发送协议数据包
+优势：仅传播对端设备不具备的路由信息，网络收敛迅速，并有效避免了网络资源浪费
+名词速览1、DR，"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>OSPF Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h1><p>Open Shorted Path First，开放最短路径优先，是 IETF 开发的基于链路状态的自治系统内部路由协议，直接工作于 IP 层之上，IP 协议号为 89；以<strong>组播</strong>地址发送协议数据包</p>
+<p><strong>优势</strong>：仅传播对端设备不具备的路由信息，网络收敛迅速，并有效避免了网络资源浪费</p>
+<h2 id="名词速览"><a href="#名词速览" class="headerlink" title="名词速览"></a>名词速览</h2><p>1、DR，指定路由器</p>
+<p>2、BDR，备选指定路由器</p>
+<p>3、DRothers，相互之间虽然为邻居，却不会建立完全邻接关系，也不会直接共享链路状态信息</p>
+<p>4、LSA，链路状态通告</p>
+<p>5、ABR、区域边界路由器</p>
+<h2 id="RIP-自身缺陷"><a href="#RIP-自身缺陷" class="headerlink" title="RIP 自身缺陷"></a>RIP 自身缺陷</h2><p>1、以跳数来评估的路由并非最优路由（并没有考虑线路的带宽）</p>
+<p>2、最大跳数（16，为了避免环路的一种机制）限制网络直径不能超过 16 跳，导致网络尺度过小</p>
+<p>3、收敛速度慢（抑制时间阻止了错误更新的同时也将阻止正确更新）</p>
+<p>4、更新发送全部路由表浪费网络资源</p>
+<h2 id="OSPF-报文格式"><a href="#OSPF-报文格式" class="headerlink" title="OSPF 报文格式"></a>OSPF 报文格式</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128203653.png" alt="OSPF 报文格式"></p>
+<h3 id="区域"><a href="#区域" class="headerlink" title="区域"></a>区域</h3><p>为解决拓扑和路由计算复杂度随网络规模增大而急剧增大的问题，OSPF定义了区域的概念，实现了<strong>路由网络的层级化</strong></p>
+<h3 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h3><p>其内容是根据 AuType 来定义的：</p>
+<p>1、不认证（AuType&#x3D;0）时 Authentication 为空；</p>
+<p>2、简单认证（AuType&#x3D;1）时 Authentication 为密码&#x2F;口令信息；</p>
+<p>3、MD5 认证（AuType&#x3D;2）时 Authentication 包括 Key ID，MD5 验证数据长度和序列号的信息</p>
+<blockquote>
+<p>Key ID：密钥是经常改变的，需要对其进行编号索引，使用索引去获取详细加密信息<br>序列号：针对每次发送的消息进行的编号（防重放），将序列信息和密钥进行离散编号后传输</p>
+</blockquote>
+<h2 id="OSPF协议工作过程"><a href="#OSPF协议工作过程" class="headerlink" title="OSPF协议工作过程"></a>OSPF协议工作过程</h2><p>主要有四个阶段：寻找邻居、建立邻接关系、链路状态信息传递、计算路由</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128204301.png" alt="OSPF协议工作过程"></p>
+<h3 id="寻找邻居"><a href="#寻找邻居" class="headerlink" title="寻找邻居"></a>寻找邻居</h3><p>维护邻居表（邻居 ID，邻居地址，邻居状态）：</p>
+<p>1、都广播 Hello 包，尝试寻找可交换路由信息的邻居（周边设备）</p>
+<p>2、收到对方的 Hello 包后更新邻居表，邻居状态置为 init 状态</p>
+<p>3、Hello 包中携带的参数开始协商，如果协商成功则将邻居状态置为 2-way 状态</p>
+<blockquote>
+<p>邻居状态达到 2-way 状态后，RTA 与 RTB 之间开始建立邻接关系</p>
+</blockquote>
+<h3 id="建立邻接关系"><a href="#建立邻接关系" class="headerlink" title="建立邻接关系"></a>建立邻接关系</h3><p>DR，指定路由器，该路由器会与所有邻居建立可以相互共享链路状态信息的完全邻接（Full）关系</p>
+<p>BDR，备选指定路由器，与 DR 一致，防止 DR 挂掉</p>
+<p>DRothers，相互之间虽然为邻居，却不会建立完全邻接关系，也不会直接共享链路状态信息</p>
+<p>1、初始的邻接关系为总线模型：完全图 (n(n-1)&#x2F;2)</p>
+<p>2、采用 DR &#x2F; BDR 方式建立邻接关系：(2 * (n-2) + 1)</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128210401.png" alt="建立邻接关系"></p>
+<p>Q：为什么需要 DR 和 BDR ？</p>
+<p>A：初始的全连接邻接关系存在着大量的性能浪费；所以通过选举 DR 与 BDR 的方式减少路由信息交换的数目，减少网络中传递路由信息的开销；</p>
+<p>Q：如何选举？</p>
+<p>A：Hello 包携带路由器优先级，优先级为 0 的路由器不具备选举资格；先选举 BDR，再选举 DR；</p>
+<blockquote>
+<p>DR 和 BDR一旦选定，即使 OSPF 区域内新增优先级更高的路由器，DR 和 BDR也不重新选举，只有当 DR 和 BDR 都失效后，才参与选举 (保证网络的稳定)</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206110834.png" alt="DR选举"></p>
+<h3 id="链路状态信息传递"><a href="#链路状态信息传递" class="headerlink" title="链路状态信息传递"></a>链路状态信息传递</h3><p>1、触发更新时，发送 RTA 具备的 LSA(链路状态通告，略) <strong>概要</strong>给 RTB</p>
+<p>2、RTB 分析比较 RTA 与 RTB 的链路信息</p>
+<p>3、RTB 发送请求，要求获得 RTB 不具备的 LSA</p>
+<p>4、RTA 将 RTB 请求的 LSA 发给 RTB</p>
+<p>5、同理 RTA 也通过相同方式获取 RTB 的 LSA</p>
+<p>6、双方邻居状态变更为完全连接关系</p>
+<p>Tips：</p>
+<p>1、OSPF 协议包具备超时重传机制，在规定时间内没有收到回应，认为包丢失，重发包！</p>
+<p>2、OSPF 协议包具备序列号，对重复包不做处理</p>
+<p>3、LSA(链路状态通告)更新携带<strong>掩码</strong>，支持 VLSM</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128211414.png" alt="超时重传机制"></p>
+<h3 id="路由计算"><a href="#路由计算" class="headerlink" title="路由计算"></a>路由计算</h3><p>1、经过链路状态信息传递后，每台路由器中都存储了 LSDB</p>
+<p>2、由 LSDB 生成带权有向图</p>
+<blockquote>
+<p>权值会综合考虑时延，带宽，丢包率等</p>
+</blockquote>
+<p>3、每台路由器分别以自己为根节点计算最小生成树</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128211752.png" alt="路由计算"></p>
+<h1 id="OSPF-安全机制"><a href="#OSPF-安全机制" class="headerlink" title="OSPF 安全机制"></a>OSPF 安全机制</h1><h2 id="OSPF-认证机制"><a href="#OSPF-认证机制" class="headerlink" title="OSPF 认证机制"></a>OSPF 认证机制</h2><p>1、OSPF 支持对报文进行简单认证与 md5 认证（报文格式中），与 RIPv1 不一样，防范了路由欺骗攻击</p>
+<p>2、OSPF 报文进行简单认证时，验证字段将保存一个明文口令，该口令很容易被获取，同样容易遭受路由欺骗攻击；因此引入了更加安全的 MD5 验证</p>
+<p>3、MD5 认证：</p>
+<blockquote>
+<p>a、在相邻路由器中配置相同的共享密钥<br>b、用共享密钥加密报文序列号<br>c、由共享密钥和路由消息共同生成 MAC（消息鉴别码），判断与发送来的 MAC 是否一致</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128212402.png" alt="MD5 认证"></p>
+<p>Q：OSPF MD5 认证与 RIPv2 MD5 认证有何不同？</p>
+<p>A：OSPF MD5 认证在 RIPv2 MD5 认证方式的基础上额外支持了加密认证的 HMAC 方式，将数据和秘钥一起计算得到 HMAC 值同数据一起发送，对方接到之后，使用自己手中的秘钥把消息计算一下 HMAC，如果接收到的 HMAC 一致，那么可以认为这个消息既没有被篡改也没有冒充；相比来说 OSPF 的认证方式更为安全</p>
+<h2 id="层次化路由"><a href="#层次化路由" class="headerlink" title="层次化路由"></a>层次化路由</h2><p>一个运行 OSPF 协议的自治系统可划分为<strong>骨干区域</strong>和若干<strong>非骨干区域</strong>，各非骨干区域通过区域边界路由器（ABR）与骨干区域相连</p>
+<blockquote>
+<p>进行网络测绘的通信都会在边界路由器处被拦截，无法获取骨干区域内的 LSDB 信息</p>
+</blockquote>
+<p>每个区域各自拥有自己的 LSDB，各自在本区域内执行链路状态路由算法，使得本区域内拓扑可对区域外网络屏蔽，同时不受其他区域错误路由信息的影响</p>
+<h2 id="可靠泛洪"><a href="#可靠泛洪" class="headerlink" title="可靠泛洪"></a>可靠泛洪</h2><p>泛洪：将从某个接口收到的数据流向除该接口之外的所有接口发送出去</p>
+<p>OSPF 协议通过泛洪进行 LSA(链路状态通告) 传播，使用类似 TCP 的确认重传机制保证可靠性，确保同一区域内路由器有同样的 LSDB，从而计算路由一致</p>
+<h2 id="反击机制"><a href="#反击机制" class="headerlink" title="反击机制"></a>反击机制</h2><p>当路由器收到自己发送或以自己名义发送的 LSA 比当前生成的实例新且描述信息与自身获知不一致时，将立即通告一个含有正确链路状态且<strong>大链路序号</strong>的 LSA 新实例，以纠正错误</p>
+<blockquote>
+<p>反击机制使恶意用户伪造的 LSA 很难被其他路由器使用，从而很难影响路由选择</p>
+</blockquote>
+<h2 id="双向连接"><a href="#双向连接" class="headerlink" title="双向连接"></a>双向连接</h2><p>只有当一条链接同时被连接两端的路由器通告时，才会考虑放入 LSDB</p>
+<blockquote>
+<p>恶意用户向相邻路由器通告一条不存在的链接，不会对路由表产生影响，因无其他路由器同时通告该链接</p>
+</blockquote>
+<h1 id="OSPF-安全威胁"><a href="#OSPF-安全威胁" class="headerlink" title="OSPF 安全威胁"></a>OSPF 安全威胁</h1><h2 id="周期性注入"><a href="#周期性注入" class="headerlink" title="周期性注入"></a>周期性注入</h2><p>Backdrop：OSPF 协议规定路由器 LSDB 保存的 LSA 刷新间隔 <code>≥5S</code>，且具有反击机制，因此恶意用户注入的恶意 LSA 很快会被刷新和替换，无法产生持久效果</p>
+<p>但恶意用户不断用恶意 LSA 更新路由器的 LSDB（周期性注入），可能会导致网络不稳定，消耗大量资源，造成拒绝服务攻击，从而可能更改路由表</p>
+<blockquote>
+<p>然而恶意用户需不断发送更改的 LSA，实施恶意行为本身难度较大，且增加网络流量，易被发现</p>
+</blockquote>
+<h2 id="分块注入"><a href="#分块注入" class="headerlink" title="分块注入"></a>分块注入</h2><p>如恶意用户控制的路由器所处位置将区域分为 2 个子区域，则该用户可以用一个子区域中某路由器身份向另一个子区域注入虚假 LSA，从而避开 OSPF 协议反击机制（另一个区域内的传播不会传递到官方路由器中 - 不在一个区域）</p>
+<blockquote>
+<p>该威胁仅影响自治系统的一部分，且对恶意用户所处位置有限制，而现实中这种情况并不常见</p>
+</blockquote>
+<h2 id="幻影路由器"><a href="#幻影路由器" class="headerlink" title="幻影路由器"></a>幻影路由器</h2><p>恶意用户虚构一个不存在的路由器，即幻影路由器，以幻影路由器身份注入大量虚假信息，则不会触发反击机制</p>
+<blockquote>
+<p>但由于双向链接机制，注入的 LSA 不一定参与路由计算，除非该幻影路由器与某正常路由器形成邻接关系<br>该威胁需建立邻接关系，因而实施难度较大</p>
+</blockquote>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/05/OSPF-Protocol-and-Security/,Jiancong Cui,OSPF Protocol and Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/06/BGP-Protocol-and-Security/" title="BGP Protocol and Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/RIP-Protocol-and-Security/" title="RIP Protocol and Security">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

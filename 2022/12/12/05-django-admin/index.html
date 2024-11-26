@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>05-django-admin · Jiancong Cui</title><meta name="description" content="AdminDjango 自动生成后台的功能十分方便
+
+创建可以访问管理网页的用户: python manage.py createsuperuser
+启动服务, 进入 admin 界面
+
+
+
+默认只存在对用户组和用户的管理, 因此需要引入我们创建的数据模型的管理: 在 app 的 admin.py "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>05-django-admin</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-12</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Django/" title="Django">Django</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/python/" title="python">python</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Admin"><a href="#Admin" class="headerlink" title="Admin"></a>Admin</h1><p>Django 自动生成后台的功能十分方便</p>
+<ol>
+<li>创建可以访问管理网页的用户: <code>python manage.py createsuperuser</code></li>
+<li>启动服务, 进入 admin 界面</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071825556.png"></p>
+<ol start="3">
+<li>默认只存在对用户组和用户的管理, 因此需要引入我们创建的数据模型的管理: 在 app 的 admin.py 中实现引入</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212071829788.png"></p>
+<h1 id="自定义后台表单"><a href="#自定义后台表单" class="headerlink" title="自定义后台表单"></a>自定义后台表单</h1><p>初始的后台可控数据十分少, 可以通过修改 APP 目录下的 admin.py 进行精细化控制</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question, Choice</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">QuestionAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    <span class="comment"># fields = [&#x27;pub_date&#x27;, &#x27;question_text&#x27;]</span></span><br><span class="line">    fields = [<span class="string">&#x27;question_text&#x27;</span>, ]</span><br><span class="line"></span><br><span class="line">admin.site.register(Question, QuestionAdmin)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>默认使用 <code>admin.site.register</code> 注册 Question 时会展示所有的域</li>
+<li>可以通过继承 <code>admin.ModelAdmin</code> 用 <code>fields</code> 属性对展示的数据域进行精细化控制</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121758371.png"></p>
+<h2 id="其它展示控制"><a href="#其它展示控制" class="headerlink" title="其它展示控制"></a>其它展示控制</h2><h3 id="list-display"><a href="#list-display" class="headerlink" title="list_display"></a>list_display</h3><p>控制对象在以列表状态展示时展示的数据域</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QuestionAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    list_display = (<span class="string">&#x27;question_text&#x27;</span>, <span class="string">&#x27;pub_date&#x27;</span>, <span class="string">&#x27;was_published_recently&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121814795.png"></p>
+<h3 id="数据域控制"><a href="#数据域控制" class="headerlink" title="数据域控制"></a>数据域控制</h3><p>想要对某个<a target="_blank" rel="noopener" href="https://docs.djangoproject.com/zh-hans/4.1/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display">数据与进行精细的控制</a>, 可以在定义数据模型时对目标域添加修饰器</p>
+<ul>
+<li>boolean 表示该数据域为布尔类型, 以应用布尔数据的展示方式</li>
+<li>ordering 表示该数据域的排序依赖于 pub_date 数据域</li>
+<li>description 表示该数据域的列名</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@admin.display(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="meta">    boolean=<span class="literal">True</span>,</span></span></span><br><span class="line"><span class="params"><span class="meta">    ordering=<span class="string">&#x27;pub_date&#x27;</span>,</span></span></span><br><span class="line"><span class="params"><span class="meta">    description=<span class="string">&#x27;Published recently?&#x27;</span></span></span></span><br><span class="line"><span class="params"><span class="meta"></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">was_published_recently</span>(<span class="params">self</span>):</span><br><span class="line">    now = timezone.now()</span><br><span class="line">    <span class="keyword">return</span> now - datetime.timedelta(days=<span class="number">1</span>) &lt;= self.pub_date &lt;= now</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121821518.png"></p>
+<h3 id="list-filter"><a href="#list-filter" class="headerlink" title="list_filter"></a>list_filter</h3><p>list_filter 列表中的属性将支持更加丰富的过滤规则支持</p>
+<ul>
+<li>Tips: 只支持数据库中存在的域哦, 不支持 was_published_recently 这种“函数域”</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">list_filter = [<span class="string">&#x27;pub_date&#x27;</span>, <span class="string">&#x27;question_text&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121828986.png"></p>
+<h3 id="search-fields"><a href="#search-fields" class="headerlink" title="search_fields"></a>search_fields</h3><p>search_fields 支持搜索框的索引: <code>search_fields = [&#39;question_text&#39;]</code></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121830263.png"></p>
+<h2 id="划分字段集"><a href="#划分字段集" class="headerlink" title="划分字段集"></a>划分字段集</h2><p>当 Model 拥有较多字段时, 可以通过 ModelAdmin 中的 filedsets 进行字段集的划分</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QuestionAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    fieldsets = [</span><br><span class="line">        (<span class="literal">None</span>,               &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;question_text&#x27;</span>]&#125;),</span><br><span class="line">        (<span class="string">&#x27;Date information&#x27;</span>, &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;pub_date&#x27;</span>]&#125;),</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">admin.site.register(Question, QuestionAdmin)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121758119.png"></p>
+<h2 id="添加关联对象"><a href="#添加关联对象" class="headerlink" title="添加关联对象"></a>添加关联对象</h2><p>常见的就是作为外键, 可以添加其对另一 Model 的引用</p>
+<ol>
+<li>配置关联的目标对象: 指定其数据模型, <code>extra</code> 属性表示空数据留白, 供创建新的关联对象</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># admin.StackedInline: 栈类似的排列展现, 较占空间</span></span><br><span class="line"><span class="comment"># admin.TabularInline: 表格式的单行显示</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ChoiceInline</span>(admin.StackedInline):</span><br><span class="line">    model = Choice</span><br><span class="line">    extra = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>将目标对象在主对象中使用 inlines 属性关联</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QuestionAdmin</span>(admin.ModelAdmin):</span><br><span class="line">    fieldsets = [</span><br><span class="line">        (<span class="literal">None</span>,               &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;question_text&#x27;</span>]&#125;),</span><br><span class="line">        (<span class="string">&#x27;Date information&#x27;</span>, &#123;<span class="string">&#x27;fields&#x27;</span>: [<span class="string">&#x27;pub_date&#x27;</span>]&#125;),</span><br><span class="line">    ]</span><br><span class="line">    inlines = [ChoiceInline]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121806254.png"></p>
+<ul>
+<li>admin.TabularInline: 表格式的单行显示</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121809641.png"></p>
+<h1 id="修改-Admin-模板"><a href="#修改-Admin-模板" class="headerlink" title="修改 Admin 模板"></a>修改 Admin 模板</h1><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><ol>
+<li>修改根目录 <code>settings.py</code> 为 <code>TEMPLATES</code> 的 <code>DIRS</code> 属性添加本地搜索路径 <code>&quot;DIRS&quot;: [BASE_DIR / &#39;templates&#39;],</code></li>
+<li>在根目录创建 <code>templatex/admin/</code> 目录</li>
+<li>将位于 <code>django/contrib/admin/templates</code> 内的原始模板文件 <code>base_site.html</code> 复制到这个目录</li>
+<li>修改本地的 <code>base_site.html</code> 即可</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212121840630.png"></p>
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S44y1K7Hd/?vd_source=b982c5b9804c7552564e69b7b5d8a2e0">Bilibili</a></li>
+</ul>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/12/05-django-admin/,Jiancong Cui,05-django-admin,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/30/06-django-request/" title="06-django-request">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/12/04-django-static/" title="04-django-static">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

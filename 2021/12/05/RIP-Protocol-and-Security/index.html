@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>RIP Protocol and Security · Jiancong Cui</title><meta name="description" content="RIPRIP，Routing Information Protocol，路由信息协议，是一种距离矢量路由协议，基于 UDP 传输，端口号 520
+
+适用于小型网络
+
+RIP 报文格式 (v2)
+RIP 工作过程1、路由器初始启动，发现直连网段（哪个接口对应哪个地址）
+
+2、邻居互相发起请求，交换自己"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>RIP Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h1><p>RIP，Routing Information Protocol，路由信息协议，是一种距离矢量路由协议，基于 UDP 传输，端口号 520</p>
+<blockquote>
+<p>适用于小型网络</p>
+</blockquote>
+<h2 id="RIP-报文格式-v2"><a href="#RIP-报文格式-v2" class="headerlink" title="RIP 报文格式 (v2)"></a>RIP 报文格式 (v2)</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128171804.png" alt="RIP报文格式"></p>
+<h2 id="RIP-工作过程"><a href="#RIP-工作过程" class="headerlink" title="RIP 工作过程"></a>RIP 工作过程</h2><p>1、路由器初始启动，发现直连网段（哪个接口对应哪个地址）</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172017.png" alt="RIP1"></p>
+<p>2、邻居互相发起请求，交换自己的路由表学习自己不知道的网段</p>
+<blockquote>
+<p>直到收敛：即当所有路由表都包含相同的网络信息且无新信息时<br>RIP 协议所接收的路由信息都是封装在 UDP 协议的数据包中的，使用 UDP 的 520 号端口接收来自相邻路由器的路由表信息，并对本地的路由表进行相应的修改<br>Tips：网路在路由器收敛结束之前是无法完成正常工作的</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172124.png" alt="RIP2"></p>
+<p>3、周期性发送 Response 信息，确保路由的有效性</p>
+<h2 id="Metric-度量值"><a href="#Metric-度量值" class="headerlink" title="Metric 度量值"></a>Metric 度量值</h2><p>RIP 是以跳数作为 metric 的唯一标准</p>
+<p>同一台路由器可能从不同方向学到去往同一方向的路由，此时就会比较 Metric 值，选择最优的路由加入路由表</p>
+<blockquote>
+<p>次优条目会隐藏起来作为备用，在优选路径 Down 掉之后会重新衡量备用 route<br>当两条 route 的 metric 相等时，会形成负载均衡</p>
+</blockquote>
+<h1 id="RIP-环路问题"><a href="#RIP-环路问题" class="headerlink" title="RIP 环路问题"></a>RIP 环路问题</h1><p>RIP 支持水平分割、毒性逆转和触发更新等工作机制防止路由环路</p>
+<h2 id="环路产生原因"><a href="#环路产生原因" class="headerlink" title="环路产生原因"></a>环路产生原因</h2><p>这和 RIP 检测到拓扑变化并在网络中扩展的过程有关： RIP 将先更新路由表，等待下一个周期在传递更新</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206100433.png" alt="拓扑变化"></p>
+<h2 id="单路径环路产生"><a href="#单路径环路产生" class="headerlink" title="单路径环路产生"></a>单路径环路产生</h2><p>1、以线性路由为例：此时网络正常收敛</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172756.png" alt="circle1"></p>
+<p>2、突然 <code>10.4.0.0</code> 网段发生错误，RTC 路由器检测出来后先更新自己的路由表：将相关路由表项应被删除</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128172928.png" alt="circle2"></p>
+<p>3、随后 RTC 等待下一周期发送路由更新信息，但是此时 RTB 的更新信息先来到，就把正确的信息给覆盖了</p>
+<blockquote>
+<p>RTB 从 RTC 学的能到 <code>10.4.0.0</code> 又反手教给了 RTC</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128173035.png" alt="circle3"></p>
+<h2 id="单路径环路避免"><a href="#单路径环路避免" class="headerlink" title="单路径环路避免"></a>单路径环路避免</h2><h3 id="路由毒化"><a href="#路由毒化" class="headerlink" title="路由毒化"></a>路由毒化</h3><p>类似触发更新机制，一旦网络拓扑结构发生变化，路由将将失效条目度量值设为无穷大并立即主动通告出去，做到及时更新</p>
+<h3 id="水平分割"><a href="#水平分割" class="headerlink" title="水平分割"></a>水平分割</h3><p>禁止路由器将从一个接口学习到的路由再从同一个接口广播出去</p>
+<h3 id="毒性逆转"><a href="#毒性逆转" class="headerlink" title="毒性逆转"></a>毒性逆转</h3><p>指当路由器从一个接口学习到去往某个网络的路由时，它就会从该接口通告一个该网络不可达的路由</p>
+<blockquote>
+<p>实质上就是水平分割的升级版，目的都是为了避免传递错误信息</p>
+</blockquote>
+<h2 id="多路径环路产生"><a href="#多路径环路产生" class="headerlink" title="多路径环路产生"></a>多路径环路产生</h2><p>1、正常的收敛状态</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175601.png" alt="正常的收敛状态"></p>
+<p>2、突然 <code>10.4.0.0</code> 网段发生错误，RTC 置路由表项 10.4.0.0 为无穷大并发送路由更新信息(路由毒化机制)：但此时 RTA 也给 RTB 更新，一对比选择了 RTA 的，环路产生</p>
+<blockquote>
+<p>RTA 从 RTC 学的，不会给 RTC 发（水平分割）</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175627.png" alt="网络发生故障"></p>
+<p>3、随后 RTB 转而又会影响 RTC</p>
+<blockquote>
+<p>RTB 从 RTA 学的，因此可以告诉 RTC，并没有违背水平分割<br>随后 RTC 又会告诉 RTA，RTA 收到看之间走 RTC 1 步到 10.4.0.0 现在变了啊要走三步，那我得更新；环路至此闭合</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175751.png"></p>
+<h2 id="多路径环路避免"><a href="#多路径环路避免" class="headerlink" title="多路径环路避免"></a>多路径环路避免</h2><h3 id="定义最大值"><a href="#定义最大值" class="headerlink" title="定义最大值"></a>定义最大值</h3><p>给这个环路学习定义一个最大值，超过这个值则认定该学习过程为环路，因此不再转发目标 IP 的包</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128175943.png" alt="定义最大值"></p>
+<h3 id="抑制时间"><a href="#抑制时间" class="headerlink" title="抑制时间"></a>抑制时间</h3><p>指一条路由信息无效之后，一段时间内这条路由都处于抑制状态，即在一定时间内不再接收关于同一目的地址的路由更新</p>
+<blockquote>
+<p>此时 RTB 接收到 RTA 和 RTC 关于 10.4.0.0 的消息时会认定 10.4.0.0 为抑制状态，因此忽略 RTA<br>抑制时间时间内小于 16 的更新将被忽略，因此会设定为 inf；抑制时间后只接手小于 16 的更新</p>
+</blockquote>
+<h3 id="触发更新"><a href="#触发更新" class="headerlink" title="触发更新"></a>触发更新</h3><p>不必等到更新周期到来，路由器马上发送路由 10.4.0.0 不可达消息</p>
+<h1 id="RIP-版本简介"><a href="#RIP-版本简介" class="headerlink" title="RIP 版本简介"></a>RIP 版本简介</h1><h2 id="RIPv1-的缺陷"><a href="#RIPv1-的缺陷" class="headerlink" title="RIPv1 的缺陷"></a>RIPv1 的缺陷</h2><p>发送协议报文时不携带掩码，路由交换过程中有时会造成错误；不支持认证；只能以广播方式发布协议报文；</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206102248.png" alt="RIPv1 的缺陷"></p>
+<h2 id="RIPv2"><a href="#RIPv2" class="headerlink" title="RIPv2"></a>RIPv2</h2><p>RIPv2 是一种无类别路由协议，报文中携带掩码信息，支持 VLSM（可变长子网掩码）和 CIDR（无类别域间路由）；</p>
+<p>支持以组播方式发送路由更新报文，组播地址为 224.0.0.9，减少网络与系统资源消耗；</p>
+<p>支持对协议报文进行验证，并提供明文验证和 MD5 验证两种方式，增强安全性</p>
+<p>总评：RIP 协议简单、便捷，在中小型网络中得到广泛应用</p>
+<h3 id="CIDR（略）"><a href="#CIDR（略）" class="headerlink" title="CIDR（略）"></a>CIDR（略）</h3><p>无类别域间路由，Classless Inter-Domain Routing，是一个用于给用户分配 IP 地址以及在互联网上有效地路由 IP 数据包的对 IP 地址进行归类的方法</p>
+<p>基于可变长子网掩码（VLSM）来进行任意长度的前缀的分配的，将好几个 IP 网络结合在一起，使用一种无类别的域际路由选择算法，使它们合并成一条路由从而较少路由表中的路由条目，减轻 Internet 路由器的负担。</p>
+<p>例如：192.168.0.0&#x2F;24 - 192.168.3.0&#x2F;24，CIDR 汇总后：192.168.0.0&#x2F;30</p>
+<h3 id="VLSM（略）"><a href="#VLSM（略）" class="headerlink" title="VLSM（略）"></a>VLSM（略）</h3><p>可变长子网掩码，把一个标准网络分成几个小型网络(子网)</p>
+<h3 id="路由汇总"><a href="#路由汇总" class="headerlink" title="路由汇总"></a>路由汇总</h3><p>略</p>
+<h3 id="有类别与无类别路由协议"><a href="#有类别与无类别路由协议" class="headerlink" title="有类别与无类别路由协议"></a>有类别与无类别路由协议</h3><p>1、有类的路由协议不会识别子网的信息只能识别出基本的 IPv4 类别划分，无类别路由协议能根据子网掩码的长度来区分网段</p>
+<blockquote>
+<p>正是因为有类的不能识别子网，因此往往要在枢纽路由器进行路由汇总，比如 10.0.0.8&#x2F;24 与 10.0.9.9&#x2F;24 都会汇总为 10.0.10.10 因为在A类看来他们都是一样的</p>
+</blockquote>
+<p>2、有类的路由协议只会传送网络前缀（网络地址）；无类路由协议传输网络前缀（网络地址）的同时也会传输子网掩码，所以它支持 VLSM（可变长子网掩码）</p>
+<h1 id="RIP-安全缺陷"><a href="#RIP-安全缺陷" class="headerlink" title="RIP 安全缺陷"></a>RIP 安全缺陷</h1><p>1、使用不可靠的 UDP 报文进行传送，安全性差</p>
+<p>2、路由器如果没有使用认证机制，则没有发出更新请求的路由器也能够接收到更新报文</p>
+<h2 id="RIP-路由欺骗"><a href="#RIP-路由欺骗" class="headerlink" title="RIP 路由欺骗"></a>RIP 路由欺骗</h2><p>攻击者冒充正常路由器向受害路由器发送路由更新请求，更新后实现流量劫持</p>
+<p>1、先伪造包冒充 R1 毁掉原有的路径：1.0.0.0&#x2F;8， Metric 4</p>
+<p>2、然后发送优先级更高的虚假路由跟新：1.0.0.0&#x2F;8, Metric 1</p>
+<p>3、完成流量劫持</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128202300.png" alt="RIP 路由欺骗"></p>
+<h2 id="RIP-路由防御"><a href="#RIP-路由防御" class="headerlink" title="RIP 路由防御"></a>RIP 路由防御</h2><p>基于 RIPv2 报文验证，将 RIP 报文前 20 个字节作为验证信息：</p>
+<p>1、建立邻居的双方必须使用相同的验证方式和口令</p>
+<p>2、不直接建立邻居的路由器可以使用不同的验证方式和口令</p>
+<p>3、在哪些链路上实施验证、使用哪种验证方式，全由管理员根据需求进行考量和设计</p>
+<p>Tips：仅仅采用 MAC 机制并不安全，如上图 攻击者可以劫持 R1 到 R2 的明文信息，而 MAC 只能保证完整性，所以该认证还是能被篡改；只有带密钥加密的 HMAC 才比较安全</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128202442.png" alt="报文验证机制"></p>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/05/RIP-Protocol-and-Security/,Jiancong Cui,RIP Protocol and Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/OSPF-Protocol-and-Security/" title="OSPF Protocol and Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/Overview-of-Routing-Protocol/" title="Overview of Routing Protocol">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

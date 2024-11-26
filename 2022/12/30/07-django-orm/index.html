@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>07-django-orm · Jiancong Cui</title><meta name="description" content="ORM将数据模型的相关操作翻译为目标数据库语句的框架
+
+创建、修改、删除数据库中的表
+操作表中的数据: 增删改查
+
+创建表遍历注册的 APP 针对 APP 的 models.py 进行翻译与执行
+
+实现 APP 的注册
+python manage.py makemigrations
+python m"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>07-django-orm</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-30</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Django/" title="Django">Django</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/python/" title="python">python</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="ORM"><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h1><p>将数据模型的相关操作翻译为目标数据库语句的框架</p>
+<ul>
+<li>创建、修改、删除数据库中的表</li>
+<li>操作表中的数据: 增删改查</li>
+</ul>
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><p>遍历注册的 APP 针对 APP 的 models.py 进行翻译与执行</p>
+<ol>
+<li>实现 APP 的注册</li>
+<li><code>python manage.py makemigrations</code></li>
+<li><code>python manage.py migrate</code></li>
+</ol>
+<h1 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h1><p>继承 <code>django.db.models.Model</code> 即可创建数据模型</p>
+<h2 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line">name = models.CharField(max_length=<span class="number">32</span>)</span><br><span class="line">age = models.IntegerField(default=<span class="number">0</span>)</span><br><span class="line">content = models.IntegerField(null=<span class="literal">True</span>, blank=<span class="literal">True</span>) <span class="comment"># 表示该值可以为空</span></span><br><span class="line">department = models.ForeignKey(to=<span class="string">&quot;Department&quot;</span>, to_field=<span class="string">&quot;id&quot;</span>, on_delete=models.CASCADE)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>外键在使用时可以引用其所引用的一行数据, 因此在做展示时可以使用 <code>user.department.title</code> 获取其内部属性</li>
+</ul>
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><ul>
+<li>Model.objects.create(**value_dict)</li>
+<li>Model.objects.filter(id&#x3D;1).first().name</li>
+<li>Model.objects.all().update(password&#x3D;666)</li>
+<li>Model.objects.all().delete()</li>
+<li>Model.objects.all().order_by(‘-field_name’)</li>
+<li>Model.objects.filter(id__gt&#x3D;12) # 大于</li>
+<li>Model.objects.filter(id__gte&#x3D;12) # 大于等于</li>
+<li>Model.objects.filter(id__lt&#x3D;12) # 小于</li>
+<li>Model.objects.filter(id__lte&#x3D;12) # 小于等于</li>
+<li>Model.objects.filter(content__startswith&#x3D;”abc”) # 以 abc 开头</li>
+<li>Model.objects.filter(content__endswith&#x3D;”abc”) # 以 abc 结尾</li>
+<li>Model.objects.filter(content__contains&#x3D;”abc”) # 包含 abc </li>
+<li></li>
+</ul>
+<h1 id="Databases"><a href="#Databases" class="headerlink" title="Databases"></a>Databases</h1><p>By default, the configuration uses SQLite which is included in Python.</p>
+<ul>
+<li>Want <a target="_blank" rel="noopener" href="https://docs.djangoproject.com/en/4.1/topics/install/#database-installation">other database</a></li>
+</ul>
+<p>其配置信息在 settings.py 中进行配置</p>
+<h2 id="sqlite"><a href="#sqlite" class="headerlink" title="sqlite"></a>sqlite</h2><ul>
+<li>ENGINE: 选择数据库引擎</li>
+<li>NAME: 设定数据库名称(地址)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&quot;default&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;ENGINE&quot;</span>: <span class="string">&quot;django.db.backends.sqlite3&quot;</span>,</span><br><span class="line">        <span class="string">&quot;NAME&quot;</span>: BASE_DIR / <span class="string">&quot;db.sqlite3&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><ol>
+<li>安装 mysqlclient: <code>pip install mysqlclient</code></li>
+<li>settings.py 中配置 mysql 数据库的连接</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">&#x27;default&#x27;</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;ENGINE&#x27;</span>: <span class="string">&#x27;django.db.backends.mysql&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;dbname&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;USER&#x27;</span>: <span class="string">&#x27;root&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PASSWORD&#x27;</span>: <span class="string">&#x27;pwd&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;HOST&#x27;</span>: <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;PORT&#x27;</span>: <span class="number">3306</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/30/07-django-orm/,Jiancong Cui,07-django-orm,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/30/08-django-templates/" title="08-django-templates">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/30/06-django-request/" title="06-django-request">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

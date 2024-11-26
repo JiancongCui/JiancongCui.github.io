@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>Overview of Routing Protocol · Jiancong Cui</title><meta name="description" content="路由路由可以静态配置也可以通过路由协议来自动生成
+
+静态路由配置需要人为地逐条在各路由器中添加，配置较为烦琐，比较适合网络结构相对稳定的小型网络，不能自动适应网络拓扑结构的改变动态路由配置后期无需人工干预，通过各自的路由算法能够自动适应网络拓扑结构的改变，但对系统资源的占用高于静态路由配置
+
+路由协"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>Overview of Routing Protocol</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><p>路由可以静态配置也可以通过路由协议来自动生成</p>
+<blockquote>
+<p>静态路由配置需要人为地逐条在各路由器中添加，配置较为烦琐，比较适合网络结构相对稳定的小型网络，不能自动适应网络拓扑结构的改变<br>动态路由配置后期无需人工干预，通过各自的路由算法能够自动适应网络拓扑结构的改变，但对系统资源的占用高于静态路由配置</p>
+</blockquote>
+<p>路由协议：路由器用来计算、维护网络路由信息的协议，能够自动发现和计算路由，并在拓扑变化时自动更新，工作在传输层或应用层，如：RIP，OSPF，BGP</p>
+<blockquote>
+<p>路由协议分类：距离矢量协议、链路状态协议</p>
+</blockquote>
+<p>可路由协议：可被路由器识别并从一个设备转发到另一个设备的协议，工作在网络层，如 IP（IP数据报）</p>
+<h2 id="名词速览"><a href="#名词速览" class="headerlink" title="名词速览"></a>名词速览</h2><p>1、IGP，内部网关协议</p>
+<p>2、EGP，外部网关协议</p>
+<p>3、RIP，内部网关协议中的距离矢量协议</p>
+<p>4、OSPF，内部网关协议中的链路状态协议</p>
+<p>5、BGP，外部网关协议中的距离矢量协议</p>
+<p>6、AS，自治系统或自治域</p>
+<p>7、VLSM，可变长子网掩码</p>
+<p>8、CIDR，无类别域间路由</p>
+<h2 id="路由协议概述"><a href="#路由协议概述" class="headerlink" title="路由协议概述"></a>路由协议概述</h2><p>动态路由协议在协议栈上的位置如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211201141135.png" alt="路由协议"></p>
+<p>RIP 基于 UDP，端口为 520</p>
+<p>OSPF 基于 IP，协议号为 89</p>
+<p>BGP 基于 TCP，端口号为 179</p>
+<h2 id="路由协议的基本原理"><a href="#路由协议的基本原理" class="headerlink" title="路由协议的基本原理"></a>路由协议的基本原理</h2><p>不管采用何种路由协议，其主要都是实现以下四个过程：</p>
+<p>1、邻居发现：路由器通过发送广播报文或发送给指定的路由器邻居以主动把自己介绍给网段内的其它路由器</p>
+<p>2、路由交换：每台路由器将自己已知的路由相关信息发给相邻路由器</p>
+<p>3、路由计算：每台路由器运行某种算法，计算出最终的路由来</p>
+<p>4、路由维护：路由器之间通过周期性地发送协议报文来维护邻居信息</p>
+<h2 id="内部网关协议（IGP）与-外部网关协议（EGP）"><a href="#内部网关协议（IGP）与-外部网关协议（EGP）" class="headerlink" title="内部网关协议（IGP）与 外部网关协议（EGP）"></a>内部网关协议（IGP）与 外部网关协议（EGP）</h2><p>AS，Autonomous System，自治系统，又叫自治域，是指拥有相同选路策略的由单一机构管理的网络的集合，每个 AS 由 AS 号标识</p>
+<blockquote>
+<p>可以理解为路由器的集合，他们拥有相同的选路策略被同一技术管理部门管理原型</p>
+</blockquote>
+<p>IGP，Interior Gateway Protocols，内部网关协议，在一个 AS 内部使用的路由协议。RIP、OSPF、IS-IS都是典型的IGP</p>
+<p>EGP，Exterior Gateway Protocol，外部网关协议，在多个 AS 之间使用的路由协议。BGP 是互联网事实上的 EGP 标准</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128170339.png" alt="IGP, EGP"></p>
+<p>区别：内部网关协议和作用于一个AS（自治系统）内部，而外部网关协议作用于两个相邻的AS（自治系统）之间；内部网关协议有一族，而外部网关协议只有一个。</p>
+<h2 id="距离矢量协议与链路状态协议"><a href="#距离矢量协议与链路状态协议" class="headerlink" title="距离矢量协议与链路状态协议"></a>距离矢量协议与链路状态协议</h2><h3 id="距离矢量协议"><a href="#距离矢量协议" class="headerlink" title="距离矢量协议"></a>距离矢量协议</h3><p>距离矢量意味着利用距离和方向矢量来通告路由（距离可以指：跳数；方向可以指下一跳路由器或接口），如 RIP，BGP</p>
+<blockquote>
+<p>使用距离矢量路由协议的路由器只知道：自身与目的网络之间的距离以及下一步应该使用哪个接口转发数据包；并不了解到达目的网络的具体路径；因此也就铺垫了环路出现的可能性</p>
+</blockquote>
+<p>优势：实施和维护简单；资源要求低；不需要较高的链路带宽；<br>劣势：收敛速度慢；可扩展性有限；路由环路；</p>
+<blockquote>
+<p>在发生了改变的拓扑中，收敛速度缓慢会导致不一致的路由表无法及时得到更新，从而可能造成路由环路</p>
+</blockquote>
+<h3 id="链路状态协议"><a href="#链路状态协议" class="headerlink" title="链路状态协议"></a>链路状态协议</h3><p>又称最短路径优先协议，路由器之间传递链路状态信息，形成路由数据库，通过SPF（最短路径优先算法），计算出最短路径对应的路由条目，如 OSPF</p>
+<p>优势：每台路由器<strong>自行创建网络拓扑图</strong>以确定最短路径；立即泛洪，实现快速收敛；仅当拓扑变化时才发送链路状态数据包，且仅包含变化的信息；多域环境中采取了层次式设计</p>
+<p>劣势：对资源要求较高（内存，处理器，带宽）</p>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128171046.png" alt="对比"></p>
+<p>1、距离矢量协议信息传递和更新时是发送完整的路由表，资源利用低；而链路状态协议只是发送必要的链路状态信息，资源利用率高</p>
+<p>2、距离矢量协议将路由转发给其它路由器之前，先运行路由算法（更新自己的度量值），随后逐跳发送给邻居，所以网络的规模越大，其收敛速度越慢；而链路状态协议在转发链路状态包时，可以直接转发且划分了区域，只需要作区域通告即可，因此链路状态收敛更快。</p>
+<p>3、距离矢量协更新的是路由条目；而链路状态协议更新的是“拓扑”，每台路由器上都有完全相同的拓扑，他们各自分别进行SPF算法，计算出路由条目；因此一条重要链路的变化，距离矢量协议需要将变化的条目逐跳更新并通告，而链路状态协议只需要发送一条通告即可，使得相关路由器改变拓扑，并重新计算。</p>
+<p>4、距离矢量协议只能看到较优的下一条，路由器无法自行判断到每一个网络的最短路径，且使用的是 Bellman-Ford 算法，容易产生环路；而链路状态协议使用了强健的SPF算法不易产生路由环路，每个路由器都能判断到每一个域内节点的最短路径，效率也高；</p>
+<p>5、距离矢量协议简单，便捷，因此实施和维护起来较复杂的链路状态协议简单</p>
+<h2 id="衡量路由协议的主要指标"><a href="#衡量路由协议的主要指标" class="headerlink" title="衡量路由协议的主要指标"></a>衡量路由协议的主要指标</h2><p>1、协议计算的正确性：协议使用的算法能够计算出最优的路由，正确无自环</p>
+<p>2、路由收敛速度：当网络的拓扑结构发生变化之后，能够迅速感知并及时更新相应的路由信息</p>
+<p>3、协议占用系统开销：协议自身的开销（内存、CPU、网络带宽）最小</p>
+<p>4、协议自身的安全性：协议自身不易受攻击，有安全机制</p>
+<p>5、协议适用网络规模：协议可以应用在何种拓扑结构和规模的网络中</p>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/05/Overview-of-Routing-Protocol/,Jiancong Cui,Overview of Routing Protocol,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/RIP-Protocol-and-Security/" title="RIP Protocol and Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/DHCP-Protocol-and-Security/" title="DHCP Protocol and Security">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

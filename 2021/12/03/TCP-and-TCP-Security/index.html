@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>TCP and TCP Security · Jiancong Cui</title><meta name="description" content="TCPTCP，Transmission Control Protocol，传输控制协议，是一种面向连接的、可靠的、基于字节流的传输层通信协议
+目标：能够动态地适应互联网络的特性（互联网络不同部分可能有截然不同的拓扑结构、带宽、延迟、数据包大小和其他参数），而且具备面对各种故障时的健壮性
+
+TCP 不"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/f.png"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>TCP and TCP Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-03</span></div><div class="label-item"> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div>&nbsp;&nbsp;&nbsp;<div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a>&nbsp;&nbsp;&nbsp;</div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><p>TCP，Transmission Control Protocol，传输控制协议，是一种面向连接的、可靠的、基于字节流的传输层通信协议</p>
+<p>目标：能够动态地适应互联网络的特性（互联网络不同部分可能有截然不同的拓扑结构、带宽、延迟、数据包大小和其他参数），而且具备面对各种故障时的健壮性</p>
+<blockquote>
+<p>TCP 不提供广播和多播服务，实现可靠的面向连接的通信，不仅使协议数据单元的首部增大很多，还要占用许多的处理资源</p>
+</blockquote>
+<p>TCP 不同版本之间的差异主要在于拥塞控制机制</p>
+<p>TCP 的性能通常用 吞吐率 和 公平性 来衡量</p>
+<h2 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211124181402976.png" alt="image-20211124181402976"></p>
+<p>1、源端口与目的端口，各 2 字节（16bit）</p>
+<p>2、序号字段，4 字节（32bit），TCP 连接中传送的数据流中的每一个字节都编上一个序号，序号字段的值则指的是本报文段所发送的数据的<strong>第一个字节</strong>的序号</p>
+<p>3、确认号字段，4 字节（32bit），是期望收到对方的下一个报文段的数据的第一个字节的序号</p>
+<p>4、数据偏移字段，4 bit，指出 TCP 报文段的数据起始处距离 TCP 报文段的起始处有多远，单位距离为 4 字节（32bit）</p>
+<blockquote>
+<p>因为 TCP 首部长度不固定，因此实际指代的就是 TCP 首部长度</p>
+</blockquote>
+<p>5、保留字段，6bit</p>
+<p>6、紧急比特 URG，1bit，高优先级传输</p>
+<p>7、确认比特 ACK，1bit，当 ACK&#x3D;1 时确认号字段才有效，当 ACK&#x3D;0 时，确认号无效</p>
+<p>8、推送比特 PSH，1bit，接收端收到推送比特置 1 的报文段，就尽快地交付给接收应用进程，而不再等到整个缓存都填满了后再向上交付</p>
+<p>9、复位比特 RST，1bit，置 1 时表明 TCP 连接出现严重差错，必须释放连接，然后再重新建立连接</p>
+<blockquote>
+<p>或者收到无效连接时告知复位清零</p>
+</blockquote>
+<p>10、同步比特 SYN，1bit，置 1 时表明这是一个连接请求(ACK&#x3D;0, 第一次握手)或连接接受报文(ACK&#x3D;1, 告知请求被接受)</p>
+<p>11、终止比特 FIN，1bit，置 1 时表明此报文段的发送端的数据已发送完毕，并要求释放连接</p>
+<blockquote>
+<p>字段的特殊组合是造成攻击的常用手段</p>
+</blockquote>
+<p>12、窗口字段，2 字节（16bit），用来控制对方发送的数据量，单位为字节</p>
+<blockquote>
+<p>Example:  TCP 连接的一端根据设置的缓存空间大小确定自己的接收窗口大小，然后通知对方以确定对方的发送窗口上限</p>
+</blockquote>
+<p>13、检验和，2 字节（16bit），检验的范围包括首部和数据这两部分，计算检验和时，要在 TCP 报文段的前面加上 12 字节的伪首部（与 UDP 类似）</p>
+<p>14、紧急指针字段，2 字节（16bit），指出在本报文段中的紧急数据的最后一个字节的序号</p>
+<p>16、选项字段，最大长度可以达到 40 字节，用于适应复杂的网络环境和更好的服务应用层</p>
+<blockquote>
+<p>Example ：kind（1 字节）+ length（1字节）+ info（n 字节）</p>
+</blockquote>
+<p>17、填充，补充字节段，为了使整个首部长度是 4 字节的整数倍</p>
+<h2 id="常见选项字段"><a href="#常见选项字段" class="headerlink" title="常见选项字段"></a>常见选项字段</h2><h3 id="MSS"><a href="#MSS" class="headerlink" title="MSS"></a>MSS</h3><p><strong>最大报文段长度（MSS）</strong>，kind &#x3D; 2，length&#x3D;4，info 长度为 2 字节，表示每一个 TCP 报文段中数据字段的最大长度</p>
+<blockquote>
+<p>TCP 会将应用层交付下来的数据分为 TCP 认为最适合发送的数据块，MSS 的合理值应为保证数据包不分片的最大值<br>每个路由器的 MSS 不一致, 因此大的 MSS 传向小的 MSS 路由器时, 大的数据包(已经时分组后的了) 就要进行分片<br>众多的分片会在目标机器上进行重组<br>分片会造成包头的冗余, 导致真实传输的数据增多, 效率降低</p>
+</blockquote>
+<p>TCP在三次握手中，每一方都会通告其期望收到的 MSS ( MSS 只出现在 SYN 数据包中)，如果一方不接受另一方的 MSS 值则定位默认值 536 &#x3D; 576 - 20 - 20 （IP数据报首部（20 byte），TCP 首部（20 byte））</p>
+<h3 id="Windows-Scaling"><a href="#Windows-Scaling" class="headerlink" title="Windows Scaling"></a>Windows Scaling</h3><p><strong>窗口扩大选项，Windows Scaling</strong> ，kind &#x3D; 3，length &#x3D; 3，info 长度为 1 字节，复杂网络需要更大的窗口来满足性能和提高吞吐率</p>
+<p>Tips：窗口控制总数据量，MSS 控制如何分段发送</p>
+<blockquote>
+<p>默认情况下 TCP 最大的窗口大小为 64 kb，窗口扩大选项表示把 TCP 首部的窗口位数从 16 增大到 （16 + info）</p>
+<p>info 准许使用的最大值是 14，相当于窗口最大值增大到 65535（16位） * 2^14 也就是 1 GB</p>
+<p>窗口扩大选项在 TCP 建立之初进行协商，如果已经实现了窗口扩大，当不再需要其扩大窗口时，发送 info &#x3D; 0 选项就可以恢复到窗口位数大小 16</p>
+</blockquote>
+<h3 id="SACK"><a href="#SACK" class="headerlink" title="SACK"></a>SACK</h3><p><strong>选择确认选项，SACK</strong></p>
+<p>1、kind &#x3D; 4，length &#x3D; 2，用于标识是否支持 SACK，在 TCP 建立连接时发送</p>
+<p>2、kind &#x3D; 5，length &#x3D; N * 8 + 2，时，表示具体的 SACK 信息</p>
+<p>目标：只重传序列号缺失的报文段，而不是重传所有未确认的报文段</p>
+<blockquote>
+<p>默认情况 TCP 采取的是累积确认机制（不对每个接收到的包都确认，一个确认可以确认多个连续接收的包）</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211124184833382.png" alt="image-20211124184833382"></p>
+<p>选项字段最大不能超过 40，一个边沿窗口表示需要需要 4 字节（表示序号），一对就需要 8 字节，因此最多指示 4 个缺失报文段（32 + 2（key，length））</p>
+<h2 id="确认与重传机制"><a href="#确认与重传机制" class="headerlink" title="确认与重传机制"></a>确认与重传机制</h2><p>连接建立时双方会完成初始序号的协商，TCP 每次发送报文段中首部序号表示该报文段中的数据部分的第一个字节的序号；</p>
+<p>TCP 的确认是对接收到的连续数据的最高序号（传过去要 + 1）表示确认（累积确认机制）</p>
+<p>TCP 每发送一个报文段，就对这个报文段设置一次计时器，只要计时器设置的超时重传时间（RTO）还没有收到确认，就要重传这一报文段</p>
+<blockquote>
+<p>RTT，往返时延<br>RTO，超时重传时间，不能过小（效率低）也不能过大（网络拥塞），其设置要基于 RTT，至少应保证 RTO &gt; RTT</p>
+</blockquote>
+<h3 id="RTT-自适应算法"><a href="#RTT-自适应算法" class="headerlink" title="RTT 自适应算法"></a>RTT 自适应算法</h3><p>1、记录每一个报文段发出的时间，以及收到相应的确认报文段的时间，这两个时间之差就是报文段的<strong>往返时延 RTT</strong></p>
+<p>2、将各个报文段的往返时延样本加权平均，就得出报文段的<strong>平均往返时延 RTT</strong>，$R_a$</p>
+<p>3、每测量到一个新的往返时延样本，其时延为 $R_n$，就按下式重新计算一次<strong>平均往返时延 RTT</strong>，$R_n’$<br>$$<br>R_a’ &#x3D; \alpha R_a + (1 - \alpha) R_n<br>$$</p>
+<blockquote>
+<p>若 $\alpha \rightarrow 1$ 表示新的 RTT 样本对 RTT 的影响不大，RTT 的值更新就较慢</p>
+<p>若 $\alpha \rightarrow 0$ 表示新的 RTT 样本对 RTT 的影响较大，RTT 的值更新就较快</p>
+<p>常用的 $\alpha &#x3D; \frac{7}{8}$IMA{、}</p>
+</blockquote>
+<p>Tips ：Karn 算法指出，如果报文段重传了就不采用该样本计算平均往返，因为我收到的响应不知道是一开始发过去报文的响应还是刚刚发过去报文的响应</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211203181313.png" alt="Karn 算法来由"></p>
+<p>但是如果不算重传的包，当网络真的特别拥塞的时候全是重传的包怎么办？</p>
+<p>Tips ：修正后的 Karn 算法，报文段每重传一次，就将 RTO 增大一些（典型值是翻倍）；当不再发生重传时，才根据 RTT 更新平均 RTT 和 RTO 的值。<strong>实践证明，这种策略较为合理。</strong></p>
+<h3 id="RTO-的设定"><a href="#RTO-的设定" class="headerlink" title="RTO 的设定"></a>RTO 的设定</h3><p>$$<br>RTO &#x3D; \beta \times RTT\ \ \text{with}\ \ \beta &gt; 1<br>$$</p>
+<p>推荐取值为 2</p>
+<h2 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h2><p>属于接收端：TCP 采用大小可变的滑动窗口进行流量控制，窗口大小的单位是字节，可以动态更改窗口的大小</p>
+<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><p>属于发送端：慢启动、拥塞避免、超时重传、快速重传和快速恢复共同组成了 TCP 的拥塞控制机制</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211124202040056.png" alt="image-20211124202040056"></p>
+<p>发送端在确认报文段发送速率时，既要考虑接收端的接收能力，又要从全局考虑不要使网路发生拥塞，因此每一个 TCP 连接需要考虑接收窗口与拥塞窗口的设定值</p>
+<p>接收窗口：rwnd，receiver window，是接收端根据其目前的接收缓存大小所允许的最新的窗口值，是来自接收端的流量控制。接收端将此窗口值放在 TCP报文的首部中的窗口字段，传送给发送端</p>
+<p>拥塞窗口：cwnd，是发送端根据自己估计的网络拥塞程度而设置的窗口值，是来自发送端的流量控制</p>
+<p>发送窗口的上限值：min(rwnd, cwnd)，因此当 rwnd &lt; cwnd 时，是接收端的接收能力限制发送能力；当 cwnd &lt; rwnd 时，则是网络的拥塞程度限制发送能力</p>
+<p>Q：为什么 TCP 要去主动考虑全局网路拥塞状况？</p>
+<p>A：互联网就像是没有红绿灯的交叉路口，为了实现网络的正常使用，必须要有责任感，因此 TCP 作为互联网端到端拥塞控制的实体，对避免互联网因拥塞而崩溃有着不可替代的作用；</p>
+<h3 id="慢启动算法"><a href="#慢启动算法" class="headerlink" title="慢启动算法"></a>慢启动算法</h3><p>Slow Start，慢启动并不慢，是指数上升的</p>
+<p>1、刚开始先将拥塞窗口 cwnd 设置为一个最大报文段 MSS 的数值</p>
+<p>2、每收到一个对新的报文段的确认后，将拥塞窗口增加至多一个 MSS 的数值</p>
+<p>3、逐步增大拥塞窗口 cwnd，使报文段注入网络的速率更加合理</p>
+<h3 id="拥塞避免算法"><a href="#拥塞避免算法" class="headerlink" title="拥塞避免算法"></a>拥塞避免算法</h3><p>Congestion Avoidance</p>
+<p>加性增加：Additive Increace，当收到对当前发送窗口中<strong>所有</strong>报文段的确认时就将 cwnd 增加一个MSS大小，使拥塞窗口缓慢增大，以防止网络过早出现拥塞</p>
+<p>乘性减少：Multiplicative Decrease，只要出现一次超时（即出现一次网络拥塞），就把慢启动门限值 ssthresh 设置为当前 cwnd 的一半。当网络频繁出现拥塞时 ssthresh 值会下降很快，以大大减少注入网络中的报文段数量</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211124195558661.png" alt="image-20211124195558661"></p>
+<p>1、慢启动门限 ssthresh 的初始值设为16个报文段，cwnd 初始化为 1（慢启动）</p>
+<p>2、先发送 M1，收到 M1 的确认后，cwnd 将增大到 2</p>
+<p>3、随后发送 M2，M3，收到 M2 和 M3 的确认后，cwnd 将增加 2，因此增加到 4</p>
+<p>4、以此类推，cwnd 将按指数增长，直到 cwnd 增加到 ssthresh ，改为拥塞避免算法</p>
+<p>5、收到对当前发送窗口中所有报文段的确认时才会增加一个 MSS 大小</p>
+<p>6、增加到 24 时，网络拥塞了，改用乘性减少</p>
+<p>7、ssthresh 将变为当前 cwnd 的一半，即 ssthresh &#x3D; 12，然后将 cwnd 置为 1，重新开始慢启动</p>
+<h3 id="快速重传算法"><a href="#快速重传算法" class="headerlink" title="快速重传算法"></a>快速重传算法</h3><p>替代超时重传，超时重传需要等待 RTO，因此会造成一定的时间浪费</p>
+<p>快速重传算法：要求服务器如果收到乱序的包，也给客户端回复 ACK，只不过是重复的 ACK，当发送端收到三个重复 ACK（duplicate ACK）时，即认为有报文段丢失，发送端会立即重传丢失的报文段（根据 ACK）而不必继续等待为该报文段设置的重传计时器的超时，同时将 ssthresh 设置为当前 cwnd 值的一半，并且将 cwnd 减为原先的一半</p>
+<blockquote>
+<p>快重传并非取消重传计时器，而是在某些情况下可更早地重传丢失的报文段</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211124200423436.png" alt="image-20211124200423436"></p>
+<p>扩展：能进一步改进的就是并不要将 ACK 指代的数据报后的所有数据包全部重传，我选择性的重传，使用 SACK 选项字段即可</p>
+<h3 id="快速恢复算法"><a href="#快速恢复算法" class="headerlink" title="快速恢复算法"></a>快速恢复算法</h3><p>快速重传的下一阶段，基于 管道模型 的 数据包守恒原则，即同一时刻在网络中传输的报文段数量是恒定的，只有当旧报文段离开网络后，才能发送新报文段进入网络</p>
+<blockquote>
+<p>将 TCP 连接看成一个管道，我发了一个窗口的数据出去，收到了一个包的 ACK 则表明一个包离开了管道，因此利用快速重传三个连续 ACK，保持一定的带宽利用率（即使之前丢了几个，但是现在网络还是挺通的，因为我收到回复了，所以可以进行小幅度拥塞窗口提升）</p>
+</blockquote>
+<p>算法：如果发送端收到一个重复的 ACK，则认为已经有一个数据包离开了网络，于是将 cwnd 加 1，此时若发送窗口值还容许发送报文段，就继续发送报文段</p>
+<p>因此，TCP 在快速恢复阶段会试图发送新的数据包以保持一定的带宽利用率。当 TCP 收到丢失包的 ACK 以后（ACK 不再重复），会退出快速恢复阶段而进入拥塞避免阶段</p>
+<h2 id="连接管理"><a href="#连接管理" class="headerlink" title="连接管理"></a>连接管理</h2><p>传输连接有三个阶段：连接建立，数据传送，连接释放</p>
+<p>TCP 的连接和建立都是采用客户服务器方式：主动发起连接建立的应用进程叫做客户端 （client）；被动等待连接建立的应用进程叫做服务器 （server）</p>
+<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>连接建立阶段，要使每一方能够确知对方的存在；要允许双方协商一些参数（如最大报文段长度，最大窗口大小，服务质量等）；能够对运输实体资源（如缓存大小，连接表中的项目等）进行分配；</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211124200824286.png" alt="image-20211124200824286"></p>
+<p>两次握手存在的问题：TCP 是全双工的，需要确认双方的收发能力；第一次握手时确认了客户端的发送能力；服务端收到后返回给客户端，完成第二次握手确认了服务端的收发的能力；但是客户端的接收能力服务器还不知晓，因此两次握手只有只有客户端得知连接成功建立了，这时只是半连接状态，服务端不知道所发送的 ACK 是否被客户端接收，因此不知道连接是否建立成功。所以需要第三次握手，让服务器知道客户端的接收能力，全双工 TCP 才得以建立；</p>
+<p>四次握手存在的问题：多余了</p>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211124204840774.png" alt="image-20211124204840774"></p>
+<p>前两次完成 客户端 的释放，客户端不发服务器可能还没发完，因此还需要后两次完成 服务器 的释放</p>
+<h1 id="TCP-安全威胁"><a href="#TCP-安全威胁" class="headerlink" title="TCP 安全威胁"></a>TCP 安全威胁</h1><h2 id="泛洪攻击"><a href="#泛洪攻击" class="headerlink" title="泛洪攻击"></a>泛洪攻击</h2><h3 id="SYN-Flood-假装我要来"><a href="#SYN-Flood-假装我要来" class="headerlink" title="SYN Flood 假装我要来"></a>SYN Flood 假装我要来</h3><p>Principle：Server 一旦接收到 Client 发来的 Syn 报文，就需要为该请求分配一个TCB 并返回一个 SYN ACK 命令，立即转为 SYN-RECEIVED 即半开连接状态；因此，如果攻击者向某个服务器端口发送大量的 SYN 包，则可使服务器打开大量的半开连接，分配大量 TCB，从而消耗大量的服务器资源，同时也使得正常的连接请求无法被响应，而攻击发起方的资源消耗相比较可忽略不计</p>
+<p>攻击过程：攻击者伪造源地址发起 SYN 包，请求建立连接；服务器发送 ACK 给客户，但是客户没有发送过建立连接请求，因此就不会响应 ACK，那服务器就会长时间处于 SYN_RECV 状态，也就是半开连接，服务器有一个半开连接队列对其进行维护，需要定时的遍历该队列看看是否达到了重传时间，看看是否超时（半开连接超时需要 30s - 2min），这将会消耗服务器一定的 CPU 与 内存</p>
+<p>危害：消耗大量的服务器资源，同时也使得正常的连接请求无法被响应</p>
+<blockquote>
+<p>TCB，Transmission Control Block，通常一个 TCB 至少需要 280 个字节，在某些操作系统中甚至需要 1300 个字节；</p>
+<p>某些操作系统在 SOCK 的实现上最多可开启 512 个半开连接</p>
+</blockquote>
+<p><strong>防御</strong>：</p>
+<p>1、无效连接监视释放：将超时无效时间缩短</p>
+<p>2、延缓 TCB 分配</p>
+<p>SYN Cache 策略，在收到 SYN 数据报文时不急于去分配 TCB，先回应一个 SYN+ACK 报文，并在一个专用 HASH 表（Cache）中保存半开连接信息，直到收到正确的回应 ACK 报文再分配TCB</p>
+<blockquote>
+<p>在 FreeBSD 系统中这种 Cache 每个半开连接只需使用 160 字节，远小于 TCB 所需的 736</p>
+</blockquote>
+<p>SYN Cookie 策略，在收到 SYN 包并返回 SYN + ACK 包后不分配 TCB，而是根据 SYN 包计算出一个 Cookie 值作为初始序号，在收到 ACK 包时，服务器根据 Cookie 值检查这个 ACK 包的合法性。如果合法，再分配专门的数据区进行处理未来的 TCP 连接。</p>
+<blockquote>
+<p>Cookie 由源目地址、端口以及服务器自己的固定信息生成</p>
+</blockquote>
+<p>3、SYN Proxy 防火墙：Proxy 通常使用 SYN Cache 或 Cookie</p>
+<p>防火墙先模拟三次握手过程，成功后在通知墙内服务器，正式建立连接：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125171322729.png" alt="image-20211125171322729"></p>
+<p>4、源合法性验证技术：防护设备收到 SYN 报文后，回应一个经过构造的 SYN+ACK 报文，通过用户的反应来判断此用户是否正常</p>
+<blockquote>
+<p>故意回复一个错误的去测试用户是否正常</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125171545251.png" alt="image-20211125171545251"></p>
+<h3 id="ACK-Flood-假装我来过"><a href="#ACK-Flood-假装我来过" class="headerlink" title="ACK Flood 假装我来过"></a>ACK Flood 假装我来过</h3><p><strong>Principle</strong>：攻击者直接发送 ACK 过去，服务器得检查是否存在响应的半开连接状态，如果没查到还需要回复一个 ACK &#x2F; RST 包，占用了一定的资源</p>
+<blockquote>
+<p>资源的占用相对于 SYN Flood 较低，因此大流量的 ACK Flood 才能影响到服务器</p>
+</blockquote>
+<p>共分为两种攻击场景：攻击端口未开放；攻击端口已开放</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125172041197.png" alt="image-20211125172041197"></p>
+<p>Tips：由于对系统的资源消耗不是很大，ACK Flood 并没有成为主流攻击手段，而通常是与其他攻击方式组合在一起使用，比如 SYN + ACK Flood</p>
+<p>针对 SYN Cookie 策略：它需要校验第三次握手的 ACK 是否符合记录的 Cookie，这校验的过程需要涉及到复杂的算法；因此前面我先进行 SYN Flood，让 SYN Cookie 机制存在大量的 Cookie 等待 ACK，然后使用 ACK Flood 这样主机和防火墙都需要消耗大量的资源</p>
+<h3 id="Connection-Flood-我来了就只占位"><a href="#Connection-Flood-我来了就只占位" class="headerlink" title="Connection Flood 我来了就只占位"></a>Connection Flood 我来了就只占位</h3><p>Principle：利用真实 IP 地址（代理服务器，广告页面）在服务器上建立大量连接，服务器上残余连接（WAIT 状态）过多，则会导致效率降低，甚至资源耗尽</p>
+<blockquote>
+<p>通常都有最大连接数（上线），攻击者如果能够达到上限值即可实现拒绝服务攻击</p>
+</blockquote>
+<p>Target：消耗骨干设备的资源，如 防火墙</p>
+<p>可以有很多玩法，故意捣乱：</p>
+<p>1、建立连接后不发送任何报文，一直维持 TCP 连接</p>
+<p>2、建立连接后立刻发送 FIN 或 RST 报文释放本端连接，同时快速发起新的连接</p>
+<p>3、建立连接后，给服务器发送很小的 awnd 数据（但是发送速度很慢）导致服务器协议栈资源耗尽</p>
+<p>4、建立连接后，发送大量重传请求，以很小的流量即可导致被攻击网络上行链路拥塞</p>
+<blockquote>
+<p>假装没收到服务器的 ACK，一直重传</p>
+</blockquote>
+<p><strong>防御</strong>：</p>
+<p>1、源 IP 地址新建连接速率检查</p>
+<p>2、源 IP 地址并发连接数检查</p>
+<p>3、慢速连接速率检查：统计同一源 IP 地址对同一目的 IP 地址的连接次数，在各统计时间间隔内，如果连续多次连接数相同，则判定为 TCP 慢速连接攻击，封掉 IP 即可</p>
+<p>4、异常会话检查：</p>
+<p>空连接检查：如果在检查周期内，在某条 TCP 连接上通过的报文数小于阈值（类似于最低消费），则判定该连接为异常连接</p>
+<p>重传会话检查：当某条 TCP 连接上重传报文数量大于阈值时，则判定该连接为异常连接</p>
+<p>慢启动连接检查：当某条 TCP 连接上通过的报文窗口小于阈值时，则判定该连接为异常连接</p>
+<h2 id="LAND-攻击"><a href="#LAND-攻击" class="headerlink" title="LAND 攻击"></a>LAND 攻击</h2><p>发送 SYN 报文将源地址改为服务器自身的地址，系统要么不知道怎么办要么就循环发送消耗资源</p>
+<p>防御：</p>
+<p>1、系统补丁：很多漏洞都是系统没考虑到特殊情况导致的</p>
+<p>2、防火墙过滤此类报文</p>
+<h2 id="FLAG-误用攻击"><a href="#FLAG-误用攻击" class="headerlink" title="FLAG 误用攻击"></a>FLAG 误用攻击</h2><p><strong>Principle</strong>：向目标主机或网络设备发送带有异常标识位（相互矛盾的标识位）的 TCP 报文，导致目标系统协议栈无法正常工作从而达到攻击效果</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125175822330.png" alt="image-20211125175822330"></p>
+<p>Example：连续收到 ACK &amp; RST 标志位异常报文的攻击，导致网关宕机；网关是三层转发设备，为什么TCP标志位异常，会导致网关宕机？</p>
+<p>网关的 NAT 模块会维护地址映射表项，会根据 TCP 标志位更新地址映射对的定时器。ACK 指示延长定时器，RST 则是删除定时器，因此出现 bug</p>
+<h2 id="RST-攻击"><a href="#RST-攻击" class="headerlink" title="RST 攻击"></a>RST 攻击</h2><p><strong>Principle</strong>：攻击者向服务器或者客户端发送伪造的 TCP RST 报文，导致正在进行通信的 TCP 连接断掉，从而达到拒绝服务的攻击效果</p>
+<blockquote>
+<p>TCP RST 报文将直接关闭掉一个 TCP 连接</p>
+</blockquote>
+<p>前提条件：通讯目标方接受 TCP 报文；源 IP 地址与端口号一致；序列号（Seq）落在 TCP 窗口之内</p>
+<p>攻击方法：嗅探监听通信双方的 TCP 连接，获得源目 IP 地址、端口和报文序列号；结合 IP 源地址欺骗技术伪装成通信一方，发送 TCP RST 报文给另一方</p>
+<p>互联网缓存机制：一些骨干网络中在用户的日常通信获取数据时会在网关处（或别的地方）留下一个缓存拷贝，如果短时间内其它用户请求相同的数据则可以不必向外请求流量直接将缓存发送过去</p>
+<p>其原理就是 RST ：检测到我方存在缓存，因此会冒充正常用户断开 TCP 连接，然后冒充数据段将数据发给客户</p>
+<p>Application：</p>
+<p>1、恶意拒绝服务攻击</p>
+<p>2、（好的方面）阻断入侵连接：在入侵检测系统检测到特定的攻击事件后，通过重置（复位）攻击者和受害者之间的TCP连接来阻断攻击，这种阻断连接机制是目前入侵检测系统中使用最多的主动响应机制</p>
+<p>3、作为会话劫持的前奏</p>
+<h2 id="会话劫持"><a href="#会话劫持" class="headerlink" title="会话劫持"></a>会话劫持</h2><p>会话：两台主机之间的一次通讯</p>
+<p>Principle：攻击者通过嗅探以及欺骗等攻击手段，伪装成服务器或者客户端参与到正在进行通信的 TCP 连接中来，在正常数据包中插入恶意数据（注射式攻击）；在双方的会话当中进行监听（中间人攻击）；代替某一方主机接管会话（中间人攻击，RST 攻击）</p>
+<p>攻击条件：同 RST 攻击</p>
+<p>Q：如果不具备嗅探监听条件，那么还有什么手段可以获取TCP连接的IP、端口和报文序列号，以进行RST攻击或者会话劫持？</p>
+<p>A：服务器的 IP 和端口通常是公开的；序列号可以暴力碰撞；</p>
+<p>Q：序列号碰撞如何避免 ACK 风暴？而且，如果TCP流时间很短呢？客户端的IP和端口如何获取？</p>
+<p>A：</p>
+<p>防御方法：</p>
+<p>1、避免攻击者成为通信双方的中间人：部署交换式网络，用交换机代替集线器；禁用主机上的源路由；采用静态绑定 IP-MAC 映射表以避免 ARP 欺骗；过滤 ICMP 重定向报文</p>
+<p>2、TCP连接加密（IPsec协议）：避免了攻击者在得到传输层的端口及序列号等关键信息</p>
+<p>3、检测 ACK 风暴</p>
+<h2 id="低速率拒绝服务攻击（LDOS）"><a href="#低速率拒绝服务攻击（LDOS）" class="headerlink" title="低速率拒绝服务攻击（LDOS）"></a>低速率拒绝服务攻击（LDOS）</h2><p><strong>Principle</strong>：利用网络协议或应用服务协议自适应机制中存在的安全漏洞，周期性地发送高速脉冲攻击数据包，达到降低受害端服务性能的目的</p>
+<blockquote>
+<p>针对 TCP 的拥塞控制机制：攻击者周期性地将攻击包注入网络，使网络发生周期性拥塞，经过该网络的所有TCP连接都会周期性地进行拥塞控制，从而抑制流量，达到DoS攻击效果</p>
+</blockquote>
+<p>与传统 DOS 区别：</p>
+<p>1、攻击目标是自适应的拥塞控制机制，攻击引起的反应和调整是合法的，使得受害端受到长期攻击而毫无察觉；</p>
+<p>2、攻击流量与许多真实的数据流特征类似，导致攻击隐蔽性非常好</p>
+<p>3、攻击成本低，一个单一的攻击源就可以发动一次攻击，需要发送的数据量远小于泛洪攻击</p>
+<p>攻击模型：</p>
+<p>单源攻击：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211203113337.png" alt="单源攻击"></p>
+<p>分布式同步攻击：容易被发现</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125183107230.png" alt="image-20211125183107230"></p>
+<p>分布式异步攻击：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125183126061.png" alt="image-20211125183126061"></p>
+<p>攻击方法：</p>
+<p>1、基于 RTO 机制的攻击（Shrew攻击）</p>
+<p>使 TCP 发送方在每个周期内自动采取超时重传拥塞控制：</p>
+<p>a、发出一个攻击脉冲，使 TCP 发送端进入超时重传状态；</p>
+<blockquote>
+<p>攻击脉冲是为了将交换机队列打满，使得丢包发生</p>
+</blockquote>
+<p>b、经过 min(RTO) + T_lag 周期发送下一个攻击脉冲</p>
+<blockquote>
+<p>RTO 超时重传时间</p>
+<p>T_lag 延迟目的是使发送端在此时间段内成功地重传，从超时重传中恢复过来，以保证攻击周期不变</p>
+</blockquote>
+<p>缺陷：需注入大量数据包让瓶颈路由器发生严重拥塞，易被发现</p>
+<p>2、基于 AIMD 机制的攻击（ RoQ 降质攻击）</p>
+<p>根据 TCP 发送方在收到 3 个重复的 ACK 报文（拥塞信号）时 cwnd 减半机制，使用持续时间短、周期小的脉冲进行有效攻击，使 cwnd 连续减半，最终减少到 2</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211203113606.png"></p>
+<p><strong>对比</strong>：</p>
+<p>共同点：通过攻击瓶颈链路或路由器，在瞬间产生拥塞，迫使网络发出拥塞信号（丢包，对端重传ACK），使源端进行自适应调整发送窗口的大小；通过脉冲性数据流周期性地进行攻击，不是持续的 Flood 数据流，相对数据量和速度都偏小，结果造成 TCP 性能的震荡，严重降低 TCP 的吞吐量</p>
+<p>区别：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125183827887.png" alt="image-20211125183827887"></p>
+<p>检测：</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125184036554.png" alt="image-20211125184036554"></p>
+<p>1、特征检测，需要有明确的攻击特征，通过特征匹配来检测攻击行为</p>
+<p>2、异常检测利用统计的网络数据建立正常网络流量模型，通过模型判断待检测流量是否异常，若存在异常则判定为有攻击发生</p>
+<p>防御：</p>
+<p>1、改进 TCP 协议：对协议进行修改、填补漏洞</p>
+<p>2、改进路由器 AQM（主动队列管理）算法：丢弃符合设定攻击特征的数据流；重新进行带宽分配，尽量保护TCP数据流，抑制 LDoS 攻击流</p>
+<blockquote>
+<p>RAD 策略，随机早起丢弃，队列设置两个阈值 l1 与 l2，当包的数目低于 l1 时不必丢包；当包数目在 l1 与 l2 之间时随机丢包；超过 l2 时全部丢</p>
+</blockquote>
+<p>3、路由器防御：监视端口丢包率，找到潜在的受害者，优先处理来自受害者的 TCP 数据包</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211125184050317.png" alt="image-20211125184050317"></p>
+<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tobe98/p/12058443.html">公众号 - tobe的呓语 - 详解 TCP 超时与重传机制——长文预警</a></p>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/03/TCP-and-TCP-Security/,Jiancong Cui,TCP and TCP Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/04/SSL-TLS-Protocol-and-Security/" title="SSL/TLS Protocol and Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/02/IPSec/" title="IPSec">next_post</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
