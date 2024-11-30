@@ -324,7 +324,7 @@ body {
 /* 个人主页的整个 container */
 /* 右侧的主体内容 */
 .about-me-block-container {
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 80px;
 }
 
@@ -620,8 +620,8 @@ body {
     .block-container,
     .page-top .nav-container .nav {
         /* width: 65%; */
-        padding-left: 24.5%;
-        padding-right: 24.5%;
+        padding-left: 18.5%;
+        padding-right: 18.5%;
         /* 中等屏幕的留白 */
     }
 }
@@ -650,8 +650,8 @@ body {
     .block-container,
     .page-top .nav-container .nav {
         /* width: 80%; */
-        padding-left: 17.5%;
-        padding-right: 17.5%;
+        padding-left: 11.5%;
+        padding-right: 11.5%;
         /* 中等屏幕的留白 */
     }
 }
@@ -665,8 +665,8 @@ body {
     .block-container,
     .page-top .nav-container .nav {
         /* width: 90%; */
-        padding-left: 12%;
-        padding-right: 12%;
+        padding-left: 8%;
+        padding-right: 8%;
         /* 中等屏幕的留白 */
     }
 }
