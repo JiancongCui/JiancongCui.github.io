@@ -675,7 +675,7 @@ a.btn {
 }
 
 @media screen and (max-width: 960px) {
-  .sidebar {
+  /* .sidebar {
     width: 100%;
     position: absolute;
     border-right: none;
@@ -712,5 +712,5 @@ a.btn {
 
   .share {
     display: grid;
-  }
+  } */
 }

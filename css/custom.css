@@ -61,19 +61,24 @@ body {
 #main-container {
     box-sizing: border-box;
     padding-top: 60px;
-    height: 100%;
 
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 }
 
 /* 内容展示区 */
 .main-content {
+    height: 100%;
     /* margin: 0 auto; */
     flex: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: first baseline;
+
+    min-height: calc(100vh - 145px);
+
 }
 
 /* footer */
@@ -207,7 +212,7 @@ body {
 
 /* 个人主页的整个 container */
 .about-me-container {
-    height: 100%;
+    /* height: 100%; */
     background-color: rgba(0, 0, 0, 0);
 }
 
@@ -225,6 +230,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
 
 }
 
@@ -344,7 +352,7 @@ body {
     width: 100%;
 }
 
-.about-me-container .content .header {
+.about-me-container .content .header, .block-container .content .header {
 
     margin-top: 50px;
 
@@ -389,7 +397,6 @@ body {
 }
 
 .block-container .content .pub-item {
-    width: 100%;
     padding: 15px 0;
 
     display: flex;
@@ -777,4 +784,19 @@ body {
     margin-right: 10px;
     align-items: center;
 
+}
+
+
+@media screen and (max-width: 960px) {
+    .main-content .about-me-container .about-me-block-container  {
+        display: flex;
+        flex-direction: column;
+    }
+    .about-me-container {
+        margin-top: 20px;
+    }
+
+    .block-container .content .pub-item .pub-item-links {
+        width: inherit;
+    }
 }
