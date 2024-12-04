@@ -75,7 +75,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: first baseline;
+    align-items: center;
 
     min-height: calc(100vh - 145px);
 
@@ -123,6 +123,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    overflow-x: auto;
 }
 
 .page-top .nav-container .nav {
@@ -578,11 +580,13 @@ body {
     /* margin: 0 10px; */
     display: flex;
     align-items: center;
+
+    margin-right: 8px;
 }
 
-.post .post-labels .label-item:nth-child(1) {
+/* .post .post-labels .label-item:nth-child(1) {
     margin: 0;
-}
+} */
 
 .post .post-labels .label-item i {
     padding-top: 2px;
@@ -798,5 +802,15 @@ body {
 
     .block-container .content .pub-item .pub-item-links {
         width: inherit;
+    }
+
+    .post .post-labels .label-item {
+        margin-right: 0px;
+    }
+
+    .post .post-labels {
+        display: flex;
+        flex-direction: column;
+        align-items: first baseline;
     }
 }
