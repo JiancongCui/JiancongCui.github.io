@@ -150,6 +150,8 @@ body {
     flex-grow: 1;
     align-items: center;
     justify-content: center;
+
+    text-wrap-mode: nowrap;
 }
 
 .page-top .nav-container .nav .logo {
@@ -790,6 +792,27 @@ body {
 
 }
 
+#quotes-container .playing {
+    border: 1px solid transparent;
+    border-radius: 8px;
+    animation: glow 2s infinite; /* Infinite glowing animation */
+}
+
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 2px rgba(123, 101, 230, 0.4),
+                    0 0 4px rgba(123, 101, 230, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 3px rgba(123, 101, 230, 0.8),
+                    0 0 9px rgba(123, 101, 230, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 2px rgba(123, 101, 230, 0.4),
+                    0 0 4px rgba(123, 101, 230, 0.3);
+    }
+}
 
 @media screen and (max-width: 960px) {
     .main-content .about-me-container .about-me-block-container  {
