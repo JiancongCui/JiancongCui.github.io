@@ -1,27 +1,87 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>02-Kotlin-Advanced · Jiancong Cui</title><meta name="description" content="标准函数letlet 函数提供了函数式 API 的编程接口，并将原始调用对象作为参数传递到 Lambda 表达式中, 配合进行非空判断十分方便:
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>02-Kotlin-Advanced · Jiancong Cui</title><meta name="description" content="标准函数
+let
+let 函数提供了函数式 API 的编程接口，并将原始调用对象作为参数传递到 Lambda 表达式中, 配合进行非空判断十分方便:
 
 obj.let &amp;#123; obj_ -&amp;gt; ... &amp;#125;: obj_ 与 obj 是相同的对象, 只不过为了不重名
-如下例, 如果 st"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>02-Kotlin-Advanced</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-07-18</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="标准函数"><a href="#标准函数" class="headerlink" title="标准函数"></a>标准函数</h1><h2 id="let"><a href="#let" class="headerlink" title="let"></a>let</h2><p>let 函数提供了函数式 API 的编程接口，并将原始调用对象作为参数传递到 Lambda 表达式中, 配合进行非空判断十分方便:</p>
+如下例, 如果 "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>02-Kotlin-Advanced</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-07-18</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>标准函数</h1>
+<h2 id="let">let</h2>
+<p>let 函数提供了函数式 API 的编程接口，并将原始调用对象作为参数传递到 Lambda 表达式中, 配合进行非空判断十分方便:</p>
 <ul>
 <li><code>obj.let &#123; obj_ -&gt; ... &#125;</code>: <code>obj_</code> 与 <code>obj</code> 是相同的对象, 只不过为了不重名</li>
 <li>如下例, 如果 study 为 null 则不会执行 let 函数; 如果 study 不为 null 则执行 let 函数并实现了非空判断</li>
 <li>与 <code>if</code> 不同的是, let 函数是可以处理全局变量的判空问题的: if 中如果存在全局变量, 其值随时都有可能被其他线程所修改，即使做了判空处理，仍然无法保证 if 语句中的 study 变量没有空指针风险</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">doStudy</span><span class="params">(study: <span class="type">Study</span>?)</span></span> &#123;</span><br><span class="line">    study?.let &#123; stu -&gt;</span><br><span class="line">        stu.readBooks()</span><br><span class="line">        stu.doHomework()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// lambda 只有一个参数时可以简化改参数为 it</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">doStudy</span><span class="params">(study: <span class="type">Study</span>?)</span></span> &#123;</span><br><span class="line">    study?.let &#123;</span><br><span class="line">        it.readBooks()</span><br><span class="line">        it.doHomework()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="with"><a href="#with" class="headerlink" title="with"></a>with</h2><p>接收两个参数: 任意类型的对象 + Lambda 表达式, with 函数在 Lambda 表达式中提供第一个参数对象的上下文, 并使用 Lambda 表达式中的最后一行代码作为返回值返回</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun doStudy(study: Study?) &#123;
+    study?.let &#123; stu -&gt;
+        stu.readBooks()
+        stu.doHomework()
+    &#125;
+&#125;
+&#x2F;&#x2F; lambda 只有一个参数时可以简化改参数为 it
+fun doStudy(study: Study?) &#123;
+    study?.let &#123;
+        it.readBooks()
+        it.doHomework()
+    &#125;
+&#125;</code></pre>
+<h2 id="with">with</h2>
+<p>接收两个参数: 任意类型的对象 + Lambda 表达式, with 函数在 Lambda 表达式中提供第一个参数对象的上下文, 并使用 Lambda 表达式中的最后一行代码作为返回值返回</p>
 <ul>
 <li>可以在连续调用同一个对象的多个方法时让代码变得更加精简</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = listOf(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Pear&quot;</span>, <span class="string">&quot;Grape&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> builder = StringBuilder()</span><br><span class="line">builder.append(<span class="string">&quot;Start eating fruits.\n&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> (fruit <span class="keyword">in</span> list) &#123;</span><br><span class="line">    builder.append(fruit).append(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line">builder.append(<span class="string">&quot;Ate all fruits.&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> result = builder.toString()</span><br><span class="line">println(result)</span><br><span class="line"><span class="comment">// 可以考虑使用 with 共享 StringBuilder 的上下文, 简化代码</span></span><br><span class="line"><span class="keyword">val</span> result2 = with(StringBuilder()) &#123;</span><br><span class="line">    append(<span class="string">&quot;Start eating fruits.\n&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> (fruit <span class="keyword">in</span> list) &#123;</span><br><span class="line">        append(fruit).append(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    append(<span class="string">&quot;Ate all fruits.&quot;</span>)</span><br><span class="line">    toString()</span><br><span class="line">&#125;</span><br><span class="line">println(result2)</span><br></pre></td></tr></table></figure>
-
-<h2 id="run"><a href="#run" class="headerlink" title="run"></a>run</h2><p>相当于另一种形式的 with: 在某个对象基础上进行调用, 接收 Lambda 参数, 并将对象作为 Lambda 表达式的上下文, 以 Lambda 表达式的最后一行作为返回值返回</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = listOf(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Pear&quot;</span>, <span class="string">&quot;Grape&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> result2 = StringBuilder().run &#123;</span><br><span class="line">    append(<span class="string">&quot;Start eating fruits.\n&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> (fruit <span class="keyword">in</span> list) &#123;</span><br><span class="line">        append(fruit).append(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    append(<span class="string">&quot;Ate all fruits.&quot;</span>)</span><br><span class="line">    toString()</span><br><span class="line">&#125;</span><br><span class="line">println(result2)</span><br></pre></td></tr></table></figure>
-
-<h2 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h2><p>在某个对象上调用, 接收一个 Lambda 参数, 将对象作为 Lambda 函数的上下文, 并将调用对象本身(处理后)返回</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> list = listOf(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Pear&quot;</span>, <span class="string">&quot;Grape&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> stringBuilder = StringBuilder().apply &#123; </span><br><span class="line">    append(<span class="string">&quot;Start eating fruits.\n&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> (fruit <span class="keyword">in</span> list) &#123;</span><br><span class="line">        append(fruit).append(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    append(<span class="string">&quot;Ate all fruits.&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">println(stringBuilder.toString())</span><br></pre></td></tr></table></figure>
-
-<h1 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h1><p>又叫作类方法，指的就是那种不需要创建实例就能调用的方法; Kotlin 中将由静态方法组成的工具类用单例类实现(<code>object</code> 关键词进行修饰)</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val list &#x3D; listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Pear&quot;, &quot;Grape&quot;)
+val builder &#x3D; StringBuilder()
+builder.append(&quot;Start eating fruits.\n&quot;)
+for (fruit in list) &#123;
+    builder.append(fruit).append(&quot;\n&quot;)
+&#125;
+builder.append(&quot;Ate all fruits.&quot;)
+val result &#x3D; builder.toString()
+println(result)
+&#x2F;&#x2F; 可以考虑使用 with 共享 StringBuilder 的上下文, 简化代码
+val result2 &#x3D; with(StringBuilder()) &#123;
+    append(&quot;Start eating fruits.\n&quot;)
+    for (fruit in list) &#123;
+        append(fruit).append(&quot;\n&quot;)
+    &#125;
+    append(&quot;Ate all fruits.&quot;)
+    toString()
+&#125;
+println(result2)</code></pre>
+<h2 id="run">run</h2>
+<p>相当于另一种形式的 with: 在某个对象基础上进行调用, 接收 Lambda 参数, 并将对象作为 Lambda 表达式的上下文, 以 Lambda 表达式的最后一行作为返回值返回</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val list &#x3D; listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Pear&quot;, &quot;Grape&quot;)
+val result2 &#x3D; StringBuilder().run &#123;
+    append(&quot;Start eating fruits.\n&quot;)
+    for (fruit in list) &#123;
+        append(fruit).append(&quot;\n&quot;)
+    &#125;
+    append(&quot;Ate all fruits.&quot;)
+    toString()
+&#125;
+println(result2)</code></pre>
+<h2 id="apply">apply</h2>
+<p>在某个对象上调用, 接收一个 Lambda 参数, 将对象作为 Lambda 函数的上下文, 并将调用对象本身(处理后)返回</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val list &#x3D; listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Pear&quot;, &quot;Grape&quot;)
+val stringBuilder &#x3D; StringBuilder().apply &#123; 
+    append(&quot;Start eating fruits.\n&quot;)
+    for (fruit in list) &#123;
+        append(fruit).append(&quot;\n&quot;)
+    &#125;
+    append(&quot;Ate all fruits.&quot;)
+    &#125;
+println(stringBuilder.toString())</code></pre>
+<h1>静态方法</h1>
+<p>又叫作类方法，指的就是那种不需要创建实例就能调用的方法; Kotlin 中将由静态方法组成的工具类用单例类实现(<code>object</code> 关键词进行修饰)</p>
 <p>但是如果在非工具类中定义静态方法, 这时候就需要 <code>companion object</code> 块进行定义了</p>
 <blockquote>
 <p>但是其机理是会在类的内部产生一个伴生类, 伴生类是一个单例类, 具有块中定义的方法</p>
@@ -29,229 +89,514 @@ obj.let &amp;#123; obj_ -&amp;gt; ... &amp;#125;: obj_ 与 obj 是相同的对�
 <p>如果要显示的定义其为静态方法:</p>
 <ol>
 <li>添加 @JvmStatic 注解：只能加在单例类或 companion object 中的方法上</li>
-<li>顶层方法: 没有定义在任何类中的方法( package ); 就比如新建一个 tools.kt, 直接定义方法, 这些方法都会被编译为静态方法; 并且所有的顶层方法都可以在任何位置被直接调用，不用管包名路径，也不用创建实例<blockquote>
+<li>顶层方法: 没有定义在任何类中的方法( package ); 就比如新建一个 tools.kt, 直接定义方法, 这些方法都会被编译为静态方法; 并且所有的顶层方法都可以在任何位置被直接调用，不用管包名路径，也不用创建实例</li>
+</ol>
+<blockquote>
 <p>其原理还是以顶层方法的文件名创建一个 Java 类, 将其中的方法写为 Java 的静态方法</p>
 </blockquote>
-</li>
-</ol>
-<h1 id="延迟初始化"><a href="#延迟初始化" class="headerlink" title="延迟初始化"></a>延迟初始化</h1><p>比如一个全局变量需要到访问某一个 Activity 时才能被初始化, 如果提前定义在类中, 就需要定义为 null, 后续的操作全都要考虑判空处理, 十分不方便, 因此引入了 lateinit 关键字进行全局初始化; 但相反, 所有的判空逻辑检查实际上就交给代码编写者了, 如果粗心还是容易出现初始化前进行使用的错误~</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MainActivity</span> : <span class="type">AppCompatActivity</span>(), View.OnClickListener &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> adapter: MsgAdapter</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        adapter = MsgAdapter(msgList)</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onClick</span><span class="params">(v: <span class="type">View</span>?)</span></span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        adapter.notifyItemInserted(msgList.size - <span class="number">1</span>)</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1>延迟初始化</h1>
+<p>比如一个全局变量需要到访问某一个 Activity 时才能被初始化, 如果提前定义在类中, 就需要定义为 null, 后续的操作全都要考虑判空处理, 十分不方便, 因此引入了 lateinit 关键字进行全局初始化; 但相反, 所有的判空逻辑检查实际上就交给代码编写者了, 如果粗心还是容易出现初始化前进行使用的错误~</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class MainActivity : AppCompatActivity(), View.OnClickListener &#123;
+    private lateinit var adapter: MsgAdapter
+    override fun onCreate(savedInstanceState: Bundle?) &#123;
+        ...
+        adapter &#x3D; MsgAdapter(msgList)
+        ...
+    &#125;
+    override fun onClick(v: View?) &#123;
+        ...
+        adapter.notifyItemInserted(msgList.size - 1)
+        ...
+    &#125;
+&#125;</code></pre>
 <p>如果初始化的操作能够重复触发也是一种重复消耗, 因此可以使用 <code>::ValueName.isInitialized</code> 来判断变量 <code>ValueName</code> 是否完成初始化工作了</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">if</span> (!::adapter.isInitialized) &#123;</span><br><span class="line">    adapter = MsgAdapter(msgList)</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h1 id="密封类"><a href="#密封类" class="headerlink" title="密封类"></a>密封类</h1><p>当在 when 语句中传入一个密封类变量作为条件时，Kotlin 编译器会自动检查该密封类有哪些子类，并强制要求你将每一个子类所对应<br>的条件全部处理。这样就可以保证，即使没有编写 else 条件，也不可能会出现漏写条件分支的情况。</p>
-<h1 id="扩展函数"><a href="#扩展函数" class="headerlink" title="扩展函数"></a>扩展函数</h1><p>扩展函数表示即使在不修改某个类的源码的情况下，仍然可以打开这个类，向该类添加新的函数</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">...
+if (!::adapter.isInitialized) &#123;
+    adapter &#x3D; MsgAdapter(msgList)
+&#125;
+...</code></pre>
+<h1>密封类</h1>
+<p>当在 when 语句中传入一个密封类变量作为条件时，Kotlin 编译器会自动检查该密封类有哪些子类，并强制要求你将每一个子类所对应的条件全部处理。这样就可以保证，即使没有编写 else 条件，也不可能会出现漏写条件分支的情况。</p>
+<h1>扩展函数</h1>
+<p>扩展函数表示即使在不修改某个类的源码的情况下，仍然可以打开这个类，向该类添加新的函数</p>
 <ul>
 <li>定义扩展函数的语法结构</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> ClassName.<span class="title">methodName</span><span class="params">(param1: <span class="type">Int</span>, param2: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun ClassName.methodName(param1: Int, param2: Int): Int &#123;
+    return 0
+&#125;</code></pre>
 <ul>
 <li>建议向哪个类中添加扩展函数，就定义一个同名的 Kotlin 文件; 或定义在任何一个现有类当中的</li>
 <li>扩展函数自动拥有目标类的实例上下文, 通过 this 关键字进行访问</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> String.<span class="title">lettersCount</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (char <span class="keyword">in</span> <span class="keyword">this</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (char.isLetter()) &#123;</span><br><span class="line">            count++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展函数优化-Toast"><a href="#扩展函数优化-Toast" class="headerlink" title="扩展函数优化 Toast"></a>扩展函数优化 Toast</h2><p>对 Sting 与 Int 进行扩展, 快速 Toast 提示</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> String.<span class="title">showToast</span><span class="params">(context: <span class="type">Context</span>, duration: <span class="type">Int</span> = Toast.LENGTH_SHORT)</span></span> &#123;</span><br><span class="line">    Toast.makeText(context, <span class="keyword">this</span>, duration).show()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="title">showToast</span><span class="params">(context: <span class="type">Context</span>)</span></span> &#123;</span><br><span class="line">    Toast.makeText(context, <span class="keyword">this</span>, duration).show()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Exec</span></span><br><span class="line"><span class="string">&quot;Success!&quot;</span>.showToast(<span class="keyword">this</span>)</span><br><span class="line"><span class="comment">// 甚至可以将提示信息资源话</span></span><br><span class="line">R.string.process_success_info.showToast(<span class="keyword">this</span>, Toast.LENGTH_LONG)</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展函数优化-Snackbar"><a href="#扩展函数优化-Snackbar" class="headerlink" title="扩展函数优化 Snackbar"></a>扩展函数优化 Snackbar</h2><p>Snackbar 是扩展版的 Toast, 能够根据指定的 View 向上查询 Context 并给出可交互的提示信息, 因此选择对 View 进行扩展, 优化 Snackbar 的调用</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// block 表示其类型可以是函数也可以是 null, 默认值为 null</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> View.<span class="title">showSnackbar</span><span class="params">(text: <span class="type">String</span>, actionText: <span class="type">String</span>? = <span class="literal">null</span>, </span></span></span><br><span class="line"><span class="params"><span class="function">                    duration: <span class="type">Int</span> = Snackbar.LENGTH_SHORT, block: (() -&gt; <span class="type">Unit</span>)? = <span class="literal">null</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> snackbar = Snackbar.make(<span class="keyword">this</span>, text, duration)</span><br><span class="line">    <span class="keyword">if</span> (actionText != <span class="literal">null</span> &amp;&amp; block != <span class="literal">null</span>) &#123;</span><br><span class="line">        snackbar.setAction(actionText) &#123;</span><br><span class="line">            block()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    snackbar.show()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Exec</span></span><br><span class="line">view.showSnackbar(<span class="string">&quot;Delete Success!&quot;</span>, <span class="string">&quot;UNDO&quot;</span>) &#123;</span><br><span class="line">    <span class="string">&quot;Undo Success!&quot;</span>.showToast(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h1><p>Kotlin 的运算符重载使用 <code>operator</code> 关键字允许我们让任意两个对象进行运算操作:</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>在指定函数的前面加上 operator 关键字，就可以实现运算符重载的功能了</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun String.lettersCount(): Int &#123;
+    var count &#x3D; 0
+    for (char in this) &#123;
+        if (char.isLetter()) &#123;
+            count++
+        &#125;
+    &#125;
+    return count
+&#125;</code></pre>
+<h2 id="扩展函数优化-Toast">扩展函数优化 Toast</h2>
+<p>对 Sting 与 Int 进行扩展, 快速 Toast 提示</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun String.showToast(context: Context, duration: Int &#x3D; Toast.LENGTH_SHORT) &#123;
+    Toast.makeText(context, this, duration).show()
+&#125;
+fun Int.showToast(context: Context) &#123;
+    Toast.makeText(context, this, duration).show()
+&#125;
+&#x2F;&#x2F; Exec
+&quot;Success!&quot;.showToast(this)
+&#x2F;&#x2F; 甚至可以将提示信息资源话
+R.string.process_success_info.showToast(this, Toast.LENGTH_LONG)</code></pre>
+<h2 id="扩展函数优化-Snackbar">扩展函数优化 Snackbar</h2>
+<p>Snackbar 是扩展版的 Toast, 能够根据指定的 View 向上查询 Context 并给出可交互的提示信息, 因此选择对 View 进行扩展, 优化 Snackbar 的调用</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">&#x2F;&#x2F; block 表示其类型可以是函数也可以是 null, 默认值为 null
+fun View.showSnackbar(text: String, actionText: String? &#x3D; null, 
+                    duration: Int &#x3D; Snackbar.LENGTH_SHORT, block: (() -&gt; Unit)? &#x3D; null) &#123;
+    val snackbar &#x3D; Snackbar.make(this, text, duration)
+    if (actionText !&#x3D; null &amp;&amp; block !&#x3D; null) &#123;
+        snackbar.setAction(actionText) &#123;
+            block()
+        &#125;
+    &#125;
+    snackbar.show()
+&#125;
+&#x2F;&#x2F; Exec
+view.showSnackbar(&quot;Delete Success!&quot;, &quot;UNDO&quot;) &#123;
+    &quot;Undo Success!&quot;.showToast(this)
+&#125;</code></pre>
+<h1>运算符重载</h1>
+<p>Kotlin 的运算符重载使用 <code>operator</code> 关键字允许我们让任意两个对象进行运算操作:</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<p>在指定函数的前面加上 operator 关键字，就可以实现运算符重载的功能了</p>
 <ul>
 <li>指定函数: plus(), minus(),</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(b: <span class="type">B</span>)</span></span>: C &#123;</span><br><span class="line">        <span class="comment">// 处理相加的逻辑</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span> + b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Money</span>(<span class="keyword">val</span> value: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(money: <span class="type">Money</span>)</span></span>: Money &#123;</span><br><span class="line">        <span class="keyword">val</span> sum = value + money.value</span><br><span class="line">        <span class="keyword">return</span> Money(sum)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">plus</span><span class="params">(newValue: <span class="type">Int</span>)</span></span>: Money &#123;</span><br><span class="line">        <span class="keyword">val</span> sum = value + newValue</span><br><span class="line">        <span class="keyword">return</span> Money(sum)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class A &#123;
+    operator fun plus(b: B): C &#123;
+        &#x2F;&#x2F; 处理相加的逻辑
+        return this + b
+    &#125;
+&#125;
 
-<h2 id="调用对照表"><a href="#调用对照表" class="headerlink" title="调用对照表"></a>调用对照表</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208181927672.png"></p>
-<h1 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h1><p>如果一个函数接收另一个函数作为参数，或者返回值的类型是另一个函数，那么该函数就称为高阶函数</p>
+class Money(val value: Int) &#123;
+    operator fun plus(money: Money): Money &#123;
+        val sum &#x3D; value + money.value
+        return Money(sum)
+    &#125;
+    operator fun plus(newValue: Int): Money &#123;
+        val sum &#x3D; value + newValue
+        return Money(sum)
+    &#125;
+&#125;</code></pre>
+<h2 id="调用对照表">调用对照表</h2>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208181927672.png" alt=""></p>
+<h1>高阶函数</h1>
+<p>如果一个函数接收另一个函数作为参数，或者返回值的类型是另一个函数，那么该函数就称为高阶函数</p>
 <ul>
 <li>函数类型: <code>(String, Int) -&gt; Unit</code>, 左侧为参数类型的声明, 右侧为返回值类型的声明, Unit 表示没有返回值</li>
 <li>传递函数参数时采用函数引用的方式进行传递: <code>::func</code> 或者直接传递 lambda 表达式</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> result1 = num1AndNum2(num1, num2) &#123; n1, n2 -&gt;</span><br><span class="line">    n1 + n2</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">val</span> result2 = num1AndNum2(num1, num2) &#123; n1, n2 -&gt;</span><br><span class="line">    n1 - n2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="高阶函数实现上下文共享"><a href="#高阶函数实现上下文共享" class="headerlink" title="高阶函数实现上下文共享"></a>高阶函数实现上下文共享</h2><p>类似于内置的 apply 函数</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val result1 &#x3D; num1AndNum2(num1, num2) &#123; n1, n2 -&gt;
+    n1 + n2
+&#125;
+val result2 &#x3D; num1AndNum2(num1, num2) &#123; n1, n2 -&gt;
+    n1 - n2
+&#125;</code></pre>
+<h2 id="高阶函数实现上下文共享">高阶函数实现上下文共享</h2>
+<p>类似于内置的 apply 函数</p>
 <ul>
 <li>在函数类型的前面加上 ClassName. 表示这个函数类型是定义在哪个类当中的, 调用 build 时传入的 lambda 表达式将会自动拥有 StringBuilder 的上下文</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> StringBuilder.<span class="title">build</span><span class="params">(block: <span class="type">StringBuilder</span>.() -&gt; <span class="type">Unit</span>)</span></span>: StringBuilder &#123;</span><br><span class="line">    block()</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="高阶函数-Kotlin-Java"><a href="#高阶函数-Kotlin-Java" class="headerlink" title="高阶函数: Kotlin - Java"></a>高阶函数: Kotlin - Java</h2><p>Kotlin 的高阶函数编译为 Java 字节码文件后, 实际上使用的是 Function 接口中的 invoke() 函数实现的, 而传入的 lambda 表达式都会由一个匿名类实现, 这样就会导致较大的系统开销</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">num1AndNum2</span><span class="params">(<span class="type">int</span> num1, <span class="type">int</span> num2, Function operation)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> (<span class="type">int</span>) operation.invoke(num1, num2);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">num1</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">num2</span> <span class="operator">=</span> <span class="number">80</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> num1AndNum2(num1, num2, <span class="keyword">new</span> <span class="title class_">Function</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Integer <span class="title function_">invoke</span><span class="params">(Integer n1, Integer n2)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> n1 + n2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h1><p>针对高阶函数底层的开销较大, Kotlin 引入了内联函数, 使用 <code>inline</code> 关键字进行修饰, 在编译时 Kotlin 编译器会将内联函数中的代码在编译的时候自动替换到调用它的地方，这样也就不存在运行时的开销了</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191254781.png"></p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun StringBuilder.build(block: StringBuilder.() -&gt; Unit): StringBuilder &#123;
+    block()
+    return this
+&#125;</code></pre>
+<h2 id="高阶函数-Kotlin-Java">高阶函数: Kotlin - Java</h2>
+<p>Kotlin 的高阶函数编译为 Java 字节码文件后, 实际上使用的是 Function 接口中的 invoke() 函数实现的, 而传入的 lambda 表达式都会由一个匿名类实现, 这样就会导致较大的系统开销</p>
+<pre class="language-java" data-language="java"><code class="language-java">public static int num1AndNum2(int num1, int num2, Function operation) &#123;
+    int result &#x3D; (int) operation.invoke(num1, num2);
+    return result;
+&#125;
+public static void main() &#123;
+    int num1 &#x3D; 100;
+    int num2 &#x3D; 80;
+    int result &#x3D; num1AndNum2(num1, num2, new Function() &#123;
+        @Override
+        public Integer invoke(Integer n1, Integer n2) &#123;
+            return n1 + n2;
+        &#125;
+    &#125;);
+&#125;</code></pre>
+<h1>内联函数</h1>
+<p>针对高阶函数底层的开销较大, Kotlin 引入了内联函数, 使用 <code>inline</code> 关键字进行修饰, 在编译时 Kotlin 编译器会将内联函数中的代码在编译的时候自动替换到调用它的地方，这样也就不存在运行时的开销了</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191254781.png" alt=""></p>
 <p>针对多个函数参数时, 如果不希望某个函数参数被 inline 则可在前面加上 <code>noinline</code> 进行修饰</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">inlineTest</span><span class="params">(block1: () -&gt; <span class="type">Unit</span>, <span class="keyword">noinline</span> block2: () -&gt; <span class="type">Unit</span>)</span></span> &#123; &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="内联的局限-略"><a href="#内联的局限-略" class="headerlink" title="内联的局限[略]"></a>内联的局限[略]</h2><p>内联函数类型的参数在编译的时候会被进行代码替换，因此它没有真正的参数属性，只允许传递给另外一个内联函数，这也是它最大的局限性</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">inline fun inlineTest(block1: () -&gt; Unit, noinline block2: () -&gt; Unit) &#123; &#125;</code></pre>
+<h2 id="内联的局限-略">内联的局限[略]</h2>
+<p>内联函数类型的参数在编译的时候会被进行代码替换，因此它没有真正的参数属性，只允许传递给另外一个内联函数，这也是它最大的局限性</p>
 <p>非内联的函数类型参数可以自由地传递给其他任何函数，因为它就是一个真实的参数</p>
 <p>内联函数实现了替换, 因此可以实现局部的返回与终止; 而非内联函数则重是在局部中止自身的函数体, 并不能实现高阶函数的局部返回与终止</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191541532.png"></p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191541886.png"></p>
-<h1 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h1><p>委托是一种设计模式, 指操作对象自己不会去处理某段逻辑，而是会把工作委托给另外一个辅助对象去处理</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191541532.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208191541886.png" alt=""></p>
+<h1>委托</h1>
+<p>委托是一种设计模式, 指操作对象自己不会去处理某段逻辑，而是会把工作委托给另外一个辅助对象去处理</p>
 <ul>
 <li>意义所在: 让大部分的方法实现调用辅助对象中的方法，少部分的方法实现由自己来重写，甚至加入一些自己独有的方法</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208220907140.png"></p>
-<h2 id="类委托"><a href="#类委托" class="headerlink" title="类委托"></a>类委托</h2><p>通过委托创建新类时使用 <code>by</code> 关键字指定委托对象, 就会自动将元对象的方法继承过来, 从而实现对目标对象的继承与封装</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MySet</span>&lt;<span class="type">T</span>&gt;(<span class="keyword">val</span> helperSet: HashSet&lt;T&gt;) : Set&lt;T&gt; <span class="keyword">by</span> helperSet &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">helloWorld</span><span class="params">()</span></span> = println(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">isEmpty</span><span class="params">()</span></span> = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="属性委托"><a href="#属性委托" class="headerlink" title="属性委托"></a>属性委托</h2><p>同类委托类似, 将一个属性（字段）的具体实现委托给另一个类去完成, 依旧使用 <code>by</code> 关键字指定委托实例</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208220907140.png" alt=""></p>
+<h2 id="类委托">类委托</h2>
+<p>通过委托创建新类时使用 <code>by</code> 关键字指定委托对象, 就会自动将元对象的方法继承过来, 从而实现对目标对象的继承与封装</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class MySet&lt;T&gt;(val helperSet: HashSet&lt;T&gt;) : Set&lt;T&gt; by helperSet &#123;
+    fun helloWorld() &#x3D; println(&quot;Hello World&quot;)
+    override fun isEmpty() &#x3D; false
+&#125;</code></pre>
+<h2 id="属性委托">属性委托</h2>
+<p>同类委托类似, 将一个属性（字段）的具体实现委托给另一个类去完成, 依旧使用 <code>by</code> 关键字指定委托实例</p>
 <ul>
 <li>当使用属性 p 的时候会自动调用实例的 getValue() 方法, 赋值属性 p 则调用 setValue() 方法</li>
 <li>因此类中需要提前准备好接口实现 value, getValue, setValue</li>
 <li>getValue 与 setValue 中的第一个参数是接收使用属性委托的类的实例, 第二个参数 KProperty&lt;*&gt; 是 Kotlin 中的一个属性操作类, 用于获取各种属性相关值</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> p <span class="keyword">by</span> Delegate()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Delegate</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> propValue: Any? = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(myClass: <span class="type">MyClass</span>, prop: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: Any? &#123;</span><br><span class="line">        <span class="keyword">return</span> propValue</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">setValue</span><span class="params">(myClass: <span class="type">MyClass</span>, prop: <span class="type">KProperty</span>&lt;*&gt;, value: <span class="type">Any</span>?)</span></span> &#123;</span><br><span class="line">        propValue = value</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class MyClass &#123;
+    var p by Delegate()
+&#125;
 
-<h1 id="lazy-函数"><a href="#lazy-函数" class="headerlink" title="lazy 函数"></a>lazy 函数</h1><p>懒加载技术使得变量的初始化代码在变量被首次调用时 <code>by lazy&#123;&#125;</code> 代码块中的代码才会执行, 本质就是属性委托, lazy 是 Kotlin 中的高阶函数, 用于快速创建并返回一个 Delegate 对象</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> p <span class="keyword">by</span> lazy &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-
+class Delegate &#123;
+    var propValue: Any? &#x3D; null
+    operator fun getValue(myClass: MyClass, prop: KProperty&lt;*&gt;): Any? &#123;
+        return propValue
+    &#125;
+    operator fun setValue(myClass: MyClass, prop: KProperty&lt;*&gt;, value: Any?) &#123;
+        propValue &#x3D; value
+    &#125;
+&#125;</code></pre>
+<h1>lazy 函数</h1>
+<p>懒加载技术使得变量的初始化代码在变量被首次调用时 <code>by lazy&#123;&#125;</code> 代码块中的代码才会执行, 本质就是属性委托, lazy 是 Kotlin 中的高阶函数, 用于快速创建并返回一个 Delegate 对象</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val p by lazy &#123; ... &#125;</code></pre>
 <p>动手实现高阶 lazy 高阶函数</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Later</span>&lt;<span class="type">T</span>&gt;(<span class="keyword">val</span> block: () -&gt; T) &#123;</span><br><span class="line">    <span class="keyword">var</span> value: Any? = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">getValue</span><span class="params">(any: <span class="type">Any</span>?, prop: <span class="type">KProperty</span>&lt;*&gt;)</span></span>: T &#123;</span><br><span class="line">        <span class="keyword">if</span> (value == <span class="literal">null</span>) &#123;</span><br><span class="line">            value = block()</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> value <span class="keyword">as</span> T</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 通过 Later.kt 中定义的顶层函数进行使用</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">later</span><span class="params">(block: () -&gt; <span class="type">T</span>)</span></span> = Later(block)</span><br></pre></td></tr></table></figure>
-
-<h1 id="infix"><a href="#infix" class="headerlink" title="infix"></a>infix</h1><p>使用 infix 关键字能够创建类似 <code>contentProviderOf(&quot;name&quot; to &quot;Coming&quot;)</code> 这样的 A to B 的用法, 实质为 <code>A.to(B)</code> 的语法糖</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class Later&lt;T&gt;(val block: () -&gt; T) &#123;
+    var value: Any? &#x3D; null
+    operator fun getValue(any: Any?, prop: KProperty&lt;*&gt;): T &#123;
+        if (value &#x3D;&#x3D; null) &#123;
+            value &#x3D; block()
+        &#125;
+        return value as T
+    &#125;
+&#125;
+&#x2F;&#x2F; 通过 Later.kt 中定义的顶层函数进行使用
+fun &lt;T&gt; later(block: () -&gt; T) &#x3D; Later(block)</code></pre>
+<h1>infix</h1>
+<p>使用 infix 关键字能够创建类似 <code>contentProviderOf(&quot;name&quot; to &quot;Coming&quot;)</code> 这样的 A to B 的用法, 实质为 <code>A.to(B)</code> 的语法糖</p>
 <p>约束条件: infix 函数必须为某个类的成员函数, 不支持顶层函数; infix 函数必须接收且只能接收一个参数</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 infix 对 String 建立扩展函数 beginsWith</span></span><br><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> String.<span class="title">beginsWith</span><span class="params">(prefix: <span class="type">String</span>)</span></span> = startsWith(prefix)</span><br><span class="line"><span class="comment">// infix 函数额外支持下方调用方式</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">&quot;Hello Kotlin&quot;</span> beginsWith <span class="string">&quot;Hello&quot;</span>) &#123;&#125;</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">&quot;Hello Kotlin&quot;</span>.startsWith(<span class="string">&quot;Hello&quot;</span>)) &#123;&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">&#x2F;&#x2F; 使用 infix 对 String 建立扩展函数 beginsWith
+infix fun String.beginsWith(prefix: String) &#x3D; startsWith(prefix)
+&#x2F;&#x2F; infix 函数额外支持下方调用方式
+if (&quot;Hello Kotlin&quot; beginsWith &quot;Hello&quot;) &#123;&#125;
+&#x2F;&#x2F; 等价于
+if (&quot;Hello Kotlin&quot;.startsWith(&quot;Hello&quot;)) &#123;&#125;</code></pre>
 <p>Example2: 判断集合中是否有某个元素</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Collection<span class="type">&lt;T&gt;</span>.<span class="title">has</span><span class="params">(element: <span class="type">T</span>)</span></span> = contains(element)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> list = listOf(<span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Orange&quot;</span>, <span class="string">&quot;Pear&quot;</span>, <span class="string">&quot;Grape&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> (list has <span class="string">&quot;Banana&quot;</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">infix fun &lt;T&gt; Collection&lt;T&gt;.has(element: T) &#x3D; contains(element)
 
+val list &#x3D; listOf(&quot;Apple&quot;, &quot;Banana&quot;, &quot;Orange&quot;, &quot;Pear&quot;, &quot;Grape&quot;)
+if (list has &quot;Banana&quot;) &#123;&#125;</code></pre>
 <p>Example3: infix to 函数的源码</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;A, B&gt;</span> A.<span class="title">to</span><span class="params">(that: <span class="type">B</span>)</span></span>: Pair&lt;A, B&gt; = Pair(<span class="keyword">this</span>, that)</span><br></pre></td></tr></table></figure>
-
-<h1 id="Advanced-Generic"><a href="#Advanced-Generic" class="headerlink" title="Advanced Generic"></a>Advanced Generic</h1><h2 id="泛型实化"><a href="#泛型实化" class="headerlink" title="泛型实化"></a>泛型实化</h2><p>类型擦除机制: 泛型对于类型的约束只在编译时期存在，运行的时候 JVM 是识别不出来我们在代码中指定的泛型类型的; 即运行时类型已经被擦除了</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">public infix fun &lt;A, B&gt; A.to(that: B): Pair&lt;A, B&gt; &#x3D; Pair(this, that)</code></pre>
+<h1>Advanced Generic</h1>
+<h2 id="泛型实化">泛型实化</h2>
+<p>类型擦除机制: 泛型对于类型的约束只在编译时期存在，运行的时候 JVM 是识别不出来我们在代码中指定的泛型类型的; 即运行时类型已经被擦除了</p>
 <ul>
 <li>例如，我们创建了一个 <code>List&lt;String&gt;</code> 集合，虽然在编译时期只能向集合中添加字符串类型的元素，但是在运行时期 JVM 并不能知道它本来只打算包含哪种类型的元素，只能识别出来它是个List</li>
 </ul>
 <p>泛型实化: 借助 Kotlin 的内联函数替换的功能, 从而保留了函数体内的泛型, 甚至支持在函数体中操作泛型</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208231403755.png"></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内联函数 + 声明泛型的地方加上 reified 关键字表示该泛型要进行实化</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> <span class="title">getGenericType</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数体内甚至可以通过泛型获取其在执行时的真正类型</span></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> <span class="title">getGenericType</span><span class="params">()</span></span> = T::<span class="keyword">class</span>.java</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208231403755.png" alt=""></p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">&#x2F;&#x2F; 内联函数 + 声明泛型的地方加上 reified 关键字表示该泛型要进行实化
+inline fun &lt;reified T&gt; getGenericType() &#123;&#125;
 
-<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>优化 startActivity:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T&gt;</span> <span class="title">startActivity</span><span class="params">(context: <span class="type">Context</span>, block: <span class="type">Intent</span>.() -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(context, T::<span class="keyword">class</span>.java)</span><br><span class="line">    <span class="comment">// 添加参数等信息</span></span><br><span class="line">    intent.block()</span><br><span class="line">    context.startActivity(intent)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Application</span></span><br><span class="line">startActivity&lt;TestActivity&gt;(context) &#123;</span><br><span class="line">    putExtra(<span class="string">&quot;param1&quot;</span>, <span class="string">&quot;data&quot;</span>)</span><br><span class="line">    putExtra(<span class="string">&quot;param2&quot;</span>, <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="泛型的协变-HARD-TODO"><a href="#泛型的协变-HARD-TODO" class="headerlink" title="泛型的协变[HARD, TODO]"></a>泛型的协变[HARD, TODO]</h2><p>假如定义了一个 <code>MyClass&lt;T&gt;</code> 的泛型类，其中 A 是 B 的子类型，同时 <code>MyClass&lt;A&gt;</code>又是 <code>MyClass&lt;B&gt;</code> 的子类型，那么我们就可以称 MyClass 在 T 这个泛型上是协变的</p>
+&#x2F;&#x2F; 函数体内甚至可以通过泛型获取其在执行时的真正类型
+inline fun &lt;reified T&gt; getGenericType() &#x3D; T::class.java</code></pre>
+<h3 id="Application">Application</h3>
+<p>优化 startActivity:</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">inline fun &lt;reified T&gt; startActivity(context: Context, block: Intent.() -&gt; Unit) &#123;
+    val intent &#x3D; Intent(context, T::class.java)
+    &#x2F;&#x2F; 添加参数等信息
+    intent.block()
+    context.startActivity(intent)
+&#125;
+&#x2F;&#x2F; Application
+startActivity&lt;TestActivity&gt;(context) &#123;
+    putExtra(&quot;param1&quot;, &quot;data&quot;)
+    putExtra(&quot;param2&quot;, 123)
+&#125;</code></pre>
+<h2 id="泛型的协变-HARD-TODO">泛型的协变[HARD, TODO]</h2>
+<p>假如定义了一个 <code>MyClass&lt;T&gt;</code> 的泛型类，其中 A 是 B 的子类型，同时 <code>MyClass&lt;A&gt;</code>又是 <code>MyClass&lt;B&gt;</code> 的子类型，那么我们就可以称 MyClass 在 T 这个泛型上是协变的</p>
 <ul>
 <li>前提: 一个泛型类在其泛型类型的数据上是只读的话. 要实现这一点，则需要让 MyClass<T> 类中的所有方法都不能接收 T 类型的参数。换句话说，T 只能出现在 out 位置上，而不能出现在 in 位置上</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208231508585.png"></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleData</span>&lt;<span class="type">out T</span>&gt;(<span class="keyword">val</span> <span class="keyword">data</span>: T?) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">()</span></span>: T? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">data</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h1><p>协程可以理解为轻量级的线程, 普通的线程需要依靠操作系统的调度实现线程间的切换, 使用协程可以仅在编程语言的层面就能实现不同协程之间的切换，从而大大提升了并发编程的运行效率</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208231508585.png" alt=""></p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class SimpleData&lt;out T&gt;(val data: T?) &#123;
+    fun get(): T? &#123;
+        return data
+    &#125;
+&#125;</code></pre>
+<h1>协程</h1>
+<p>协程可以理解为轻量级的线程, 普通的线程需要依靠操作系统的调度实现线程间的切换, 使用协程可以仅在编程语言的层面就能实现不同协程之间的切换，从而大大提升了并发编程的运行效率</p>
 <ul>
 <li>在单线程模式下模拟多线程编程的效果，代码执行时的挂起与恢复完全是由编程语言来控制的，和操作系统无关</li>
 </ul>
-<h2 id="Quick-Start-1"><a href="#Quick-Start-1" class="headerlink" title="Quick Start"></a>Quick Start</h2><ol>
+<h2 id="Quick-Start-2">Quick Start</h2>
+<ol>
 <li>引入依赖</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1&quot;</span><br><span class="line">implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1&quot;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1&quot;
+implementation &quot;org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1&quot;</code></pre>
 <ol start="2">
 <li>使用 <code>GlobalScope.launch</code> 创建顶层协程作用域: 这种协程当应用程序运行结束时也会跟着一起结束</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = GlobalScope.launch &#123;</span><br><span class="line">    println(<span class="string">&quot;codes run in coroutine scope&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">0.</span><span class="number">.100</span> step <span class="number">2</span>) &#123;</span><br><span class="line">        println(<span class="string">&quot;index = <span class="variable">$i</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">job.cancel() <span class="comment">// 手动取消协程</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="阻塞"><a href="#阻塞" class="headerlink" title="阻塞"></a>阻塞</h2><p>常见的有 <code>Thread.sleep(millis)</code> 与 <code>delay(millis)</code></p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val job &#x3D; GlobalScope.launch &#123;
+    println(&quot;codes run in coroutine scope&quot;)
+    for(i in 0..100 step 2) &#123;
+        println(&quot;index &#x3D; $i&quot;)
+    &#125;
+&#125;
+job.cancel() &#x2F;&#x2F; 手动取消协程</code></pre>
+<h2 id="阻塞">阻塞</h2>
+<p>常见的有 <code>Thread.sleep(millis)</code> 与 <code>delay(millis)</code></p>
 <ul>
 <li>delay: 是一个非阻塞式的挂起函数，它只会挂起当前协程，并不会影响其他协程的运行 (只能在协程的作用域或其他挂起函数中调)</li>
 <li>sleep: 会阻塞当前的线程，这样运行在该线程下的所有协程都会被阻塞</li>
 </ul>
-<h2 id="runBlocking-协程"><a href="#runBlocking-协程" class="headerlink" title="runBlocking 协程"></a>runBlocking 协程</h2><p>GlobalScope.launch 创建的协程会随着应用程序的结束而结束, 这在离线测试时十分不友好, 因此封装了 runBlocking.launch 其可以保证在协程作用域内的所有代码和子协程没有全部执行完之前一直阻塞当前线程</p>
+<h2 id="runBlocking-协程">runBlocking 协程</h2>
+<p>GlobalScope.launch 创建的协程会随着应用程序的结束而结束, 这在离线测试时十分不友好, 因此封装了 runBlocking.launch 其可以保证在协程作用域内的所有代码和子协程没有全部执行完之前一直阻塞当前线程</p>
 <p>Tips: runBlocking 函数通常只应该在测试环境下使用，在正式环境中使用容易产生一些性能上的问题</p>
-<h3 id="创建多个子协程"><a href="#创建多个子协程" class="headerlink" title="创建多个子协程"></a>创建多个子协程</h3><p>如果外层作用域的协程结束了，该作用域下的所有子协程也会一同结束</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">runBlocking &#123;</span><br><span class="line">    launch &#123;</span><br><span class="line">        println(<span class="string">&quot;launch1&quot;</span>)</span><br><span class="line">        delay(<span class="number">1000</span>)</span><br><span class="line">        println(<span class="string">&quot;launch1 finished&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    launch &#123;</span><br><span class="line">        println(<span class="string">&quot;launch2&quot;</span>)</span><br><span class="line">        delay(<span class="number">1000</span>)</span><br><span class="line">        println(<span class="string">&quot;launch2 finished&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="对协程操作的封装"><a href="#对协程操作的封装" class="headerlink" title="对协程操作的封装"></a>对协程操作的封装</h2><p>如果想要将协程中执行的任务封装为函数, 但是如何<strong>拥有其协程作用域</strong>呢？可以使用 <code>suspend</code> 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">printDot</span><span class="params">()</span></span> &#123;</span><br><span class="line">    repeat(<span class="number">100</span>) &#123;</span><br><span class="line">        print(<span class="string">&quot;.&quot;</span>)</span><br><span class="line">        delay(<span class="number">100</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="创建多个子协程">创建多个子协程</h3>
+<p>如果外层作用域的协程结束了，该作用域下的所有子协程也会一同结束</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">runBlocking &#123;
+    launch &#123;
+        println(&quot;launch1&quot;)
+        delay(1000)
+        println(&quot;launch1 finished&quot;)
+    &#125;
+    launch &#123;
+        println(&quot;launch2&quot;)
+        delay(1000)
+        println(&quot;launch2 finished&quot;)
+    &#125;
+&#125;</code></pre>
+<h2 id="对协程操作的封装">对协程操作的封装</h2>
+<p>如果想要将协程中执行的任务封装为函数, 但是如何<strong>拥有其协程作用域</strong>呢？可以使用 <code>suspend</code> 关键字, 将任意函数声明为挂起函数, 并且挂起函数之间是可以相互调用的, 这就支持了如 delay 等挂起函数的调用</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">suspend fun printDot() &#123;
+    repeat(100) &#123;
+        print(&quot;.&quot;)
+        delay(100)
+    &#125;
+&#125;</code></pre>
 <p>但是如何<strong>真正的实现协程作用域的共享</strong>呢, 需要借助 <code>coroutineScope</code> 函数进行显示的声明</p>
 <ul>
 <li>coroutineScopre() 也是一个挂起函数, 可以在任何挂起函数中或协程作用域中调用</li>
 <li><strong>其可以继承外部的协程的作用域并创建一个子协程</strong>，借助这个特性，我们就可以给任意挂起函数提供协程作用域了</li>
 <li>其可以保证其作用域内的所有代码和子协程在全部执行完之前，外部的协程会一直被挂起</li>
 <li>和 runBlocking 不同的是 coroutineScope 函数只会阻塞当前协程，既不影响其他协程，也不影响任何线程，因此是不会造成任何性能上的问题的: 涉及的是子协程, 不用关注外部线程</li>
-<li>而 runBlocking 函数由于会挂起外部线程，如果你恰好又在主线程中当中调用它的话，那么就有可能会导致界面卡死的情况，所以不太推荐在实际项目中使<br>用: 涉及的是顶层协程, 需要阻塞线程以保存活</li>
+<li>而 runBlocking 函数由于会挂起外部线程，如果你恰好又在主线程中当中调用它的话，那么就有可能会导致界面卡死的情况，所以不太推荐在实际项目中使用: 涉及的是顶层协程, 需要阻塞线程以保存活</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">printDot</span><span class="params">()</span></span> = coroutineScope &#123;</span><br><span class="line">    launch &#123;</span><br><span class="line">        println(<span class="string">&quot;.&quot;</span>)</span><br><span class="line">        delay(<span class="number">1000</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="推荐的协程实践"><a href="#推荐的协程实践" class="headerlink" title="推荐的协程实践"></a>推荐的协程实践</h2><p>主要就是方便多个子协程的维护</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> job = Job()</span><br><span class="line"><span class="keyword">val</span> scope = CoroutineScope(job)</span><br><span class="line">scope.launch &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">1.</span><span class="number">.100</span> step <span class="number">2</span>) &#123;</span><br><span class="line">        delay(<span class="number">50</span>)</span><br><span class="line">        println(<span class="string">&quot;index = <span class="variable">$i</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">scope.launch &#123;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0.</span><span class="number">.100</span> step <span class="number">2</span>) &#123;</span><br><span class="line">        delay(<span class="number">50</span>)</span><br><span class="line">        println(<span class="string">&quot;index = <span class="variable">$i</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 销毁的时候调用</span></span><br><span class="line"><span class="comment">// job.cancel() // 调用一次 cancel 方法即可取消目标 scope 中的所有协程, 维护起来更加方便</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="协程的回调"><a href="#协程的回调" class="headerlink" title="协程的回调"></a>协程的回调</h2><h3 id="async-await"><a href="#async-await" class="headerlink" title="async&#x2F;await"></a>async&#x2F;await</h3><p>使用 <code>async</code> 关键字获取目标协程的返回值, 该关键字必须在协程作用域中使用, 其原理是创建一个新的子协程, 并返回一个 Deferred 对象, 通过执行该对象的 <code>await()</code> 方法获取执行结果</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">suspend fun printDot() &#x3D; coroutineScope &#123;
+    launch &#123;
+        println(&quot;.&quot;)
+        delay(1000)
+    &#125;
+&#125;</code></pre>
+<h2 id="推荐的协程实践">推荐的协程实践</h2>
+<p>主要就是方便多个子协程的维护</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val job &#x3D; Job()
+val scope &#x3D; CoroutineScope(job)
+scope.launch &#123;
+    for (i in 1..100 step 2) &#123;
+        delay(50)
+        println(&quot;index &#x3D; $i&quot;)
+    &#125;
+&#125;
+scope.launch &#123;
+    for (i in 0..100 step 2) &#123;
+        delay(50)
+        println(&quot;index &#x3D; $i&quot;)
+    &#125;
+&#125;
+&#x2F;&#x2F; 销毁的时候调用
+&#x2F;&#x2F; job.cancel() &#x2F;&#x2F; 调用一次 cancel 方法即可取消目标 scope 中的所有协程, 维护起来更加方便</code></pre>
+<h2 id="协程的回调">协程的回调</h2>
+<h3 id="async-await">async/await</h3>
+<p>使用 <code>async</code> 关键字获取目标协程的返回值, 该关键字必须在协程作用域中使用, 其原理是创建一个新的子协程, 并返回一个 Deferred 对象, 通过执行该对象的 <code>await()</code> 方法获取执行结果</p>
 <ul>
 <li>调用了 async 函数之后，代码块中的代码就会立刻开始执行</li>
 <li>当调用 await() 方法时，如果代码块中的代码还没执行完，那么 await() 方法会将当前协程阻塞住，直到可以获得 async 函数的执行结果</li>
 <li>因此选择何时调用 await 的时机很重要</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">GlobalScope.launch &#123;</span><br><span class="line">    getCoroutineRet()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------------------------//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">getCoroutineRet</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> job = Job()</span><br><span class="line">    <span class="keyword">val</span> scope = CoroutineScope(job)</span><br><span class="line">    <span class="keyword">val</span> ret = scope.async &#123;</span><br><span class="line">        <span class="keyword">var</span> ret = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">0.</span><span class="number">.100</span> step <span class="number">2</span>) &#123;</span><br><span class="line">            ret += i</span><br><span class="line">            delay(<span class="number">50</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        ret</span><br><span class="line">    &#125;.await()</span><br><span class="line">    println(<span class="string">&quot;<span class="variable">$ret</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">GlobalScope.launch &#123;
+    getCoroutineRet()
+&#125;
 
+&#x2F;&#x2F;--------------------------------------&#x2F;&#x2F;
+
+suspend fun getCoroutineRet() &#123;
+    val job &#x3D; Job()
+    val scope &#x3D; CoroutineScope(job)
+    val ret &#x3D; scope.async &#123;
+        var ret &#x3D; 0
+        for(i in 0..100 step 2) &#123;
+            ret +&#x3D; i
+            delay(50)
+        &#125;
+        ret
+    &#125;.await()
+    println(&quot;$ret&quot;)
+&#125;</code></pre>
 <p>使用 runBlocking 时更加简便, 因为有一个全局的协程作用域</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">runBlocking &#123;</span><br><span class="line">    <span class="keyword">val</span> result = async &#123;</span><br><span class="line">        <span class="number">5</span> + <span class="number">5</span></span><br><span class="line">    &#125;.await()</span><br><span class="line">    println(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="withContext"><a href="#withContext" class="headerlink" title="withContext"></a>withContext</h3><p>可以理解成 async 函数的一种简化版写法</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">runBlocking &#123;
+    val result &#x3D; async &#123;
+        5 + 5
+    &#125;.await()
+    println(result)
+&#125;</code></pre>
+<h3 id="withContext">withContext</h3>
+<p>可以理解成 async 函数的一种简化版写法</p>
 <ul>
 <li>调用 withContext() 函数之后，会立即执行代码块中的代码，同时将外部协程挂起</li>
 <li>当代码块中的代码全部执行完之后，会将最后一行的执行结果作为 withContext() 函数的返回值返回</li>
-<li>Dispatchers.Default 是 withContext 强制要求的线程参数, 数给协程指定一个具体的运行线程<ul>
+<li>Dispatchers.Default 是 withContext 强制要求的线程参数, 数给协程指定一个具体的运行线程
+<ul>
 <li>Dispatchers.Default 表示会使用一种默认低并发的线程策略，当你要执行的代码属于计算密集型任务时，开启过高的并发反而可能会影响任务的运行效率，此时就可以使用 Dispatchers.Default</li>
-<li>Dispatchers.IO 表示会使用一种较高并发的线程策略，当你要执行的代码大多数时间是在阻塞和等待中，比如说执行网络请求时，为了能够支持更高的并发数量，此时就可以使用 Dispatchers.IO</li>
+<li><a target="_blank" rel="noopener" href="http://Dispatchers.IO">Dispatchers.IO</a> 表示会使用一种较高并发的线程策略，当你要执行的代码大多数时间是在阻塞和等待中，比如说执行网络请求时，为了能够支持更高的并发数量，此时就可以使用 <a target="_blank" rel="noopener" href="http://Dispatchers.IO">Dispatchers.IO</a></li>
 <li>Dispatchers.Main 则表示不会开启子线程，而是在 Android 主线程中执行代码，但是这个值只能在 Android 项目中使用，纯 Kotlin 程序使用这种类型的线程参数会出现错误</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">runBlocking &#123;</span><br><span class="line">    <span class="keyword">val</span> result = withContext(Dispatchers.Default) &#123;</span><br><span class="line">        <span class="number">5</span> + <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">    println(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用协程优化传统回调"><a href="#使用协程优化传统回调" class="headerlink" title="使用协程优化传统回调"></a>使用协程优化传统回调</h2><p>借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化：</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">runBlocking &#123;
+    val result &#x3D; withContext(Dispatchers.Default) &#123;
+        5 + 5
+    &#125;
+    println(result)
+&#125;</code></pre>
+<h2 id="使用协程优化传统回调">使用协程优化传统回调</h2>
+<p>借助 suspendCoroutine 函数就能将传统回调机制的写法大幅简化：</p>
 <ul>
 <li>必须在协程作用域或挂起函数中调用</li>
-<li>接收一个 Lambda 表达式参数：将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码<ul>
+<li>接收一个 Lambda 表达式参数：将当前协程立即挂起，然后在一个普通的线程中执行 Lambda 表达式中的代码
+<ul>
 <li>Lambda 表达式的参数列表上会传入一个 Continuation 参数, 调用它的 resume() 方法或 resumeWithException() 可以让协程恢复执行</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">request</span><span class="params">(address: <span class="type">String</span>)</span></span>: String &#123;</span><br><span class="line">    <span class="comment">// suspendCoroutine -&gt; 当前协程就会被立刻挂起，而 Lambda 表达式中的代码则会在普通线程中执行</span></span><br><span class="line">    <span class="keyword">return</span> suspendCoroutine &#123; continuation -&gt;</span><br><span class="line">        HttpUtil.sendHttpRequest(address, <span class="keyword">object</span> : HttpCallbackListener &#123;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onFinish</span><span class="params">(response: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">                continuation.resume(response)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onError</span><span class="params">(e: <span class="type">Exception</span>)</span></span> &#123;</span><br><span class="line">                continuation.resumeWithException(e)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不用再手动处理回调 - 唯一的约束就是必须定义为挂起函数, 只能再协程作用域或其它挂起函数中调用</span></span><br><span class="line"><span class="keyword">suspend</span> <span class="function"><span class="keyword">fun</span> <span class="title">getBaiduResponse</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> response = request(<span class="string">&quot;https://www.baidu.com/&quot;</span>)</span><br><span class="line">        <span class="comment">// 对服务器响应的数据进行处理 &lt;- continuation.resume(response)</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        <span class="comment">// 对异常情况进行处理 &lt;- continuation.resumeWithException(e)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="DSL"><a href="#DSL" class="headerlink" title="DSL"></a>DSL</h1><p>DSL 是领域特定语言（Domain Specific Language）通过它我们可以编写出一些看似脱离其原始语法结构的代码，从而构建出一种专有的语法结构</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">suspend fun request(address: String): String &#123;
+    &#x2F;&#x2F; suspendCoroutine -&gt; 当前协程就会被立刻挂起，而 Lambda 表达式中的代码则会在普通线程中执行
+    return suspendCoroutine &#123; continuation -&gt;
+        HttpUtil.sendHttpRequest(address, object : HttpCallbackListener &#123;
+            override fun onFinish(response: String) &#123;
+                continuation.resume(response)
+            &#125;
+            override fun onError(e: Exception) &#123;
+                continuation.resumeWithException(e)
+            &#125;
+        &#125;)
+    &#125;
+&#125;
+&#x2F;&#x2F; 不用再手动处理回调 - 唯一的约束就是必须定义为挂起函数, 只能再协程作用域或其它挂起函数中调用
+suspend fun getBaiduResponse() &#123;
+    try &#123;
+        val response &#x3D; request(&quot;https:&#x2F;&#x2F;www.baidu.com&#x2F;&quot;)
+        &#x2F;&#x2F; 对服务器响应的数据进行处理 &lt;- continuation.resume(response)
+    &#125; catch (e: Exception) &#123;
+        &#x2F;&#x2F; 对异常情况进行处理 &lt;- continuation.resumeWithException(e)
+    &#125;
+&#125;</code></pre>
+<h1>DSL</h1>
+<p>DSL 是领域特定语言（Domain Specific Language）通过它我们可以编写出一些看似脱离其原始语法结构的代码，从而构建出一种专有的语法结构</p>
 <p>例如构造一个能够生成 table, tr, td 标签的语法结构</p>
 <ol>
 <li>首先定义底层单元结构 td</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Td</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> content = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">html</span><span class="params">()</span></span> = <span class="string">&quot;\n\t\t&lt;td&gt;<span class="variable">$content</span>&lt;/td&gt;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class Td &#123;
+    var content &#x3D; &quot;&quot;
+    fun html() &#x3D; &quot;\n\t\t&lt;td&gt;$content&lt;&#x2F;td&gt;&quot;
+&#125;</code></pre>
 <ol start="2">
 <li>逐层向上, 定义 tr 的结构, 实现对子 td 的封装维护</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Tr</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> children = ArrayList&lt;Td&gt;()</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">td</span><span class="params">(block: <span class="type">Td</span>.() -&gt; <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> td = Td()</span><br><span class="line">        td.content = td.block()</span><br><span class="line">        children.add(td)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">html</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">val</span> builder = StringBuilder()</span><br><span class="line">        builder.append(<span class="string">&quot;\n\t&lt;tr&gt;&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> (childTag <span class="keyword">in</span> children) &#123;</span><br><span class="line">            builder.append(childTag.html())</span><br><span class="line">        &#125;</span><br><span class="line">        builder.append(<span class="string">&quot;\n\t&lt;/tr&gt;&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> builder.toString()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class Tr &#123;
+    private val children &#x3D; ArrayList&lt;Td&gt;()
+    fun td(block: Td.() -&gt; String) &#123;
+        val td &#x3D; Td()
+        td.content &#x3D; td.block()
+        children.add(td)
+    &#125;
+    fun html(): String &#123;
+        val builder &#x3D; StringBuilder()
+        builder.append(&quot;\n\t&lt;tr&gt;&quot;)
+        for (childTag in children) &#123;
+            builder.append(childTag.html())
+        &#125;
+        builder.append(&quot;\n\t&lt;&#x2F;tr&gt;&quot;)
+        return builder.toString()
+    &#125;
+&#125;</code></pre>
 <ol start="3">
 <li>继续向上, 定义 table 的结构, 实现对子 tr 的封装维护</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Table</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> children = ArrayList&lt;Tr&gt;()</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">tr</span><span class="params">(block: <span class="type">Tr</span>.() -&gt; <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> tr = Tr()</span><br><span class="line">        tr.block()</span><br><span class="line">        children.add(tr)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">html</span><span class="params">()</span></span>: String &#123;</span><br><span class="line">        <span class="keyword">val</span> builder = StringBuilder()</span><br><span class="line">        builder.append(<span class="string">&quot;&lt;table&gt;&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> (childTag <span class="keyword">in</span> children) &#123;</span><br><span class="line">            builder.append(childTag.html())</span><br><span class="line">        &#125;</span><br><span class="line">        builder.append(<span class="string">&quot;\n&lt;/table&gt;&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> builder.toString()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class Table &#123;
+    private val children &#x3D; ArrayList&lt;Tr&gt;()
+    fun tr(block: Tr.() -&gt; Unit) &#123;
+        val tr &#x3D; Tr()
+        tr.block()
+        children.add(tr)
+    &#125;
+    fun html(): String &#123;
+        val builder &#x3D; StringBuilder()
+        builder.append(&quot;&lt;table&gt;&quot;)
+        for (childTag in children) &#123;
+            builder.append(childTag.html())
+        &#125;
+        builder.append(&quot;\n&lt;&#x2F;table&gt;&quot;)
+        return builder.toString()
+    &#125;
+&#125;</code></pre>
 <ol start="4">
 <li>实现顶层结构的封装</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">table</span><span class="params">(block: <span class="type">Table</span>.() -&gt; <span class="type">Unit</span>)</span></span>: String &#123;</span><br><span class="line">    <span class="keyword">val</span> table = Table()</span><br><span class="line">    table.block()</span><br><span class="line">    <span class="keyword">return</span> table.html()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun table(block: Table.() -&gt; Unit): String &#123;
+    val table &#x3D; Table()
+    table.block()
+    return table.html()
+&#125;</code></pre>
 <ol start="5">
 <li>构建 table</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> html = table &#123;</span><br><span class="line">        tr &#123;</span><br><span class="line">            td &#123; <span class="string">&quot;Apple&quot;</span> &#125;</span><br><span class="line">            td &#123; <span class="string">&quot;Grape&quot;</span> &#125;</span><br><span class="line">            td &#123; <span class="string">&quot;Orange&quot;</span> &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        tr &#123;</span><br><span class="line">            td &#123; <span class="string">&quot;Pear&quot;</span> &#125;</span><br><span class="line">            td &#123; <span class="string">&quot;Banana&quot;</span> &#125;</span><br><span class="line">            td &#123; <span class="string">&quot;Watermelon&quot;</span> &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    println(html)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202209111418343.png"></p>
-<h1 id="Java2Kotlin"><a href="#Java2Kotlin" class="headerlink" title="Java2Kotlin"></a>Java2Kotlin</h1><ul>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun main() &#123;
+    val html &#x3D; table &#123;
+        tr &#123;
+            td &#123; &quot;Apple&quot; &#125;
+            td &#123; &quot;Grape&quot; &#125;
+            td &#123; &quot;Orange&quot; &#125;
+        &#125;
+        tr &#123;
+            td &#123; &quot;Pear&quot; &#125;
+            td &#123; &quot;Banana&quot; &#125;
+            td &#123; &quot;Watermelon&quot; &#125;
+        &#125;
+    &#125;
+    println(html)
+&#125;</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202209111418343.png" alt=""></p>
+<h1>Java2Kotlin</h1>
+<ul>
 <li>借助 Android Studio: 将 Java 代码粘贴到 Android Studio 的 Kotlin 文件中, 会自动识别并提示转换</li>
 <li>导航栏中的 Code → Convert Java File to Kotlin File</li>
 </ul>
-<h1 id="Kotlin2Java"><a href="#Kotlin2Java" class="headerlink" title="Kotlin2Java"></a>Kotlin2Java</h1><p>Kotlin 拥有许多 Java 中并不存在的特性，因此很难执行一键转换</p>
+<h1>Kotlin2Java</h1>
+<p>Kotlin 拥有许多 Java 中并不存在的特性，因此很难执行一键转换</p>
 <p>但是可以先将 Kotlin 代码转换成 Kotlin 字节码，然后通过反编译的方式将它还原成 Java 代码；这种反编译出来的代码可能无法像正常编写的 Java 代码那样直接运行，但是非常有利于帮助我们理解诸多 Kotlin 特性背后的实现原理</p>
 <ul>
-<li>导航栏中的 Tools→Kotlin→Show Kotlin Bytecode </li>
+<li>导航栏中的 Tools→Kotlin→Show Kotlin Bytecode</li>
 <li>点击窗口左上角的 Decompile 按钮，就可以将这些 Kotlin 字节码反编译成 Java 代码</li>
 </ul>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/07/18/02-Kotlin-Advanced/,Jiancong Cui,02-Kotlin-Advanced,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/07/18/03-Android-Activity/" title="03-Android-Activity">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/07/18/04-Zenmap/" title="04-Zenmap">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

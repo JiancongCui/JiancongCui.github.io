@@ -1,100 +1,218 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>09-React-Functional Component · Jiancong Cui</title><meta name="description" content="函数式组件最简单的 React 组件形式，默认没有声明周期，没有 state 等一系列类组件所具有的功能
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>09-React-Functional Component · Jiancong Cui</title><meta name="description" content="函数式组件
+最简单的 React 组件形式，默认没有声明周期，没有 state 等一系列类组件所具有的功能
 
 支持 props 属性
 
-1234567function DemoFunctionalComponent(props) &amp;#123;    return (        &amp;lt;div&amp;gt"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>09-React-Functional Component</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2023-01-02</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/react/" title="react">react</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h1><p>最简单的 React 组件形式，默认没有声明周期，没有 state 等一系列类组件所具有的功能</p>
+function DemoFunctionalComponent(props) &amp;#123;
+    return (
+        &amp;lt;div&amp;gt;
+  "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>09-React-Functional Component</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2023-01-02</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/react/" title="react">react</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>函数式组件</h1>
+<p>最简单的 React 组件形式，默认没有声明周期，没有 state 等一系列类组件所具有的功能</p>
 <ul>
 <li>支持 props 属性</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">DemoFunctionalComponent</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span> Hello World <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="hooks"><a href="#hooks" class="headerlink" title="hooks"></a>hooks</h2><p>函数式组件的钩子函数, hooks, 扩展函数式组件的功能</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">function DemoFunctionalComponent(props) &#123;
+    return (
+        &lt;div&gt;
+            &lt;h1&gt; Hello World &lt;&#x2F;h1&gt;
+        &lt;&#x2F;div&gt;
+    )
+&#125;</code></pre>
+<h2 id="hooks">hooks</h2>
+<p>函数式组件的钩子函数, hooks, 扩展函数式组件的功能</p>
 <ul>
-<li>因为类组件存在一些缺陷: <ul>
-<li>高阶组件为了复用, 导致代码层级复杂; </li>
-<li>生命周期复杂; </li>
+<li>因为类组件存在一些缺陷:
+<ul>
+<li>高阶组件为了复用, 导致代码层级复杂;</li>
+<li>生命周期复杂;</li>
 <li>无状态组件若需要状态再改成类组件所需成本高</li>
 </ul>
 </li>
 </ul>
-<h1 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h1><h2 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h2><p>实现类组件中 state 的功能</p>
-<h3 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h3><p>1、创建自定义状态：会以数组的形式返回状态变量，以及状态修改接口</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> [money, setMoney] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
+<h1>钩子函数</h1>
+<h2 id="useState">useState</h2>
+<p>实现类组件中 state 的功能</p>
+<h3 id="Quick-Start">Quick Start</h3>
+<p>1、创建自定义状态：会以数组的形式返回状态变量，以及状态修改接口</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const [money, setMoney] &#x3D; useState(0);</code></pre>
 <p>2、使用状态修改接口函数更新状态：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">decrease</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">setMoney</span>(money - <span class="number">1</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const decrease &#x3D; () &#x3D;&gt; &#123;
+    setMoney(money - 1)
+&#125;</code></pre>
+<h3 id="自定义-useState">自定义 useState</h3>
+<p>useState 只是一个通用的定义 state 的接口，我们可以在 useState 的基础上进行二次封装，重新定义其维护的对象，以及选择性的暴露修改接口</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">export function useMoney() &#123;
+    &#x2F;&#x2F; 创建状态，得到状态及状态维护函数
+    const [money, setMoney] &#x3D; useState(0);
 
-<h3 id="自定义-useState"><a href="#自定义-useState" class="headerlink" title="自定义 useState"></a>自定义 useState</h3><p>useState 只是一个通用的定义 state 的接口，我们可以在 useState 的基础上进行二次封装，重新定义其维护的对象，以及选择性的暴露修改接口</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useMoney</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 创建状态，得到状态及状态维护函数</span></span><br><span class="line">    <span class="keyword">const</span> [money, setMoney] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">decrease</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">        <span class="title function_">setMoney</span>(money - <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">increase</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">        <span class="title function_">setMoney</span>(money + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">reset</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">        <span class="title function_">setMoney</span>(<span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; money, decrease, increase, reset &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    const decrease &#x3D; () &#x3D;&gt; &#123;
+        setMoney(money - 1)
+    &#125;
 
-<h2 id="useReducer"><a href="#useReducer" class="headerlink" title="useReducer"></a>useReducer</h2><p>useState 是在 useReducer 的基础上的二次封装，useReducer 更加适合复杂逻辑，采用指令的形式是实现逻辑的处理</p>
+    const increase &#x3D; () &#x3D;&gt; &#123;
+        setMoney(money + 1)
+    &#125;
+
+    const reset &#x3D; () &#x3D;&gt; &#123;
+        setMoney(0)
+    &#125;
+
+    return &#123; money, decrease, increase, reset &#125;;
+&#125;</code></pre>
+<h2 id="useReducer">useReducer</h2>
+<p>useState 是在 useReducer 的基础上的二次封装，useReducer 更加适合复杂逻辑，采用指令的形式是实现逻辑的处理</p>
 <ul>
 <li>本质实现状态管理的分离</li>
 </ul>
-<h3 id="Quick-Start-1"><a href="#Quick-Start-1" class="headerlink" title="Quick Start"></a>Quick Start</h3><p>1、首选需要准备指令处理函数 <code>xxxHandler</code>, 接收状态与指令名称</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">moneyReducerHandler</span>(<span class="params">state, action</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (action) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;decrease&#x27;</span>: </span><br><span class="line">            <span class="keyword">return</span> state - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;increase&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> state + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;reset&#x27;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attr">default</span>:</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Wrong Action Name!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="Quick-Start-2">Quick Start</h3>
+<p>1、首选需要准备指令处理函数 <code>xxxHandler</code>, 接收状态与指令名称</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">function moneyReducerHandler(state, action) &#123;
+    switch (action) &#123;
+        case &#39;decrease&#39;: 
+            return state - 1;
+        case &#39;increase&#39;:
+            return state + 1;
+        case &#39;reset&#39;:
+            return 0;
+        default:
+            throw new Error(&#39;Wrong Action Name!&#39;);
+    &#125;
+&#125;</code></pre>
 <p>2、随后通过 <code>useReducer</code> Hook 实现状态的声明以及指令分发接口的暴露：第一个参数为处理函数, 第二个参数为初始状态</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> [money, dispatch] = <span class="title function_">useReducer</span>(moneyReducerHandler, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const [money, dispatch] &#x3D; useReducer(moneyReducerHandler, 0)</code></pre>
 <p>3、最后手动实现功能与指令分发的匹配: 可以看出实现了状态更改接口的封装与保护</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">decrease</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">dispatch</span>(<span class="string">&#x27;decrease&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">increase</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">dispatch</span>(<span class="string">&#x27;increase&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">reset</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="title function_">dispatch</span>(<span class="string">&#x27;reset&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const decrease &#x3D; () &#x3D;&gt; &#123;
+    dispatch(&#39;decrease&#39;);
+&#125;
 
+const increase &#x3D; () &#x3D;&gt; &#123;
+    dispatch(&#39;increase&#39;);
+&#125;
+
+const reset &#x3D; () &#x3D;&gt; &#123;
+    dispatch(&#39;reset&#39;);
+&#125;</code></pre>
 <p>4、将功能暴露出去供开发者使用</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123; money, decrease, increase, reset &#125;;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">return &#123; money, decrease, increase, reset &#125;;</code></pre>
 <p>Tips: 配合 useContext 可以将 <code>money</code> 与 <code>dispatch</code> 传递出去给子组件使用</p>
-<h2 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h2><p>模拟 componentDidMount 与 componentUpdate 以及 componentWillUnmount 这三个生命周期</p>
+<h2 id="useEffect">useEffect</h2>
+<p>模拟 componentDidMount 与 componentUpdate 以及 componentWillUnmount 这三个生命周期</p>
 <ul>
 <li>参数 1 是回调函数</li>
 <li>参数 2 是对 state 变量的监控, 类型式列表, 其中的 state 状态变化后回调函数将执行</li>
 </ul>
-<h3 id="模拟-componetDidMount"><a href="#模拟-componetDidMount" class="headerlink" title="模拟 componetDidMount"></a>模拟 componetDidMount</h3><p>只在组件加载时执行一次：第二个参数为空列表</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Hello&quot;</span>)</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure>
+<h3 id="模拟-componetDidMount">模拟 componetDidMount</h3>
+<p>只在组件加载时执行一次：第二个参数为空列表</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">useEffect(() &#x3D;&gt; &#123;
+    console.log(&quot;Hello&quot;)
+&#125;, [])</code></pre>
+<h3 id="模拟-compontDidUpdate">模拟 compontDidUpdate</h3>
+<p>在第二个参数中要传入监视的 state 变量；如果没有第二个参数，则表示每次组件渲染（所有来源）都会执行该函数</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">useEffect(() &#x3D;&gt; &#123;
+    moneyTimer &#x3D; setInterval(() &#x3D;&gt; &#123;
+        setCount(c &#x3D;&gt; c + money);
+    &#125;, 1000)
 
-<h3 id="模拟-compontDidUpdate"><a href="#模拟-compontDidUpdate" class="headerlink" title="模拟 compontDidUpdate"></a>模拟 compontDidUpdate</h3><p>在第二个参数中要传入监视的 state 变量；如果没有第二个参数，则表示每次组件渲染（所有来源）都会执行该函数</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    moneyTimer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setCount</span>(<span class="function"><span class="params">c</span> =&gt;</span> c + money);</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">&#125;, [money]);</span><br></pre></td></tr></table></figure>
+&#125;, [money]);</code></pre>
+<h3 id="模拟-componentWillUnmount">模拟 componentWillUnmount</h3>
+<p>useEffect 中定义清除函数（返回的一个函数）即可实现当组件销毁时执行目标代码</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">useEffect(() &#x3D;&gt; &#123;
+    moneyTimer &#x3D; setInterval(() &#x3D;&gt; &#123;
+        setCount((c) &#x3D;&gt; &#123;return c + money&#125;);
+    &#125;, 1000)
 
-<h3 id="模拟-componentWillUnmount"><a href="#模拟-componentWillUnmount" class="headerlink" title="模拟 componentWillUnmount"></a>模拟 componentWillUnmount</h3><p>useEffect 中定义清除函数（返回的一个函数）即可实现当组件销毁时执行目标代码</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    moneyTimer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setCount</span>(<span class="function">(<span class="params">c</span>) =&gt;</span> &#123;<span class="keyword">return</span> c + money&#125;);</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">clearInterval</span>(moneyTimer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, [money]);</span><br></pre></td></tr></table></figure>
-
-<h2 id="useLayoutEffect"><a href="#useLayoutEffect" class="headerlink" title="useLayoutEffect"></a>useLayoutEffect</h2><p>useLayoutEffect: 会在 React 完成 DOM 更新后马上同步调用代码，阻塞页面渲染</p>
+    return () &#x3D;&gt; &#123;
+        clearInterval(moneyTimer);
+    &#125;
+&#125;, [money]);</code></pre>
+<h2 id="useLayoutEffect">useLayoutEffect</h2>
+<p>useLayoutEffect: 会在 React 完成 DOM 更新后马上同步调用代码，阻塞页面渲染</p>
 <ul>
 <li>useEffect 会在整个页面渲染完才会调用代码</li>
 <li>官方推荐优先使用 <code>useEffect()</code></li>
 <li>如果涉及 <code>DOM</code> 操作，则为了避免页面抖动应使用 <code>useLayoutEffect()</code></li>
 </ul>
-<h2 id="useRef"><a href="#useRef" class="headerlink" title="useRef"></a>useRef</h2><p>函数式组件重新渲染后，其中的局部变量会重新被初始化和赋值，这就导致了一些功能逻辑上实现的复杂性，因此使用 useRef 可以实现局部变量的缓存，使得重新渲染后仍然存储之前的状态值</p>
-<h3 id="Quick-Start-2"><a href="#Quick-Start-2" class="headerlink" title="Quick Start"></a>Quick Start</h3><p>实质上是自定义选择变量是否要被重新渲染，后续类似的还有自定义选择对象是否被重新渲染以及在什么条件下才重新渲染 <code>useCallback</code>（类似 useEffect）</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useEffect &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> timerId = <span class="title function_">useRef</span>(<span class="literal">null</span>);</span><br><span class="line">timerId.<span class="property">current</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">setTimerCount</span>(<span class="function"><span class="params">c</span> =&gt;</span> c + <span class="number">1</span>);</span><br><span class="line">&#125;, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="useRef">useRef</h2>
+<p>函数式组件重新渲染后，其中的局部变量会重新被初始化和赋值，这就导致了一些功能逻辑上实现的复杂性，因此使用 useRef 可以实现局部变量的缓存，使得重新渲染后仍然存储之前的状态值</p>
+<h3 id="Quick-Start-3">Quick Start</h3>
+<p>实质上是自定义选择变量是否要被重新渲染，后续类似的还有自定义选择对象是否被重新渲染以及在什么条件下才重新渲染 <code>useCallback</code>（类似 useEffect）</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123; useEffect &#125; from &#39;react&#39;
 
-<h3 id="实现组件引用"><a href="#实现组件引用" class="headerlink" title="实现组件引用"></a>实现组件引用</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inputTag = <span class="title function_">useRef</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">handleChange</span> = (<span class="params">event</span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inputTag.<span class="property">current</span>.<span class="property">value</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">target</span>.<span class="property">value</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;input type=<span class="string">&quot;text&quot;</span> ref=&#123;inputTag&#125; onChange=&#123;handleChange&#125;&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+let timerId &#x3D; useRef(null);
+timerId.current &#x3D; setInterval(() &#x3D;&gt; &#123;
+    setTimerCount(c &#x3D;&gt; c + 1);
+&#125;, 100);</code></pre>
+<h3 id="实现组件引用">实现组件引用</h3>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const inputTag &#x3D; useRef()
 
+const handleChange &#x3D; (event) &#x3D;&gt; &#123;
+    console.log(inputTag.current.value);
+    console.log(event.target.value)
+&#125;
 
-<h3 id="与-useState-的区别"><a href="#与-useState-的区别" class="headerlink" title="与 useState 的区别"></a>与 useState 的区别</h3><ol>
+&lt;input type&#x3D;&quot;text&quot; ref&#x3D;&#123;inputTag&#125; onChange&#x3D;&#123;handleChange&#125;&gt;
+</code></pre>
+<h3 id="与-useState-的区别">与 useState 的区别</h3>
+<ol>
 <li>useRef 定义的相当于是渲染之外的全局变量，该变量的变化不会引起组件的重新渲染，而 useState 会</li>
 <li>useRef 变量的更改是同步实时的，但是 useState 变量的更改是异步的，需要等到组件重新渲染后查看更新</li>
 </ol>
 <p>因此我认为 useState 更常用于状态的展示，useRef 应更常用于逻辑的处理</p>
-<h2 id="useCallback"><a href="#useCallback" class="headerlink" title="useCallback"></a>useCallback</h2><p>涉及到功能函数, 想要继承之前的内容可以使用 <code>useCallback</code>, 函数也可以依赖于某个状态而选择性更新</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> start = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    timerId.<span class="property">current</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setTimerCount</span>(<span class="function"><span class="params">c</span> =&gt;</span> c + timerStep);</span><br><span class="line">    &#125;, <span class="number">100</span>);</span><br><span class="line">    <span class="title function_">setTimerInfo</span>(&#123;<span class="attr">title</span>: <span class="string">&#x27;暂停&#x27;</span>, <span class="attr">operation</span>: <span class="string">&#x27;pause&#x27;</span>&#125;);</span><br><span class="line">&#125;, [timerStep])</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pause = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(timerId.<span class="property">current</span>);</span><br><span class="line">    timerId.<span class="property">current</span> = <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="title function_">setTimerInfo</span>(&#123;<span class="attr">title</span>: <span class="string">&#x27;继续&#x27;</span>, <span class="attr">operation</span>: <span class="string">&#x27;start&#x27;</span>&#125;);</span><br><span class="line">&#125;, [])</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reset = <span class="title function_">useCallback</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(timerId.<span class="property">current</span>) &#123;</span><br><span class="line">        <span class="built_in">clearInterval</span>(timerId.<span class="property">current</span>);</span><br><span class="line">        timerId.<span class="property">current</span> = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">setTimerCount</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="title function_">setTimerInfo</span>(&#123;<span class="attr">title</span>: <span class="string">&#x27;开始&#x27;</span>, <span class="attr">operation</span>: <span class="string">&#x27;start&#x27;</span>&#125;);</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure>
+<h2 id="useCallback">useCallback</h2>
+<p>涉及到功能函数, 想要继承之前的内容可以使用 <code>useCallback</code>, 函数也可以依赖于某个状态而选择性更新</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const start &#x3D; useCallback(() &#x3D;&gt; &#123;
+    timerId.current &#x3D; setInterval(() &#x3D;&gt; &#123;
+        setTimerCount(c &#x3D;&gt; c + timerStep);
+    &#125;, 100);
+    setTimerInfo(&#123;title: &#39;暂停&#39;, operation: &#39;pause&#39;&#125;);
+&#125;, [timerStep])
 
-<h2 id="useMemo"><a href="#useMemo" class="headerlink" title="useMemo"></a>useMemo</h2><p>与 <code>useCallback</code> 类似：都会在第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且这两个 <code>hooks</code> 都返回缓存的值</p>
+const pause &#x3D; useCallback(() &#x3D;&gt; &#123;
+    clearInterval(timerId.current);
+    timerId.current &#x3D; null;
+    
+    setTimerInfo(&#123;title: &#39;继续&#39;, operation: &#39;start&#39;&#125;);
+&#125;, [])
+
+const reset &#x3D; useCallback(() &#x3D;&gt; &#123;
+    if(timerId.current) &#123;
+        clearInterval(timerId.current);
+        timerId.current &#x3D; null;
+    &#125;
+    setTimerCount(0);
+    setTimerInfo(&#123;title: &#39;开始&#39;, operation: &#39;start&#39;&#125;);
+&#125;, [])</code></pre>
+<h2 id="useMemo">useMemo</h2>
+<p>与 <code>useCallback</code> 类似：都会在第一次渲染的时候执行，之后会在其依赖的变量发生改变时再次执行，并且这两个 <code>hooks</code> 都返回缓存的值</p>
 <ul>
 <li><code>useMemo</code> 会执行传入的函数并将结果返回, 如果两次结果一致, useMemo 将能避免复杂的函数逻辑再次执行</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> getCinemaList = <span class="title function_">useMemo</span>(</span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        cinemaList.<span class="title function_">filter</span>(...)</span><br><span class="line">    &#125;, [cinemaList]</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h2><p>实现组件间通信:</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const getCinemaList &#x3D; useMemo(
+    () &#x3D;&gt; &#123;
+        cinemaList.filter(...)
+    &#125;, [cinemaList]
+)
+</code></pre>
+<h2 id="useContext">useContext</h2>
+<p>实现组件间通信:</p>
 <p>1、先定义全局生产者空间：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">GlobalContext</span> = <span class="title class_">React</span>.<span class="title function_">createContext</span>()</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const GlobalContext &#x3D; React.createContext()</code></pre>
 <p>2、父组件中使用 <code>Provider</code> 暴露接口给待通信的子组件</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">GlobalContext</span>.<span class="property">Provider</span> value=&#123;&#123;...&#125;&#125;&gt;</span><br><span class="line">    <span class="comment">// 子组件</span></span><br><span class="line">&lt;/<span class="title class_">GlobalContext</span>.<span class="property">Provide</span>&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">&lt;GlobalContext.Provider value&#x3D;&#123;&#123;...&#125;&#125;&gt;
+    &#x2F;&#x2F; 子组件
+&lt;&#x2F;GlobalContext.Provide&gt;</code></pre>
 <p>3、子组件中通过 <code>useContext()</code> 获取生产者提供的接口</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> valueObj = <span class="title function_">useContext</span>(<span class="title class_">GlobalContext</span>);</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const valueObj &#x3D; useContext(GlobalContext);</code></pre>
 <p>应用：useReducer 的接口通常需要传递给子组件使用，因此通常与 useContext 配合使用</p>
-<h2 id="Custom-hooks"><a href="#Custom-hooks" class="headerlink" title="Custom hooks"></a>Custom hooks</h2><p>在外部将一些 hooks 整合封装并暴露必要的接口</p>
+<h2 id="Custom-hooks">Custom hooks</h2>
+<p>在外部将一些 hooks 整合封装并暴露必要的接口</p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2023/01/02/09-React-Functional-Component/,Jiancong Cui,09-React-Functional Component,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/01/02/10-React-Router/" title="10-React-Router">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/01/01/06-React-Controlled-and-Un-Components/" title="06-React-Controlled and Un_ Components">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

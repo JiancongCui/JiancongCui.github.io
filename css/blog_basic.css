@@ -49,13 +49,6 @@ mark {
 }
 
 /* ========== 文章内容区域 .post-content ========== */
-.post-content {
-  line-height: 1.8;
-  font-size: 1.05em;
-  color: #2c3e50;
-  word-wrap: break-word;
-  padding: 0.5em 0;
-}
 
 .post-content h1,
 .post-content h2,
@@ -119,47 +112,12 @@ mark {
   border-radius: 4px;
 }
 
-.post-content code,
-.post-content tt {
-  padding: 2px 4px;
-  background: #f5f5f5;
-  border: 1px solid #e0e0e0;
-  border-radius: 3px;
-  font-size: 0.95em;
-  color: #d14;
-  font-family: 'Fira Code', monospace;
-}
-
-.post-content pre {
-  font-size: 15px;
-  background-color: #f0f0f0;
-  padding: 1em;
-  border-radius: 4px;
-  overflow-x: auto;
-  color: #333;
-}
-
-.post-content pre code {
-  background: none;
-  border: none;
-  padding: 0;
-}
-
-.post-content figure.highlight {
-  background: #f8f8f8;
-  border-left: 4px solid #2980b9;
-  padding: 1em;
-  border-radius: 6px;
-  margin: 2em 0;
-  overflow-x: auto;
-}
-
 .post-content img {
   display: block;
   margin: 1em auto;
-  max-width: 100%;
+  max-width: 80%;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgb(112 107 107 / 59%)
 }
 
 .post-content hr {

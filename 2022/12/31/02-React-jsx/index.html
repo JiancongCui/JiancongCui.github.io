@@ -1,25 +1,77 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>02-React-jsx · Jiancong Cui</title><meta name="description" content="jsxJavaScript XML, 用来简化创建虚拟 DOM，通过 Babel 编译器将 jsx 相关代码转为 React 可识别的组件代码形式
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>02-React-jsx · Jiancong Cui</title><meta name="description" content="jsx
+JavaScript XML, 用来简化创建虚拟 DOM，通过 Babel 编译器将 jsx 相关代码转为 React 可识别的组件代码形式
 
 表达式：jsx 中只支持表达式; 一个表达式会产生一个值，可以放在任何一个需要值的地方，
 
-Demo12345React.createElement("><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>02-React-jsx</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-31</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/jsx/" title="jsx">jsx</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="jsx"><a href="#jsx" class="headerlink" title="jsx"></a>jsx</h1><p>JavaScript XML, 用来简化创建虚拟 DOM，通过 Babel 编译器将 jsx 相关代码转为 React 可识别的组件代码形式</p>
+Demo
+React.createElement(
+  "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>02-React-jsx</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-31</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/jsx/" title="jsx">jsx</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>jsx</h1>
+<p>JavaScript XML, 用来简化创建虚拟 DOM，通过 Babel 编译器将 jsx 相关代码转为 React 可识别的组件代码形式</p>
 <ul>
 <li>表达式：jsx 中只支持表达式; 一个表达式会产生一个值，可以放在任何一个需要值的地方，</li>
 </ul>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">    type,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="Demo">Demo</h2>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">React.createElement(
+    type,
+    [props],
+    [...children]
+)</code></pre>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import React from &#39;react&#39;
+import ReactDOM from &#39;react-dom&#39;
 
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">                <span class="string">&quot;div&quot;</span>,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">className</span>: <span class="string">&#x27;app&#x27;</span>,</span><br><span class="line">                    <span class="attr">id</span>: <span class="string">&#x27;appRoot&#x27;</span></span><br><span class="line">                &#125;, <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">                    <span class="string">&quot;h1&quot;</span>,</span><br><span class="line">                    &#123; <span class="attr">className</span>: <span class="string">&#x27;title&#x27;</span> &#125;,</span><br><span class="line">                    <span class="string">&quot;欢迎进入 React 的世界&quot;</span></span><br><span class="line">                ),</span><br><span class="line">                <span class="title class_">React</span>.<span class="title function_">createElement</span>(</span><br><span class="line">                    <span class="string">&quot;p&quot;</span>,</span><br><span class="line">                    <span class="literal">null</span>,</span><br><span class="line">                    <span class="string">&quot;React.js 是一个构建页面 UI 的库&quot;</span></span><br><span class="line">                )</span><br><span class="line">            )</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(</span><br><span class="line">    <span class="comment">// &lt;App/&gt;,</span></span><br><span class="line">    <span class="title class_">React</span>.<span class="title function_">createElement</span>(<span class="title class_">App</span>),</span><br><span class="line">    <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+class App extends React.Component &#123;
+    render() &#123;
+        return (
+            React.createElement(
+                &quot;div&quot;,
+                &#123;
+                    className: &#39;app&#39;,
+                    id: &#39;appRoot&#39;
+                &#125;, React.createElement(
+                    &quot;h1&quot;,
+                    &#123; className: &#39;title&#39; &#125;,
+                    &quot;欢迎进入 React 的世界&quot;
+                ),
+                React.createElement(
+                    &quot;p&quot;,
+                    null,
+                    &quot;React.js 是一个构建页面 UI 的库&quot;
+                )
+            )
+        )
+    &#125;
+&#125;
 
-
-<h1 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h1><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = <span class="string">&#x27;Hello React&#x27;</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">VDOM</span> = (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">h1</span> <span class="attr">className</span>=<span class="string">&quot;title&quot;</span> <span class="attr">style</span>=<span class="string">&#123;</span> &#123;<span class="attr">color:</span> &#x27;<span class="attr">white</span>&#x27;, <span class="attr">backgroundColor:</span> &#x27;<span class="attr">black</span>&#x27;, <span class="attr">fontSize:</span> &#x27;<span class="attr">60px</span>&#x27;&#125; &#125;&gt;</span>&#123;data&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Hello Peiqi<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;/*<span class="tag">&lt;<span class="name">Peiqi</span>&gt;</span>peiqi is a pig<span class="tag">&lt;/<span class="name">Peiqi</span>&gt;</span>*/&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
+ReactDOM.render(
+    &#x2F;&#x2F; &lt;App&#x2F;&gt;,
+    React.createElement(App),
+    document.getElementById(&#39;root&#39;)
+)</code></pre>
+<h1>语法规则</h1>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const data &#x3D; &#39;Hello React&#39;
+const VDOM &#x3D; (
+    &lt;div&gt;
+        &lt;h1 className&#x3D;&quot;title&quot; style&#x3D;&#123; &#123;color: &#39;white&#39;, backgroundColor: &#39;black&#39;, fontSize: &#39;60px&#39;&#125; &#125;&gt;&#123;data&#125;&lt;&#x2F;h1&gt;
+        &lt;h2&gt;Hello Peiqi&lt;&#x2F;h2&gt;
+        &#123;&#x2F;*&lt;Peiqi&gt;peiqi is a pig&lt;&#x2F;Peiqi&gt;*&#x2F;&#125;
+    &lt;&#x2F;div&gt;
+)</code></pre>
 <p>Tips：React 组件的样式官方推荐使用行内样式，旨在将组件看作一个整体，复用时只需要迁移一个组件代码即可</p>
-<p>1、创建虚拟 DOM 时不要写 引号 </p>
+<p>1、创建虚拟 DOM 时不要写 引号</p>
 <p>2、标签中混入 js 表达式使用 花括号</p>
 <p>3、标签中样式的类名要用 <code>className</code> 指定; <code>for</code> 关键字要用 <code>htmlFor</code></p>
 <p>4、标签中的内联样式要使用 js 对象传入 - 双层花括号，使用小驼峰改写 css 变量名</p>
 <p>5、只能有一个根标签</p>
-<p>6、单标签需要闭合 <code>&lt;input type=&#39;text&#39; /&gt;</code></p>
+<p>6、单标签需要闭合 <code>&lt;input type='text' /&gt;</code></p>
 <p>7、标签首字母小写，那么 React 就会去 HTML 中寻找与之同名的 HTML 标签；若首字母大写，则寻找同名组件</p>
 <p>8、注释需要使用 花括号 + js 块注释</p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/31/02-React-jsx/,Jiancong Cui,02-React-jsx,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/31/03-React-Component-Basic/" title="03-React-Component Basic">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/31/01-React-Create-React-App/" title="01-React-Create React App">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

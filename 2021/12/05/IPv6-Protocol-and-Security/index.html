@@ -1,99 +1,139 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>IPv6 Protocol and Security · Jiancong Cui</title><meta name="description" content="IPv6IPv4 存在的问题1、地址空间匮乏；
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>IPv6 Protocol and Security · Jiancong Cui</title><meta name="description" content="IPv6
+IPv4 存在的问题
+1、地址空间匮乏；
 2、报文头结构冗余，影响转发效率；
 3、存在网络空间安全隐患；
 4、不提供服务质量保证；
 5、缺少移动性支持；
-IPv6 的特点几乎无限大的地址空间；减少路由表大小；更好的安全性；
+IPv6 的特点
+几乎无限大的地址空间；减少路由表大小；更好的安全性；
 主要解决的问题：
 1、地址短缺问题
-2、路由速度慢的问题：(a) 通过"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>IPv6 Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h1><h2 id="IPv4-存在的问题"><a href="#IPv4-存在的问题" class="headerlink" title="IPv4 存在的问题"></a>IPv4 存在的问题</h2><p>1、地址空间匮乏；</p>
+2、路由速度慢的问题：(a)"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>IPv6 Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>IPv6</h1>
+<h2 id="IPv4-存在的问题">IPv4 存在的问题</h2>
+<p>1、地址空间匮乏；</p>
 <p>2、报文头结构冗余，影响转发效率；</p>
 <p>3、<strong>存在网络空间安全隐患</strong>；</p>
 <p>4、不提供服务质量保证；</p>
 <p>5、缺少移动性支持；</p>
-<h2 id="IPv6-的特点"><a href="#IPv6-的特点" class="headerlink" title="IPv6 的特点"></a>IPv6 的特点</h2><p>几乎无限大的地址空间；减少路由表大小；<strong>更好的安全性</strong>；</p>
+<h2 id="IPv6-的特点">IPv6 的特点</h2>
+<p>几乎无限大的地址空间；减少路由表大小；<strong>更好的安全性</strong>；</p>
 <p>主要解决的问题：</p>
 <p>1、地址短缺问题</p>
-<p>2、路由速度慢的问题：(a) 通过对报头结构的更改简化路由，加快路由速度; (b) 若不能指定路由器就不会打开处理扩展头部，改善了路由性能；(c) 在 IPv6 头部，有两个相应的优先权和流标识字段，允许把数据报指定为某一信息流的组成部分，并可对这些数据报进行流量控制。</p>
+<p>2、路由速度慢的问题：(a) 通过对报头结构的更改简化路由，加快路由速度; (b) 若不能指定路由器就不会打开处理扩展头部，改善了路由性能；© 在 IPv6 头部，有两个相应的优先权和流标识字段，允许把数据报指定为某一信息流的组成部分，并可对这些数据报进行流量控制。</p>
 <p>3、安全缺陷问题</p>
-<h2 id="IPv6-报文格式"><a href="#IPv6-报文格式" class="headerlink" title="IPv6 报文格式"></a>IPv6 报文格式</h2><p>IPv6 协议数据单元由固定首部，base header，和有效载荷，payload，组成，固定首部有 40 字节，包含有 8 个字段</p>
+<h2 id="IPv6-报文格式">IPv6 报文格式</h2>
+<p>IPv6 协议数据单元由固定首部，base header，和有效载荷，payload，组成，固定首部有 40 字节，包含有 8 个字段</p>
 <p>对比 IPv4：协议首部去掉了 7 个字段，增加了 1 个流标签字段，源地址和目的地址字段的地址位数扩大到 128 比特</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192327.png" alt="IPv6 报文格式"></p>
-<h2 id="IPv6-扩展首部"><a href="#IPv6-扩展首部" class="headerlink" title="IPv6 扩展首部"></a>IPv6 扩展首部</h2><p>有效载荷又包括扩展首部，extension header，和数据部分，IPv6 数据报在基本首部后面允许有零个或多个扩展首部，再后面是数据</p>
+<h2 id="IPv6-扩展首部">IPv6 扩展首部</h2>
+<p>有效载荷又包括扩展首部，extension header，和数据部分，IPv6 数据报在基本首部后面允许有零个或多个扩展首部，再后面是数据</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192657.png" alt="IPv6 扩展首部"></p>
 <p>这么多扩展首部将通过 <code>下一个首部字段</code> 进行连接，例如，Next Header 为 58 表示下一个扩展首部为 ICMP 报文</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192918.png" alt="下一个首部字段"></p>
-<h3 id="扩展报头"><a href="#扩展报头" class="headerlink" title="扩展报头"></a>扩展报头</h3><p>IPv6 提供了诸多扩展选项</p>
+<h3 id="扩展报头">扩展报头</h3>
+<p>IPv6 提供了诸多扩展选项</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205192829.png" alt="诸多扩展选项"></p>
-<h2 id="IPv6-地址"><a href="#IPv6-地址" class="headerlink" title="IPv6 地址"></a>IPv6 地址</h2><p>IPv6 地址结构：共128位，由全球路由前缀(GRP)，子网 ID，接口 ID组成，写成 8 个 16 进制数的形式，如 <code>2001:A304:6101:1::E0:F726:4E58</code></p>
-<h3 id="接口标识"><a href="#接口标识" class="headerlink" title="接口标识"></a>接口标识</h3><p>其生成方式有三：</p>
+<h2 id="IPv6-地址">IPv6 地址</h2>
+<p>IPv6 地址结构：共128位，由全球路由前缀(GRP)，子网 ID，接口 ID组成，写成 8 个 16 进制数的形式，如 <code>2001:A304:6101:1::E0:F726:4E58</code></p>
+<h3 id="接口标识">接口标识</h3>
+<p>其生成方式有三：</p>
 <p>1、有 IEEE EUI-64 规范自动生成：将 48 比特的 MAC 地址转化为 64 比特的接口 ID</p>
 <blockquote>
 <p>这是设备自动生成的，MAC 唯一因此生成的接口 ID 也唯一</p>
 </blockquote>
 <p>2、设备随机生成：一定程度上保护主机的私密性</p>
 <p>3、手工配置：建议在服务器和重要网络设备上配置</p>
-<h3 id="地址分类"><a href="#地址分类" class="headerlink" title="地址分类"></a>地址分类</h3><p>单播地址：Unicast Address，用于标识单一网络接口</p>
+<h3 id="地址分类">地址分类</h3>
+<p>单播地址：Unicast Address，用于标识单一网络接口</p>
 <p>多播地址：Multicast Address，用来标识一组网络接口(通常属于不同的节点)</p>
 <p>任播地址：Anycast Address，用来标识一组网络接口，这些接口通常属于不同的节点</p>
 <blockquote>
-<p>任播地址是 IPv6 引人的一种新的地址类型<br>广播，Broadcast Address，地址因为安全问题被 IPv4 取消</p>
+<p>任播地址是 IPv6 引人的一种新的地址类型广播，Broadcast Address，地址因为安全问题被 IPv4 取消</p>
 </blockquote>
-<h2 id="多播地址"><a href="#多播地址" class="headerlink" title="多播地址"></a>多播地址</h2><p>去掉广播后对那些原来使用了广播地址的场合，则使用一些更加<strong>有限</strong>的多播地址：也就是各节点自行选择加入某多播地址，使得节点发送的单个数据报可以被<strong>指明的</strong>多个目的节点收到</p>
-<h3 id="广播存在的问题"><a href="#广播存在的问题" class="headerlink" title="广播存在的问题"></a>广播存在的问题</h3><p>1、广播被用来携带去向多个节点的信息，或被那些不知信息来自何方的节点用来发出请求</p>
+<h2 id="多播地址">多播地址</h2>
+<p>去掉广播后对那些原来使用了广播地址的场合，则使用一些更加<strong>有限</strong>的多播地址：也就是各节点自行选择加入某多播地址，使得节点发送的单个数据报可以被<strong>指明的</strong>多个目的节点收到</p>
+<h3 id="广播存在的问题">广播存在的问题</h3>
+<p>1、广播被用来携带去向多个节点的信息，或被那些不知信息来自何方的节点用来发出请求</p>
 <p>2、广播可能会为网络性能设置障碍：同一网络链路上的大量广播意味着该链路上的每个节点都必须处理所有广播，但是其中绝大部分节点最终都将忽略该广播，因为该广播信息与自己无关</p>
-<h3 id="多播地址格式"><a href="#多播地址格式" class="headerlink" title="多播地址格式"></a>多播地址格式</h3><p>用最高 8 位是 11111111 二进制位组合来标识多播地址，即 <code>FFxx::...</code></p>
+<h3 id="多播地址格式">多播地址格式</h3>
+<p>用最高 8 位是 11111111 二进制位组合来标识多播地址，即 <code>FFxx::...</code></p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205193939.png" alt="多播"></p>
 <p>1、Flags 字段：用来表示 permanent 或 transient 多播组</p>
 <p>2、Scope 字段：表示多播组的范围</p>
 <p>3、Group ID 字段：表示多播组的 ID</p>
-<h3 id="预定义的多播组"><a href="#预定义的多播组" class="headerlink" title="预定义的多播组"></a>预定义的多播组</h3><p>本地链路时可用：</p>
+<h3 id="预定义的多播组">预定义的多播组</h3>
+<p>本地链路时可用：</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205194153.png" alt="预定义的多播组"></p>
-<h2 id="任播地址"><a href="#任播地址" class="headerlink" title="任播地址"></a>任播地址</h2><p>任播地址是 IPv6 协议特有的地址类型，适合于一对一组中的一个(One to One of Many)的通信需求</p>
+<h2 id="任播地址">任播地址</h2>
+<p>任播地址是 IPv6 协议特有的地址类型，适合于一对一组中的一个(One to One of Many)的通信需求</p>
 <blockquote>
 <p>因此任播地址只能用作 IPv6 数据报的目的地址，任播地址只能分配给 IPv6 路由器或服务器主机。</p>
 </blockquote>
 <p>因此任播地址会标识一组网络接口，但是路由器会把目标地址是任播地址的数据发送给离该路由器最近的一个网络接口</p>
-<h3 id="与多播比较"><a href="#与多播比较" class="headerlink" title="与多播比较"></a>与多播比较</h3><p>1、同样是多个节点共享一个任播地址</p>
+<h3 id="与多播比较">与多播比较</h3>
+<p>1、同样是多个节点共享一个任播地址</p>
 <p>2、不同的是，只有一个节点期待接收给任播地址的数据报；而多播还是全部发送，更像是受限的广播。</p>
-<h3 id="任播的应用"><a href="#任播的应用" class="headerlink" title="任播的应用"></a>任播的应用</h3><p>任播地址在移动通信中很有用，接收方只需要是一组接口中的一个即可，这样可以使移动用户在地理位置上不会受过多的限制</p>
-<h2 id="本地链路地址"><a href="#本地链路地址" class="headerlink" title="本地链路地址"></a>本地链路地址</h2><p>link-local address，本地链路地址具有固定的地址格式，是在 IPv6 中应用范围受限制的地址类型</p>
+<h3 id="任播的应用">任播的应用</h3>
+<p>任播地址在移动通信中很有用，接收方只需要是一组接口中的一个即可，这样可以使移动用户在地理位置上不会受过多的限制</p>
+<h2 id="本地链路地址">本地链路地址</h2>
+<p>link-local address，本地链路地址具有固定的地址格式，是在 IPv6 中应用范围受限制的地址类型</p>
 <p>1、应用范围限制在连接到同一本地链路的节点之间</p>
 <p>2、在邻居发现等 IPv6 机制中使用到该类型的地址</p>
 <p>3、由设备自动生成，在本地网络中使用</p>
-<h3 id="本地链路地址格式"><a href="#本地链路地址格式" class="headerlink" title="本地链路地址格式"></a>本地链路地址格式</h3><p>一个特定的前缀和接口 ID 两部分，使用特定的本地链路前缀 FE80:: &#x2F;64，低 64 位为接口ID（设备自动生成）。</p>
+<h3 id="本地链路地址格式">本地链路地址格式</h3>
+<p>一个特定的前缀和接口 ID 两部分，使用特定的本地链路前缀 FE80:: /64，低 64 位为接口ID（设备自动生成）。</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205195005.png" alt="本地链路地址格式"></p>
-<h2 id="本地站点地址"><a href="#本地站点地址" class="headerlink" title="本地站点地址"></a>本地站点地址</h2><p>site-local address，本地站点地址也是应用范围受限的地址，仅能在一个单位的网络内使用，类似于 IPv4 中的专用地址（私有地址）</p>
-<h2 id="地址配置技术"><a href="#地址配置技术" class="headerlink" title="地址配置技术"></a>地址配置技术</h2><p>即对路由器的接口配置一个 IPv6 地址，并指定一个前缀长度</p>
+<h2 id="本地站点地址">本地站点地址</h2>
+<p>site-local address，本地站点地址也是应用范围受限的地址，仅能在一个单位的网络内使用，类似于 IPv4 中的专用地址（私有地址）</p>
+<h2 id="地址配置技术">地址配置技术</h2>
+<p>即对路由器的接口配置一个 IPv6 地址，并指定一个前缀长度</p>
 <blockquote>
 <p>IPv6 没有子网掩码的概念，而是前缀长度取代了子网掩码</p>
 </blockquote>
-<h3 id="无状态自动配置"><a href="#无状态自动配置" class="headerlink" title="无状态自动配置"></a>无状态自动配置</h3><p>用于网络节点的地址自动配置，网络接口接收路由器宣告的全局地址前缀，再结合接口 ID 得到一个可聚集全局单播地址</p>
+<h3 id="无状态自动配置">无状态自动配置</h3>
+<p>用于网络节点的地址自动配置，网络接口接收路由器宣告的全局地址前缀，再结合接口 ID 得到一个可聚集全局单播地址</p>
 <p>具体如下：</p>
 <p>1、主机发送 Router Solicitation 报文，路由器回应 Router Advertisement 报文</p>
 <p>2、主机获得前缀及其它参数</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205204554.png" alt="无状态自动配置"></p>
-<h3 id="有状态自动配置"><a href="#有状态自动配置" class="headerlink" title="有状态自动配置"></a>有状态自动配置</h3><p>该配置就需要专门的 DHCP 服务器的支持了，网络接口通过客户机&#x2F;服务器模式从 DHCP 服务器处得到地址配置信息</p>
-<h3 id="手工配置"><a href="#手工配置" class="headerlink" title="手工配置"></a>手工配置</h3><p>常用于服务器和重要网络设备</p>
-<h2 id="ICMPv6"><a href="#ICMPv6" class="headerlink" title="ICMPv6"></a>ICMPv6</h2><p>Internet Control Message Protocol，网际管理协议, 实现 IPv4 中 ICMP、ARP 和 IGMP 的功能</p>
+<h3 id="有状态自动配置">有状态自动配置</h3>
+<p>该配置就需要专门的 DHCP 服务器的支持了，网络接口通过客户机/服务器模式从 DHCP 服务器处得到地址配置信息</p>
+<h3 id="手工配置">手工配置</h3>
+<p>常用于服务器和重要网络设备</p>
+<h2 id="ICMPv6">ICMPv6</h2>
+<p>Internet Control Message Protocol，网际管理协议, 实现 IPv4 中 ICMP、ARP 和 IGMP 的功能</p>
 <p>向源节点报告关于目的地址传输 IPv6 包的错误和信息，具有差错报告、网络诊断、邻节点发现和多播实现等功能</p>
-<h3 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h3><p>该报文封装在 IPv6 中，next header 号是 58</p>
+<h3 id="报文格式">报文格式</h3>
+<p>该报文封装在 IPv6 中，next header 号是 58</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128110949.png" alt="IPv6中的封装"></p>
 <p>但是是在最后一个扩展首部后:</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205205144.png" alt="报文位置"></p>
 <p>具体报文格式如下：IMCP 类型，ICMP 代码，校验和，ICMP 报文内容</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128111232.png" alt="具体报文格式"></p>
-<h3 id="预定义类型"><a href="#预定义类型" class="headerlink" title="预定义类型"></a>预定义类型</h3><p>存在多种预定义类型：</p>
+<h3 id="预定义类型">预定义类型</h3>
+<p>存在多种预定义类型：</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128111330.png" alt="预定义类型"></p>
-<h2 id="NDP"><a href="#NDP" class="headerlink" title="NDP"></a>NDP</h2><p>NDP，Neighbor Discovery Protocol，邻居发现协议，是由 IPv4 中的地址解析协议ARP、ICMP 路由探测协议 RDISC、ICMP 报文重定向等协议综合而成的</p>
+<h2 id="NDP">NDP</h2>
+<p>NDP，Neighbor Discovery Protocol，邻居发现协议，是由 IPv4 中的地址解析协议ARP、ICMP 路由探测协议 RDISC、ICMP 报文重定向等协议综合而成的</p>
 <blockquote>
-<p>并非全新的协议<br>需要用到 133 - 137 这五类预定义 IMCP报文</p>
+<p>并非全新的协议需要用到 133 - 137 这五类预定义 IMCP报文</p>
 </blockquote>
 <p>1、替换了原来的 ARP 协议</p>
 <p>2、无状态地址自动配置：前缀通告；重复地址检测；前缀重新编址</p>
 <p>3、路由器重定向</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128111652.png" alt="报文类型的应用"></p>
-<h3 id="NDP-邻接点请求与通告报文"><a href="#NDP-邻接点请求与通告报文" class="headerlink" title="NDP 邻接点请求与通告报文"></a>NDP 邻接点请求与通告报文</h3><p>邻居节点请求&#x2F;通告报文完成 ARP 功能以及连通性测试</p>
+<h3 id="NDP-邻接点请求与通告报文">NDP 邻接点请求与通告报文</h3>
+<p>邻居节点请求/通告报文完成 ARP 功能以及连通性测试</p>
 <p><strong>实现 ARP 的功能</strong>：</p>
 <p>1、源地址为本地链路地址，目的地址为 FF02::1 (所有节点的多播地址)</p>
 <blockquote>
@@ -107,7 +147,8 @@ IPv6 的特点几乎无限大的地址空间；减少路由表大小；更好的
 <blockquote>
 <p>在这一过程中涉及源地址与目的地址<strong>都使用本地链路地址，并非真实的 IPv6 地址</strong>，因为本地链路地址就是用来<strong>邻居节点</strong>发现的</p>
 </blockquote>
-<h3 id="NDP-路由器请求报文和路由器通告报文"><a href="#NDP-路由器请求报文和路由器通告报文" class="headerlink" title="NDP 路由器请求报文和路由器通告报文"></a>NDP 路由器请求报文和路由器通告报文</h3><p>路由器每 5 分钟就发送一个路由器通告报文，使得主机了解并更新每个网络接口所连接的链路上的路由器的有关信息</p>
+<h3 id="NDP-路由器请求报文和路由器通告报文">NDP 路由器请求报文和路由器通告报文</h3>
+<p>路由器每 5 分钟就发送一个路由器通告报文，使得主机了解并更新每个网络接口所连接的链路上的路由器的有关信息</p>
 <blockquote>
 <p>多接口主机需要发送 IPv6 分组时，需要了解每个网络接口所连接的链路上的路由器的有关信息</p>
 </blockquote>
@@ -120,10 +161,12 @@ IPv6 的特点几乎无限大的地址空间；减少路由表大小；更好的
 <p>只有 IPv6 路由器能在本地链路上通告前缀，禁止主机通告前缀</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205210051.png" alt="前缀通告"></p>
-<h3 id="NDP-重复地址检测"><a href="#NDP-重复地址检测" class="headerlink" title="NDP 重复地址检测"></a>NDP 重复地址检测</h3><p>每个网络接口可以进行 IPv6 地址的无状态配置，但是配置前需要根据路由器请求报文和路由器通告报文获取前缀，然后进行重复地址检测，即发送一个邻接点请求域通告报文询问是否有人使用了这个地址</p>
+<h3 id="NDP-重复地址检测">NDP 重复地址检测</h3>
+<p>每个网络接口可以进行 IPv6 地址的无状态配置，但是配置前需要根据路由器请求报文和路由器通告报文获取前缀，然后进行重复地址检测，即发送一个邻接点请求域通告报文询问是否有人使用了这个地址</p>
 <p>Q：MAC 地址生成的接口 ID 是唯一的，还通告啥？</p>
 <p>A：地址既可以无状态配置也可以手动配置，因此需要防止与手动配置的地址冲突。</p>
-<h1 id="IPv6-安全机制"><a href="#IPv6-安全机制" class="headerlink" title="IPv6 安全机制"></a>IPv6 安全机制</h1><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128121525.png" alt="攻击方式对比"></p>
+<h1>IPv6 安全机制</h1>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211128121525.png" alt="攻击方式对比"></p>
 <p>1、v6 没有广播包（但是多播包或许也可以被利用）</p>
 <p>2、v6 没有 ARP 协议（但是 ICMP 的邻节点请求实现欺骗或许也可以）</p>
 <p>3、v6 地址空间太大，可以有效防止 IP 扫描</p>
@@ -135,7 +178,8 @@ IPv6 的特点几乎无限大的地址空间；减少路由表大小；更好的
 <p>9、v6 的功能强大，因此对应的攻击点也更多</p>
 <p>10、v6 引入了扩展头</p>
 <p>11、v6 中 DNS 引入了一定的变化，略</p>
-<h2 id="端到端-IPSec-安全协议"><a href="#端到端-IPSec-安全协议" class="headerlink" title="端到端 IPSec 安全协议"></a>端到端 IPSec 安全协议</h2><p>IPv6 中集成了 IPSec，通过认证报头（AH）和封装安全载荷报头（ESP）两个扩展头实现加密、验证功能</p>
+<h2 id="端到端-IPSec-安全协议">端到端 IPSec 安全协议</h2>
+<p>IPv6 中集成了 IPSec，通过认证报头（AH）和封装安全载荷报头（ESP）两个扩展头实现加密、验证功能</p>
 <blockquote>
 <p>IPSec 抗重放攻击等安全功能在 IPv6 协议中同样被继承</p>
 </blockquote>
@@ -144,7 +188,8 @@ IPv6 的特点几乎无限大的地址空间；减少路由表大小；更好的
 <p>透明转发：中间路由器将不必处理报文直接转发即可</p>
 <p>IPv6 提高了转发效率减轻了转发压力：IPv4 中包头中项较多，每一台路由器都得处理一遍；在 IPv6 中缩减了包头，将大部分功能放到了扩展报头中实现，路由器借助 Next Header 只检查必要的扩展包头即可</p>
 </blockquote>
-<h2 id="真实源地址检查体系"><a href="#真实源地址检查体系" class="headerlink" title="真实源地址检查体系"></a>真实源地址检查体系</h2><p>在 IPv6 中将对接入路由器的用户进行源地址检查，使得因特网服务提供商 ISP 可以验证其客户地址的合法性</p>
+<h2 id="真实源地址检查体系">真实源地址检查体系</h2>
+<p>在 IPv6 中将对接入路由器的用户进行源地址检查，使得因特网服务提供商 ISP 可以验证其客户地址的合法性</p>
 <blockquote>
 <p>真实IP源地址的三重含义：经授权的 (是不是我配的或者可信机构配的)、唯一的、可追溯的</p>
 </blockquote>
@@ -153,67 +198,96 @@ IPv6 的特点几乎无限大的地址空间；减少路由表大小；更好的
 <p>从主机IP地址、IP地址前缀和自治域三个粒度构成多重监控防御体系</p>
 <p>该体系不但可以有效阻止仿冒源地址类攻击；而且能够通过监控流量来实现基于真实源地址的计费和网管。</p>
 </blockquote>
-<h2 id="防扫描"><a href="#防扫描" class="headerlink" title="防扫描"></a>防扫描</h2><p>IPv4 中：黑客攻击前通常对目标主机及网络进行扫描并搜集数据，以此推断出目标网络的拓扑结构及主机开放的服务、端口等</p>
-<p>IPv6 中：每一个 IPv6 地址是 128 位，假设网络前缀为 64 位，那么在一个子网中就会存在 2^64 个地址，假设攻击者以 10M&#x2F;s 的速度扫描，需要 5 万年才能遍历所有的地址</p>
+<h2 id="防扫描">防扫描</h2>
+<p>IPv4 中：黑客攻击前通常对目标主机及网络进行扫描并搜集数据，以此推断出目标网络的拓扑结构及主机开放的服务、端口等</p>
+<p>IPv6 中：每一个 IPv6 地址是 128 位，假设网络前缀为 64 位，那么在一个子网中就会存在 2^64 个地址，假设攻击者以 10M/s 的速度扫描，需要 5 万年才能遍历所有的地址</p>
 <blockquote>
-<p>这使网络侦察的难度和代价都大大增加<br>也间接增加了蠕虫病毒扩散的难度</p>
+<p>这使网络侦察的难度和代价都大大增加也间接增加了蠕虫病毒扩散的难度</p>
 </blockquote>
-<h2 id="可溯源"><a href="#可溯源" class="headerlink" title="可溯源"></a>可溯源</h2><p>IPv4 中：NAT 的广泛应用一定程度上破坏了互联网端到端通信的特性并隐藏了用户的真实 IP，导致事前基于过滤类的预防机制和事后追踪溯源变的尤为困难</p>
+<h2 id="可溯源">可溯源</h2>
+<p>IPv4 中：NAT 的广泛应用一定程度上破坏了互联网端到端通信的特性并隐藏了用户的真实 IP，导致事前基于过滤类的预防机制和事后追踪溯源变的尤为困难</p>
 <blockquote>
 <p>我过滤的公网地址可能是一个机构的公网地址，不能因为机构内的一个人，封掉整个机构</p>
 </blockquote>
 <p>IPv6 中：每一个终端都可以分配到一个 IP 地址并和个人信息进行绑定，安全设备可以通过简单的过滤策略对节点进行安全控制，进一步提高网络安全性</p>
-<h2 id="防止网络放大攻击"><a href="#防止网络放大攻击" class="headerlink" title="防止网络放大攻击"></a>防止网络放大攻击</h2><p>IPv6 中不存广播地址只有有限的多播地址，因此在一定程度上防止了网络放大攻击</p>
+<h2 id="防止网络放大攻击">防止网络放大攻击</h2>
+<p>IPv6 中不存广播地址只有有限的多播地址，因此在一定程度上防止了网络放大攻击</p>
 <blockquote>
 <p>ICMPv6 在设计上不会响应组播地址和广播地址的消息，不存在广播，所以，只需要在网络边缘过滤组播数据包，即可阻止由攻击者向广播网段发送数据包而引起的网络放大攻击。</p>
 </blockquote>
-<h2 id="防止碎片攻击"><a href="#防止碎片攻击" class="headerlink" title="防止碎片攻击"></a>防止碎片攻击</h2><p>IPv6 认为 MTU 小于 1280 字节的数据包是非法的，处理时会丢弃 MTU 小于 1280 字节的数据包(除非它是最后一个包)</p>
-<h1 id="IPv6-安全问题"><a href="#IPv6-安全问题" class="headerlink" title="IPv6 安全问题"></a>IPv6 安全问题</h1><h2 id="扩展包头安全问题"><a href="#扩展包头安全问题" class="headerlink" title="扩展包头安全问题"></a>扩展包头安全问题</h2><p>协议规范没有约束扩展报头的使用，这存在极大的安全隐患</p>
-<h3 id="下一报头不存在"><a href="#下一报头不存在" class="headerlink" title="下一报头不存在"></a>下一报头不存在</h3><p>攻击者可将下一报头字段设置畸形值，可实施拒绝服务（DoS）攻击</p>
-<h3 id="扩展报头数目过多"><a href="#扩展报头数目过多" class="headerlink" title="扩展报头数目过多"></a>扩展报头数目过多</h3><p>v6 协议对扩展头数量没有做出限制且同一种类型的扩展头也可以出现多次，攻击者可以通过构造包含异常数量扩展头的报文对防火墙进行 DOS 攻击，防火墙在解析报文时耗费大量资源，从而影响转发性能</p>
+<h2 id="防止碎片攻击">防止碎片攻击</h2>
+<p>IPv6 认为 MTU 小于 1280 字节的数据包是非法的，处理时会丢弃 MTU 小于 1280 字节的数据包(除非它是最后一个包)</p>
+<h1>IPv6 安全问题</h1>
+<h2 id="扩展包头安全问题">扩展包头安全问题</h2>
+<p>协议规范没有约束扩展报头的使用，这存在极大的安全隐患</p>
+<h3 id="下一报头不存在">下一报头不存在</h3>
+<p>攻击者可将下一报头字段设置畸形值，可实施拒绝服务（DoS）攻击</p>
+<h3 id="扩展报头数目过多">扩展报头数目过多</h3>
+<p>v6 协议对扩展头数量没有做出限制且同一种类型的扩展头也可以出现多次，攻击者可以通过构造包含异常数量扩展头的报文对防火墙进行 DOS 攻击，防火墙在解析报文时耗费大量资源，从而影响转发性能</p>
 <blockquote>
 <p>防御技术：限制扩展头的数量和同一类型扩展头的数目来避免</p>
 </blockquote>
-<h3 id="逐跳选项报头"><a href="#逐跳选项报头" class="headerlink" title="逐跳选项报头"></a>逐跳选项报头</h3><p>发送大量包含路由提示选项的 IPv6 数据包，包含有该报头的数据包为每次跳转指定转发参数，要求所有路由器对该数据包进行处理并仔细查看该数据包的报头信息，当攻击者发送大量此类 IPv6 数据包时，将消耗链路上路由器大量资源，严重可造成 DoS 攻击。</p>
+<h3 id="逐跳选项报头">逐跳选项报头</h3>
+<p>发送大量包含路由提示选项的 IPv6 数据包，包含有该报头的数据包为每次跳转指定转发参数，要求所有路由器对该数据包进行处理并仔细查看该数据包的报头信息，当攻击者发送大量此类 IPv6 数据包时，将消耗链路上路由器大量资源，严重可造成 DoS 攻击。</p>
 <blockquote>
 <p>限制路由器对包含路由提示选项的数据包的处理数量。</p>
 </blockquote>
-<h3 id="目的选项报头"><a href="#目的选项报头" class="headerlink" title="目的选项报头"></a>目的选项报头</h3><p>目的选项报头本用于为中间或最终目标指定数据包的转发参数</p>
+<h3 id="目的选项报头">目的选项报头</h3>
+<p>目的选项报头本用于为中间或最终目标指定数据包的转发参数</p>
 <p>因为在移动 IP 协议的数据通信以明文进行传输，其本身就是不安全的；攻击者可对移动 IPv6 数据包进行嗅探进而识别其通信节点、转交地址、家乡地址、家乡代理等信息（定义了新的目的选项报头），并利用这些信息伪造数据包；</p>
 <p>随后攻击者可通过拦截类型为消息绑定更新的数据包，修改绑定关系中的转交地址（目的选项）</p>
 <blockquote>
 <p>此外，移动节点标识符选项揭示了用户的家乡从属关系，攻击者可利用该选项确定用户身份，锁定特定的攻击对象</p>
 </blockquote>
 <blockquote>
-<p>解决 TCP&#x2F;IP 不支持移动性的问题；家乡地址中配有服务，将截获通信并通过隧道转发给新地址，保证了 TCP 五元组不变，连接不断。<br>开启IPSec保证数据包不会被窃听</p>
+<p>解决 TCP/IP 不支持移动性的问题；家乡地址中配有服务，将截获通信并通过隧道转发给新地址，保证了 TCP 五元组不变，连接不断。开启IPSec保证数据包不会被窃听</p>
 </blockquote>
-<h3 id="路由报头"><a href="#路由报头" class="headerlink" title="路由报头"></a>路由报头</h3><p>路由报头列出数据包从源地址到目的地址之间将要访问的一个或多个中间节点，在 RH0 路由类型（即type 0）下，攻攻击者可利用路由报头选项伪装成合法用户接收返回的数据包</p>
+<h3 id="路由报头">路由报头</h3>
+<p>路由报头列出数据包从源地址到目的地址之间将要访问的一个或多个中间节点，在 RH0 路由类型（即type 0）下，攻攻击者可利用路由报头选项伪装成合法用户接收返回的数据包</p>
 <p>攻击点：RH0 允许在路由头部中的多个位置指定相同地址。这可能导致流量在一条特定路径上的两台或多台路由器或主机之间重复转发</p>
 <blockquote>
 <p>尽快更新安全设备并升级至最新的 IPv6 协议版本 RH2 ，同时对所有的 RH0 数据包进行丢弃。RH2 只容纳一个地址</p>
 </blockquote>
-<h3 id="分段报头"><a href="#分段报头" class="headerlink" title="分段报头"></a>分段报头</h3><p>略</p>
-<h2 id="ICMPv6-安全威胁"><a href="#ICMPv6-安全威胁" class="headerlink" title="ICMPv6 安全威胁"></a>ICMPv6 安全威胁</h2><h3 id="Smurf-攻击"><a href="#Smurf-攻击" class="headerlink" title="Smurf 攻击"></a>Smurf 攻击</h3><p>以目标节点作为源地址向组播地址 FF02::1 发送 ICMPv6  Echo Request 消息实现Smurf攻击</p>
-<h3 id="本地链路扫描"><a href="#本地链路扫描" class="headerlink" title="本地链路扫描"></a>本地链路扫描</h3><p>向组播地址 FF02::1 发送 Echo Request 报文，通过接收 Echo Reply 报文，实现扫描</p>
-<h3 id="Dos-攻击"><a href="#Dos-攻击" class="headerlink" title="Dos 攻击"></a>Dos 攻击</h3><p>向目标节点发送过多的 ICMPv6 包以及发送错误消息，导致会话被丢弃，从而破坏已建立的通信</p>
-<h3 id="主机扫描"><a href="#主机扫描" class="headerlink" title="主机扫描"></a>主机扫描</h3><p>向主机发送格式不正确的消息刺激主机对 ICMPv6 的响应，从而发现潜在的攻击目标</p>
-<h3 id="降低传输速率"><a href="#降低传输速率" class="headerlink" title="降低传输速率"></a>降低传输速率</h3><p>向目标节点发送 ICMPv6 Packet too big 报文，减小接收节点的 MTU，降低传输速率</p>
-<h3 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h3><p>1、在交换机的每个物理端口设置流量限制；</p>
+<h3 id="分段报头">分段报头</h3>
+<p>略</p>
+<h2 id="ICMPv6-安全威胁">ICMPv6 安全威胁</h2>
+<h3 id="Smurf-攻击">Smurf 攻击</h3>
+<p>以目标节点作为源地址向组播地址 FF02::1 发送 ICMPv6  Echo Request 消息实现Smurf攻击</p>
+<h3 id="本地链路扫描">本地链路扫描</h3>
+<p>向组播地址 FF02::1 发送 Echo Request 报文，通过接收 Echo Reply 报文，实现扫描</p>
+<h3 id="Dos-攻击">Dos 攻击</h3>
+<p>向目标节点发送过多的 ICMPv6 包以及发送错误消息，导致会话被丢弃，从而破坏已建立的通信</p>
+<h3 id="主机扫描">主机扫描</h3>
+<p>向主机发送格式不正确的消息刺激主机对 ICMPv6 的响应，从而发现潜在的攻击目标</p>
+<h3 id="降低传输速率">降低传输速率</h3>
+<p>向目标节点发送 ICMPv6 Packet too big 报文，减小接收节点的 MTU，降低传输速率</p>
+<h3 id="防御">防御</h3>
+<p>1、在交换机的每个物理端口设置流量限制；</p>
 <p>2、在防火墙或边界路由器上启动 ICMPv6 数据包过滤机制；</p>
 <p>3、配置路由器拒绝转发带有组播地址的 ICMPv6 Echo Request 报文；</p>
 <p>4、可尝试关闭 PMTU 发现机制，但其会影响到网络数据的传输速率</p>
-<h2 id="NDP-协议攻击"><a href="#NDP-协议攻击" class="headerlink" title="NDP 协议攻击"></a>NDP 协议攻击</h2><h3 id="中间人攻击"><a href="#中间人攻击" class="headerlink" title="中间人攻击"></a>中间人攻击</h3><p>NDP 协议基于可信网络因此并不具备认证功能，因此可通过伪造 ICMPv6 NA&#x2F;RA 报文实现中间人攻击。</p>
+<h2 id="NDP-协议攻击">NDP 协议攻击</h2>
+<h3 id="中间人攻击">中间人攻击</h3>
+<p>NDP 协议基于可信网络因此并不具备认证功能，因此可通过伪造 ICMPv6 NA/RA 报文实现中间人攻击。</p>
 <p>过程：攻击者可以伪造 NA 报文（邻节点通告），将自己的链路层地址作为链路上其他主机的地址进行广播（主动响应其它主机的邻节点请求）。</p>
 <p>攻击者可伪造 RA 报文（路由器通告）发送至目标节点修改其默认网关。</p>
-<h3 id="重复地址检测攻击"><a href="#重复地址检测攻击" class="headerlink" title="重复地址检测攻击"></a>重复地址检测攻击</h3><p>当目标节点向 FF02::1 所有节点发送 NS 数据包（邻节点请求）进行重复地址检测时，攻击者可向该节点发送 NA 报文（邻节点通告）进行响应，并表明该地址已被自己使用。当节点接收到该地址已被占用消息后重新生成新的 IPv6 地址并再一次进行重复地址检测时，攻击者可继续进行 NA 响应实现 DoS 攻击</p>
-<h3 id="泛洪攻击"><a href="#泛洪攻击" class="headerlink" title="泛洪攻击"></a>泛洪攻击</h3><p>攻击者可伪造不同网络前缀 RA 消息对 FF02 :: 1 进行进行泛洪攻击，接收节点将会根据不同的网络前缀进行更新，从而消耗大量的 CPU 资源。</p>
-<h2 id="NDP-协议防御"><a href="#NDP-协议防御" class="headerlink" title="NDP 协议防御"></a>NDP 协议防御</h2><h3 id="SEND-协议"><a href="#SEND-协议" class="headerlink" title="SEND 协议"></a>SEND 协议</h3><p>安全邻居发现协议，SEND 协议，使网络中每个 IPv6 节点都有一对公私钥以及多个邻居扩展选项。</p>
+<h3 id="重复地址检测攻击">重复地址检测攻击</h3>
+<p>当目标节点向 FF02::1 所有节点发送 NS 数据包（邻节点请求）进行重复地址检测时，攻击者可向该节点发送 NA 报文（邻节点通告）进行响应，并表明该地址已被自己使用。当节点接收到该地址已被占用消息后重新生成新的 IPv6 地址并再一次进行重复地址检测时，攻击者可继续进行 NA 响应实现 DoS 攻击</p>
+<h3 id="泛洪攻击">泛洪攻击</h3>
+<p>攻击者可伪造不同网络前缀 RA 消息对 FF02 :: 1 进行进行泛洪攻击，接收节点将会根据不同的网络前缀进行更新，从而消耗大量的 CPU 资源。</p>
+<h2 id="NDP-协议防御">NDP 协议防御</h2>
+<h3 id="SEND-协议">SEND 协议</h3>
+<p>安全邻居发现协议，SEND 协议，使网络中每个 IPv6 节点都有一对公私钥以及多个邻居扩展选项。</p>
 <p>采用 SEND 协议后，各个节点的接口标识符（IPv6 地址低 64 比特）将基于当前的 IPv6 网络前缀与公钥进行计算产生，而不能由各个节点自行选择</p>
-<p>并且 SEND 协议通过时间戳和 Nonce 选项抵御重放攻击，并引入了 CGA（密码生成地址）与 RSA 签名对数据源进行验证以解决邻居请求&#x2F;邻居通告欺骗的问题</p>
+<p>并且 SEND 协议通过时间戳和 Nonce 选项抵御重放攻击，并引入了 CGA（密码生成地址）与 RSA 签名对数据源进行验证以解决邻居请求/邻居通告欺骗的问题</p>
 <p>局限：SEND 虽然可以解决一定的安全问题，但目前系统与设备对 SEND 的支持十分有限</p>
-<h3 id="RA-Guard"><a href="#RA-Guard" class="headerlink" title="RA-Guard"></a>RA-Guard</h3><p>RA-Guard，一种安全 RA（路由器通告） 方案，其通过阻断非信任端口 RA 报文转发来避免恶意 RA 可能带来的威胁，在攻击包实际到达目标节点之前阻塞二层设备上的攻击数据包；</p>
+<h3 id="RA-Guard">RA-Guard</h3>
+<p>RA-Guard，一种安全 RA（路由器通告） 方案，其通过阻断非信任端口 RA 报文转发来避免恶意 RA 可能带来的威胁，在攻击包实际到达目标节点之前阻塞二层设备上的攻击数据包；</p>
 <p>使用访问控制列表或空路由过滤对地址空间中未分配的部分的访问限制，用以防止攻击者迫使路由解析未使用的地址</p>
-<h2 id="安全硬件问题"><a href="#安全硬件问题" class="headerlink" title="安全硬件问题"></a>安全硬件问题</h2><h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><p>1、防火墙必须对 IPv6 基本报头与所有的扩展首部进行解析，才能获取传输层与应用层的信息，从而确定当前数据报是否应该被允许通过或是被丢弃。在一定程度上将加剧防火墙的负担，影响防火墙的性能。</p>
+<h2 id="安全硬件问题">安全硬件问题</h2>
+<h3 id="防火墙">防火墙</h3>
+<p>1、防火墙必须对 IPv6 基本报头与所有的扩展首部进行解析，才能获取传输层与应用层的信息，从而确定当前数据报是否应该被允许通过或是被丢弃。在一定程度上将加剧防火墙的负担，影响防火墙的性能。</p>
 <p>2、如若在 IPv6 数据包中启用加密选项，负载数据将进行加密处理，由于包过滤型防火墙无法对负载数据进行解密，无法获取 TCP 与 UDP 端口号，因此包过滤型防火墙无法判断是否可以将当前数据包放行。</p>
-<h3 id="IDS-IPS"><a href="#IDS-IPS" class="headerlink" title="IDS &#x2F; IPS"></a>IDS &#x2F; IPS</h3><p>面对IPv6数据包，倘若启用了加密选项，IDS（入侵检测系统） 与 IPS（入侵防御系统） 则无法对加密数据进行提取与分析，无法通过报文分析获取 TCP、UDP 信息，进而无法对网络层进行全面的安全防护。即便只允许流量启用 AH 认证报头，但认证报头内部具有可变长度字段ICV，因此检测引擎并不能准确地定位开始内容检查的位置。</p>
+<h3 id="IDS-IPS">IDS / IPS</h3>
+<p>面对IPv6数据包，倘若启用了加密选项，IDS（入侵检测系统） 与 IPS（入侵防御系统） 则无法对加密数据进行提取与分析，无法通过报文分析获取 TCP、UDP 信息，进而无法对网络层进行全面的安全防护。即便只允许流量启用 AH 认证报头，但认证报头内部具有可变长度字段ICV，因此检测引擎并不能准确地定位开始内容检查的位置。</p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/05/IPv6-Protocol-and-Security/,Jiancong Cui,IPv6 Protocol and Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/DHCP-Protocol-and-Security/" title="DHCP Protocol and Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/IPv4-Protocol-and-Security/" title="IPv4 Protocol and Security">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

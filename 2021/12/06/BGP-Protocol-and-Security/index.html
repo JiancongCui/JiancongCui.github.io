@@ -1,21 +1,35 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>BGP Protocol and Security · Jiancong Cui</title><meta name="description" content="BGPBGP 是外部网关协议，属于增强的距离矢量路由协议，用来在AS之间传递路由信息
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>BGP Protocol and Security · Jiancong Cui</title><meta name="description" content="BGP
+BGP 是外部网关协议，属于增强的距离矢量路由协议，用来在AS之间传递路由信息
 
 AS 之间的协议，并没有统一的管理机构，因此存在很大的安全威胁
 
-名词速览1、AS，自治域或自治系统
+名词速览
+1、AS，自治域或自治系统
 2、Speaker，发送 BGP 消息的路由器
 3、Peers，Speaker 之间的邻居关系
-4、EBGP，"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>BGP Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="BGP"><a href="#BGP" class="headerlink" title="BGP"></a>BGP</h1><p>BGP 是外部网关协议，属于增强的距离矢量路由协议，用来在AS之间传递路由信息</p>
+4、EBG"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>BGP Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>BGP</h1>
+<p>BGP 是外部网关协议，属于增强的距离矢量路由协议，用来在AS之间传递路由信息</p>
 <blockquote>
 <p>AS 之间的协议，并没有统一的管理机构，因此存在很大的安全威胁</p>
 </blockquote>
-<h2 id="名词速览"><a href="#名词速览" class="headerlink" title="名词速览"></a>名词速览</h2><p>1、AS，自治域或自治系统</p>
+<h2 id="名词速览">名词速览</h2>
+<p>1、AS，自治域或自治系统</p>
 <p>2、Speaker，发送 BGP 消息的路由器</p>
 <p>3、Peers，Speaker 之间的邻居关系</p>
 <p>4、EBGP，外部 BGP</p>
 <p>5、IBGP，内部 BGP</p>
 <p>6、IGP，内部网关协议</p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>(与同样是距离矢量协议的 RIP 比比看)</p>
+<h2 id="特点">特点</h2>
+<p>(与同样是距离矢量协议的 RIP 比比看)</p>
 <p>1、可靠的路由更新机制：传送协议为 TCP - 179；无需周期性更新；需要周期性发送 keepalive 报文校验 TCP 的连通性；路由更新时只发送增量路由；</p>
 <p>2、丰富的 Metric 度量方法</p>
 <p>3、从设计层面避免了环路的发生</p>
@@ -25,63 +39,80 @@ AS 之间的协议，并没有统一的管理机构，因此存在很大的安�
 <blockquote>
 <p>优势点也可能成为攻击点</p>
 </blockquote>
-<h2 id="BGP-基本概念"><a href="#BGP-基本概念" class="headerlink" title="BGP 基本概念"></a>BGP 基本概念</h2><h3 id="AS"><a href="#AS" class="headerlink" title="AS"></a>AS</h3><p>AS，自治域或自治系统，指拥有相同选路策略的由单一机构管理的网络集合，每个 AS 由 AS 号标识</p>
+<h2 id="BGP-基本概念">BGP 基本概念</h2>
+<h3 id="AS">AS</h3>
+<p>AS，自治域或自治系统，指拥有相同选路策略的由单一机构管理的网络集合，每个 AS 由 AS 号标识</p>
 <blockquote>
 <p>目前的互联网大约由 5 万个 AS 和 55 万个地址前缀组成</p>
-<p>每个地址前缀代表一个网络空间，由连续的 IP 地址组成，如前缀 59.66.132.0&#x2F;24 代表一个有 256 个 IP 地址的网络空间</p>
+<p>每个地址前缀代表一个网络空间，由连续的 IP 地址组成，如前缀 59.66.132.0/24 代表一个有 256 个 IP 地址的网络空间</p>
 </blockquote>
-<h3 id="发言者"><a href="#发言者" class="headerlink" title="发言者"></a>发言者</h3><p>Speaker，指发送 BGP 消息的路由器，它接收或产生新的路由信息并发布&#x2F;通告给其它 Speaker</p>
+<h3 id="发言者">发言者</h3>
+<p>Speaker，指发送 BGP 消息的路由器，它接收或产生新的路由信息并发布/通告给其它 Speaker</p>
 <blockquote>
 <p>当 BGP Speaker 收到<strong>来自其它 AS 的新路由时</strong>，如果该路由比当前已知路由更优或者当前还没有该路由，它就把这条路由<strong>发布给 AS 内所有其它 Speaker</strong></p>
 </blockquote>
-<h3 id="邻居"><a href="#邻居" class="headerlink" title="邻居"></a>邻居</h3><p>Peers，任何两个形成 TCP 连接来交换 BGP 路由信息的 Speaker 称为邻居(peers)或对等体</p>
+<h3 id="邻居">邻居</h3>
+<p>Peers，任何两个形成 TCP 连接来交换 BGP 路由信息的 Speaker 称为邻居(peers)或对等体</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129105731.png" alt="Peers"></p>
-<h3 id="外部与内部-BGP"><a href="#外部与内部-BGP" class="headerlink" title="外部与内部 BGP"></a>外部与内部 BGP</h3><p>外部 BGP 即 EBGP，当 BGP 邻居属于不同的自治系统，他们被称为 EBGP（相对而言的）</p>
+<h3 id="外部与内部-BGP">外部与内部 BGP</h3>
+<p>外部 BGP 即 EBGP，当 BGP 邻居属于不同的自治系统，他们被称为 EBGP（相对而言的）</p>
 <blockquote>
 <p>EBGP 邻居, 默认情况下, 需要直连</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206113218.png" alt="EBGP"></p>
 <p>内部 BGP 即 IBGP，指 BGP 邻居存在于同一个 AS 内，通常这两个 BGP 不需要直连，是该 AS 的两个边界 BGP</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206113154.png" alt="IBGP"></p>
-<h3 id="五类消息-报文"><a href="#五类消息-报文" class="headerlink" title="五类消息&#x2F;报文"></a>五类消息&#x2F;报文</h3><p>1、Open, 建立 BGP 连接</p>
+<h3 id="五类消息-报文">五类消息/报文</h3>
+<p>1、Open, 建立 BGP 连接</p>
 <p>2、Keepalive, 检测和维护 BGP 连接</p>
 <p>3、<strong>Update</strong>, 发送 BGP 路由更新</p>
 <p>4、Notification, 中断 BGP 连接</p>
 <p>5、Route-Refresh，通知对等体自己支持路由刷新能力</p>
-<h2 id="BGP-工作机制"><a href="#BGP-工作机制" class="headerlink" title="BGP 工作机制"></a>BGP 工作机制</h2><p>1、建立 TCP 连接 （179）</p>
+<h2 id="BGP-工作机制">BGP 工作机制</h2>
+<p>1、建立 TCP 连接 （179）</p>
 <p>2、BGP Speaker 通过 Open 消息协商参数，建立 BGP 邻居关系</p>
 <p>3、建立连接后，BGP 邻居会通过 Update 消息及时增量更新路由表</p>
 <p>4、BGP 会发送 Keepalive 消息来维持邻居间的 BGP 连接</p>
 <p>5、当 BGP 检测到网络中的错误状态时，BGP 发 Notification 消息报错，BGP 连接中断</p>
-<h2 id="BGP-路由注入"><a href="#BGP-路由注入" class="headerlink" title="BGP 路由注入"></a>BGP 路由注入</h2><p>内部网关协议信息注入外部网关协议中</p>
-<h3 id="纯动态注入"><a href="#纯动态注入" class="headerlink" title="纯动态注入"></a>纯动态注入</h3><p>路由器将通过 IGP 路由协议动态获得的路由信息并直接注入到 BGP 系统中去</p>
+<h2 id="BGP-路由注入">BGP 路由注入</h2>
+<p>内部网关协议信息注入外部网关协议中</p>
+<h3 id="纯动态注入">纯动态注入</h3>
+<p>路由器将通过 IGP 路由协议动态获得的路由信息并直接注入到 BGP 系统中去</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129111408.png" alt="动态注入"></p>
-<h3 id="半动态注入"><a href="#半动态注入" class="headerlink" title="半动态注入"></a>半动态注入</h3><p>路由器有选择性的（通过配置命令）将 IGP 发现的动态路由信息注入到 BGP 系统中去</p>
+<h3 id="半动态注入">半动态注入</h3>
+<p>路由器有选择性的（通过配置命令）将 IGP 发现的动态路由信息注入到 BGP 系统中去</p>
 <blockquote>
 <p>会检查该路由符合之前配置的注入条件</p>
 </blockquote>
-<h3 id="静态注入"><a href="#静态注入" class="headerlink" title="静态注入"></a>静态注入</h3><p>路由器将静态配置的某条路由注入到 BGP 系统中</p>
+<h3 id="静态注入">静态注入</h3>
+<p>路由器将静态配置的某条路由注入到 BGP 系统中</p>
 <blockquote>
 <p>人为配置某条静态路由，然后将其注入到 BGP 路由表中</p>
 </blockquote>
-<h2 id="BGP-路由通告原则"><a href="#BGP-路由通告原则" class="headerlink" title="BGP 路由通告原则"></a>BGP 路由通告原则</h2><p>一旦建立新连接，Speaker 按照下述原则将自己所有路由通告信息通告给新邻居</p>
+<h2 id="BGP-路由通告原则">BGP 路由通告原则</h2>
+<p>一旦建立新连接，Speaker 按照下述原则将自己所有路由通告信息通告给新邻居</p>
 <blockquote>
-<p>存在多条路径时，Speaker 只选取最优的使用（不考虑负载均衡的情况）<br>Speaker 只把自己使用的路由通告给邻居</p>
+<p>存在多条路径时，Speaker 只选取最优的使用（不考虑负载均衡的情况）<br>
+Speaker 只把自己使用的路由通告给邻居</p>
 </blockquote>
 <p>1、对于 BGP 路由，如果当前路由器为该路由的始发路由器，则会将该路由传递给其他所有 IBGP 对等体以及所有 EBGP 对等体（始发信息全部传）</p>
 <p>2、非始发路由，如果所接收路由条目为 IBGP 路由，则只会将该路由条目转发给所有 EBGP 对等体；所接收条目为 EBGP 路由时，则会发给所有 IBGP 与 EBGP 对等体（内部来源信息只传给外部，外部来源信息传给所有）</p>
 <blockquote>
-<p>Speaker 从 IBGP 获得的路由是否通告给它的 EBGP 邻居要依 IGP 和 BGP 同步的情况来决定<br>这个原则避免了 AS 内部环路</p>
+<p>Speaker 从 IBGP 获得的路由是否通告给它的 EBGP 邻居要依 IGP 和 BGP 同步的情况来决定这个原则避免了 AS 内部环路</p>
 </blockquote>
-<h3 id="EBGP-之间"><a href="#EBGP-之间" class="headerlink" title="EBGP 之间"></a>EBGP 之间</h3><p>1、Speaker 从 EBGP 获得的路由会向它所有 BGP 邻居通告（包括 EBGP 和 IBGP）</p>
+<h3 id="EBGP-之间">EBGP 之间</h3>
+<p>1、Speaker 从 EBGP 获得的路由会向它所有 BGP 邻居通告（包括 EBGP 和 IBGP）</p>
 <blockquote>
 <p>建立连接后会发送所有有效BGP路由，之后只<strong>增量更新路由</strong></p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206125443.png" alt="增量路由"></p>
-<h3 id="IBGP-之间"><a href="#IBGP-之间" class="headerlink" title="IBGP 之间"></a>IBGP 之间</h3><p>Speaker 从 IBGP 获得的路由不向它的 IBGP 邻居通告（避免环路）</p>
-<h2 id="BGP-路由属性"><a href="#BGP-路由属性" class="headerlink" title="BGP 路由属性"></a>BGP 路由属性</h2><p>BGP 路由属性是包含在 BGP 路由器通告里的一套参数，它对特定的路由进行描述，使得路由器能够对路由进行过滤和选择</p>
+<h3 id="IBGP-之间">IBGP 之间</h3>
+<p>Speaker 从 IBGP 获得的路由不向它的 IBGP 邻居通告（避免环路）</p>
+<h2 id="BGP-路由属性">BGP 路由属性</h2>
+<p>BGP 路由属性是包含在 BGP 路由器通告里的一套参数，它对特定的路由进行描述，使得路由器能够对路由进行过滤和选择</p>
 <blockquote>
-<p>IGP 使用 networks 通告路由，用度量值标识路径好坏<br>EGP 中的 BGP 通告整条路径并使用属性标识路径好坏</p>
+<p>IGP 使用 networks 通告路由，用度量值标识路径好坏<br>
+EGP 中的 BGP 通告整条路径并使用属性标识路径好坏</p>
 </blockquote>
 <p>四类属性：</p>
 <p>1、公认必遵：所有 BGP 路由器都可以识别的属性，且必须存在于 Update 消息中。如果缺少这种属性，路由信息就会出错（我支持你也必须有）</p>
@@ -90,10 +121,15 @@ AS 之间的协议，并没有统一的管理机构，因此存在很大的安�
 <p>4、可选非过渡：如果 BGP 路由器不支持此属性，则相应的 Update 消息会被忽略，且不会通告给其他邻居（我如果不支持就不管那个属性）</p>
 <p>常用属性如下：</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129113701.png" alt="BGP路由属性"></p>
-<h2 id="BGP-路由更新策略"><a href="#BGP-路由更新策略" class="headerlink" title="BGP 路由更新策略"></a>BGP 路由更新策略</h2><p>当 BGP 路由器从多个邻居接收到达到同一目的前缀的路由信息时，会根据路由属性选择并通告一条最优路由（顺序决策）</p>
+<h2 id="BGP-路由更新策略">BGP 路由更新策略</h2>
+<p>当 BGP 路由器从多个邻居接收到达到同一目的前缀的路由信息时，会根据路由属性选择并通告一条最优路由（顺序决策）</p>
 <p>1、本地优先属性(Local_Pref)值最高的路由</p>
 <blockquote>
-<p>优先属性由 AS 商业关系决定<br>C2P 关系：Customer 向 Provider 购买接入互联网服务，支付流量费：顾客就是上帝<br>P2C 关系：Provider 为 Customer 提供接入互联网服务，收取流量费<br>P2P 关系：AS 之间可以互相为对方(及其Customer)免费转发流量：关系平等<br>S2S 关系：AS 之间可以免费转发对方任何流量(少见)</p>
+<p>优先属性由 AS 商业关系决定<br>
+C2P 关系：Customer 向 Provider 购买接入互联网服务，支付流量费：顾客就是上帝<br>
+P2C 关系：Provider 为 Customer 提供接入互联网服务，收取流量费<br>
+P2P 关系：AS 之间可以互相为对方(及其Customer)免费转发流量：关系平等<br>
+S2S 关系：AS 之间可以免费转发对方任何流量(少见)</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129115251.png" alt="路由策略"></p>
 <p>Q：为什么优先级次序为 Customer &gt; Peer &gt; Provider</p>
@@ -104,17 +140,21 @@ AS 之间的协议，并没有统一的管理机构，因此存在很大的安�
 <p>5、EBGP类型路由优于IBGP类型路由</p>
 <p>6、IGP Metric最小的路由(对于出口边界路由器)</p>
 <p>7、路由器ID最小的路由</p>
-<h2 id="BGP-路由通告策略"><a href="#BGP-路由通告策略" class="headerlink" title="BGP 路由通告策略"></a>BGP 路由通告策略</h2><p>BGP 是一种基于策略的路由协议，只有当 AS 愿意让邻居 AS 利用其资源去访问某些网络时，才会把自己掌握的特定路由信息通告给邻居 AS</p>
+<h2 id="BGP-路由通告策略">BGP 路由通告策略</h2>
+<p>BGP 是一种基于策略的路由协议，只有当 AS 愿意让邻居 AS 利用其资源去访问某些网络时，才会把自己掌握的特定路由信息通告给邻居 AS</p>
 <blockquote>
 <p>BGP 路由通告策略由 AS 商业关系决定</p>
 </blockquote>
-<h3 id="导出规则"><a href="#导出规则" class="headerlink" title="导出规则"></a>导出规则</h3><p>1、来自 Customer 的路由通告给 Customer、Peer 以及 Provider</p>
+<h3 id="导出规则">导出规则</h3>
+<p>1、来自 Customer 的路由通告给 Customer、Peer 以及 Provider</p>
 <p>2、来自 Peer 或 Provider 的路由仅通告给 Customer，不向 Peer 和 Provider 传播</p>
 <p>Q：为什么要这样指定规则？</p>
 <p>A：与路由器通告原则中本地优先属性规定类似，考虑到的还是经济效益；我从顾客那里获得的路由当然要给我其他顾客，以及与我合作的 peer 与 Provider 共享；但是我从与我合作的 peer 与 Provider 获得的路由只能给与我的顾客，不能给与其它的与我合作的 peer 与 Provider（因为他们不一定是合作关系）</p>
-<h3 id="导入规则"><a href="#导入规则" class="headerlink" title="导入规则"></a>导入规则</h3><p>1、优选 Local preference 高的，通常从高到低排列为 customer &gt; peer &gt; provider；</p>
+<h3 id="导入规则">导入规则</h3>
+<p>1、优选 Local preference 高的，通常从高到低排列为 customer &gt; peer &gt; provider；</p>
 <p>2、其次看 AS-Path 长度，长度越小越优先</p>
-<h1 id="BGP-安全威胁"><a href="#BGP-安全威胁" class="headerlink" title="BGP 安全威胁"></a>BGP 安全威胁</h1><p>1、没有保障邻居之间通信报文的完整性、时效性和邻居身份的真实性</p>
+<h1>BGP 安全威胁</h1>
+<p>1、没有保障邻居之间通信报文的完整性、时效性和邻居身份的真实性</p>
 <p>2、没有验证 AS 可发起 NLRI 的权限 -&gt; 前缀劫持</p>
 <blockquote>
 <p>NIRI，网络层可达信息，它描述了一个路由和怎样到达它，就是一个路由前缀</p>
@@ -124,42 +164,57 @@ AS 之间的协议，并没有统一的管理机构，因此存在很大的安�
 <blockquote>
 <p>异常路由通告：前缀劫持，路径伪造，路由泄露，是 BGP 面临的最主要安全威胁，轻可造成路由黑洞和中间人攻击，重则容易造成互联网大规模瘫痪</p>
 </blockquote>
-<h2 id="前缀劫持"><a href="#前缀劫持" class="headerlink" title="前缀劫持"></a>前缀劫持</h2><p>AS 对外发起的路由通告中的前缀未获授权（我可以随便说到某个 IP 要走我自己）</p>
+<h2 id="前缀劫持">前缀劫持</h2>
+<p>AS 对外发起的路由通告中的前缀未获授权（我可以随便说到某个 IP 要走我自己）</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129123047.png" alt="前缀劫持"></p>
-<h2 id="路径伪造"><a href="#路径伪造" class="headerlink" title="路径伪造"></a>路径伪造</h2><p>AS 向邻居传播的路由通告中的 AS_PATH 路径属性非真（类似于前缀劫持）</p>
+<h2 id="路径伪造">路径伪造</h2>
+<p>AS 向邻居传播的路由通告中的 AS_PATH 路径属性非真（类似于前缀劫持）</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129123141.png" alt="路径伪造"></p>
-<h2 id="路由泄露"><a href="#路由泄露" class="headerlink" title="路由泄露"></a>路由泄露</h2><p>AS 向邻居传播的路由通告违反路由出站策略：路由通告合法，路由传播非法，会造成流量重定向</p>
+<h2 id="路由泄露">路由泄露</h2>
+<p>AS 向邻居传播的路由通告违反路由出站策略：路由通告合法，路由传播非法，会造成流量重定向</p>
 <blockquote>
 <p>来自 Peer 或 Provider 的路由仅通告给 Customer，不向 Peer 和 Provider 传播</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129123340.png" alt="路由泄露"></p>
-<h2 id="典型事件分析"><a href="#典型事件分析" class="headerlink" title="典型事件分析"></a>典型事件分析</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206130550.png" alt="异常路由事件分析"></p>
-<h3 id="巴基斯坦电信恶意主动劫持-YouTube-前缀"><a href="#巴基斯坦电信恶意主动劫持-YouTube-前缀" class="headerlink" title="巴基斯坦电信恶意主动劫持 YouTube 前缀"></a>巴基斯坦电信恶意主动劫持 YouTube 前缀</h3><p>1、巴基斯坦电信致使 YouTube 断网事件：巴基斯坦电信想要封掉 YouTube 的访问，因此在路由器在路由器上添加一条静态路由表项（人文静态注入）将目的地址设为黑洞路由地址；但是电信工程师不小心让这个路由注入到了 BGP 中，随后被通告给了巴基斯坦电信的 Provider 香港电讯盈科，Provider（香港电讯盈科） 一看 Customer （巴基斯坦电信）传来了路由，那我得给所有人通告啊，因此被逐渐同步到了全世界</p>
-<h1 id="BGP-安全技术"><a href="#BGP-安全技术" class="headerlink" title="BGP 安全技术"></a>BGP 安全技术</h1><p>BGP 安全技术分为<strong>路由认证技术</strong>和<strong>异常检测技术</strong>两大类</p>
+<h2 id="典型事件分析">典型事件分析</h2>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206130550.png" alt="异常路由事件分析"></p>
+<h3 id="巴基斯坦电信恶意主动劫持-YouTube-前缀">巴基斯坦电信恶意主动劫持 YouTube 前缀</h3>
+<p>1、巴基斯坦电信致使 YouTube 断网事件：巴基斯坦电信想要封掉 YouTube 的访问，因此在路由器在路由器上添加一条静态路由表项（人文静态注入）将目的地址设为黑洞路由地址；但是电信工程师不小心让这个路由注入到了 BGP 中，随后被通告给了巴基斯坦电信的 Provider 香港电讯盈科，Provider（香港电讯盈科） 一看 Customer （巴基斯坦电信）传来了路由，那我得给所有人通告啊，因此被逐渐同步到了全世界</p>
+<h1>BGP 安全技术</h1>
+<p>BGP 安全技术分为<strong>路由认证技术</strong>和<strong>异常检测技术</strong>两大类</p>
 <p>路由认证技术：以制定和完善 BGP 路由协议的安全机制为目标，利用证书、数字签名和其他加密技术来保护路由信息的真实性和完整性。可以从根本上解决 BGP 异常路由通告问题，但同时也需要付出不小的代价，主要包括：需要建立 PKI、路由器的性能开销、需要修改现有协议规范等</p>
 <p>异常检测技术：提取 BGP 控制平面和数据平面的异常信息，对异常路由通告行为进行检测并报警。不能彻底解决 BGP 的安全问题，但在目前尚未部署完整 PKI体系的情况下，不失为一种轻量级的解决方案</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129124523.png" alt="BGP 安全技术对比"></p>
-<h2 id="S-BGP"><a href="#S-BGP" class="headerlink" title="S-BGP"></a>S-BGP</h2><p>Secure BGP，基于PKI（公钥基础设施）的 BGP 路由认证技术：</p>
-<h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>1、定义了两类 PKI 来表明 AS 号和 IP 地址的所有权，通过<strong>绑定</strong>来证实它们与某个 AS 的关系；</p>
+<h2 id="S-BGP">S-BGP</h2>
+<p>Secure BGP，基于PKI（公钥基础设施）的 BGP 路由认证技术：</p>
+<h3 id="组成">组成</h3>
+<p>1、定义了两类 PKI 来表明 AS 号和 IP 地址的所有权，通过<strong>绑定</strong>来证实它们与某个 AS 的关系；</p>
 <p>2、增加了一个新的路由属性 Attestation（证明），可携带数字签名，用于 BGP 系统合法性的确认；</p>
 <p>3、应用 IPsecBGP 对话系统间的确认。IPsec 同 BGP 发言者发布的证书相关联，来证实 BGP 邻居的真实性，提供 TCP 连接的数据完整性保护，同时可以防止重放攻击；</p>
-<h3 id="Attestation"><a href="#Attestation" class="headerlink" title="Attestation"></a>Attestation</h3><p>Attestation 分为 Address Attestation（地址证明）与 Route Attestation（路由证明）：</p>
+<h3 id="Attestation">Attestation</h3>
+<p>Attestation 分为 Address Attestation（地址证明）与 Route Attestation（路由证明）：</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211129133832.png" alt="Attestation"></p>
-<h3 id="Attestation-地址证明"><a href="#Attestation-地址证明" class="headerlink" title="Attestation 地址证明"></a>Attestation 地址证明</h3><p>地址证明：Signer 是 ISP，ExplicitPA 字段包含有该 ISP 拥有的一段 I P前缀，Target 是 ISP 授权用于通告该 IP 前缀的 AS 号。ISP 使用其私钥对 IP 前缀和 AS 号码数据进行签名并置于 Signature 字段，以保护该段数据的完整性和真实性。“地址证明”表明了哪个 AS 被 ISP 授权来通告其所拥有的前缀</p>
+<h3 id="Attestation-地址证明">Attestation 地址证明</h3>
+<p>地址证明：Signer 是 ISP，ExplicitPA 字段包含有该 ISP 拥有的一段 I P前缀，Target 是 ISP 授权用于通告该 IP 前缀的 AS 号。ISP 使用其私钥对 IP 前缀和 AS 号码数据进行签名并置于 Signature 字段，以保护该段数据的完整性和真实性。“地址证明”表明了哪个 AS 被 ISP 授权来通告其所拥有的前缀</p>
 <blockquote>
 <p>证明了 AS 拥有的 IP 地址；这样未被证明的 AS 就不能主动通告了</p>
 </blockquote>
-<h3 id="Attestation-路由证明"><a href="#Attestation-路由证明" class="headerlink" title="Attestation 路由证明"></a>Attestation 路由证明</h3><p>路由证明：Signer 是 BGP 路由器，ExplicitPA 字段含有要通告的 IP 前缀，Target 是路由器邻居的 AS 号。“路由证明”用 BGP 路由器的私钥进行签名,“路由证明” 代表了 BGP 路由通告方对其邻居继续通告该 IP 前缀的授权</p>
+<h3 id="Attestation-路由证明">Attestation 路由证明</h3>
+<p>路由证明：Signer 是 BGP 路由器，ExplicitPA 字段含有要通告的 IP 前缀，Target 是路由器邻居的 AS 号。“路由证明”用 BGP 路由器的私钥进行签名,“路由证明” 代表了 BGP 路由通告方对其邻居继续通告该 IP 前缀的授权</p>
 <blockquote>
 <p>代表我对我邻居能够继续通告的授权，我认证了我的邻居；这样我没认证的邻居收到了通告后是不能更改或随意转发的；</p>
 </blockquote>
-<h3 id="S-BGP-路由认证方法："><a href="#S-BGP-路由认证方法：" class="headerlink" title="S-BGP 路由认证方法："></a>S-BGP 路由认证方法：</h3><p>1、提取路由信息中的 IP 前缀，从其他地方获取与该 IP 前缀绑定的 ISP 证书和地址证明，用 ISP 的公钥验证地址证明，就可证实路由的 Origin AS 是否具有通告该前缀的合法授权</p>
+<h3 id="S-BGP-路由认证方法：">S-BGP 路由认证方法：</h3>
+<p>1、提取路由信息中的 IP 前缀，从其他地方获取与该 IP 前缀绑定的 ISP 证书和地址证明，用 ISP 的公钥验证地址证明，就可证实路由的 Origin AS 是否具有通告该前缀的合法授权</p>
 <p>2、对于 AS_PATH 的认证，则使用 AS_PATH 中每一跳 AS 的路由器证书来对路由消息中携带的路由证明逐个验证，以证实该 AS_PATH 确实可信</p>
 <p>Tips：S-BGP 虽然成功地解决了路由认证问题，不过也相应地带来计算开销大、路径收敛时间延长的问题，更加上建立 PKI 需要 IANA、RIR、ISP 以及路由器厂商的共同参与，致使 S-BGP 始终未能实际部署</p>
-<h2 id="MOAS-List"><a href="#MOAS-List" class="headerlink" title="MOAS List"></a>MOAS List</h2><p>MOAS，Multi-Origin AS，冲突：一个前缀，Prefix，匹配多个 Origin AS 的行为</p>
+<h2 id="MOAS-List">MOAS List</h2>
+<p>MOAS，Multi-Origin AS，冲突：一个前缀，Prefix，匹配多个 Origin AS 的行为</p>
 <blockquote>
 <p>也就是有多个源 AS 对前缀 P</p>
 </blockquote>
-<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>创建一个包含所有授权通告某一前缀的 Origin AS 的列表，MOAS list，将该列表附于每一授权 AS 的路由通告中，当其他路由器接收到关于这一前缀的所有路由通告时，比较通告中的 MOAS List 是否一致，以此判断是否发生了前缀劫持</p>
-<h3 id="有效性证明"><a href="#有效性证明" class="headerlink" title="有效性证明"></a>有效性证明</h3><p>MOAS List 技术之所以有效，主要在于 Internet 是一个高度互联的 mesh 网络，无论是因恶意攻击还是因管理员误配所产生的前缀劫持，由于 BGP 路由传播的多路径特性，错误的 MOAS List 和正确的 MOAS List 最终都会被接收路由器收到，两者的不一致就会使接收路由器意识到发生了前缀劫持事件</p>
+<h3 id="基本思想">基本思想</h3>
+<p>创建一个包含所有授权通告某一前缀的 Origin AS 的列表，MOAS list，将该列表附于每一授权 AS 的路由通告中，当其他路由器接收到关于这一前缀的所有路由通告时，比较通告中的 MOAS List 是否一致，以此判断是否发生了前缀劫持</p>
+<h3 id="有效性证明">有效性证明</h3>
+<p>MOAS List 技术之所以有效，主要在于 Internet 是一个高度互联的 mesh 网络，无论是因恶意攻击还是因管理员误配所产生的前缀劫持，由于 BGP 路由传播的多路径特性，错误的 MOAS List 和正确的 MOAS List 最终都会被接收路由器收到，两者的不一致就会使接收路由器意识到发生了前缀劫持事件</p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/06/BGP-Protocol-and-Security/,Jiancong Cui,BGP Protocol and Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/06/UDP-and-UDP-Protocol/" title="UDP and UDP Protocol">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/OSPF-Protocol-and-Security/" title="OSPF Protocol and Security">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

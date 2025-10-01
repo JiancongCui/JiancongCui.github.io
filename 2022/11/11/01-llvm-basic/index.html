@@ -1,61 +1,104 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>01-llvm-basic · Jiancong Cui</title><meta name="description" content="LLVM编译器: 把人类可读的高级语言映射到机器执行码
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>01-llvm-basic · Jiancong Cui</title><meta name="description" content="LLVM
+编译器: 把人类可读的高级语言映射到机器执行码
 LLVM 设计理念: 模块化, 使得每一个编译阶段都被独立出来
 
 LLVM 使用 C++ 完成, 并为编译器开发人员提供了易用而丰富的编程接口和 API, 所以 LLVM 是相对容易学习的编译器框架
-与其他编译器（如 GNU Compiler "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>01-llvm-basic</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-11-11</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Compiler/" title="Compiler">Compiler</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/LLVM/" title="LLVM">LLVM</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="LLVM"><a href="#LLVM" class="headerlink" title="LLVM"></a>LLVM</h1><p>编译器: 把人类可读的高级语言映射到机器执行码</p>
+与其他编译器（如 GNU Compiler"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>01-llvm-basic</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-11-11</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Compiler/" title="Compiler">Compiler</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/LLVM/" title="LLVM">LLVM</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>LLVM</h1>
+<p>编译器: 把人类可读的高级语言映射到机器执行码</p>
 <p>LLVM 设计理念: 模块化, 使得每一个编译阶段都被独立出来</p>
 <ul>
 <li>LLVM 使用 C++ 完成, 并为编译器开发人员提供了易用而丰富的编程接口和 API, 所以 LLVM 是相对容易学习的编译器框架</li>
 <li>与其他编译器（如 GNU Compiler Collection, GCC）不同, LLVM 的设计目标是成为一系列的库</li>
 </ul>
-<h2 id="LLVM-汇编码"><a href="#LLVM-汇编码" class="headerlink" title="LLVM 汇编码"></a>LLVM 汇编码</h2><p>三种形式: 内存编译器中的 IR, 存于磁盘的 bitcode, 用户可读的汇编码</p>
+<h2 id="LLVM-汇编码">LLVM 汇编码</h2>
+<p>三种形式: 内存编译器中的 IR, 存于磁盘的 bitcode, 用户可读的汇编码</p>
 <p>LLVM IR 基于 SSA (Static Single Assignment——SSA) 并且提供了类型安全性、底层操作性、灵活性, 因此能够清楚表达绝大多数高级语言, 致力于成为一种足够底层的通用 IR</p>
-<h1 id="OPT"><a href="#OPT" class="headerlink" title="OPT"></a>OPT</h1><p>LLVM 优化器（optimizer）, 其基于库的设计, 允许你选择各个 Pass 的执行顺序, 也能够选择执行哪些优化<br>Pass</p>
+<h1>OPT</h1>
+<p>LLVM 优化器（optimizer）, 其基于库的设计, 允许你选择各个 Pass 的执行顺序, 也能够选择执行哪些优化<br>
+Pass</p>
 <ul>
 <li>表明有一些优化对你设计的系统是没有帮助的, 只有少数优化会针对你的系统</li>
 <li>在 LLVM 中, 如果你想了解特定的优化器, 是不需要知道整个系统是如何工作的。你只需选择一个优化器并使用它, 无须担心其他依赖它的组件</li>
 </ul>
-<h2 id="1-Quick-Start"><a href="#1-Quick-Start" class="headerlink" title="1 Quick Start"></a>1 Quick Start</h2><ol>
+<h2 id="1-Quick-Start">1 Quick Start</h2>
+<ol>
 <li>原始文件 <code>01testfile.ll</code></li>
 </ol>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span> <span class="type">i32</span> <span class="title">@test1</span>(<span class="type">i32</span> <span class="variable">%A</span>) &#123;</span><br><span class="line">    <span class="variable">%B</span> <span class="operator">=</span> <span class="keyword">add</span> <span class="type">i32</span> <span class="variable">%A</span><span class="punctuation">,</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%B</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> <span class="keyword">internal</span> <span class="type">i32</span> <span class="title">@test</span>(<span class="type">i32</span> <span class="variable">%X</span><span class="punctuation">,</span> <span class="type">i32</span> <span class="variable">%dead</span>) &#123;</span><br><span class="line">    <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%X</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> <span class="type">i32</span> <span class="title">@caller</span>() &#123;</span><br><span class="line">    <span class="variable">%A</span> <span class="operator">=</span> <span class="keyword">call</span> <span class="type">i32</span> <span class="title">@test</span>(<span class="type">i32</span> <span class="number">123</span><span class="punctuation">,</span> <span class="type">i32</span> <span class="number">456</span>)</span><br><span class="line">    <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%A</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-llvm" data-language="llvm"><code class="language-llvm">define i32 @test1(i32 %A) &#123;
+    %B &#x3D; add i32 %A, 0
+    ret i32 %B
+&#125;
 
+define internal i32 @test(i32 %X, i32 %dead) &#123;
+    ret i32 %X
+&#125;
+
+define i32 @caller() &#123;
+    %A &#x3D; call i32 @test(i32 123, i32 456)
+    ret i32 %A
+&#125;</code></pre>
 <ol start="2">
 <li>使用 <code>-instcombine</code> 进行优化, 实现 <code>Combine redundant instructions</code></li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">opt-8 -S -instcombine 01testfile.ll -o 01testfile.-instcombine.ll</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">opt-8 -S -instcombine 01testfile.ll -o 01testfile.-instcombine.ll</code></pre>
 <p>可以看到 <code>@test1</code> 函数中的冗余加法指令 <code>add i32 %A, 0</code> 被优化了</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; ModuleID = &#x27;01testfile.ll&#x27;</span></span><br><span class="line">source_filename <span class="operator">=</span> <span class="string">&quot;01testfile.ll&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> <span class="type">i32</span> <span class="title">@test1</span>(<span class="type">i32</span> <span class="variable">%A</span>) &#123;</span><br><span class="line">  <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%A</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">; ...</span></span><br></pre></td></tr></table></figure>
+<pre class="language-llvm" data-language="llvm"><code class="language-llvm">; ModuleID &#x3D; &#39;01testfile.ll&#39;
+source_filename &#x3D; &quot;01testfile.ll&quot;
 
+define i32 @test1(i32 %A) &#123;
+  ret i32 %A
+&#125;
+
+; ...</code></pre>
 <ol>
 <li>使用 <code>-deadargelim</code> 进行优化, 实现 <code>Dead Argument Elimination</code></li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">opt-8 -S -deadargelim 01testfile.ll -o 01testfile.-deadargelim.ll</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">opt-8 -S -deadargelim 01testfile.ll -o 01testfile.-deadargelim.ll</code></pre>
 <p>可以看到 <code>@test</code> 函数中的无用参数 <code>i32 %dead</code> 被优化掉了</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> <span class="keyword">internal</span> <span class="type">i32</span> <span class="title">@test</span>(<span class="type">i32</span> <span class="variable">%X</span>) &#123;</span><br><span class="line">  <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%X</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">define</span> <span class="type">i32</span> <span class="title">@caller</span>() &#123;</span><br><span class="line">  <span class="variable">%A</span> <span class="operator">=</span> <span class="keyword">call</span> <span class="type">i32</span> <span class="title">@test</span>(<span class="type">i32</span> <span class="number">123</span>)</span><br><span class="line">  <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%A</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-llvm" data-language="llvm"><code class="language-llvm">; ...
 
-<h2 id="OPT-Pass"><a href="#OPT-Pass" class="headerlink" title="OPT Pass"></a>OPT Pass</h2><p>LLVM 优化器为用户提供了不同的优化 Pass, 但整体的编写风格一致:</p>
+define internal i32 @test(i32 %X) &#123;
+  ret i32 %X
+&#125;
+
+define i32 @caller() &#123;
+  %A &#x3D; call i32 @test(i32 123)
+  ret i32 %A
+&#125;</code></pre>
+<h2 id="OPT-Pass">OPT Pass</h2>
+<p>LLVM 优化器为用户提供了不同的优化 Pass, 但整体的编写风格一致:</p>
 <ul>
 <li>对每个 Pass 的源码编译, 得到一个 Object 文件, 之后这些不同的文件再链接得到一个库</li>
 <li>Pass 之间耦合很小, Pass 之间的依赖信息由 LLVM Pass 管理器（PassManager）来统一管理, 在 Pass 运行的时候会进行解析</li>
 </ul>
 <p>下面的图片展示了每个 Pass 如何关联到指定库中的特定的 Object 文件:</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211111142920.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211111142920.png" alt=""></p>
 <p>可以理解为 PassA 中 PassA.o 引用了 LLVMPasses.a, 而自定义的 Pass 中 MyPass.o 引用了不同的库, 即 MyPasses.a</p>
-<h1 id="Code-Generator"><a href="#Code-Generator" class="headerlink" title="Code Generator"></a>Code Generator</h1><p>LLVM 代码生成器（code generator）也采用了模块的设计理念:</p>
+<h1>Code Generator</h1>
+<p>LLVM 代码生成器（code generator）也采用了模块的设计理念:</p>
 <ul>
 <li>将代码生成问题分解为多个独立 Pass：指令选择、寄存器分配、指令调度、代码布局优化、代码发射</li>
 <li>同样, 也有许多内建的 Pass, 它们默认执行, 但用户可以选择只执行其中一部分</li>
 </ul>
-<h1 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h1><p>交叉编译, 指的是我们能够在一个平台（例如x86）编译并构建二进制文件, 而在另一个平台（例如ARM）运行</p>
+<h1>交叉编译</h1>
+<p>交叉编译, 指的是我们能够在一个平台（例如x86）编译并构建二进制文件, 而在另一个平台（例如ARM）运行</p>
 <ul>
 <li>编译二进制文件的机器称为主机（host）, 而运行生成的二进制文件的平台我们称为目标平台（target）</li>
 <li>为相同平台（主机与目标机器相同）编译代码我们称为本机编译, native assembler</li>
 <li>为不同平台（主机与目标机器不同）编译代码则称为交叉编译, cross-compiler</li>
 </ul>
-<h1 id="CMD-Quick-Start"><a href="#CMD-Quick-Start" class="headerlink" title="CMD Quick Start"></a>CMD Quick Start</h1><h2 id="2-C-to-LLVM-IR"><a href="#2-C-to-LLVM-IR" class="headerlink" title="2 C to LLVM IR"></a>2 C to LLVM IR</h2><p>简要流程: 使用 clang 前端将 C 转为 IR</p>
+<h1>CMD Quick Start</h1>
+<h2 id="2-C-to-LLVM-IR">2 C to LLVM IR</h2>
+<p>简要流程: 使用 clang 前端将 C 转为 IR</p>
 <ul>
 <li>词法分析: 将 C 语言源码分解成 token 流, 每个 token 可表示标识符、字面量、运算符等</li>
 <li>语法分析: token 流会传递给语法分析器, 语法分析器会在语言的CFG（Context Free Grammar, 上下文无关文法）的指导下将 token 流组织成AST（抽象语法树）</li>
@@ -64,25 +107,79 @@ LLVM 使用 C++ 完成, 并为编译器开发人员提供了易用而丰富的�
 <ol>
 <li>示例 C 代码</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">mult</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="type">int</span> c = a * b;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-c" data-language="c"><code class="language-c">int mult() &#123;
+    int a &#x3D; 5;
+    int b &#x3D; 3;
+    int c &#x3D; a * b;
+    return c;
+&#125;</code></pre>
 <ol start="2">
 <li>使用 <code>clang</code> 将 C 转为 LLVM IR</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang-8 -emit-llvm -S 02multiply.c -o 02multiply.ll</span><br></pre></td></tr></table></figure>
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 -emit-llvm -S 02multiply.c -o 02multiply.ll</code></pre>
+<pre class="language-llvm" data-language="llvm"><code class="language-llvm">; ModuleID &#x3D; &#39;02multiply.c&#39;
+source_filename &#x3D; &quot;02multiply.c&quot;
+target datalayout &#x3D; &quot;e-m:e-i64:64-f80:128-n8:16:32:64-S128&quot;
+target triple &#x3D; &quot;x86_64-pc-linux-gnu&quot;
 
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; ModuleID = &#x27;02multiply.c&#x27;</span></span><br><span class="line">source_filename <span class="operator">=</span> <span class="string">&quot;02multiply.c&quot;</span></span><br><span class="line"><span class="keyword">target</span> <span class="keyword">datalayout</span> <span class="operator">=</span> <span class="string">&quot;e-m:e-i64:64-f80:128-n8:16:32:64-S128&quot;</span></span><br><span class="line"><span class="keyword">target</span> <span class="keyword">triple</span> <span class="operator">=</span> <span class="string">&quot;x86_64-pc-linux-gnu&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Function Attrs: noinline nounwind optnone uwtable</span></span><br><span class="line"><span class="keyword">define</span> dso_local <span class="type">i32</span> <span class="title">@mult</span>() <span class="variable">#0</span> &#123;</span><br><span class="line">  <span class="variable">%1</span> <span class="operator">=</span> <span class="keyword">alloca</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%2</span> <span class="operator">=</span> <span class="keyword">alloca</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%3</span> <span class="operator">=</span> <span class="keyword">alloca</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="keyword">store</span> <span class="type">i32</span> <span class="number">5</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%1</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="keyword">store</span> <span class="type">i32</span> <span class="number">3</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%2</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%4</span> <span class="operator">=</span> <span class="keyword">load</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%1</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%5</span> <span class="operator">=</span> <span class="keyword">load</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%2</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%6</span> <span class="operator">=</span> <span class="keyword">mul</span> <span class="keyword">nsw</span> <span class="type">i32</span> <span class="variable">%4</span><span class="punctuation">,</span> <span class="variable">%5</span></span><br><span class="line">  <span class="keyword">store</span> <span class="type">i32</span> <span class="variable">%6</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%3</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%7</span> <span class="operator">=</span> <span class="keyword">load</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%3</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%7</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">attributes</span> <span class="variable">#0</span> <span class="operator">=</span> &#123; <span class="keyword">noinline</span> <span class="keyword">nounwind</span> <span class="keyword">optnone</span> <span class="keyword">uwtable</span> <span class="string">&quot;correctly-rounded-divide-sqrt-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;disable-tail-calls&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;less-precise-fpmad&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;min-legal-vector-width&quot;</span><span class="operator">=</span><span class="string">&quot;0&quot;</span> <span class="string">&quot;no-frame-pointer-elim&quot;</span><span class="operator">=</span><span class="string">&quot;true&quot;</span> <span class="string">&quot;no-frame-pointer-elim-non-leaf&quot;</span> <span class="string">&quot;no-infs-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-jump-tables&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-nans-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-signed-zeros-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-trapping-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;stack-protector-buffer-size&quot;</span><span class="operator">=</span><span class="string">&quot;8&quot;</span> <span class="string">&quot;target-cpu&quot;</span><span class="operator">=</span><span class="string">&quot;x86-64&quot;</span> <span class="string">&quot;target-features&quot;</span><span class="operator">=</span><span class="string">&quot;+fxsr,+mmx,+sse,+sse2,+x87&quot;</span> <span class="string">&quot;unsafe-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;use-soft-float&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title">!llvm.module.flags</span> <span class="operator">=</span> !&#123;<span class="title">!0</span>&#125;</span><br><span class="line"><span class="title">!llvm.ident</span> <span class="operator">=</span> !&#123;<span class="title">!1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="title">!0</span> <span class="operator">=</span> !&#123;<span class="type">i32</span> <span class="number">1</span><span class="punctuation">,</span> !<span class="string">&quot;wchar_size&quot;</span><span class="punctuation">,</span> <span class="type">i32</span> <span class="number">4</span>&#125;</span><br><span class="line"><span class="title">!1</span> <span class="operator">=</span> !&#123;!<span class="string">&quot;clang version 8.0.1-svn363027-1~exp1~20190611211629.77 (branches/release_80)&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+; Function Attrs: noinline nounwind optnone uwtable
+define dso_local i32 @mult() #0 &#123;
+  %1 &#x3D; alloca i32, align 4
+  %2 &#x3D; alloca i32, align 4
+  %3 &#x3D; alloca i32, align 4
+  store i32 5, i32* %1, align 4
+  store i32 3, i32* %2, align 4
+  %4 &#x3D; load i32, i32* %1, align 4
+  %5 &#x3D; load i32, i32* %2, align 4
+  %6 &#x3D; mul nsw i32 %4, %5
+  store i32 %6, i32* %3, align 4
+  %7 &#x3D; load i32, i32* %3, align 4
+  ret i32 %7
+&#125;
 
+attributes #0 &#x3D; &#123; noinline nounwind optnone uwtable &quot;correctly-rounded-divide-sqrt-fp-math&quot;&#x3D;&quot;false&quot; &quot;disable-tail-calls&quot;&#x3D;&quot;false&quot; &quot;less-precise-fpmad&quot;&#x3D;&quot;false&quot; &quot;min-legal-vector-width&quot;&#x3D;&quot;0&quot; &quot;no-frame-pointer-elim&quot;&#x3D;&quot;true&quot; &quot;no-frame-pointer-elim-non-leaf&quot; &quot;no-infs-fp-math&quot;&#x3D;&quot;false&quot; &quot;no-jump-tables&quot;&#x3D;&quot;false&quot; &quot;no-nans-fp-math&quot;&#x3D;&quot;false&quot; &quot;no-signed-zeros-fp-math&quot;&#x3D;&quot;false&quot; &quot;no-trapping-math&quot;&#x3D;&quot;false&quot; &quot;stack-protector-buffer-size&quot;&#x3D;&quot;8&quot; &quot;target-cpu&quot;&#x3D;&quot;x86-64&quot; &quot;target-features&quot;&#x3D;&quot;+fxsr,+mmx,+sse,+sse2,+x87&quot; &quot;unsafe-fp-math&quot;&#x3D;&quot;false&quot; &quot;use-soft-float&quot;&#x3D;&quot;false&quot; &#125;
+
+!llvm.module.flags &#x3D; !&#123;!0&#125;
+!llvm.ident &#x3D; !&#123;!1&#125;
+
+!0 &#x3D; !&#123;i32 1, !&quot;wchar_size&quot;, i32 4&#125;
+!1 &#x3D; !&#123;!&quot;clang version 8.0.1-svn363027-1~exp1~20190611211629.77 (branches&#x2F;release_80)&quot;&#125;</code></pre>
 <ol start="3">
 <li>或者使用 <code>cc1</code> 实现 C 向 LLVM IR 的转换</li>
 </ol>
 <p>Tips: 是 cc1, 数字 1, 不是字母 L</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang-8 -cc1 -emit-llvm 02multiply.c -o 02multiply-ccl.ll</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 -cc1 -emit-llvm 02multiply.c -o 02multiply-ccl.ll</code></pre>
 <p>通过下面的 IR 可以看出, IR 的代码风格有所不一致</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; ModuleID = &#x27;02multiply.c&#x27;</span></span><br><span class="line">source_filename <span class="operator">=</span> <span class="string">&quot;02multiply.c&quot;</span></span><br><span class="line"><span class="keyword">target</span> <span class="keyword">datalayout</span> <span class="operator">=</span> <span class="string">&quot;e-m:e-i64:64-f80:128-n8:16:32:64-S128&quot;</span></span><br><span class="line"><span class="keyword">target</span> <span class="keyword">triple</span> <span class="operator">=</span> <span class="string">&quot;x86_64-pc-linux-gnu&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; Function Attrs: noinline nounwind optnone</span></span><br><span class="line"><span class="keyword">define</span> <span class="type">i32</span> <span class="title">@mult</span>() <span class="variable">#0</span> &#123;</span><br><span class="line"><span class="symbol">entry:</span></span><br><span class="line">  <span class="variable">%a</span> <span class="operator">=</span> <span class="keyword">alloca</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%b</span> <span class="operator">=</span> <span class="keyword">alloca</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%c</span> <span class="operator">=</span> <span class="keyword">alloca</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="keyword">store</span> <span class="type">i32</span> <span class="number">5</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%a</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="keyword">store</span> <span class="type">i32</span> <span class="number">3</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%b</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%0</span> <span class="operator">=</span> <span class="keyword">load</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%a</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%1</span> <span class="operator">=</span> <span class="keyword">load</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%b</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%mul</span> <span class="operator">=</span> <span class="keyword">mul</span> <span class="keyword">nsw</span> <span class="type">i32</span> <span class="variable">%0</span><span class="punctuation">,</span> <span class="variable">%1</span></span><br><span class="line">  <span class="keyword">store</span> <span class="type">i32</span> <span class="variable">%mul</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%c</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="variable">%2</span> <span class="operator">=</span> <span class="keyword">load</span> <span class="type">i32</span><span class="punctuation">,</span> <span class="type">i32</span>* <span class="variable">%c</span><span class="punctuation">,</span> <span class="keyword">align</span> <span class="number">4</span></span><br><span class="line">  <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">attributes</span> <span class="variable">#0</span> <span class="operator">=</span> &#123; <span class="keyword">noinline</span> <span class="keyword">nounwind</span> <span class="keyword">optnone</span> <span class="string">&quot;correctly-rounded-divide-sqrt-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;disable-tail-calls&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;less-precise-fpmad&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;min-legal-vector-width&quot;</span><span class="operator">=</span><span class="string">&quot;0&quot;</span> <span class="string">&quot;no-frame-pointer-elim&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-infs-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-jump-tables&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-nans-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-signed-zeros-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;no-trapping-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;stack-protector-buffer-size&quot;</span><span class="operator">=</span><span class="string">&quot;8&quot;</span> <span class="string">&quot;target-features&quot;</span><span class="operator">=</span><span class="string">&quot;+mmx,+sse,+sse2,+x87&quot;</span> <span class="string">&quot;unsafe-fp-math&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> <span class="string">&quot;use-soft-float&quot;</span><span class="operator">=</span><span class="string">&quot;false&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title">!llvm.module.flags</span> <span class="operator">=</span> !&#123;<span class="title">!0</span>&#125;</span><br><span class="line"><span class="title">!llvm.ident</span> <span class="operator">=</span> !&#123;<span class="title">!1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="title">!0</span> <span class="operator">=</span> !&#123;<span class="type">i32</span> <span class="number">1</span><span class="punctuation">,</span> !<span class="string">&quot;wchar_size&quot;</span><span class="punctuation">,</span> <span class="type">i32</span> <span class="number">4</span>&#125;</span><br><span class="line"><span class="title">!1</span> <span class="operator">=</span> !&#123;!<span class="string">&quot;clang version 8.0.1-svn363027-1~exp1~20190611211629.77 (branches/release_80)&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-llvm" data-language="llvm"><code class="language-llvm">; ModuleID &#x3D; &#39;02multiply.c&#39;
+source_filename &#x3D; &quot;02multiply.c&quot;
+target datalayout &#x3D; &quot;e-m:e-i64:64-f80:128-n8:16:32:64-S128&quot;
+target triple &#x3D; &quot;x86_64-pc-linux-gnu&quot;
 
-<h2 id="3-LLVM-IR-to-bitcode"><a href="#3-LLVM-IR-to-bitcode" class="headerlink" title="3 LLVM IR to bitcode"></a>3 LLVM IR to bitcode</h2><p>LLVM Bitecode, 也称为字节码 (bytecode), 由两部分组成:</p>
+; Function Attrs: noinline nounwind optnone
+define i32 @mult() #0 &#123;
+entry:
+  %a &#x3D; alloca i32, align 4
+  %b &#x3D; alloca i32, align 4
+  %c &#x3D; alloca i32, align 4
+  store i32 5, i32* %a, align 4
+  store i32 3, i32* %b, align 4
+  %0 &#x3D; load i32, i32* %a, align 4
+  %1 &#x3D; load i32, i32* %b, align 4
+  %mul &#x3D; mul nsw i32 %0, %1
+  store i32 %mul, i32* %c, align 4
+  %2 &#x3D; load i32, i32* %c, align 4
+  ret i32 %2
+&#125;
+
+attributes #0 &#x3D; &#123; noinline nounwind optnone &quot;correctly-rounded-divide-sqrt-fp-math&quot;&#x3D;&quot;false&quot; &quot;disable-tail-calls&quot;&#x3D;&quot;false&quot; &quot;less-precise-fpmad&quot;&#x3D;&quot;false&quot; &quot;min-legal-vector-width&quot;&#x3D;&quot;0&quot; &quot;no-frame-pointer-elim&quot;&#x3D;&quot;false&quot; &quot;no-infs-fp-math&quot;&#x3D;&quot;false&quot; &quot;no-jump-tables&quot;&#x3D;&quot;false&quot; &quot;no-nans-fp-math&quot;&#x3D;&quot;false&quot; &quot;no-signed-zeros-fp-math&quot;&#x3D;&quot;false&quot; &quot;no-trapping-math&quot;&#x3D;&quot;false&quot; &quot;stack-protector-buffer-size&quot;&#x3D;&quot;8&quot; &quot;target-features&quot;&#x3D;&quot;+mmx,+sse,+sse2,+x87&quot; &quot;unsafe-fp-math&quot;&#x3D;&quot;false&quot; &quot;use-soft-float&quot;&#x3D;&quot;false&quot; &#125;
+
+!llvm.module.flags &#x3D; !&#123;!0&#125;
+!llvm.ident &#x3D; !&#123;!1&#125;
+
+!0 &#x3D; !&#123;i32 1, !&quot;wchar_size&quot;, i32 4&#125;
+!1 &#x3D; !&#123;!&quot;clang version 8.0.1-svn363027-1~exp1~20190611211629.77 (branches&#x2F;release_80)&quot;&#125;</code></pre>
+<h2 id="3-LLVM-IR-to-bitcode">3 LLVM IR to bitcode</h2>
+<p>LLVM Bitecode, 也称为字节码 (bytecode), 由两部分组成:</p>
 <ul>
 <li>位流, bitstream, 可类比字节流</li>
 <li>编码格式: 将 LLVM IR 编码成位流的编码格式</li>
@@ -97,117 +194,194 @@ LLVM 使用 C++ 完成, 并为编译器开发人员提供了易用而丰富的�
 <ol>
 <li>准备示例的 LLVM IR</li>
 </ol>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">define</span> <span class="type">i32</span> <span class="title">@mult</span>(<span class="type">i32</span> <span class="variable">%a</span><span class="punctuation">,</span> <span class="type">i32</span> <span class="variable">%b</span>) <span class="variable">#0</span> &#123;</span><br><span class="line">    <span class="variable">%1</span> <span class="operator">=</span> <span class="keyword">mul</span> <span class="keyword">nsw</span> <span class="type">i32</span> <span class="variable">%a</span><span class="punctuation">,</span> <span class="variable">%b</span></span><br><span class="line">    <span class="keyword">ret</span> <span class="type">i32</span> <span class="variable">%1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-llvm" data-language="llvm"><code class="language-llvm">define i32 @mult(i32 %a, i32 %b) #0 &#123;
+    %1 &#x3D; mul nsw i32 %a, %b
+    ret i32 %1
+&#125;</code></pre>
 <ol start="2">
 <li>使用 <code>llvm-as</code> 将 LLVM IR 转为 bitcode 格式</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">llvm-as-8 03test.ll -o 03test.bc</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">llvm-as-8 03test.ll -o 03test.bc</code></pre>
 <ol start="3">
 <li>使用 <code>hexdump</code> 工具查看 bitcode 二进制文件</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211111208934.png"></p>
-<h2 id="4-LLVM-bitcode-to-ASM"><a href="#4-LLVM-bitcode-to-ASM" class="headerlink" title="4 LLVM bitcode to ASM"></a>4 LLVM bitcode to ASM</h2><p>将 LLVM bitcode 文件转换为目标平台的汇编代码</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211111208934.png" alt=""></p>
+<h2 id="4-LLVM-bitcode-to-ASM">4 LLVM bitcode to ASM</h2>
+<p>将 LLVM bitcode 文件转换为目标平台的汇编代码</p>
 <ol>
-<li><p>使用 <a href="#llvm-ir-to-bitcode">上一个实验的输出 03test.bc</a> 作为本实验的输入</p>
+<li>
+<p>使用 <a href="#llvm-ir-to-bitcode">上一个实验的输出 03test.bc</a> 作为本实验的输入</p>
 </li>
-<li><p>使用 <code>llc</code> 实现 bitcode2asm</p>
+<li>
+<p>使用 <code>llc</code> 实现 bitcode2asm</p>
 </li>
 </ol>
 <ul>
-<li>输入格式支持 <code>.bc</code> 与 <code>.ll</code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认的适配架构由本机决定</span></span><br><span class="line">llc-8 03test.bc -o 04test.s</span><br></pre></td></tr></table></figure></li>
+<li>输入格式支持 <code>.bc</code> 与 <code>.ll</code></li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121219558.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"># 默认的适配架构由本机决定
+llc-8 03test.bc -o 04test.s</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121219558.png" alt=""></p>
 <ol>
 <li>查看汇编文件, 汇编的格式为 AT&amp;T 格式</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">        .text</span><br><span class="line">        .file   &quot;03test.ll&quot;</span><br><span class="line">        .globl  mult                    # -- Begin function mult</span><br><span class="line">        .p2align        4, 0x90</span><br><span class="line">        .type   mult,@function</span><br><span class="line">mult:                                   # @mult</span><br><span class="line">        .cfi_startproc</span><br><span class="line"># %bb.0:</span><br><span class="line">        movl    %edi, %eax</span><br><span class="line">        imull   %esi, %eax</span><br><span class="line">        retq</span><br><span class="line">.Lfunc_end0:</span><br><span class="line">        .size   mult, .Lfunc_end0-mult</span><br><span class="line">        .cfi_endproc</span><br><span class="line">                                        # -- End function</span><br><span class="line"></span><br><span class="line">        .section        &quot;.note.GNU-stack&quot;,&quot;&quot;,@progbits</span><br></pre></td></tr></table></figure>
+<pre class="language-asm" data-language="asm"><code class="language-asm">        .text
+        .file   &quot;03test.ll&quot;
+        .globl  mult                    # -- Begin function mult
+        .p2align        4, 0x90
+        .type   mult,@function
+mult:                                   # @mult
+        .cfi_startproc
+# %bb.0:
+        movl    %edi, %eax
+        imull   %esi, %eax
+        retq
+.Lfunc_end0:
+        .size   mult, .Lfunc_end0-mult
+        .cfi_endproc
+                                        # -- End function
 
+        .section        &quot;.note.GNU-stack&quot;,&quot;&quot;,@progbits</code></pre>
 <ol start="4">
 <li>或者使用 <code>clang</code> 实现 bitcode2asm</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang-8 -S 03test.bc -o 04test_clang.s -fomit-frame-pointer</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">fomit-fram-pointer 开启消除函数栈帧顶指针功能, clang 默认是关闭此选项的, llc 默认是开启的</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121228155.png"></p>
-<h3 id="指定架构"><a href="#指定架构" class="headerlink" title="指定架构"></a>指定架构</h3><p>可以使用 -march 执行具体的 CPU 架构</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 -S 03test.bc -o 04test_clang.s -fomit-frame-pointer
+# fomit-fram-pointer 开启消除函数栈帧顶指针功能, clang 默认是关闭此选项的, llc 默认是开启的</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121228155.png" alt=""></p>
+<h3 id="指定架构">指定架构</h3>
+<p>可以使用 -march 执行具体的 CPU 架构</p>
 <p>特别的, x86 架构有两种汇编风格, <code>AT&amp;T</code> 与 <code>intel</code>, 这个需要通过 <code>-x86-asm-syntax=[att|intel]</code> 来指定</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">llc-8 -march=x86-64 -x86-asm-syntax=intel 03test.bc -o 04test_intel.s</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121509150.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">llc-8 -march&#x3D;x86-64 -x86-asm-syntax&#x3D;intel 03test.bc -o 04test_intel.s</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121509150.png" alt=""></p>
 <p>通过 <code>llc --version</code> 可以查看 <code>-march</code> 参数可选的值</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">LLVM (http://llvm.org/):</span><br><span class="line">  LLVM version 8.0.1</span><br><span class="line"></span><br><span class="line">  Optimized build.</span><br><span class="line">  Default target: x86_64-pc-linux-gnu</span><br><span class="line">  Host CPU: (unknown)</span><br><span class="line"></span><br><span class="line">  Registered Targets:</span><br><span class="line">    aarch64    - AArch64 (little endian)</span><br><span class="line">    aarch64_be - AArch64 (big endian)</span><br><span class="line">    amdgcn     - AMD GCN GPUs</span><br><span class="line">    arm        - ARM</span><br><span class="line">    arm64      - ARM64 (little endian)</span><br><span class="line">    armeb      - ARM (big endian)</span><br><span class="line">    avr        - Atmel AVR Microcontroller</span><br><span class="line">    bpf        - BPF (host endian)</span><br><span class="line">    bpfeb      - BPF (big endian)</span><br><span class="line">    bpfel      - BPF (little endian)</span><br><span class="line">    hexagon    - Hexagon</span><br><span class="line">    lanai      - Lanai</span><br><span class="line">    mips       - MIPS (32-bit big endian)</span><br><span class="line">    mips64     - MIPS (64-bit big endian)</span><br><span class="line">    mips64el   - MIPS (64-bit little endian)</span><br><span class="line">    mipsel     - MIPS (32-bit little endian)</span><br><span class="line">    msp430     - MSP430 [experimental]</span><br><span class="line">    nvptx      - NVIDIA PTX 32-bit</span><br><span class="line">    nvptx64    - NVIDIA PTX 64-bit</span><br><span class="line">    ppc32      - PowerPC 32</span><br><span class="line">    ppc64      - PowerPC 64</span><br><span class="line">    ppc64le    - PowerPC 64 LE</span><br><span class="line">    r600       - AMD GPUs HD2XXX-HD6XXX</span><br><span class="line">    sparc      - Sparc</span><br><span class="line">    sparcel    - Sparc LE</span><br><span class="line">    sparcv9    - Sparc V9</span><br><span class="line">    systemz    - SystemZ</span><br><span class="line">    thumb      - Thumb</span><br><span class="line">    thumbeb    - Thumb (big endian)</span><br><span class="line">    wasm32     - WebAssembly 32-bit</span><br><span class="line">    wasm64     - WebAssembly 64-bit</span><br><span class="line">    x86        - 32-bit X86: Pentium-Pro and above</span><br><span class="line">    x86-64     - 64-bit X86: EM64T and AMD64</span><br><span class="line">    xcore      - XCore</span><br></pre></td></tr></table></figure>
+<pre class="language-bash" data-language="bash"><code class="language-bash">LLVM (http:&#x2F;&#x2F;llvm.org&#x2F;):
+  LLVM version 8.0.1
 
-<h2 id="5-LLVM-bitcode-to-LLVM-汇编码"><a href="#5-LLVM-bitcode-to-LLVM-汇编码" class="headerlink" title="5 LLVM bitcode to LLVM 汇编码"></a>5 LLVM bitcode to LLVM 汇编码</h2><p>使用 <code>llvm-dis</code> (LLVM 反汇编器) 实现 LLVM bitcode (.bc) 转回 LLVM IR (.ll)</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">llvm-dis-8 03test.bc -o 05test.ll</span><br></pre></td></tr></table></figure>
+  Optimized build.
+  Default target: x86_64-pc-linux-gnu
+  Host CPU: (unknown)
 
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121514660.png"></p>
-<h2 id="6-IR-Transform"><a href="#6-IR-Transform" class="headerlink" title="6 IR Transform"></a>6 IR Transform</h2><p>主要利用 <code>opt</code> 工具实现 IR 形式的转化与代码的优化</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">opt-8 -mem2reg -S 02multiply.ll -o 06multiply.-mem2reg.ll</span><br></pre></td></tr></table></figure>
-
+  Registered Targets:
+    aarch64    - AArch64 (little endian)
+    aarch64_be - AArch64 (big endian)
+    amdgcn     - AMD GCN GPUs
+    arm        - ARM
+    arm64      - ARM64 (little endian)
+    armeb      - ARM (big endian)
+    avr        - Atmel AVR Microcontroller
+    bpf        - BPF (host endian)
+    bpfeb      - BPF (big endian)
+    bpfel      - BPF (little endian)
+    hexagon    - Hexagon
+    lanai      - Lanai
+    mips       - MIPS (32-bit big endian)
+    mips64     - MIPS (64-bit big endian)
+    mips64el   - MIPS (64-bit little endian)
+    mipsel     - MIPS (32-bit little endian)
+    msp430     - MSP430 [experimental]
+    nvptx      - NVIDIA PTX 32-bit
+    nvptx64    - NVIDIA PTX 64-bit
+    ppc32      - PowerPC 32
+    ppc64      - PowerPC 64
+    ppc64le    - PowerPC 64 LE
+    r600       - AMD GPUs HD2XXX-HD6XXX
+    sparc      - Sparc
+    sparcel    - Sparc LE
+    sparcv9    - Sparc V9
+    systemz    - SystemZ
+    thumb      - Thumb
+    thumbeb    - Thumb (big endian)
+    wasm32     - WebAssembly 32-bit
+    wasm64     - WebAssembly 64-bit
+    x86        - 32-bit X86: Pentium-Pro and above
+    x86-64     - 64-bit X86: EM64T and AMD64
+    xcore      - XCore</code></pre>
+<h2 id="5-LLVM-bitcode-to-LLVM-汇编码">5 LLVM bitcode to LLVM 汇编码</h2>
+<p>使用 <code>llvm-dis</code> (LLVM 反汇编器) 实现 LLVM bitcode (.bc) 转回 LLVM IR (.ll)</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">llvm-dis-8 03test.bc -o 05test.ll</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121514660.png" alt=""></p>
+<h2 id="6-IR-Transform">6 IR Transform</h2>
+<p>主要利用 <code>opt</code> 工具实现 IR 形式的转化与代码的优化</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">opt-8 -mem2reg -S 02multiply.ll -o 06multiply.-mem2reg.ll</code></pre>
 <ul>
 <li><code>-mem2reg</code>: 主要优化内存访问, 将局部变量从内存提升到寄存器</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121535088.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121535088.png" alt=""></p>
 <p>如上图所示, 这里按照书中的步骤执行会发现 <code>-mem2reg</code> 并没有任何效果, 这是<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46513801/llvm-opt-mem2reg-has-no-effect">因为</a> clang 将 c 转为 ll 时默认的优化级别时 O0, 这个级别会为生成汇编码中的每个函数添加一个属性 <code>optnone</code> 显示的阻断后续的优化 pass</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121538419.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121538419.png" alt=""></p>
 <p>为了避免这个问题, 需要在 clang 转换时添加属性 <code>-Xclang -disable-O0-optnone</code> 将 “封印解除” 就可以单独进行 <code>-mem2reg</code> 的优化并看到效果了</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang-8 -emit-llvm -S 06multiply.c -Xclang -disable-O0-optnone -o 06multiply.ll</span><br><span class="line">opt-8 -mem2reg -S 06multiply.ll -o 06multiply.-mem2reg.ll</span><br><span class="line">cat 06multiply.-mem2reg.ll</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121543787.png"></p>
-<h2 id="7-链接-LLVM-bitcode"><a href="#7-链接-LLVM-bitcode" class="headerlink" title="7 链接 LLVM bitcode"></a>7 链接 LLVM bitcode</h2><p>llvm-link 的功能和传统的链接器一致: 如果一个函数或者变量在一个文件中被引用, 却在另一个文件中定义, 那么链接器就会解析这个文件中引用的符号, 只不过其针对的是 llvm bitcode 文件而非 object</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 -emit-llvm -S 06multiply.c -Xclang -disable-O0-optnone -o 06multiply.ll
+opt-8 -mem2reg -S 06multiply.ll -o 06multiply.-mem2reg.ll
+cat 06multiply.-mem2reg.ll</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211121543787.png" alt=""></p>
+<h2 id="7-链接-LLVM-bitcode">7 链接 LLVM bitcode</h2>
+<p>llvm-link 的功能和传统的链接器一致: 如果一个函数或者变量在一个文件中被引用, 却在另一个文件中定义, 那么链接器就会解析这个文件中引用的符号, 只不过其针对的是 llvm bitcode 文件而非 object</p>
 <ol>
 <li>准备如下两个文件, 准备进行连接</li>
 </ol>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 07test1.c</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func</span><span class="params">(<span class="type">int</span> a)</span> </span>&#123;</span><br><span class="line">    a = a * <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 07test2.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">func</span><span class="params">(<span class="type">int</span> a)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> num = <span class="number">5</span>;</span><br><span class="line">    num = <span class="built_in">func</span>(num);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;number is %d\n&quot;</span>, num);</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-cpp" data-language="cpp"><code class="language-cpp">&#x2F;&#x2F; 07test1.c
+int func(int a) &#123;
+    a &#x3D; a * 2;
+    return a;
+&#125;
 
+&#x2F;&#x2F; 07test2.c
+#include&lt;stdio.h&gt;
+extern int func(int a);
+int main() &#123;
+    int num &#x3D; 5;
+    num &#x3D; func(num);
+    printf(&quot;number is %d\n&quot;, num);
+    return num;
+&#125;</code></pre>
 <ol start="2">
 <li>将 C 转为 LLVM bitcode (位流文件格式): c -&gt; ll -&gt; bc</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">clang-8 -emit-llvm -S 07test1.c -o 07test1.ll</span><br><span class="line">clang-8 -emit-llvm -S 07test2.c -o 07test2.ll</span><br><span class="line">llvm-as-8 07test1.ll -o 07test1.bc</span><br><span class="line">llvm-as-8 07test2.ll -o 07test2.bc</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 -emit-llvm -S 07test1.c -o 07test1.ll
+clang-8 -emit-llvm -S 07test2.c -o 07test2.ll
+llvm-as-8 07test1.ll -o 07test1.bc
+llvm-as-8 07test2.ll -o 07test2.bc</code></pre>
 <p>此时 test2.bc 引用了 test1.bc 文件中的 func 函数</p>
 <ol start="3">
 <li>使用 <code>llvm-link</code> 命令链接两个 LLVM bitcode 文件</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">llvm-link-8 07test1.bc 07test2.bc -o 07test_linked.bc</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">llvm-link-8 07test1.bc 07test2.bc -o 07test_linked.bc</code></pre>
 <ol start="4">
 <li>可以使用 <code>—S</code> 参数, 让 <code>llvm-link</code> 直接输出 LLVM IR 文件</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">llvm-link-8 -S 07test1.bc 07test2.bc -o 07test_linked.ll</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211140951540.png"></p>
-<h2 id="8-执行-LLVM-bitcode"><a href="#8-执行-LLVM-bitcode" class="headerlink" title="8 执行 LLVM bitcode"></a>8 执行 LLVM bitcode</h2><p>使用 <code>lli</code> 工具以 LLVM bitcode 为输入, 使用即时编译器 (JIT) 实现 LLVM bitcode 的执行</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">llvm-link-8 -S 07test1.bc 07test2.bc -o 07test_linked.ll</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211140951540.png" alt=""></p>
+<h2 id="8-执行-LLVM-bitcode">8 执行 LLVM bitcode</h2>
+<p>使用 <code>lli</code> 工具以 LLVM bitcode 为输入, 使用即时编译器 (JIT) 实现 LLVM bitcode 的执行</p>
 <ul>
 <li>如果当前的架构不存在 JIT 编译器，会用解释器执行</li>
 </ul>
 <ol>
 <li><code>lli 07test_linked.bc</code> 即可执行</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211140953616.png"></p>
-<h2 id="9-C-与-Clang"><a href="#9-C-与-Clang" class="headerlink" title="9 C 与 Clang"></a>9 C 与 Clang</h2><p>Clang 能够作为预处理器、编译器驱动、前端以及代码生成器使用，它的输出取决于你指定的参数</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211140953616.png" alt=""></p>
+<h2 id="9-C-与-Clang">9 C 与 Clang</h2>
+<p>Clang 能够作为预处理器、编译器驱动、前端以及代码生成器使用，它的输出取决于你指定的参数</p>
 <ol>
 <li>使用 <code>clang</code> 将 C 转为可执行文件</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang-8 09test.c -o 09test.out</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141005188.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 09test.c -o 09test.out</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141005188.png" alt=""></p>
 <ol start="2">
 <li>添加 <code>-S -emit-llvm</code> 选项, 将 C 转为 LLVM 汇编码</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang-8 09test.c -S -emit-llvm -o 09test.ll</span><br></pre></td></tr></table></figure>
-
-<p><code>-S</code>: 表示 Only run preprocess and compilation steps<br><code>-emit-llvm</code>: 表示 Use the LLVM representation for assembler and object files</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141008765.png"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 09test.c -S -emit-llvm -o 09test.ll</code></pre>
+<p><code>-S</code>: 表示 Only run preprocess and compilation steps<br>
+<code>-emit-llvm</code>: 表示 Use the LLVM representation for assembler and object files</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141008765.png" alt=""></p>
 <ol start="3">
 <li>仅添加 <code>-S</code> 选项, 就能实现 C 转为汇编码</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">clang-8 09test.c -S -o -</span><br></pre></td></tr></table></figure>
-
+<pre class="language-bash" data-language="bash"><code class="language-bash">clang-8 09test.c -S -o -</code></pre>
 <p><code>-o -</code>: 将结果再标准输出中输出</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141013679.png"></p>
-<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ul>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202211141013679.png" alt=""></p>
+<h1>Refs</h1>
+<ul>
 <li>[llvm-cookbook]</li>
 </ul>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/11/11/01-llvm-basic/,Jiancong Cui,01-llvm-basic,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/03/01-Overview-of-Compilation-Principles/" title="01-Overview-of-Compilation-Principles">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/09/11/13-Jetpack/" title="13-Jetpack">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

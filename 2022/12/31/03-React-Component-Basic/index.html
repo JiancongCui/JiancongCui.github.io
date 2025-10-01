@@ -1,90 +1,248 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>03-React-Component Basic · Jiancong Cui</title><meta name="description" content="类组件最基本的类组件可以使用 rcc ( in vscode ) 快速构建
-12345678910import React from &amp;#x27;react&amp;#x27;class App extends React.Component &amp;#123;    render() &amp;#123;       "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>03-React-Component Basic</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-31</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/react/" title="react">react</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="类组件"><a href="#类组件" class="headerlink" title="类组件"></a>类组件</h1><h2 id="最基本的类组件"><a href="#最基本的类组件" class="headerlink" title="最基本的类组件"></a>最基本的类组件</h2><p>可以使用 rcc ( in vscode ) 快速构建</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello App from React.Component <span class="tag">&lt;/<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">App</span></span><br></pre></td></tr></table></figure>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>03-React-Component Basic · Jiancong Cui</title><meta name="description" content="类组件
+最基本的类组件
+可以使用 rcc ( in vscode ) 快速构建
 
+import React from &amp;#39;react&amp;#39;
+
+class App extends React.Component &amp;#123;
+    render() &amp;#123;
+        retur"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>03-React-Component Basic</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-31</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/react/" title="react">react</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>类组件</h1>
+<h2 id="最基本的类组件">最基本的类组件</h2>
+<p>可以使用 rcc ( in vscode ) 快速构建</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">
+import React from &#39;react&#39;
+
+class App extends React.Component &#123;
+    render() &#123;
+        return &lt;div&gt;&lt;h1&gt;Hello App from React.Component &lt;&#x2F;h1&gt;&lt;&#x2F;div&gt;
+    &#125;
+&#125;
+
+export default App</code></pre>
 <p>引入创建的类组件后, 通过 ReactDom 进行渲染</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里的 App 是别名, 不一定与目标文件导出对象的名称一致</span></span><br><span class="line"><span class="keyword">import</span> <span class="variable constant_">APP</span> <span class="keyword">from</span> <span class="string">&#x27;./01-base/01-1-class组件初识.js&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>Test<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">&#x2F;&#x2F; 这里的 App 是别名, 不一定与目标文件导出对象的名称一致
+import APP from &#39;.&#x2F;01-base&#x2F;01-1-class组件初识.js&#39;
 
+ReactDOM.render(&lt;div&gt;Test&lt;&#x2F;div&gt;, document.getElementById(&#39;root&#39;))</code></pre>
 <p>Tips: React 18 版本不在推荐使用 ReactDOM.render() 的渲染方式</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> root = <span class="title function_">createRoot</span>(container);</span><br><span class="line">root.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">APP</span> /&gt;</span></span>);</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const container &#x3D; document.getElementById(&#39;root&#39;);
+const root &#x3D; createRoot(container);
+root.render(&lt;APP &#x2F;&gt;);</code></pre>
+<h2 id="根据属性构造简单的动态类组件">根据属性构造简单的动态类组件</h2>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">class App extends React.Component &#123;
+    render() &#123;
+        return &lt;div&gt;&lt;h1&gt;Hello App from React.Component @ &#123;this.props.name&#125; &lt;&#x2F;h1&gt;&lt;&#x2F;div&gt;
+    &#125;
+&#125;
 
-<h2 id="根据属性构造简单的动态类组件"><a href="#根据属性构造简单的动态类组件" class="headerlink" title="根据属性构造简单的动态类组件"></a>根据属性构造简单的动态类组件</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello App from React.Component @ &#123;this.props.name&#125; <span class="tag">&lt;/<span class="name">h1</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// .render 直接实例化, 渲染时直接传递该对象即可</span></span><br><span class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> <span class="title class_">App</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;ComingPro&#x27;</span></span><br><span class="line">&#125;).<span class="title function_">render</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> app</span><br></pre></td></tr></table></figure>
+&#x2F;&#x2F; .render 直接实例化, 渲染时直接传递该对象即可
+const app &#x3D; new App(&#123;
+    name: &#39;ComingPro&#39;
+&#125;).render()
 
+export default app</code></pre>
 <p>此时已经实例化啦, 因此直接渲染目标对象即可</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> root = <span class="title function_">createRoot</span>(container);</span><br><span class="line">root.<span class="title function_">render</span>(<span class="title class_">App</span>);</span><br></pre></td></tr></table></figure>
-
-<h1 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h1><p>无状态组件, 十分简单, 但自身能承担的功能也有限</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">const container &#x3D; document.getElementById(&#39;root&#39;);
+const root &#x3D; createRoot(container);
+root.render(App);</code></pre>
+<h1>函数式组件</h1>
+<p>无状态组件, 十分简单, 但自身能承担的功能也有限</p>
 <ul>
 <li>组件中  <code>this</code> 为 <code>undefined</code>，是因为经过 <code>babel</code> 翻译开起严格模式，从而禁止了自定义 <code>this</code> 指向 <code>window</code></li>
 </ul>
-<h2 id="基本的函数式组建"><a href="#基本的函数式组建" class="headerlink" title="基本的函数式组建"></a>基本的函数式组建</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">App</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span> 02-函数式组件.js <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h2</span>&gt;</span> Hello ComingPro <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h2</span>&gt;</span> You are the Best <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">App</span>/&gt;</span></span>, <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;test&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="基本的函数式组建">基本的函数式组建</h2>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">function App() &#123;
+    return (
+        &lt;div&gt;
+            &lt;h1&gt; 02-函数式组件.js &lt;&#x2F;h1&gt;
+            &lt;h2&gt; Hello ComingPro &lt;&#x2F;h2&gt;
+            &lt;h2&gt; You are the Best &lt;&#x2F;h2&gt;
+        &lt;&#x2F;div&gt;
+    )
+&#125;
+ReactDOM.render(&lt;App&#x2F;&gt;, document.getElementById(&#39;test&#39;))</code></pre>
+<h1>组件的嵌套</h1>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import React, &#123;Component&#125; from &#39;react&#39;
 
-<h1 id="组件的嵌套"><a href="#组件的嵌套" class="headerlink" title="组件的嵌套"></a>组件的嵌套</h1><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Navbar</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Navbar<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Swiper</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Swiper<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">Tabbar</span> = (<span class="params"></span>) =&gt; <span class="language-xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Tabbar<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">h1</span>&gt;</span>03-组件的嵌套.js<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">Navbar</span>&gt;</span><span class="tag">&lt;/<span class="name">Navbar</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">Swiper</span>&gt;</span><span class="tag">&lt;/<span class="name">Swiper</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">Tabbar</span>&gt;</span><span class="tag">&lt;/<span class="name">Tabbar</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+class Navbar extends Component &#123;
+    render() &#123;
+        return(
+            &lt;h2&gt;Navbar&lt;&#x2F;h2&gt;
+        )
+    &#125;
+&#125;
 
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212311851361.png"></p>
-<h1 id="组件的样式"><a href="#组件的样式" class="headerlink" title="组件的样式"></a>组件的样式</h1><h2 id="外部-CSS-文件"><a href="#外部-CSS-文件" class="headerlink" title="外部 CSS 文件"></a>外部 CSS 文件</h2><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./css/01-index.css&#x27;</span> <span class="comment">// webpack 的支持</span></span><br></pre></td></tr></table></figure>
+function Swiper() &#123;
+    return (
+        &lt;h2&gt;Swiper&lt;&#x2F;h2&gt;
+    )
+&#125;
 
+const Tabbar &#x3D; () &#x3D;&gt; &lt;h2&gt;Tabbar&lt;&#x2F;h2&gt;
+
+export default class App extends Component &#123;
+    render() &#123;
+        return (
+            &lt;div&gt;
+                &lt;h1&gt;03-组件的嵌套.js&lt;&#x2F;h1&gt;
+                &lt;Navbar&gt;&lt;&#x2F;Navbar&gt;
+                &lt;Swiper&gt;&lt;&#x2F;Swiper&gt;
+                &lt;Tabbar&gt;&lt;&#x2F;Tabbar&gt;
+            &lt;&#x2F;div&gt;
+        )
+    &#125;
+&#125;</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212311851361.png" alt=""></p>
+<h1>组件的样式</h1>
+<h2 id="外部-CSS-文件">外部 CSS 文件</h2>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#39;.&#x2F;css&#x2F;01-index.css&#39; &#x2F;&#x2F; webpack 的支持</code></pre>
 <p>导入外部 CSS 文件, 整合的 webpack 会将其转为内部 <code>style</code> 从而将样式应用到全局</p>
 <ul>
 <li>针对标签类型的样式就有可能出现样式冲突问题</li>
 <li>针对选择器定义的样式则可能出现重名问题</li>
 <li>因此不推荐使用</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301051255690.png"></p>
-<h2 id="行内样式"><a href="#行内样式" class="headerlink" title="行内样式"></a>行内样式</h2><p>推荐使用行内样式, 方便组件复用</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301051255690.png" alt=""></p>
+<h2 id="行内样式">行内样式</h2>
+<p>推荐使用行内样式, 方便组件复用</p>
 <ul>
 <li>如果</li>
 <li>推荐每一个组件建立一个文件夹，文件夹中 <code>index.js</code> 写组件设计代码；<code>index.css</code> 写组件样式代码</li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123;<span class="title class_">Component</span>&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> username = <span class="string">&quot;ComingPro&quot;</span></span><br><span class="line">        <span class="keyword">var</span> style1 = &#123;</span><br><span class="line">            <span class="attr">background</span>: <span class="string">&quot;yellow&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span>10 + 20 = &#123;10 + 20&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span> Username: &#123;username&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span> 10 <span class="symbol">&amp;gt;</span> 20 : &#123;10 &gt; 20 ? &quot;Yes&quot; : &quot;No&quot;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span> 10 <span class="symbol">&amp;lt;</span> 20 : &#123;10 &lt; 20 ? &quot;Yes&quot; : &quot;No&quot;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;style1&#125;</span>&gt;</span> 推荐使用这两种行内样式, 方便组件的管理 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;&#123;backgroundColor:</span> &quot;<span class="attr">blue</span>&quot;, <span class="attr">color:</span> &quot;<span class="attr">white</span>&quot;, <span class="attr">fontSize:</span> &quot;<span class="attr">22px</span>&quot;, <span class="attr">padding:</span> &quot;<span class="attr">8px</span>&quot;&#125;&#125;&gt;</span> 命名变为驼峰 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import React, &#123;Component&#125; from &#39;react&#39;
 
-<h2 id="CSS-模块化"><a href="#CSS-模块化" class="headerlink" title="CSS 模块化"></a>CSS 模块化</h2><p>针对不想全局应用的非标签式样式可以使用 CSS 模块化解决:</p>
+export default class App extends Component &#123;
+    render() &#123;
+        var username &#x3D; &quot;ComingPro&quot;
+        var style1 &#x3D; &#123;
+            background: &quot;yellow&quot;
+        &#125;
+        return (
+            &lt;div&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;10 + 20 &#x3D; &#123;10 + 20&#125;&lt;&#x2F;li&gt;
+                    &lt;li&gt; Username: &#123;username&#125;&lt;&#x2F;li&gt;
+                    &lt;li&gt; 10 &gt; 20 : &#123;10 &gt; 20 ? &quot;Yes&quot; : &quot;No&quot;&#125;&lt;&#x2F;li&gt;
+                    &lt;li&gt; 10 &lt; 20 : &#123;10 &lt; 20 ? &quot;Yes&quot; : &quot;No&quot;&#125;&lt;&#x2F;li&gt;
+                &lt;&#x2F;ul&gt;
+                &lt;div style&#x3D;&#123;style1&#125;&gt; 推荐使用这两种行内样式, 方便组件的管理 &lt;&#x2F;div&gt;
+                &lt;div style&#x3D;&#123;&#123;backgroundColor: &quot;blue&quot;, color: &quot;white&quot;, fontSize: &quot;22px&quot;, padding: &quot;8px&quot;&#125;&#125;&gt; 命名变为驼峰 &lt;&#x2F;div&gt;
+            &lt;&#x2F;div&gt;
+        )
+    &#125;
+&#125;</code></pre>
+<h2 id="CSS-模块化">CSS 模块化</h2>
+<p>针对不想全局应用的非标签式样式可以使用 CSS 模块化解决:</p>
 <ol>
 <li>css 文件的后缀为 <code>.module.css</code></li>
 <li>引入文件起一个别名: <code>import style from ./index.module.css</code></li>
 <li>使用 style 进行样式赋值:</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> style <span class="keyword">from</span> <span class="string">&#x27;./Child.module.css&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">Child</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">h1</span> <span class="attr">className</span>=<span class="string">&#123;style[</span>&#x27;<span class="attr">red-line</span>&#x27;]&#125;&gt;</span> Child <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import style from &#39;.&#x2F;Child.module.css&#39;
 
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301051258231.png"></p>
-<h2 id="sass"><a href="#sass" class="headerlink" title="sass"></a>sass</h2><ol>
+export default function Child() &#123;
+    return (
+        &lt;div&gt;
+            &lt;h1 className&#x3D;&#123;style[&#39;red-line&#39;]&#125;&gt; Child &lt;&#x2F;h1&gt;
+        &lt;&#x2F;div&gt;
+    )
+&#125;</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301051258231.png" alt=""></p>
+<h2 id="sass">sass</h2>
+<ol>
 <li><code>npm i sass</code></li>
 <li>将后缀名改为 <code>*.scss</code></li>
 <li>应用 sass 语法</li>
 </ol>
 <p>TODO: 更为详细的 sass 语法</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">300px</span>;</span><br><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">    <span class="selector-class">.item</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">        backgroud-<span class="attribute">color</span>: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="组件的事件绑定"><a href="#组件的事件绑定" class="headerlink" title="组件的事件绑定"></a>组件的事件绑定</h1><p>所有事件命名都是 <code>on</code> + <code>事件的驼峰命名</code> 如 <code>onClick, onMouseOver</code></p>
+<pre class="language-scss" data-language="scss"><code class="language-scss">$width: 300px;
+ul &#123;
+    .item &#123;
+        width: $width;
+        backgroud-color: red;
+    &#125;
+&#125;</code></pre>
+<h1>组件的事件绑定</h1>
+<p>所有事件命名都是 <code>on</code> + <code>事件的驼峰命名</code> 如 <code>onClick, onMouseOver</code></p>
 <ul>
 <li>React 事件绑定原理: React 并没有真正的绑定事件到每一个具体的标签上，而是采用事件代理的模式，在根标签上进行事件的监听（冒泡）</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212312238050.png"></p>
-<h2 id="阻止冒泡"><a href="#阻止冒泡" class="headerlink" title="阻止冒泡"></a>阻止冒泡</h2><p>通过 event 对象阻止冒泡, 处理函数中的 event 参数也是 react 模拟的, 但是仍然存在阻止冒泡的相关接口: <code>event.stopPropagatoin</code>, <code>event.preventDefault</code></p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">this.handleClick</span> &#125;&gt;</span> ADD <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">    handleClick = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(event)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;`event.target` 获取事件源&quot;</span>)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">target</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="四种事件绑定方式"><a href="#四种事件绑定方式" class="headerlink" title="四种事件绑定方式"></a>四种事件绑定方式</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">App</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> &gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;/* 1. 行内形式 */&#125;</span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> () =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">                    console.log(&quot;click1&quot;)</span></span><br><span class="line"><span class="language-xml">                &#125; &#125;&gt; ADD <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;/* 2. 原生的 js 函数形式: 存在 this 指向问题 */&#125;</span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">this.handleClick2</span> &#125;&gt;</span> ADD2 <span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span></span><br><span class="line"><span class="language-xml">                &#123;/* 2. 原生的 js 函数形式: 使用 bind 解决 this 指向问题 */&#125;</span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">this.handleClick2.bind</span>(<span class="attr">this</span>) &#125;&gt;</span> ADD2-bind <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;/* 3. 隐式匿名函数调用 */&#125;</span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">this.handleClick3</span> &#125;&gt;</span> ADD3 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                &#123;/* 4. 显式匿名函数调用 */&#125;</span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> () =&gt;</span> &#123; this.handleClick4(&quot;ComingPro&quot;) &#125; &#125;&gt; ADD4 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212312238050.png" alt=""></p>
+<h2 id="阻止冒泡">阻止冒泡</h2>
+<p>通过 event 对象阻止冒泡, 处理函数中的 event 参数也是 react 模拟的, 但是仍然存在阻止冒泡的相关接口: <code>event.stopPropagatoin</code>, <code>event.preventDefault</code></p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">export default class App extends Component &#123;
+    render() &#123;
+        return (
+            &lt;div&gt;
+                &lt;input type&#x3D;&quot;text&quot; &gt;&lt;&#x2F;input&gt;
+                &lt;button onClick&#x3D;&#123; this.handleClick &#125;&gt; ADD &lt;&#x2F;button&gt;
+            &lt;&#x2F;div&gt;
+        )
+    &#125;
+    handleClick &#x3D; (event) &#x3D;&gt; &#123;
+        console.log(event)
+        console.log(&quot;&#96;event.target&#96; 获取事件源&quot;)
+        console.log(event.target)
+    &#125;
+&#125;</code></pre>
+<h2 id="四种事件绑定方式">四种事件绑定方式</h2>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">export default class App extends Component &#123;
+    render() &#123;
+        return (
+            &lt;div&gt;
+                &lt;input type&#x3D;&quot;text&quot; &gt;&lt;&#x2F;input&gt;
+                &#123;&#x2F;* 1. 行内形式 *&#x2F;&#125;
+                &lt;button onClick&#x3D;&#123; () &#x3D;&gt; &#123;
+                    console.log(&quot;click1&quot;)
+                &#125; &#125;&gt; ADD &lt;&#x2F;button&gt;
+                &#123;&#x2F;* 2. 原生的 js 函数形式: 存在 this 指向问题 *&#x2F;&#125;
+                &lt;button onClick&#x3D;&#123; this.handleClick2 &#125;&gt; ADD2 &lt;&#x2F;button&gt; 
+                &#123;&#x2F;* 2. 原生的 js 函数形式: 使用 bind 解决 this 指向问题 *&#x2F;&#125;
+                &lt;button onClick&#x3D;&#123; this.handleClick2.bind(this) &#125;&gt; ADD2-bind &lt;&#x2F;button&gt;
+                &#123;&#x2F;* 3. 隐式匿名函数调用 *&#x2F;&#125;
+                &lt;button onClick&#x3D;&#123; this.handleClick3 &#125;&gt; ADD3 &lt;&#x2F;button&gt;
+                &#123;&#x2F;* 4. 显式匿名函数调用 *&#x2F;&#125;
+                &lt;button onClick&#x3D;&#123; () &#x3D;&gt; &#123; this.handleClick4(&quot;ComingPro&quot;) &#125; &#125;&gt; ADD4 &lt;&#x2F;button&gt;
+            &lt;&#x2F;div&gt;
+        )
+    &#125;
+&#125;</code></pre>
 <ol>
 <li>行内形式: 没有 this 指向问题, 逻辑简单的时候推荐使用</li>
-<li>原生的 js 函数形式: 存在 this 指向问题<ul>
-<li>React 通过事件代理实现事件的响应, 因此并非实例本身调用的这个函数, 所以丢失了 this; </li>
-<li>能够通过 bind 解决, 但是仍旧不推荐使用<blockquote>
-<p><code>.call(this)</code> 会改变 this 指向但是会自动执行函数<br><code>.apply(this)</code> 和 call 类似改变 this 指向的同时会执行函数<br><code>.bind(this)</code> 仅仅改变 this</p>
-</blockquote>
-</li>
+<li>原生的 js 函数形式: 存在 this 指向问题
+<ul>
+<li>React 通过事件代理实现事件的响应, 因此并非实例本身调用的这个函数, 所以丢失了 this;</li>
+<li>能够通过 bind 解决, 但是仍旧不推荐使用</li>
 </ul>
+<blockquote>
+<p><code>.call(this)</code> 会改变 this 指向但是会自动执行函数<br>
+<code>.apply(this)</code> 和 call 类似改变 this 指向的同时会执行函数<br>
+<code>.bind(this)</code> 仅仅改变 this</p>
+</blockquote>
 </li>
 <li>隐式匿名函数调用：不存在 this 指向问题, 箭头函数不关心谁调用的, 永远保持与外部作用域一致; 不需要传递参数时推荐使用</li>
 <li>显式匿名函数调用：不存在 this 指向问题, 方便了参数的传递, 因此最为推荐使用</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212312246099.png"></p>
-<h1 id="组件二次封装"><a href="#组件二次封装" class="headerlink" title="组件二次封装"></a>组件二次封装</h1><p>针对组件中有固有属性时且较多时，我们可以自定义一个一般组件实现封装</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212312246099.png" alt=""></p>
+<h1>组件二次封装</h1>
+<p>针对组件中有固有属性时且较多时，我们可以自定义一个一般组件实现封装</p>
 <p>如 NavLink 中 className 属性固定，因此可以进行二次封装</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">NavLink</span> className=<span class="string">&quot;list-group-item&quot;</span> to=<span class="string">&quot;/about&quot;</span>&gt;<span class="title class_">About</span>&lt;/<span class="title class_">NavLink</span>&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">&lt;NavLink className&#x3D;&quot;list-group-item&quot; to&#x3D;&quot;&#x2F;about&quot;&gt;About&lt;&#x2F;NavLink&gt;</code></pre>
 <p>二次封装我们向上要符合用户的编程习惯，即使用标签体传递表明名称，属性依旧通过 props 传递；向下要对接好初始组件</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line">&lt;<span class="title class_">MyNavLink</span> to=<span class="string">&quot;/about&quot;</span>&gt;<span class="title class_">About</span>&lt;/<span class="title class_">MyNavLink</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">MyNavLink</span> <span class="attr">to</span>=<span class="string">&quot;/home&quot;</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">MyNavLink</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">&lt;MyNavLink to&#x3D;&quot;&#x2F;about&quot;&gt;About&lt;&#x2F;MyNavLink&gt;
+&lt;MyNavLink to&#x3D;&quot;&#x2F;home&quot;&gt;Home&lt;&#x2F;MyNavLink&gt;</code></pre>
 <p>方便向下对接的是，标签体中的内容将使用 this.props.children 接收，因此可以直接传递给 NavLink 的child属性，完成二次封装的优秀对接</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">NavLink</span> <span class="attr">className</span>=<span class="string">&quot;list-group-item&quot;</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/31/03-React-Component-Basic/,Jiancong Cui,03-React-Component Basic,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/31/04-React-CrossDomain/" title="04-React-CrossDomain">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/31/02-React-jsx/" title="02-React-jsx">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">render() &#123;
+    return (
+        &lt;NavLink className&#x3D;&quot;list-group-item&quot; &#123;...this.props&#125; &#x2F;&gt;
+    )
+&#125;</code></pre></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/31/03-React-Component-Basic/,Jiancong Cui,03-React-Component Basic,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/31/04-React-CrossDomain/" title="04-React-CrossDomain">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/31/02-React-jsx/" title="02-React-jsx">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

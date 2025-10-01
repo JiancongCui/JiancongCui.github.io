@@ -1,8 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>02-Basic Knowledge of Compilation Principles · Jiancong Cui</title><meta name="description" content="高级语言程序语言是一个记号系统, 语法 + 语义进行描述
-语法语法：任何语言程序都可以看成是一定字符集（字母表）上的字符串，语法使得这串字符形成一个形式上正确的程序。语法 &amp;#x3D; 词法规则 + 语法规则
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>02-Basic Knowledge of Compilation Principles · Jiancong Cui</title><meta name="description" content="高级语言
+程序语言是一个记号系统, 语法 + 语义进行描述
+语法
+语法：任何语言程序都可以看成是一定字符集（字母表）上的字符串，语法使得这串字符形成一个形式上正确的程序。语法 = 词法规则 + 语法规则
 
-词法规则和语法规则定义了程序的形式结构，是判断输入字符串是否构成一个形式上正确的程序的依"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>02-Basic Knowledge of Compilation Principles</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-04</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Compiler/" title="Compiler">Compiler</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/compilation-principle/" title="compilation principle">compilation principle</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="高级语言"><a href="#高级语言" class="headerlink" title="高级语言"></a>高级语言</h1><p>程序语言是一个记号系统, 语法 + 语义进行描述</p>
-<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>语法：任何语言程序都可以看成是一定字符集（字母表）上的字符串，语法使得这串字符形成一个形式上正确的程序。语法 &#x3D; 词法规则 + 语法规则</p>
+词法规则和语法规则定义了程序的形式结构，是判断输入字符串是否构成一个形式上正确的程序的依据
+单"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>02-Basic Knowledge of Compilation Principles</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-04</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Compiler/" title="Compiler">Compiler</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/compilation-principle/" title="compilation principle">compilation principle</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>高级语言</h1>
+<p>程序语言是一个记号系统, 语法 + 语义进行描述</p>
+<h2 id="语法">语法</h2>
+<p>语法：任何语言程序都可以看成是一定字符集（字母表）上的字符串，语法使得这串字符形成一个形式上正确的程序。语法 = 词法规则 + 语法规则</p>
 <ul>
 <li>词法规则和语法规则定义了程序的形式结构，是判断输入字符串是否构成一个形式上正确的程序的依据</li>
 <li>单词符号：语言中具有独立意义的最基本结构；一般包括，常数、标识符、基本字、算符、界限符等</li>
@@ -10,51 +24,60 @@
 <li>语法单位：表达式、子句、语句、函数、过程、程序</li>
 <li>语法规则：规定了如何从单词符号来形成语法单位；现在多数程序语言使用上下文无关文法来描述语法规则</li>
 </ul>
-<h2 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h2><p>语义：定义单词符号和语法单位的意义</p>
+<h2 id="语义">语义</h2>
+<p>语义：定义单词符号和语法单位的意义</p>
 <ul>
 <li>目前，大多数编译程序使用基于属性文法的语法制导翻译方法来分析语义</li>
 </ul>
-<h1 id="字母表与符号表"><a href="#字母表与符号表" class="headerlink" title="字母表与符号表"></a>字母表与符号表</h1><p>字母表-&gt;符号-&gt;符号串-&gt;句子-&gt;语言</p>
-<p>字母表：符号的非空有穷集合；例如 $V_1&#x3D;{a, b, c}, V_2&#x3D;{+, -}, \sum &#x3D; {x| x \in ASCII }$</p>
+<h1>字母表与符号表</h1>
+<p>字母表-&gt;符号-&gt;符号串-&gt;句子-&gt;语言</p>
+<p>字母表：符号的非空有穷集合；例如 $V_1={a, b, c}, V_2={+, -}, \sum = {x| x \in ASCII }$</p>
 <p>符号：语言中最基本的不可再分的单位；例如 <code>&#123;a, b, c, +, -, ...&#125;</code></p>
 <p>符号串：字母表中符号组成的有穷序列; 例如 <code>&#123;a, abc, -ab, ...&#125;</code></p>
 <p>空串：不含有任何符号的串</p>
-<p>句子：字母表上符合某种规则（词法规则&#x2F;语法规则）构成的串</p>
+<p>句子：字母表上符合某种规则（词法规则/语法规则）构成的串</p>
 <p>语言：字母表上符合某种规则的语句组成；字母表上的语言就是字母表上正闭包的子集</p>
 <p>Tips：约定用 $a, b, c, \dots $ 表示符号；用 $\alpha, \beta, \gamma, \dots$ 表示符号串；用$A, B, C, \dots $ 表示符号串的集合</p>
-<h2 id="符号串集合的运算"><a href="#符号串集合的运算" class="headerlink" title="符号串集合的运算"></a>符号串集合的运算</h2><ol>
-<li>连接&#x2F;乘积运算: 符合语法要求, 需要语义检查</li>
+<h2 id="符号串集合的运算">符号串集合的运算</h2>
+<ol>
+<li>连接/乘积运算: 符合语法要求, 需要语义检查</li>
 </ol>
 <ul>
 <li>自身的连接成为方幂</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031637800.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031637800.png" alt=""></p>
 <ol start="2">
 <li>闭包运算：字母表 A 上符号组成的所有串的集合（包括空串）</li>
 </ol>
 <ul>
 <li>正闭包 $A^+$ 不包括空串的(星)闭包</li>
 </ul>
-<p>$$<br>A^* &#x3D; A^0 \cup A^1 \cup A^2 \cup \dots \<br>A^+ &#x3D; A^1 \cup A^2 \cup A^3 \cup \dots<br>$$</p>
-<h1 id="文法"><a href="#文法" class="headerlink" title="文法"></a>文法</h1><p>文法是描述语言的语法结构的形式规则</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031856175.png"></p>
+<p>$$<br>
+A^* = A^0 \cup A^1 \cup A^2 \cup \dots \<br>
+A^+ = A^1 \cup A^2 \cup A^3 \cup \dots<br>
+$$</p>
+<h1>文法</h1>
+<p>文法是描述语言的语法结构的形式规则</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031856175.png" alt=""></p>
 <p>非终结符：V_N, 出现在规则的左部、用 &lt;&gt; 括起来、表示一定语法概念的词</p>
 <p>终结符：V_T, 语言中不可再分割的字符串（包括单个字符组成的串)，是组成句子的基本单位</p>
 <p>开始符号：又称为识别符号，表示所定义的语法范畴的非终结符</p>
 <p>产生式：用来定义符号串之间关系的一组（语法）规则</p>
 <p>推导：从开始符号开始，通过使用产生式的右部取代左部，最终能产生语言的一个句子的过程</p>
 <p>规约：推导的逆过程，从给定的源语言的句子开始，通过规则的左部取代右部，最终达到开始符号的过程</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031858580.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031858580.png" alt=""></p>
 <p>句型：从文法的开始符号 S 开始，每步推导（包括 0 步推导)所得到的字符串</p>
 <p>句子：仅含终结符的句型</p>
 <p>语言：由 S 开始通过 1 步或 1 步以上推导所得的句子的集合</p>
-<h2 id="扩充的-BNF-表示"><a href="#扩充的-BNF-表示" class="headerlink" title="扩充的 BNF 表示"></a>扩充的 BNF 表示</h2><ul>
+<h2 id="扩充的-BNF-表示">扩充的 BNF 表示</h2>
+<ul>
 <li>小括号提取因子: <code>U -&gt; ax|ay|az</code> —&gt; <code>U -&gt; a(x|y|z)</code></li>
 <li>中括号表示任选符号: <code>&lt;Int&gt;-&gt;[+|-]&lt;number&gt;&#123;&lt;number&#125;</code></li>
 <li>大括号重复次数指定: <code>&lt;Identifier&gt;-&gt;&lt;alpha&gt;&#123;&lt;alpha&gt;|&lt;number&gt;&#125;^5_0</code></li>
 </ul>
-<h2 id="文法与语言的形式定义"><a href="#文法与语言的形式定义" class="headerlink" title="文法与语言的形式定义"></a>文法与语言的形式定义</h2><p>Chomsky 将文法 G 定义为四元组 $G&#x3D;(V_N,V_T,P,S)$, (非终结符号集合, 终结符号集合, 产生式的有穷集合, 文法开始符号)</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031958946.png"></p>
+<h2 id="文法与语言的形式定义">文法与语言的形式定义</h2>
+<p>Chomsky 将文法 G 定义为四元组 $G=(V_N,V_T,P,S)$, (非终结符号集合, 终结符号集合, 产生式的有穷集合, 文法开始符号)</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031958946.png" alt=""></p>
 <p>0 型文法: 短语文法或无限制文法; 限制产生式左侧至少有一个非终结符; 图灵机, TM, 即可识别 0 型语言</p>
 <ul>
 <li>任何的 0 型文法都是递归可枚举的</li>
@@ -64,26 +87,27 @@
 <li>开始符号若产生空集那开始符号必须在左侧</li>
 <li>其余的推导必须是递增式推导, 即 $\alpha \rightarrow \beta$ 必须有 $|\beta| &gt; |\alpha|$</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031919347.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031919347.png" alt=""></p>
 <p>2 型文法: 上下文无关文法(CFG, Context-Free Grammer, 非终结符的替换不必考虑上下文); 下推自动机, PDA, 可用于识别 2 型语言</p>
 <ul>
 <li>产生式左侧一定是非终结符</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031922518.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031922518.png" alt=""></p>
 <p>3 型文法：正规文法、右线性文法或左线性文法；有限状态自动机即可识别 3 型语言</p>
 <ul>
 <li>产生式左侧一定为非终结符</li>
 <li>产生式右侧一定有终结符</li>
 <li>产生式右侧可以有非终结符，如果非终结符均在左，则称左线性文法；反之右线性文法</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031926964.png"></p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031926474.png"></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031926964.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212031926474.png" alt=""></p>
 <p>词法分析与语法分析中的限制：</p>
 <ul>
 <li>不存在 P -&gt; P 的限制</li>
 <li>产生式中出现的任何非终结符 P 必须有用（P 必须能推到终结符）</li>
 </ul>
-<h2 id="文法的简化"><a href="#文法的简化" class="headerlink" title="文法的简化"></a>文法的简化</h2><p>在文法中，有些产生式对推导不起作用，要删除掉</p>
+<h2 id="文法的简化">文法的简化</h2>
+<p>在文法中，有些产生式对推导不起作用，要删除掉</p>
 <ul>
 <li>某个产生式在推导过程中永远不会被用到，即由开始符号推导，永远推不到的左部的非终结符</li>
 <li>如永远导不出终结符串的产生式</li>
@@ -96,7 +120,8 @@
 <li>若某个产生式在推导过程中不能从中导出终结符，删除它</li>
 <li>最后，整理所有剩余产生式，就得到简化的文法</li>
 </ol>
-<h2 id="无空串产生式的-CFG"><a href="#无空串产生式的-CFG" class="headerlink" title="无空串产生式的 CFG"></a>无空串产生式的 CFG</h2><p>满足条件：</p>
+<h2 id="无空串产生式的-CFG">无空串产生式的 CFG</h2>
+<p>满足条件：</p>
 <ul>
 <li>P 中要么不含空串产生式，要么只有 S→空串</li>
 <li>若 S→空串，则 S 不出现在任何产生式右部</li>
@@ -104,15 +129,17 @@
 <p>构造算法：</p>
 <ol>
 <li>由文法 G 找出所有经过若干步推导能推出 空串 的非终结符, 放在 V0 集合中</li>
-<li>按照下列步骤构造 G’ 的产生式集合 P’<ol>
+<li>按照下列步骤构造 G’ 的产生式集合 P’
+<ol>
 <li>若 V0 集合中的某元素出现在某产生式的右端，则将它变成两个产生式：分别以 空串 和其原型带入, 加入 P’</li>
 <li>其他产生式出去 空串 产生式后也加入 P’</li>
 <li>如果 P 中有产生式 S -&gt; 空串，将它在 P’ 中改为 S’ -&gt; 空串 | S 的形式</li>
 </ol>
 </li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032032289.png"></p>
-<h1 id="语法树"><a href="#语法树" class="headerlink" title="语法树"></a>语法树</h1><p>用来表示语言句子结构的树, 使用语法树可以使语法分析过程直观、形象，易于判断<strong>文法二义性</strong> </p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032032289.png" alt=""></p>
+<h1>语法树</h1>
+<p>用来表示语言句子结构的树, 使用语法树可以使语法分析过程直观、形象，易于判断<strong>文法二义性</strong></p>
 <p>子树：除叶子结点之外的任意结点连同它的所有子孙结点构成子树（包括这个树本身）</p>
 <p>修剪子树：剪去子树树根的所有孩子节点</p>
 <p>句型：在一棵语法树生长过程中的任何时刻，所有那些叶子结点排列起来就是一个句型</p>
@@ -122,9 +149,11 @@
 <li>句型的短语：该句型中哪些符号串可构成某子树根的短语（所有孩子节点）</li>
 </ul>
 <p>句柄：句型中最左简单短语；句柄是最左归约时要寻找的简单短语</p>
-<h2 id="文法二义性"><a href="#文法二义性" class="headerlink" title="文法二义性"></a>文法二义性</h2><p>句子二义性：如果文法的一个句子存在对应的两棵或两棵以上的语法树，则该句子是二义的</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032103216.png"></p>
-<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><ul>
+<h2 id="文法二义性">文法二义性</h2>
+<p>句子二义性：如果文法的一个句子存在对应的两棵或两棵以上的语法树，则该句子是二义的</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202212032103216.png" alt=""></p>
+<h1>Refs</h1>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1cW411B7DW/">廖老师-东南大学编译原理</a></li>
 </ul>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/03/02-Basic-Knowledge-of-Compilation-Principles/,Jiancong Cui,02-Basic Knowledge of Compilation Principles,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/12/02-django-views/" title="02-django-views">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/03/01-django-init/" title="01-django-init">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

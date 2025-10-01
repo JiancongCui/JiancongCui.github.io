@@ -1,10 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>Same Origin Policy · Jiancong Cui</title><meta name="description" content="Same-Origin Policyrefs：https://www.cnblogs.com/gyrgyr/p/10571616.html
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>Same Origin Policy · Jiancong Cui</title><meta name="description" content="Same-Origin Policy
+refs：https://www.cnblogs.com/gyrgyr/p/10571616.html
 Definition: 一种安全机制，用于限制不同源的 document 或 script 相互访问
-Target：目标是限制 scripts：如果不加这个限制"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>Same Origin Policy</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-10-29</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Web-Security/" title="Web Security">Web Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Same-Origin-Policy"><a href="#Same-Origin-Policy" class="headerlink" title="Same-Origin Policy"></a>Same-Origin Policy</h1><p>refs：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gyrgyr/p/10571616.html">https://www.cnblogs.com/gyrgyr/p/10571616.html</a></p>
+Target：目标是限制 scripts：如果不加这个限"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>Same Origin Policy</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-10-29</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Web-Security/" title="Web Security">Web Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Same-Origin Policy</h1>
+<p>refs：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gyrgyr/p/10571616.html">https://www.cnblogs.com/gyrgyr/p/10571616.html</a></p>
 <p><strong>Definition</strong>: 一种安全机制，用于限制不同源的 document 或 script 相互访问</p>
 <p><strong>Target</strong>：目标是限制 scripts：如果不加这个限制，那么恶意网页下的 scripts 将能够获取别的网页下的 Cookie 等，然后在本地网页开启了一个 iframe，登录后进行恶意性操作，但是同源策略的存在，先不说 Cookie 等私密信息获取不到，即使开起了 iframe 也将和恶意 script 不同源</p>
 <p><strong>Example</strong>：恶意钓鱼网站，引入第三方邮件服务后，因为不同源，一次你不能用脚本访问或操作其数据</p>
-<h1 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h1><p>什么是同源的呢，它将由 URL 决定，他的 协议（http, https），端口号（80,8080），主机名（baidu.com, sina.com) 都要一致才能视为同源</p>
+<h1>Origin</h1>
+<p>什么是同源的呢，它将由 URL 决定，他的 协议（http, https），端口号（80,8080），主机名（<a target="_blank" rel="noopener" href="http://baidu.com">baidu.com</a>, <a target="_blank" rel="noopener" href="http://sina.com">sina.com</a>) 都要一致才能视为同源</p>
 <p>与 <code>http://store.company.com/dir/page.html</code> 相比</p>
 <table>
 <thead>
@@ -14,7 +26,8 @@ Target：目标是限制 scripts：如果不加这个限制"><meta name="keyword
 <th>Reason</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><a target="_blank" rel="noopener" href="http://store.company.com/dir2/other.html">http://store.company.com/dir2/other.html</a></td>
 <td>True</td>
 <td>主机名一致 后续的子目录路径可不同</td>
@@ -34,10 +47,13 @@ Target：目标是限制 scripts：如果不加这个限制"><meta name="keyword
 <td>False</td>
 <td>主机名不同</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>Tips：IE 浏览器的同源策略是不考虑端口的</p>
-<h2 id="Cookie-Same-Origin-Policy"><a href="#Cookie-Same-Origin-Policy" class="headerlink" title="Cookie Same-Origin Policy"></a>Cookie Same-Origin Policy</h2><p>Cookie 只有同源网页才能共享（Protocol，Port，host）</p>
-<h2 id="DOM-Same-Origin-Policy"><a href="#DOM-Same-Origin-Policy" class="headerlink" title="DOM Same-Origin Policy"></a>DOM Same-Origin Policy</h2><p>DOM，文档对象模型，Document Object Model：在网页上组织页面或文档的对象被组织在一个树形结构中，用来表示文档中对象的标准模型即为 DOM</p>
+<h2 id="Cookie-Same-Origin-Policy">Cookie Same-Origin Policy</h2>
+<p>Cookie 只有同源网页才能共享（Protocol，Port，host）</p>
+<h2 id="DOM-Same-Origin-Policy">DOM Same-Origin Policy</h2>
+<p>DOM，文档对象模型，Document Object Model：在网页上组织页面或文档的对象被组织在一个树形结构中，用来表示文档中对象的标准模型即为 DOM</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920152526889.png" alt="image-20210920152526889"></p>
 <p>1、<code>&lt;script&gt;, &lt;img&gt;, &lt;iframe&gt;, &lt;link&gt;</code> 的跨域请求，不受同源策略的约束，但不能通过 ajax 来获取</p>
 <blockquote>
@@ -50,17 +66,20 @@ Target：目标是限制 scripts：如果不加这个限制"><meta name="keyword
 <p>3、script 不能随意跨域操作其它页面的 DOM</p>
 <p>4、script 不能获取 <code>&lt;script&gt;, &lt;img&gt;, &lt;iframe&gt;, &lt;link&gt;</code> 跨域请求得到的内容（可以获取一些不涉及用户隐私的公共信息）</p>
 <blockquote>
-<p> 注意请求可以送达，但是响应将被拦截</p>
-<p> 不同源 JavaScript 受限，同源不受限</p>
-<p> <img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920152846907.png" alt="image-20210920152846907"></p>
+<p>注意请求可以送达，但是响应将被拦截</p>
+<p>不同源 JavaScript 受限，同源不受限</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920152846907.png" alt="image-20210920152846907"></p>
 </blockquote>
 <p>5、<code>&lt;iframe&gt;</code> 父子页面（点击进入的下一页面）交互受同源策略约束</p>
-<h2 id="Ajax-Same-Origin-Policy"><a href="#Ajax-Same-Origin-Policy" class="headerlink" title="Ajax Same-Origin Policy"></a>Ajax Same-Origin Policy</h2><p>Tips：阻止的是跨域资源的获取，而不是阻止跨域的请求；跨域请求可以正常发出，但是浏览器阻止脚本获取返回的内容。</p>
-<h2 id="Web-Storage-Same-Origin-Policy"><a href="#Web-Storage-Same-Origin-Policy" class="headerlink" title="Web Storage Same-Origin Policy"></a>Web Storage Same-Origin Policy</h2><p>克服 Cookie 的限制：如果你的数据不需要服务端处理，只需要存储在客户端即可，但是也存在同源访问的限制</p>
+<h2 id="Ajax-Same-Origin-Policy">Ajax Same-Origin Policy</h2>
+<p>Tips：阻止的是跨域资源的获取，而不是阻止跨域的请求；跨域请求可以正常发出，但是浏览器阻止脚本获取返回的内容。</p>
+<h2 id="Web-Storage-Same-Origin-Policy">Web Storage Same-Origin Policy</h2>
+<p>克服 Cookie 的限制：如果你的数据不需要服务端处理，只需要存储在客户端即可，但是也存在同源访问的限制</p>
 <p><strong>Target</strong>：1、提供一种在 Cookie 之外存储会话数据的途径；2、提供一种存储大量可以跨会话存在的数据的机制</p>
 <p><strong>localStorage</strong>：与站点源（origin）绑定，关闭浏览器后仍然有效</p>
 <p><strong>sessionStorage</strong>：绑定当前浏览器端口，浏览器会话结束后清理</p>
-<h2 id="脚本型-URL-的同源策略"><a href="#脚本型-URL-的同源策略" class="headerlink" title="脚本型 URL 的同源策略"></a>脚本型 URL 的同源策略</h2><p>伪 URL 的源如何判定？</p>
+<h2 id="脚本型-URL-的同源策略">脚本型 URL 的同源策略</h2>
+<p>伪 URL 的源如何判定？</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920154445387.png" alt="image-20210920154445387"></p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920154552671.png" alt="image-20210920154552671"></p>
 <p><strong>Tips</strong>：在脚本型 URL 加载的页面里，以父页面的上下文权限执行相应的脚本代码——与父页面同源</p>
@@ -68,49 +87,89 @@ Target：目标是限制 scripts：如果不加这个限制"><meta name="keyword
 <p>通过 bank 执行的脚本型 js 代码，即与 bank 同源，即可操作 iframe 内的内容</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028222503110.png" alt="image-20211028222503110"></p>
-<h1 id="Cross-Origin"><a href="#Cross-Origin" class="headerlink" title="Cross Origin"></a>Cross Origin</h1><h2 id="Server-Proxy"><a href="#Server-Proxy" class="headerlink" title="Server Proxy"></a>Server Proxy</h2><p>同源策略的作用域是<strong>浏览器</strong>，因此可以利用服务器实现跨域通信，即使用第三方服务器获取目标信息在返回给自己（也就是我们常说的代理服务器）</p>
+<h1>Cross Origin</h1>
+<h2 id="Server-Proxy">Server Proxy</h2>
+<p>同源策略的作用域是<strong>浏览器</strong>，因此可以利用服务器实现跨域通信，即使用第三方服务器获取目标信息在返回给自己（也就是我们常说的代理服务器）</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920155214194.png" alt="image-20210920155214194"></p>
 <p>React Scaffolding 中在 package.json 追加如下配置，当用 ajax 请求了本地不存在的资源，将会转发给目标代理（但是不支持配置多个代理）</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&quot;proxy&quot;:&quot;http://localhost:5000&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h2><p>script 父子页面中设置 <code>document.domain</code> 为共同祖先域即可，如果非当前  url 的祖先域，则不会生效</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">&quot;proxy&quot;:&quot;http:&#x2F;&#x2F;localhost:5000&quot;</code></pre>
+<h2 id="document-domain">document.domain</h2>
+<p>script 父子页面中设置 <code>document.domain</code> 为共同祖先域即可，如果非当前  url 的祖先域，则不会生效</p>
 <blockquote>
 <p>这样做使得主站和子站，以及子站之间可以跨域访问，不适用于跨基础域的站点间共享数据</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028215714174.png" alt="image-20211028215714174"></p>
 <p>Tips：Ajax 请求该跨域方法无效；<strong>Ajax跨域必须 Protocol，port，host 一致</strong></p>
-<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>JSON with Padding，利用 <code>&lt;script&gt;</code> 标签可以跨域 <code>get</code> 引入 js 脚本这一点，需要服务器端配合接口，用脚本动态生成 <code>js</code> 将数据封装在返回的 <code>js</code> 脚本里，供客户端提前定义好的回调函数使用</p>
+<h2 id="JSONP">JSONP</h2>
+<p>JSON with Padding，利用 <code>&lt;script&gt;</code> 标签可以跨域 <code>get</code> 引入 js 脚本这一点，需要服务器端配合接口，用脚本动态生成 <code>js</code> 将数据封装在返回的 <code>js</code> 脚本里，供客户端提前定义好的回调函数使用</p>
 <p><strong>Tips</strong>：仅能应用于 GET 请求</p>
 <p>1、get 方式请求数据，返回 JavaScript 脚本</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://example.com/</span></span></span><br><span class="line"><span class="string"><span class="tag">     ?some-variable=some-data&amp;jsonp=parseResponse&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;http:&#x2F;&#x2F;example.com&#x2F;
+     ?some-variable&#x3D;some-data&amp;jsonp&#x3D;parseResponse&quot;&gt;
+&lt;&#x2F;script&gt;</code></pre>
 <p>2、服务端封装数据与 callback 函数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Student&gt; studentList = getStudentList();</span><br><span class="line"><span class="type">JSONArray</span> <span class="variable">jsonArray</span> <span class="operator">=</span> JSONArray.fromObject(studentList);</span><br><span class="line"><span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> jsonArray.toString();</span><br><span class="line"></span><br><span class="line"><span class="comment">//前端传过来的回调函数名称</span></span><br><span class="line"><span class="type">String</span> <span class="variable">callback</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;jsonp&quot;</span>);</span><br><span class="line"><span class="comment">//用回调函数名称包裹返回数据，这样，返回数据就作为回调函数的参数传回去了</span></span><br><span class="line">result = callback + <span class="string">&quot;(&quot;</span> + result + <span class="string">&quot;)&quot;</span>;</span><br><span class="line"></span><br><span class="line">response.getWriter().write(result);</span><br></pre></td></tr></table></figure>
+<pre class="language-java" data-language="java"><code class="language-java">List&lt;Student&gt; studentList &#x3D; getStudentList();
+JSONArray jsonArray &#x3D; JSONArray.fromObject(studentList);
+String result &#x3D; jsonArray.toString();
 
+&#x2F;&#x2F;前端传过来的回调函数名称
+String callback &#x3D; request.getParameter(&quot;jsonp&quot;);
+&#x2F;&#x2F;用回调函数名称包裹返回数据，这样，返回数据就作为回调函数的参数传回去了
+result &#x3D; callback + &quot;(&quot; + result + &quot;)&quot;;
+
+response.getWriter().write(result);</code></pre>
 <p>3、因为是脚本，并且返回到本地已经预定义了回调函数，因此将直接自动执行，读出返回的目标内容</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;test/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="comment">// parseResponse(&#123;&quot;variable&quot;: &quot;value&quot;, &quot;variable2&quot;: &quot;value2&quot;&#125;)</span></span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">function</span> <span class="title function_">parseResponse</span>(<span class="params">response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">do</span> sth</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Window-name"><a href="#Window-name" class="headerlink" title="Window.name"></a>Window.name</h2><p>window.name 是全局变量，在窗口（window）的生命周期内，窗口重定向后载入的页面共享 window.name；同理在 iframe 中即使 url 发生了变化 iframe 中的 window.name 也将不会改变</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;script type&#x3D;&quot;test&#x2F;javascript&quot;&gt;
+	&#x2F;&#x2F; parseResponse(&#123;&quot;variable&quot;: &quot;value&quot;, &quot;variable2&quot;: &quot;value2&quot;&#125;)
+	function parseResponse(response) &#123;
+		do sth
+	&#125;
+&lt;&#x2F;script&gt;</code></pre>
+<h2 id="Window-name"><a target="_blank" rel="noopener" href="http://Window.name">Window.name</a></h2>
+<p><a target="_blank" rel="noopener" href="http://window.name">window.name</a> 是全局变量，在窗口（window）的生命周期内，窗口重定向后载入的页面共享 <a target="_blank" rel="noopener" href="http://window.name">window.name</a>；同理在 iframe 中即使 url 发生了变化 iframe 中的 <a target="_blank" rel="noopener" href="http://window.name">window.name</a> 也将不会改变</p>
 <p>Example：</p>
-<p>简单的，A 页面和 B 页面不同源，B 页面希望获取 A 页面的数据，则 A 页面将数据存储到 window.name 后跳转到 B 页面，B页面即可获取A页面设置的值</p>
+<p>简单的，A 页面和 B 页面不同源，B 页面希望获取 A 页面的数据，则 A 页面将数据存储到 <a target="_blank" rel="noopener" href="http://window.name">window.name</a> 后跳转到 B 页面，B页面即可获取A页面设置的值</p>
 <p>简单的方案中是 A 页面主动将数据给 B，如何让 B 主动从 A 那里拿数据呢？</p>
 <p>1、A 页面时数据页面，我们将格式化好的数据存到 <code>window.name</code> 中</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ref: https://blog.csdn.net/weixin_33991727/article/details/86248998</span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span> A <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> person = &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">name</span>: <span class="string">&#x27;Coming98&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">age</span>: <span class="number">22</span>,</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">window</span>.<span class="property">name</span> = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(person)</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2、B 页面想要获取 A 页面的数据，首先创建一个 iframe 获取 window.name 的内容，但是此时 B 页面和 iframe 中的 A 页面不同源（port 不一致），因此让 iframe 重定向到与 B 页面同源的页面，这时 window.name 中的数据也被带过去了，B 页面此时就能够访问 iframe 中的 window.name 的内容了</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">B 页面 url：&quot;http://localhost:8081/B.html&quot;</span><br><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">src</span>=<span class="string">&quot;http://localhost:8088/A.html&quot;</span> <span class="attr">frameborder</span>=<span class="string">&quot;1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> ifr = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;iframe&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    ifr.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> flag = <span class="number">0</span>;</span></span><br><span class="line"><span class="language-javascript">    ifr.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (flag == <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;跨域获取数据&#x27;</span>, ifr.<span class="property">contentWindow</span>.<span class="property">name</span>);</span></span><br><span class="line"><span class="language-javascript">            ifr.<span class="property">contentWindow</span>.<span class="title function_">close</span>();</span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (flag == <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            flag = <span class="number">1</span>;</span></span><br><span class="line"><span class="language-javascript">            ifr.<span class="property">contentWindow</span>.<span class="property">location</span> = <span class="string">&#x27;http://localhost:8081/proxy.html&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>HTML5新特性，只需要让服务器端在响应头中明确的授权客户端有权读取其返回的数据即可</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">header(<span class="string">&quot;Access-Control-Allow-Origin: *&quot;</span>)</span><br><span class="line">header(<span class="string">&quot;Access-Control-Allow-Origin: http://server.net&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
+<pre class="language-markup" data-language="markup"><code class="language-markup">ref: https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_33991727&#x2F;article&#x2F;details&#x2F;86248998
+&lt;body&gt;
+  &lt;h2&gt; A &lt;&#x2F;h2&gt;
+  &lt;script&gt;
+    var person &#x3D; &#123;
+      name: &#39;Coming98&#39;,
+      age: 22,
+    &#125;
+    window.name &#x3D; JSON.stringify(person)
+  &lt;&#x2F;script&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;</code></pre>
+<p>2、B 页面想要获取 A 页面的数据，首先创建一个 iframe 获取 <a target="_blank" rel="noopener" href="http://window.name">window.name</a> 的内容，但是此时 B 页面和 iframe 中的 A 页面不同源（port 不一致），因此让 iframe 重定向到与 B 页面同源的页面，这时 <a target="_blank" rel="noopener" href="http://window.name">window.name</a> 中的数据也被带过去了，B 页面此时就能够访问 iframe 中的 <a target="_blank" rel="noopener" href="http://window.name">window.name</a> 的内容了</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup">B 页面 url：&quot;http:&#x2F;&#x2F;localhost:8081&#x2F;B.html&quot;
+&lt;iframe src&#x3D;&quot;http:&#x2F;&#x2F;localhost:8088&#x2F;A.html&quot; frameborder&#x3D;&quot;1&quot;&gt;&lt;&#x2F;iframe&gt;
+  &lt;script&gt;
+    var ifr &#x3D; document.querySelector(&#39;iframe&#39;)
+    ifr.style.display &#x3D; &#39;none&#39;
+    var flag &#x3D; 0;
+    ifr.onload &#x3D; function () &#123;
+        if (flag &#x3D;&#x3D; 1) &#123;
+            console.log(&#39;跨域获取数据&#39;, ifr.contentWindow.name);
+            ifr.contentWindow.close();
+        &#125; else if (flag &#x3D;&#x3D; 0) &#123;
+            flag &#x3D; 1;
+            ifr.contentWindow.location &#x3D; &#39;http:&#x2F;&#x2F;localhost:8081&#x2F;proxy.html&#39;;
+        &#125;
+    &#125;
+  &lt;&#x2F;script&gt;</code></pre>
+<h2 id="CORS">CORS</h2>
+<p>HTML5新特性，只需要让服务器端在响应头中明确的授权客户端有权读取其返回的数据即可</p>
+<pre class="language-java" data-language="java"><code class="language-java">header(&quot;Access-Control-Allow-Origin: *&quot;)
+header(&quot;Access-Control-Allow-Origin: http:&#x2F;&#x2F;server.net&quot;)</code></pre>
 <p>Tips：存在预检机制，支持浏览器先询问服务器（即将请求的域名、方法和头信息是否许可，如果得到肯定答复，才发出正式请求，否则报错）</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211029115407916.png" alt="image-20211029115407916"></p>
-<h2 id="window-postMessage"><a href="#window-postMessage" class="headerlink" title="window.postMessage"></a>window.postMessage</h2><p>允许不同源的脚本采用异步方式进行有限的通信</p>
+<h2 id="window-postMessage">window.postMessage</h2>
+<p>允许不同源的脚本采用异步方式进行有限的通信</p>
 <p><strong>信息发送</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">otherWindow.<span class="title function_">postMessage</span>(message, targetOrigin, [transfer]);</span><br></pre></td></tr></table></figure>
-
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">otherWindow.postMessage(message, targetOrigin, [transfer]);</code></pre>
 <p>otherWindow - 表示其它窗口的一个引用，比如 iframe 的 contentWindow 属性、执行<code>window.open</code> 返回的窗口对象</p>
 <p>message - 发送的数据信息</p>
 <p>targetOrigin - 指定该消息的发送目标窗口，可以是 <code>URI</code> 或 <code>*</code></p>
@@ -118,11 +177,22 @@ Target：目标是限制 scripts：如果不加这个限制"><meta name="keyword
 <p>event.origin - 发送信息的 window 所在的源，如果不在白名单里，不予处理</p>
 <p>event.source - 发送消息的窗口对象的引用</p>
 <p>event.data - 是传过来的 message</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当信息被 postMessage 送来后调用的处理函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">receiveMessage</span>(<span class="params">event</span>)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (event.<span class="property">origin</span> !== <span class="string">&quot;http://white.com:8080&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 事件逻辑处理，可以回一条消息过去</span></span><br><span class="line">  event.<span class="property">source</span>.<span class="title function_">postMessage</span>(<span class="string">&quot;hi&quot;</span>, event.<span class="property">origin</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;message&quot;</span>, receiveMessage, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">&#x2F;&#x2F; 当信息被 postMessage 送来后调用的处理函数
+function receiveMessage(event)
+&#123;
 
+  if (event.origin !&#x3D;&#x3D; &quot;http:&#x2F;&#x2F;white.com:8080&quot;)
+    return;
+
+   &#x2F;&#x2F; 事件逻辑处理，可以回一条消息过去
+  event.source.postMessage(&quot;hi&quot;, event.origin);
+&#125;
+
+window.addEventListener(&quot;message&quot;, receiveMessage, false);</code></pre>
 <p>主动获取信息步骤：A 想要获取 B 的信息，A 通过 iframe 或 window.open 嵌入 B，随后 A postMessage(message, B) 告诉 B 想要什么信息，B 检查 origin 后 postMessage(data, A) 将数据返回过去</p>
 <p>被动获取信息步骤：A 将数据准备完毕通过 postMessage 将信息传给 B，B 通过事件监听和处理获取数据</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920162051524.png" alt="image-20210920162051524"></p>
 <p>接收方：添加相关事件处理，实现跨域的数据传输</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210920162105671.png" alt="image-20210920162105671"></p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/10/29/Same-Origin-Policy/,Jiancong Cui,Same Origin Policy,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/02/IPSec/" title="IPSec">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/10/28/torch-scatter/" title="torch.scatter">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+<h1></h1>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/10/29/Same-Origin-Policy/,Jiancong Cui,Same Origin Policy,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/02/IPSec/" title="IPSec">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/10/28/torch-scatter/" title="torch.scatter">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

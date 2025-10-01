@@ -1,18 +1,35 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>MAC Spoofing and Vlan Defense · Jiancong Cui</title><meta name="description" content="PreparePacket Tracer：官网完成注册后下载即可
-MAC 欺骗1、搭建网络结构需要注意 PC 与交换机之间采用直通线互连，交换机与交换机之间采用交叉线互连
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>MAC Spoofing and Vlan Defense · Jiancong Cui</title><meta name="description" content="Prepare
+Packet Tracer：官网完成注册后下载即可
+MAC 欺骗
+1、搭建网络结构
+需要注意 PC 与交换机之间采用直通线互连，交换机与交换机之间采用交叉线互连
 
 直通线：一般连接不同的设备
 交叉线：一般用于相同设备的连接
 
 
-2、配置 IP点击目标 PC ，在 Config - Fast"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>MAC Spoofing and Vlan Defense</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-10-10</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Prepare"><a href="#Prepare" class="headerlink" title="Prepare"></a>Prepare</h1><p><strong>Packet Tracer</strong>：<a target="_blank" rel="noopener" href="https://www.netacad.com/courses/packet-tracer/introduction-packet-tracer">官网</a>完成注册后下载即可</p>
-<h1 id="MAC-欺骗"><a href="#MAC-欺骗" class="headerlink" title="MAC 欺骗"></a>MAC 欺骗</h1><h2 id="1、搭建网络结构"><a href="#1、搭建网络结构" class="headerlink" title="1、搭建网络结构"></a>1、搭建网络结构</h2><p>需要注意 PC 与交换机之间采用<strong>直通线</strong>互连，交换机与交换机之间采用<strong>交叉线</strong>互连</p>
+2、配置 IP
+点击目标 PC ，在 Config - "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>MAC Spoofing and Vlan Defense</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-10-10</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Prepare</h1>
+<p><strong>Packet Tracer</strong>：<a target="_blank" rel="noopener" href="https://www.netacad.com/courses/packet-tracer/introduction-packet-tracer">官网</a>完成注册后下载即可</p>
+<h1>MAC 欺骗</h1>
+<h2 id="1、搭建网络结构">1、搭建网络结构</h2>
+<p>需要注意 PC 与交换机之间采用<strong>直通线</strong>互连，交换机与交换机之间采用<strong>交叉线</strong>互连</p>
 <blockquote>
 <p>直通线：一般连接不同的设备</p>
 <p>交叉线：一般用于相同设备的连接</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009160503527.png" alt="image-20211009160503527"></p>
-<h2 id="2、配置-IP"><a href="#2、配置-IP" class="headerlink" title="2、配置 IP"></a>2、配置 IP</h2><p>点击目标 PC ，在 Config - FastEthernet0 中配置静态 IP 地址</p>
+<h2 id="2、配置-IP">2、配置 IP</h2>
+<p>点击目标 PC ，在 Config - FastEthernet0 中配置静态 IP 地址</p>
 <table>
 <thead>
 <tr>
@@ -21,7 +38,8 @@ MAC 欺骗1、搭建网络结构需要注意 PC 与交换机之间采用直通�
 <th>MAC</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>PC0</td>
 <td>192.168.1.10</td>
 <td>0090.0CB0.55B6</td>
@@ -36,43 +54,70 @@ MAC 欺骗1、搭建网络结构需要注意 PC 与交换机之间采用直通�
 <td>192.168.1.12</td>
 <td>0006.2A16.0A3C</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009160855791.png" alt="image-20211009160855791"></p>
-<h2 id="3、测试"><a href="#3、测试" class="headerlink" title="3、测试"></a>3、测试</h2><p>使用 ICMP 报文（ping）完成 PC0,1,2 之间的通信测试</p>
+<h2 id="3、测试">3、测试</h2>
+<p>使用 ICMP 报文（ping）完成 PC0,1,2 之间的通信测试</p>
 <p>点击 PC0 在 Desktop - Command Prompt 中输入 ping 命令即可</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009161413510.png" alt="image-20211009161413510"></p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009161841196.png" alt="image-20211009161841196"></p>
-<h2 id="4、查看正确的转发表"><a href="#4、查看正确的转发表" class="headerlink" title="4、查看正确的转发表"></a>4、查看正确的转发表</h2><p>Tips：每台 PC 都要对其它 PC 进行一次成功的 ping 操作才能得到完整的转发表；</p>
+<h2 id="4、查看正确的转发表">4、查看正确的转发表</h2>
+<p>Tips：每台 PC 都要对其它 PC 进行一次成功的 ping 操作才能得到完整的转发表；</p>
 <p>交换机转发表查看方式：</p>
 <p>a、点击目标交换机进入 CLI 窗口</p>
 <p>b、窗口中一直输入 <code>exit</code> 命令（小白做法）直到到达用户模式（<code>Swtich&gt;</code>）</p>
 <p>c、输入 <code>enable</code> 进入特权模式</p>
 <p>d、输入 <code>show mac-address-table</code></p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009162900224.png" alt="image-20211009162900224"></p>
-<h2 id="5、模拟操作模式查看正常通信过程"><a href="#5、模拟操作模式查看正常通信过程" class="headerlink" title="5、模拟操作模式查看正常通信过程"></a>5、模拟操作模式查看正常通信过程</h2><p>a、点击右下角的 simulation 进入模拟操作模式</p>
+<h2 id="5、模拟操作模式查看正常通信过程">5、模拟操作模式查看正常通信过程</h2>
+<p>a、点击右下角的 simulation 进入模拟操作模式</p>
 <p>b、点击 Edit Filters 配置好过滤器，使得能够检测到 ICMP 报文的转发过程</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009164036277.png" alt="image-20211009164036277"></p>
 <p>c、使用 PC1 ping PC0 查看过程动画</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009164047994.png" alt="image-20211009164047994"></p>
-<h2 id="6、MAC-欺骗"><a href="#6、MAC-欺骗" class="headerlink" title="6、MAC 欺骗"></a>6、MAC 欺骗</h2><p>切换回实时操作模式，将 PC2 的 MAC 地址更改为 PC0 的 MAC 地址</p>
+<h2 id="6、MAC-欺骗">6、MAC 欺骗</h2>
+<p>切换回实时操作模式，将 PC2 的 MAC 地址更改为 PC0 的 MAC 地址</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009165759568.png" alt="image-20211009165759568"></p>
-<h2 id="7、通信欺骗"><a href="#7、通信欺骗" class="headerlink" title="7、通信欺骗"></a>7、通信欺骗</h2><p>使用 PC2 对 PC1通信后查看转发表信息：可以看到 PC2 成功伪造了 PC0 的身份，欺骗了各个交换机：Switch0 认为 0090…. 应该走端口 3 去找 Switch 1，Switch 1 认为 0090 应该走端口 2 去找 Switch 2，Switch 2 认为 0090…. 应该走端口 1 ，即找 PC2 </p>
+<h2 id="7、通信欺骗">7、通信欺骗</h2>
+<p>使用 PC2 对 PC1通信后查看转发表信息：可以看到 PC2 成功伪造了 PC0 的身份，欺骗了各个交换机：Switch0 认为 0090…. 应该走端口 3 去找 Switch 1，Switch 1 认为 0090 应该走端口 2 去找 Switch 2，Switch 2 认为 0090…. 应该走端口 1 ，即找 PC2</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009170222140.png" alt="image-20211009170222140"></p>
-<h2 id="8、模拟-PC1-与-PC0-的通信"><a href="#8、模拟-PC1-与-PC0-的通信" class="headerlink" title="8、模拟 PC1 与 PC0 的通信"></a>8、模拟 PC1 与 PC0 的通信</h2><p>切换到模拟操作模式：</p>
+<h2 id="8、模拟-PC1-与-PC0-的通信">8、模拟 PC1 与 PC0 的通信</h2>
+<p>切换到模拟操作模式：</p>
 <p>a、PC1 ping PC0 的 IP 地址</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009170655929.png" alt="image-20211009170655929"></p>
 <p>b、查看动画，发现 PC2 欺骗成功</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009170826102.png" alt="image-20211009170826102"></p>
-<h1 id="VLAN-防-MAC-欺骗"><a href="#VLAN-防-MAC-欺骗" class="headerlink" title="VLAN 防 MAC 欺骗"></a>VLAN 防 MAC 欺骗</h1><p>Target：通过 VLAN 的划分，隔离攻击者 PC2 与 PC1，使得 PC2 无法冒充”友军“</p>
+<h1>VLAN 防 MAC 欺骗</h1>
+<p>Target：通过 VLAN 的划分，隔离攻击者 PC2 与 PC1，使得 PC2 无法冒充”友军“</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009171601483.png" alt="image-20211009171601483"></p>
-<h2 id="1、添加-VLAN"><a href="#1、添加-VLAN" class="headerlink" title="1、添加 VLAN"></a>1、添加 VLAN</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">Switch&gt;</span><span class="language-bash"><span class="built_in">enable</span>          <span class="comment"># 进入特权模式</span></span></span><br><span class="line">Switch\# configure terminal   # 进入全局配置模式</span><br><span class="line">Enter configuration commands, one per line.  End with CNTL/Z.</span><br><span class="line">Switch(config)\#vlan 2      # 创建vlan（id=2）并进入其配置模式</span><br><span class="line">Switch(config-vlan)\#name vlan2 # 对该 vlan 定义一个名称</span><br></pre></td></tr></table></figure>
+<h2 id="1、添加-VLAN">1、添加 VLAN</h2>
+<pre class="language-bash" data-language="bash"><code class="language-bash">Switch&gt;enable					# 进入特权模式
+Switch\# configure terminal 	# 进入全局配置模式
+Enter configuration commands, one per line.  End with CNTL&#x2F;Z.
+Switch(config)\#vlan 2			# 创建vlan（id&#x3D;2）并进入其配置模式
+Switch(config-vlan)\#name vlan2 # 对该 vlan 定义一个名称</code></pre>
+<h2 id="2、分配接入端口">2、分配接入端口</h2>
+<pre class="language-bash" data-language="bash"><code class="language-bash">Switch\#configure terminal 
+Enter configuration commands, one per line.  End with CNTL&#x2F;Z.
 
-<h2 id="2、分配接入端口"><a href="#2、分配接入端口" class="headerlink" title="2、分配接入端口"></a>2、分配接入端口</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Switch\#configure terminal </span><br><span class="line">Enter configuration commands, one per line.  End with CNTL/Z.</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入 1 号端口的配置模式</span></span><br><span class="line">Switch(config)\#interface FastEthernet 0/1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将该端口指定为接入端口</span></span><br><span class="line">Switch(config-if)\#switchport mode access </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将该接入端口分配给 vlan 2</span></span><br><span class="line">Switch(config-if)\#switchport access vlan 2</span><br><span class="line">Switch(config-if)\#exit      # 回到全局配置模式</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">同理配置 2 号端口，并分给给 vlan 2</span></span><br><span class="line">Switch(config)\#interface FastEthernet 0/2</span><br><span class="line">Switch(config-if)\#switchport mode access </span><br><span class="line">Switch(config-if)\#switchport access vlan 2</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、查看配置结果"><a href="#3、查看配置结果" class="headerlink" title="3、查看配置结果"></a>3、查看配置结果</h2><p>在特权模式下输入命令 <code>show running-config</code></p>
+# 进入 1 号端口的配置模式
+Switch(config)\#interface FastEthernet 0&#x2F;1
+# 将该端口指定为接入端口
+Switch(config-if)\#switchport mode access 
+# 将该接入端口分配给 vlan 2
+Switch(config-if)\#switchport access vlan 2
+Switch(config-if)\#exit			# 回到全局配置模式
+# 同理配置 2 号端口，并分给给 vlan 2
+Switch(config)\#interface FastEthernet 0&#x2F;2
+Switch(config-if)\#switchport mode access 
+Switch(config-if)\#switchport access vlan 2</code></pre>
+<h2 id="3、查看配置结果">3、查看配置结果</h2>
+<p>在特权模式下输入命令 <code>show running-config</code></p>
 <p>可以查看到 1 号端口和 2 号端口均分配给了 VLAN 2</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009172655898.png" alt="image-20211009172655898"></p>
-<h2 id="4、检验结果"><a href="#4、检验结果" class="headerlink" title="4、检验结果"></a>4、检验结果</h2><p>a、当前状态 Switch 转发表 遗忘了之前的信息，攻击者 PC2 有机可乘</p>
+<h2 id="4、检验结果">4、检验结果</h2>
+<p>a、当前状态 Switch 转发表 遗忘了之前的信息，攻击者 PC2 有机可乘</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211009172940185.png" alt="image-20211009172940185"></p>
 <blockquote>
 <p>该 mac-address 是 Switch 0 与 Switch 1 之间的</p>

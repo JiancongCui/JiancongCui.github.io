@@ -1,39 +1,85 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>03-Android-Activity · Jiancong Cui</title><meta name="description" content="ActivityActivity：一种可以包含用户界面的组件，主要用于和用户进行交互
-创建 Activity在我们的项目包下右击创建:
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>03-Android-Activity · Jiancong Cui</title><meta name="description" content="Activity
+Activity：一种可以包含用户界面的组件，主要用于和用户进行交互
+创建 Activity
+在我们的项目包下右击创建:
 
 Generate Layout File: 表示自动为 Activity 创建对应的布局文件
-Launcher Activity: 表示自动将 Activity "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>03-Android-Activity</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-07-18</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h1><p>Activity：一种可以包含用户界面的组件，主要用于和用户进行交互</p>
-<h2 id="创建-Activity"><a href="#创建-Activity" class="headerlink" title="创建 Activity"></a>创建 Activity</h2><p>在我们的项目包下右击创建:</p>
+Launcher Activity: 表示自动将 Activit"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>03-Android-Activity</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-07-18</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Activity</h1>
+<p>Activity：一种可以包含用户界面的组件，主要用于和用户进行交互</p>
+<h2 id="创建-Activity">创建 Activity</h2>
+<p>在我们的项目包下右击创建:</p>
 <ul>
 <li>Generate Layout File: 表示自动为 Activity 创建对应的布局文件</li>
 <li>Launcher Activity: 表示自动将 Activity 设置为当前项目的主 Activity</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.helloandroid</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FirstActivity</span> : <span class="type">AppCompatActivity</span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.first_layout)</span><br><span class="line">        Log.d(<span class="string">&quot;MainActivity&quot;</span>, <span class="string">&quot;onCreate execute&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">package com.example.helloandroid
 
-<h2 id="创建布局"><a href="#创建布局" class="headerlink" title="创建布局"></a>创建布局</h2><p>每一个 Activity 都应对应一个布局（逻辑和视图分离），在 <code>app/src/main/res</code> 目录中的 <code>layout</code> 文件夹中创建 <code>Layout resource file</code> 即可</p>
+class FirstActivity : AppCompatActivity() &#123;
+    override fun onCreate(savedInstanceState: Bundle?) &#123;
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.first_layout)
+        Log.d(&quot;MainActivity&quot;, &quot;onCreate execute&quot;)
+    &#125;
+&#125;</code></pre>
+<h2 id="创建布局">创建布局</h2>
+<p>每一个 Activity 都应对应一个布局（逻辑和视图分离），在 <code>app/src/main/res</code> 目录中的 <code>layout</code> 文件夹中创建 <code>Layout resource file</code> 即可</p>
 <ul>
 <li>在布局中进行布局的配置以及布局中元素的配置</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">&quot;http://schemas.android.com/tools&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/button1&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;@string/main_title&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">tools:ignore</span>=<span class="string">&quot;MissingConstraints&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;
+    xmlns:tools&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;tools&quot;
+    android:orientation&#x3D;&quot;vertical&quot;
+    android:layout_width&#x3D;&quot;match_parent&quot;
+    android:layout_height&#x3D;&quot;match_parent&quot;&gt;
 
-<h2 id="加载布局"><a href="#加载布局" class="headerlink" title="加载布局"></a>加载布局</h2><p>将布局加载到 Activity 中: <code>setContentView(R.layout.first_layout)</code> 方法中传入的是目标布局文件的 id</p>
+    &lt;Button
+        android:id&#x3D;&quot;@+id&#x2F;button1&quot;
+        android:layout_width&#x3D;&quot;match_parent&quot;
+        android:layout_height&#x3D;&quot;wrap_content&quot;
+        android:text&#x3D;&quot;@string&#x2F;main_title&quot;
+        tools:ignore&#x3D;&quot;MissingConstraints&quot; &#x2F;&gt;
+
+&lt;&#x2F;LinearLayout&gt;</code></pre>
+<h2 id="加载布局">加载布局</h2>
+<p>将布局加载到 Activity 中: <code>setContentView(R.layout.first_layout)</code> 方法中传入的是目标布局文件的 id</p>
 <blockquote>
 <p>项目中添加的任何资源都会在 R 文件中生成一个相应的资源 id</p>
 </blockquote>
-<h2 id="注册-Activity"><a href="#注册-Activity" class="headerlink" title="注册 Activity"></a>注册 Activity</h2><p>所有的 Activity 都要在 AndroidManifest.xml 中进行注册才能生效, 注册声明放在 <code>&lt;application&gt;</code> 标签内</p>
+<h2 id="注册-Activity">注册 Activity</h2>
+<p>所有的 Activity 都要在 AndroidManifest.xml 中进行注册才能生效, 注册声明放在 <code>&lt;application&gt;</code> 标签内</p>
 <ul>
 <li>在这里配置 activity 的基本属性: 名称(<code>name</code>), 是否可被其它 APP 使用(<code>exported</code>), 标题名(<code>label</code>)</li>
 <li>配置是否为主 Activity <code>intent-filter</code></li>
 </ul>
 <p>Tips: 如果你的应用程序中没有声明任何一个 Activity 作为主 Activity，这个程序仍然是可以正常安装，只是无法在启动器中看到或者打开这个程序 (这种程序一般是作为第三方服务供其他应用在内部进行调用的)</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.FirstActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:label</span>=<span class="string">&quot;This is FirstActivity&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">category</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="销毁-Activity"><a href="#销毁-Activity" class="headerlink" title="销毁 Activity"></a>销毁 Activity</h2><p>通过 Back 键或者 <code>finish()</code> 方法</p>
-<h1 id="Intent"><a href="#Intent" class="headerlink" title="Intent"></a>Intent</h1><p>Intent 是 Android 程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;activity
+    android:name&#x3D;&quot;.FirstActivity&quot;
+    android:exported&#x3D;&quot;true&quot;
+    android:label&#x3D;&quot;This is FirstActivity&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name&#x3D;&quot;android.intent.action.MAIN&quot;&gt;&lt;&#x2F;action&gt;
+        &lt;category android:name&#x3D;&quot;android.intent.category.LAUNCHER&quot;&gt;&lt;&#x2F;category&gt;
+    &lt;&#x2F;intent-filter&gt;
+&lt;&#x2F;activity&gt;</code></pre>
+<h2 id="销毁-Activity">销毁 Activity</h2>
+<p>通过 Back 键或者 <code>finish()</code> 方法</p>
+<h1>Intent</h1>
+<p>Intent 是 Android 程序中各组件之间进行交互的一种重要方式，它不仅可以指明当前组件想要执行的动作，还可以在不同组件之间传递数据</p>
 <ul>
 <li>Application: 启动 Activity、启动 Service 以及发送广播</li>
 </ul>
-<h2 id="显示-Intent"><a href="#显示-Intent" class="headerlink" title="显示 Intent"></a>显示 Intent</h2><ol>
+<h2 id="显示-Intent">显示 Intent</h2>
+<ol>
 <li>使用构造函数, 定义我们的意图: <code>Intent(Context packageContext, Class&lt;?&gt; cls)</code></li>
 </ol>
 <ul>
@@ -43,66 +89,139 @@ Launcher Activity: 表示自动将 Activity "><meta name="keywords" content="Com
 <ol start="2">
 <li>使用 <code>startActivity()</code> 执行我们的意图: <code>startActivity(intent)</code></li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button_main2first = findViewById&lt;Button&gt;(R.id.button_main2first)</span><br><span class="line">button_main2first.setOnClickListener &#123;</span><br><span class="line">    <span class="comment">// 在FirstActivit 的环境中打开 SecondActivity</span></span><br><span class="line">    <span class="comment">// (kotlin) FirstActivity::class.java === FirstActivity.class (Java)</span></span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, FirstActivity::<span class="keyword">class</span>.java)</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="隐式-Intent"><a href="#隐式-Intent" class="headerlink" title="隐式 Intent"></a>隐式 Intent</h2><p>并不明确指出想要启动哪一个 Activity，而是指定了一系列更为抽象的 action 和 category 等信息，然后交由系统去分析这个 Intent，并帮我们找出合适的 Activity 去启动</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val button_main2first &#x3D; findViewById&lt;Button&gt;(R.id.button_main2first)
+button_main2first.setOnClickListener &#123;
+    &#x2F;&#x2F; 在FirstActivit 的环境中打开 SecondActivity
+    &#x2F;&#x2F; (kotlin) FirstActivity::class.java &#x3D;&#x3D;&#x3D; FirstActivity.class (Java)
+    val intent &#x3D; Intent(this, FirstActivity::class.java)
+    startActivity(intent)
+&#125;</code></pre>
+<h2 id="隐式-Intent">隐式 Intent</h2>
+<p>并不明确指出想要启动哪一个 Activity，而是指定了一系列更为抽象的 action 和 category 等信息，然后交由系统去分析这个 Intent，并帮我们找出合适的 Activity 去启动</p>
 <ul>
 <li>在 <code>AndroidManifest.xml</code> 中的 <code>activity</code> 标签中的 <code>intent-filter</code> 中可以指定当前 Activity 能够响应的 action 和 category</li>
 </ul>
-<p>只有 <code>&lt;action&gt;</code> 和 <code>&lt;category&gt;</code> 中的内容同时匹配 Intent 中指定的 action 和 category 时，这个 Activity 才能响应该 Intent: </p>
+<p>只有 <code>&lt;action&gt;</code> 和 <code>&lt;category&gt;</code> 中的内容同时匹配 Intent 中指定的 action 和 category 时，这个 Activity 才能响应该 Intent:</p>
 <ul>
-<li>可以指定多个 category, 但是必须要指定能够响应 <code>android.intent.category.DEFAULT</code> 这个 category<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.SecondActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:label</span>=<span class="string">&quot;@string/second_label&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 可以响应 com.example.activitytest.ACTION_START --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;com.comingpro.intent.INFO_SHOW&quot;</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 指明了当前 Activity 能够响应的 Intent 中还可能带有的 category --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.DEFAULT&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;com.comingpro.category.SECOND&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>可以指定多个 category, 但是必须要指定能够响应 <code>android.intent.category.DEFAULT</code> 这个 category</li>
 </ul>
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;activity
+    android:name&#x3D;&quot;.SecondActivity&quot;
+    android:exported&#x3D;&quot;true&quot;
+    android:label&#x3D;&quot;@string&#x2F;second_label&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;!-- 可以响应 com.example.activitytest.ACTION_START --&gt;
+        &lt;action android:name&#x3D;&quot;com.comingpro.intent.INFO_SHOW&quot; &#x2F;&gt;
+        &lt;!-- 指明了当前 Activity 能够响应的 Intent 中还可能带有的 category --&gt;
+        &lt;category android:name&#x3D;&quot;android.intent.category.DEFAULT&quot; &#x2F;&gt;
+        &lt;category android:name&#x3D;&quot;com.comingpro.category.SECOND&quot; &#x2F;&gt;
+    &lt;&#x2F;intent-filter&gt;
+&lt;&#x2F;activity&gt;</code></pre>
 <p>隐式调用: 每个 Intent 中只能指定一个 action，但能指定多个 category</p>
 <ul>
-<li>使用 <code>intent.addCategory()</code> 方法添加自定义的 category<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button_main2second = findViewById&lt;Button&gt;(R.id.button_main2second)</span><br><span class="line">button_main2second.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="string">&quot;com.comingpro.intent.INFO_SHOW&quot;</span>)</span><br><span class="line">    intent.addCategory(<span class="string">&quot;com.comingpro.category.SECOND&quot;</span>)</span><br><span class="line">    <span class="comment">// android.intent.category.DEFAULT 是一种默认的 category</span></span><br><span class="line">    <span class="comment">// 在调用 startActivity() 方法的时候会自动将这个 category 添加到 Intent 中</span></span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用 <code>intent.addCategory()</code> 方法添加自定义的 category</li>
 </ul>
-<h2 id="跨程序意图"><a href="#跨程序意图" class="headerlink" title="跨程序意图"></a>跨程序意图</h2><p>隐式 Intent 可以启动其它程序内的 Activity</p>
-<h3 id="setData"><a href="#setData" class="headerlink" title="setData()"></a>setData()</h3><p><code>setData()</code> 方法接收一个 <code>Uri</code> 对象, 用于指定当前 Intent 正在操作的数据, 这些数据通常是以字符串形式传入 <code>Uri.parse()</code> 方法中解析产生的</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val button_main2second &#x3D; findViewById&lt;Button&gt;(R.id.button_main2second)
+button_main2second.setOnClickListener &#123;
+    val intent &#x3D; Intent(&quot;com.comingpro.intent.INFO_SHOW&quot;)
+    intent.addCategory(&quot;com.comingpro.category.SECOND&quot;)
+    &#x2F;&#x2F; android.intent.category.DEFAULT 是一种默认的 category
+    &#x2F;&#x2F; 在调用 startActivity() 方法的时候会自动将这个 category 添加到 Intent 中
+    startActivity(intent)
+&#125;</code></pre>
+<h2 id="跨程序意图">跨程序意图</h2>
+<p>隐式 Intent 可以启动其它程序内的 Activity</p>
+<h3 id="setData">setData()</h3>
+<p><code>setData()</code> 方法接收一个 <code>Uri</code> 对象, 用于指定当前 Intent 正在操作的数据, 这些数据通常是以字符串形式传入 <code>Uri.parse()</code> 方法中解析产生的</p>
 <p>更详细的配置 Data 格式可以在 <code>&lt;intent-filter&gt;</code> 中配置一个 <code>&lt;data&gt;</code> 标签, 表明当前 Activity 支持处理的 Data 类型: 只有当 data 标签中指定的内容和 Intent 中携带的 Data 完全一致时，当前 Activity 才能够响应该 Intent</p>
 <ul>
 <li><code>a:scheme</code>: 指定数据的协议部分(https, …)</li>
-<li><code>a:host</code>: 指定数据的主机名部分(<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>, …)</li>
+<li><code>a:host</code>: 指定数据的主机名部分(<a target="_blank" rel="noopener" href="http://www.baidu.com">www.baidu.com</a>, …)</li>
 <li><code>a:port</code>: 指定数据的端口部分</li>
 <li><code>a:path</code>: 指定主机名和端口之后的部分</li>
 <li><code>a:mimeType</code>: 指定可以处理的数据类型，允许使用通配符的方式进行指定</li>
 </ul>
-<h3 id="启动浏览器"><a href="#启动浏览器" class="headerlink" title="启动浏览器"></a>启动浏览器</h3><p>使用本地注册好的浏览器打开百度:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button_baidu = findViewById&lt;Button&gt;(R.id.button_baidu)</span><br><span class="line">button_baidu.setOnClickListener &#123;</span><br><span class="line">    <span class="comment">// Android 系统内置动作，其常量值为 android.intent.action.VIEW</span></span><br><span class="line">    <span class="keyword">val</span> intent = Intent(Intent.ACTION_VIEW)</span><br><span class="line">    <span class="comment">// 通过 Uri.parse() 方法将一个网址字符串解析成一个 Uri 对象</span></span><br><span class="line">    <span class="comment">// 再调用 Intent 的 setData() 方法将这个 Uri 对象传递进去</span></span><br><span class="line">    intent.<span class="keyword">data</span> = Uri.parse(<span class="string">&quot;https://www.baidu.com&quot;</span>)</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="启动浏览器">启动浏览器</h3>
+<p>使用本地注册好的浏览器打开百度:</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val button_baidu &#x3D; findViewById&lt;Button&gt;(R.id.button_baidu)
+button_baidu.setOnClickListener &#123;
+    &#x2F;&#x2F; Android 系统内置动作，其常量值为 android.intent.action.VIEW
+    val intent &#x3D; Intent(Intent.ACTION_VIEW)
+    &#x2F;&#x2F; 通过 Uri.parse() 方法将一个网址字符串解析成一个 Uri 对象
+    &#x2F;&#x2F; 再调用 Intent 的 setData() 方法将这个 Uri 对象传递进去
+    intent.data &#x3D; Uri.parse(&quot;https:&#x2F;&#x2F;www.baidu.com&quot;)
+    startActivity(intent)
+&#125;</code></pre>
 <p>使用本程序创建的子 Activity 匹配 Intent:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.FakeBaiduActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:label</span>=<span class="string">&quot;@string/fake_baidu_label&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span> <span class="attr">tools:ignore</span>=<span class="string">&quot;AppLinkUrlError&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.VIEW&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.DEFAULT&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">data</span> <span class="attr">android:scheme</span>=<span class="string">&quot;https&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207162046144.png"></p>
-<h3 id="拨打电话"><a href="#拨打电话" class="headerlink" title="拨打电话"></a>拨打电话</h3><p>action 为内置的 <code>Intent.ACTION_DIAL</code> 接收的数据格式为 <code>tel: 12345</code></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button_call12345 = findViewById&lt;Button&gt;(R.id.button_call12345)</span><br><span class="line">button_call12345.setOnClickListener &#123; </span><br><span class="line">    <span class="keyword">val</span> intent = Intent(Intent.ACTION_DIAL)</span><br><span class="line">    intent.<span class="keyword">data</span> = Uri.parse(<span class="string">&quot;tel: 12345&quot;</span>)</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207162054621.png"></p>
-<h2 id="活动间传递数据"><a href="#活动间传递数据" class="headerlink" title="活动间传递数据"></a>活动间传递数据</h2><p>重载 <code>putExtra()</code> 方法, 将想要传递的数据暂存在 Intent 中进行传递即可, 通过 <code>key, value</code> 的形式传递与获取</p>
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;activity
+    android:name&#x3D;&quot;.FakeBaiduActivity&quot;
+    android:exported&#x3D;&quot;true&quot;
+    android:label&#x3D;&quot;@string&#x2F;fake_baidu_label&quot;&gt;
+    &lt;intent-filter tools:ignore&#x3D;&quot;AppLinkUrlError&quot;&gt;
+        &lt;action android:name&#x3D;&quot;android.intent.action.VIEW&quot; &#x2F;&gt;
+        &lt;category android:name&#x3D;&quot;android.intent.category.DEFAULT&quot; &#x2F;&gt;
+        &lt;data android:scheme&#x3D;&quot;https&quot; &#x2F;&gt;
+    &lt;&#x2F;intent-filter&gt;
+&lt;&#x2F;activity&gt;</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207162046144.png" alt=""></p>
+<h3 id="拨打电话">拨打电话</h3>
+<p>action 为内置的 <code>Intent.ACTION_DIAL</code> 接收的数据格式为 <code>tel: 12345</code></p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val button_call12345 &#x3D; findViewById&lt;Button&gt;(R.id.button_call12345)
+button_call12345.setOnClickListener &#123; 
+    val intent &#x3D; Intent(Intent.ACTION_DIAL)
+    intent.data &#x3D; Uri.parse(&quot;tel: 12345&quot;)
+    startActivity(intent)
+&#125;</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207162054621.png" alt=""></p>
+<h2 id="活动间传递数据">活动间传递数据</h2>
+<p>重载 <code>putExtra()</code> 方法, 将想要传递的数据暂存在 Intent 中进行传递即可, 通过 <code>key, value</code> 的形式传递与获取</p>
 <p>发送数据:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button_greet = findViewById&lt;Button&gt;(R.id.button_greet)</span><br><span class="line">button_greet.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, HelloActivity::<span class="keyword">class</span>.java)</span><br><span class="line">    intent.putExtra(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Coming&quot;</span>)</span><br><span class="line">    startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val button_greet &#x3D; findViewById&lt;Button&gt;(R.id.button_greet)
+button_greet.setOnClickListener &#123;
+    val intent &#x3D; Intent(this, HelloActivity::class.java)
+    intent.putExtra(&quot;name&quot;, &quot;Coming&quot;)
+    startActivity(intent)
+&#125;</code></pre>
 <p>接收数据:</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> text_hello = findViewById&lt;TextView&gt;(R.id.text_hello)</span><br><span class="line"><span class="keyword">val</span> extra_data_name = intent.getStringExtra(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">text_hello.text = <span class="string">&quot;Hello <span class="variable">$extra_data_name</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="活动间返回数据"><a href="#活动间返回数据" class="headerlink" title="活动间返回数据"></a>活动间返回数据</h2><p>目标 Activity 销毁后能给上级 Activity 响应消息</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val text_hello &#x3D; findViewById&lt;TextView&gt;(R.id.text_hello)
+val extra_data_name &#x3D; intent.getStringExtra(&quot;name&quot;)
+text_hello.text &#x3D; &quot;Hello $extra_data_name&quot;</code></pre>
+<h2 id="活动间返回数据">活动间返回数据</h2>
+<p>目标 Activity 销毁后能给上级 Activity 响应消息</p>
 <ol>
 <li>在启动目标 Activity 前使用 <code>registerForActivityResult</code> 注册绑定一个回调, 对目标 Activity 销毁后传递的信息进行处理</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> greet_advanced_activity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) &#123; result -&gt;</span><br><span class="line">    <span class="keyword">if</span> (result.resultCode == Activity.RESULT_OK) &#123;</span><br><span class="line">        <span class="keyword">val</span> <span class="keyword">data</span>: Intent? = result.<span class="keyword">data</span></span><br><span class="line">        <span class="keyword">val</span> name = <span class="keyword">data</span>?.getStringExtra(<span class="string">&quot;name&quot;</span>) ?: <span class="string">&quot;What?&quot;</span></span><br><span class="line">        <span class="keyword">val</span> button_greet_advanced = findViewById&lt;Button&gt;(R.id.button_greet_advanced)</span><br><span class="line">        button_greet_advanced.text = <span class="string">&quot;Say <span class="subst">$&#123;name&#125;</span> Success!&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">private val greet_advanced_activity &#x3D; registerForActivityResult(ActivityResultContracts.StartActivityForResult()) &#123; result -&gt;
+    if (result.resultCode &#x3D;&#x3D; Activity.RESULT_OK) &#123;
+        val data: Intent? &#x3D; result.data
+        val name &#x3D; data?.getStringExtra(&quot;name&quot;) ?: &quot;What?&quot;
+        val button_greet_advanced &#x3D; findViewById&lt;Button&gt;(R.id.button_greet_advanced)
+        button_greet_advanced.text &#x3D; &quot;Say $&#123;name&#125; Success!&quot;
+    &#125;
+&#125;</code></pre>
 <ol start="2">
 <li>使用这个回调注册的 <code>launch()</code> 方法启动目标 Activity</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button_greet_advanced = findViewById&lt;Button&gt;(R.id.button_greet_advanced)</span><br><span class="line">button_greet_advanced.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, HelloActivity::<span class="keyword">class</span>.java)</span><br><span class="line">    intent.putExtra(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;CJC&quot;</span>)</span><br><span class="line">    greet_advanced_activity.launch(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val button_greet_advanced &#x3D; findViewById&lt;Button&gt;(R.id.button_greet_advanced)
+button_greet_advanced.setOnClickListener &#123;
+    val intent &#x3D; Intent(this, HelloActivity::class.java)
+    intent.putExtra(&quot;name&quot;, &quot;CJC&quot;)
+    greet_advanced_activity.launch(intent)
+&#125;</code></pre>
 <ol start="3">
 <li>目标 Activity 中编写销毁后返传的消息</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> button_back2main = findViewById&lt;Button&gt;(R.id.button_info2main)</span><br><span class="line">button_back2main.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent()</span><br><span class="line">    intent.putExtra(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;CJC&quot;</span>)</span><br><span class="line">    setResult(RESULT_OK, intent)</span><br><span class="line">    finish()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207162141011.png"></p>
-<h2 id="活动间传递复杂数据"><a href="#活动间传递复杂数据" class="headerlink" title="活动间传递复杂数据"></a>活动间传递复杂数据</h2><h3 id="Serializable"><a href="#Serializable" class="headerlink" title="Serializable"></a>Serializable</h3><p>针对自定义对象或自定义对象的列表, 需要借助 <code>Serializable</code> 接口添加其序列化与反序列化方法</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val button_back2main &#x3D; findViewById&lt;Button&gt;(R.id.button_info2main)
+button_back2main.setOnClickListener &#123;
+    val intent &#x3D; Intent()
+    intent.putExtra(&quot;name&quot;, &quot;CJC&quot;)
+    setResult(RESULT_OK, intent)
+    finish()
+&#125;</code></pre>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207162141011.png" alt=""></p>
+<h2 id="活动间传递复杂数据">活动间传递复杂数据</h2>
+<h3 id="Serializable">Serializable</h3>
+<p>针对自定义对象或自定义对象的列表, 需要借助 <code>Serializable</code> 接口添加其序列化与反序列化方法</p>
 <ul>
 <li>序列化后的对象可以在网络上进行传输，也可以存储到本地</li>
 <li>至于序列化的方法非常简单，只需要让一个类去实现 Serializable 这个接口就可以了</li>
@@ -110,24 +229,32 @@ Launcher Activity: 表示自动将 Activity "><meta name="keywords" content="Com
 <ol>
 <li>在类的定义中声明对 <code>Serializable</code> 接口的实现</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Book</span>(...): Serializable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class Book(...): Serializable &#123;
+&#125;</code></pre>
 <ol start="2">
 <li>传递时进行序列化</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">actionStart</span><span class="params">(context: <span class="type">Context</span>, bookList: <span class="type">ArrayList</span>&lt;<span class="type">Book</span>&gt;, book: <span class="type">Book</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(context, BookInfosActivity::<span class="keyword">class</span>.java).apply &#123;</span><br><span class="line">        putExtra(<span class="string">&quot;bookList&quot;</span>, bookList <span class="keyword">as</span> Serializable) </span><br><span class="line">        putExtra(<span class="string">&quot;book&quot;</span>, book)</span><br><span class="line">    &#125;</span><br><span class="line">    context.startActivity(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun actionStart(context: Context, bookList: ArrayList&lt;Book&gt;, book: Book) &#123;
+    val intent &#x3D; Intent(context, BookInfosActivity::class.java).apply &#123;
+        putExtra(&quot;bookList&quot;, bookList as Serializable) 
+        putExtra(&quot;book&quot;, book)
+    &#125;
+    context.startActivity(intent)
+&#125;</code></pre>
 <ol start="3">
 <li>接受时反序列化</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> booklist = intent.getSerializableExtra(<span class="string">&quot;bookList&quot;</span>) <span class="keyword">as</span> ArrayList&lt;Book&gt;</span><br><span class="line"><span class="keyword">val</span> book = intent.getSerializableExtra(<span class="string">&quot;book&quot;</span>) <span class="keyword">as</span> Book</span><br></pre></td></tr></table></figure>
-
-<h3 id="Parcelable"><a href="#Parcelable" class="headerlink" title="Parcelable"></a>Parcelable</h3><p>Parcelable 方式的实现原理是将一个完整的对象进行分解，使得分解后的每一部分都是 Intent 所支持的数据类型，这样就能实现传递对象的功能了</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val booklist &#x3D; intent.getSerializableExtra(&quot;bookList&quot;) as ArrayList&lt;Book&gt;
+val book &#x3D; intent.getSerializableExtra(&quot;book&quot;) as Book</code></pre>
+<h3 id="Parcelable">Parcelable</h3>
+<p>Parcelable 方式的实现原理是将一个完整的对象进行分解，使得分解后的每一部分都是 Intent 所支持的数据类型，这样就能实现传递对象的功能了</p>
 <ul>
 <li>简单实现</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Parcelize</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span>(<span class="keyword">var</span> name: String, <span class="keyword">var</span> age: <span class="built_in">Int</span>) : Parcelable</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> person = intent.getParcelableExtra(<span class="string">&quot;person_data&quot;</span>) <span class="keyword">as</span> Person</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">@Parcelize
+class Person(var name: String, var age: Int) : Parcelable
 
+val person &#x3D; intent.getParcelableExtra(&quot;person_data&quot;) as Person</code></pre>
 <ul>
 <li>细节处理</li>
 </ul>
@@ -145,150 +272,287 @@ Launcher Activity: 表示自动将 Activity "><meta name="keywords" content="Com
 <li>在 createFromParcel() 要创建一个 Person 对象进行返回，并读取刚才写出的 name 和 age 字段</li>
 <li>newArray() 方法需要调用 arrayOfNulls() 方法，并使用参数中传入的 size 作为数组大小，创建一个空的 Person 数组即可</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Person</span> : <span class="type">Parcelable</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">var</span> age = <span class="number">0</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">writeToParcel</span><span class="params">(parcel: <span class="type">Parcel</span>, flags: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        parcel.writeString(name) <span class="comment">// 写出name</span></span><br><span class="line">        parcel.writeInt(age) <span class="comment">// 写出age</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">describeContents</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> CREATOR : Parcelable.Creator&lt;Person&gt; &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">createFromParcel</span><span class="params">(parcel: <span class="type">Parcel</span>)</span></span>: Person &#123;</span><br><span class="line">            <span class="keyword">val</span> person = Person()</span><br><span class="line">            <span class="comment">// 顺序一致</span></span><br><span class="line">            person.name = parcel.readString() ?: <span class="string">&quot;&quot;</span> <span class="comment">// 读取name</span></span><br><span class="line">            person.age = parcel.readInt() <span class="comment">// 读取age</span></span><br><span class="line">            <span class="keyword">return</span> person</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">newArray</span><span class="params">(size: <span class="type">Int</span>)</span></span>: Array&lt;Person?&gt; &#123;</span><br><span class="line">            <span class="keyword">return</span> arrayOfNulls(size)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class Person : Parcelable &#123;
+    var name &#x3D; &quot;&quot;
+    var age &#x3D; 0
+    override fun writeToParcel(parcel: Parcel, flags: Int) &#123;
+        parcel.writeString(name) &#x2F;&#x2F; 写出name
+        parcel.writeInt(age) &#x2F;&#x2F; 写出age
+    &#125;
+    override fun describeContents(): Int &#123;
+        return 0
+    &#125;
+    companion object CREATOR : Parcelable.Creator&lt;Person&gt; &#123;
+        override fun createFromParcel(parcel: Parcel): Person &#123;
+            val person &#x3D; Person()
+            &#x2F;&#x2F; 顺序一致
+            person.name &#x3D; parcel.readString() ?: &quot;&quot; &#x2F;&#x2F; 读取name
+            person.age &#x3D; parcel.readInt() &#x2F;&#x2F; 读取age
+            return person
+        &#125;
+        override fun newArray(size: Int): Array&lt;Person?&gt; &#123;
+            return arrayOfNulls(size)
+        &#125;
+    &#125;
+&#125;</code></pre>
 <ol start="3">
 <li>获取数据</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> person = intent.getParcelableExtra(<span class="string">&quot;person_data&quot;</span>) <span class="keyword">as</span> Person</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><p>Android 中的 Activity 是可以层叠的：每启动一个新的 Activity，就会覆盖在原 Activity 之上，然后点击 Back 键会销毁最上面的 Activity，下面的一个 Activity 就会重新显示出来</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val person &#x3D; intent.getParcelableExtra(&quot;person_data&quot;) as Person</code></pre>
+<h1>生命周期</h1>
+<p>Android 中的 Activity 是可以层叠的：每启动一个新的 Activity，就会覆盖在原 Activity 之上，然后点击 Back 键会销毁最上面的 Activity，下面的一个 Activity 就会重新显示出来</p>
 <p>Android 使用任务（Task）来管理活动的：一个任务就是一组存放在栈里的 Activity 的集合，这个栈也被称作返回栈（Back Stack）</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207170842696.png"></p>
-<h2 id="Activity-状态"><a href="#Activity-状态" class="headerlink" title="Activity 状态"></a>Activity 状态</h2><ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207170842696.png" alt=""></p>
+<h2 id="Activity-状态">Activity 状态</h2>
+<ol>
 <li>运行状态：活动处于栈顶</li>
 <li>暂停状态：不再处于栈顶，但仍然可见（并不是每一个活动都占满整个屏幕：对话框）</li>
 <li>停止状态：非栈顶 + 完全不可见（系统仍然会为这种 Activity 保存相应的状态和成员变量）</li>
 <li>销毁状态：从返回栈中移除后</li>
 </ol>
 <p>Tips: 系统回收的优先级, 即当内存不足时会优先回收(销毁状态, 停止状态); 运行状态与暂停状态时可见的, 回收会影响用户体验。</p>
-<h2 id="生命周期的回调"><a href="#生命周期的回调" class="headerlink" title="生命周期的回调"></a>生命周期的回调</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207170846189.png"></p>
+<h2 id="生命周期的回调">生命周期的回调</h2>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207170846189.png" alt=""></p>
 <p>Activity 类中定义了 7 个回调方法，覆盖了 Activity 生命周期的每一个环节:</p>
 <ul>
 <li><code>onCreate()</code>：活动第一次被创建时调用（初始化操作：加载布局，绑定事件）</li>
 <li><code>onStart()</code>：活动由不可见变为可见时调用</li>
 <li><code>onResume()</code>：活动（栈顶+运行态）准备好和用户进行交互的时候调用</li>
-<li><code>onPause()</code>：系统准备去启动或恢复另一个活动的时候调用<ul>
+<li><code>onPause()</code>：系统准备去启动或恢复另一个活动的时候调用
+<ul>
 <li>通常会在这个方法中将一些消耗 CPU 的资源释放掉，以及保存一些关键数据</li>
 <li>但这个方法的执行速度一定要快，不然会影响到新的栈顶 Activity 的使用</li>
 </ul>
 </li>
-<li><code>onStop()</code>：在活动完全不可见的时候调用<ul>
+<li><code>onStop()</code>：在活动完全不可见的时候调用
+<ul>
 <li>如果启动的新 Activity 是一个对话框式的 Activity，那么 onPause() 方法会得到执行，而 onStop() 方法并不会执行</li>
 </ul>
 </li>
 <li><code>onDestroy()</code>：活动被销毁前执行</li>
 <li><code>onRestart()</code>：活动由停止状态变为运行状态之前调用</li>
 </ul>
-<p>以上 7 个方法中除了 onRestart() 方法，其他都是两两相对的，从而又可以将 Activity 分为以下 3 种生存期: </p>
+<p>以上 7 个方法中除了 onRestart() 方法，其他都是两两相对的，从而又可以将 Activity 分为以下 3 种生存期:</p>
 <ul>
-<li>完整生存期：onCreate() 方法和 onDestroy() 方法之间经历的<ul>
+<li>完整生存期：onCreate() 方法和 onDestroy() 方法之间经历的
+<ul>
 <li>onCreate() 完成各种初始化, onDestroy() 完成各种释放工作</li>
 </ul>
 </li>
-<li>可见生存期：onStart() 方法 和 onStop() 方法之间（Activity 总是可见的）<ul>
+<li>可见生存期：onStart() 方法 和 onStop() 方法之间（Activity 总是可见的）
+<ul>
 <li>onStart() 对资源进行加载, onStop() 对资源进行释放(保证处于停止状态的 Activity 不会占用过多内存)</li>
 </ul>
 </li>
 <li>前台生存期：onResume() 方法 和 onPause() 方法之间，活动总是处于运行状态, 可以与用户进行交互, 最常见</li>
 </ul>
-<h3 id="测试生命周期执行过程"><a href="#测试生命周期执行过程" class="headerlink" title="测试生命周期执行过程"></a>测试生命周期执行过程</h3><ol>
-<li><p>MainActivity 刚刚启动, 先后执行三个生命周期: <code>onCreate(), onStart(), onResume()</code></p>
+<h3 id="测试生命周期执行过程">测试生命周期执行过程</h3>
+<ol>
+<li>
+<p>MainActivity 刚刚启动, 先后执行三个生命周期: <code>onCreate(), onStart(), onResume()</code></p>
 </li>
-<li><p>MainActivity 打开 NormalActivity 时会先后执行两个生命周期: <code>onPause(), onStop()</code></p>
+<li>
+<p>MainActivity 打开 NormalActivity 时会先后执行两个生命周期: <code>onPause(), onStop()</code></p>
 </li>
-<li><p>通过 Back 键从 NormalActivity 中返回到 MainActivity 时, 先后执行三个生命周期: <code>onRestart(), onStart(), onResume()</code></p>
+<li>
+<p>通过 Back 键从 NormalActivity 中返回到 MainActivity 时, 先后执行三个生命周期: <code>onRestart(), onStart(), onResume()</code></p>
 </li>
-<li><p>MainActivity 打开 DialogActivity 时会执行: <code>onPause()</code> （只 Pause 未 Stop）</p>
+<li>
+<p>MainActivity 打开 DialogActivity 时会执行: <code>onPause()</code> （只 Pause 未 Stop）</p>
 </li>
-<li><p>通过 Back 键从 DialogActivity 中返回到 MainActivity 时, 执行: <code>onResume()</code></p>
+<li>
+<p>通过 Back 键从 DialogActivity 中返回到 MainActivity 时, 执行: <code>onResume()</code></p>
 </li>
-<li><p>通过 Back 键退出程序, 先后执行: <code>onPause(), onStop(), onDestroy()</code></p>
+<li>
+<p>通过 Back 键退出程序, 先后执行: <code>onPause(), onStop(), onDestroy()</code></p>
 </li>
 </ol>
-<h3 id="活动被意外销毁的处理办法"><a href="#活动被意外销毁的处理办法" class="headerlink" title="活动被意外销毁的处理办法"></a>活动被意外销毁的处理办法</h3><p>如果因为内存原因将停止状态的活动销毁了, 通过 Back 键返回该活动, 会执行 <code>onCreate()</code> 重新创建该活动, 但是活动中的状态数据都丢失了, 因此 Android 提供了 <code>onSaveInstanceState()</code> 方法, 其在 Activity 被回收前调用, 对临时数据进行保存</p>
+<h3 id="活动被意外销毁的处理办法">活动被意外销毁的处理办法</h3>
+<p>如果因为内存原因将停止状态的活动销毁了, 通过 Back 键返回该活动, 会执行 <code>onCreate()</code> 重新创建该活动, 但是活动中的状态数据都丢失了, 因此 Android 提供了 <code>onSaveInstanceState()</code> 方法, 其在 Activity 被回收前调用, 对临时数据进行保存</p>
 <p>onSaveInstanceState() 方法：活动被回收之前调用，携带一个 Bundle 类型的参数，Bundle 提供了一系列方法保存数据<code>putString putInt ...</code></p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onSaveInstanceState</span><span class="params">(outState: <span class="type">Bundle</span>, outPersistentState: <span class="type">PersistableBundle</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.onSaveInstanceState(outState, outPersistentState)</span><br><span class="line">    <span class="keyword">val</span> userName = <span class="string">&quot;Coming&quot;</span></span><br><span class="line">    outState.putString(<span class="string">&quot;userName&quot;</span>, userName)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) &#123;
+    super.onSaveInstanceState(outState, outPersistentState)
+    val userName &#x3D; &quot;Coming&quot;
+    outState.putString(&quot;userName&quot;, userName)
+&#125;</code></pre>
 <p><code>onCreate()</code> 会接收一个 saveInstanceState 参数, 默认为 null, 不为空时表示要进行恢复处理:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (savedInstanceState != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">val</span> userName = savedInstanceState.getString(<span class="string">&quot;userName&quot;</span>)</span><br><span class="line">        Log.d(tag, <span class="string">&quot;Name is <span class="variable">$userName</span>&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="启动模式"><a href="#启动模式" class="headerlink" title="启动模式"></a>启动模式</h1><p>启动模式会定义目标活动的启动方式，如新建一个目标活动的实例或者用未销毁的旧实例等等，在交互方面发挥重要作用</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">override fun onCreate(savedInstanceState: Bundle?) &#123;
+    if (savedInstanceState !&#x3D; null) &#123;
+        val userName &#x3D; savedInstanceState.getString(&quot;userName&quot;)
+        Log.d(tag, &quot;Name is $userName&quot;)
+    &#125;
+&#125;</code></pre>
+<h1>启动模式</h1>
+<p>启动模式会定义目标活动的启动方式，如新建一个目标活动的实例或者用未销毁的旧实例等等，在交互方面发挥重要作用</p>
 <ul>
 <li>启动模式一共有 4 种，分别是 standard、singleTop、singleTask 和 singleInstance</li>
 <li>在 AndroidManifest.xml 中通过给 <activity> 标签指定 android:launchMode 属性来选择启动模式</li>
 </ul>
-<h2 id="standard"><a href="#standard" class="headerlink" title="standard"></a>standard</h2><p>默认的启动模式，每当启动一个新的活动，都会创建该活动的一个新的实例，入栈，并处于栈顶位置</p>
+<h2 id="standard">standard</h2>
+<p>默认的启动模式，每当启动一个新的活动，都会创建该活动的一个新的实例，入栈，并处于栈顶位置</p>
 <ul>
 <li>系统不会在乎这个 Activity 是否已经在返回栈中存在，每次启动都会创建一个该 Activity 的新实例</li>
 </ul>
-<h2 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h2><p>启动活动时，如果发现返回栈的栈顶已经是该活动，则认为可以直接使用它</p>
+<h2 id="singleTop">singleTop</h2>
+<p>启动活动时，如果发现返回栈的栈顶已经是该活动，则认为可以直接使用它</p>
 <ul>
 <li>目标活动不处于栈顶时，仍会创建新的活动实例。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171009445.png"></p>
-<h2 id="singleTask"><a href="#singleTask" class="headerlink" title="singleTask"></a>singleTask</h2><p>启动目标活动(A)时会在返回栈中检查是否已存在该活动的实例(a)，如果发现已经存在则直接使用该实例(a)，并把(a)之上的所有活动实例出栈</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171016399.png"></p>
-<h2 id="singleInstance"><a href="#singleInstance" class="headerlink" title="singleInstance"></a>singleInstance</h2><p>启动活动时会启用一个新的返回栈来管理这个活动</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171009445.png" alt=""></p>
+<h2 id="singleTask">singleTask</h2>
+<p>启动目标活动(A)时会在返回栈中检查是否已存在该活动的实例(a)，如果发现已经存在则直接使用该实例(a)，并把(a)之上的所有活动实例出栈</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171016399.png" alt=""></p>
+<h2 id="singleInstance">singleInstance</h2>
+<p>启动活动时会启用一个新的返回栈来管理这个活动</p>
 <p>Application: 其他程序和我们的程序可以共享这个 Activity 的实例时, 使用 singleInstance 模式会有一个单独的返回栈来管理这个 Activity，也就解决了共享Activity实例的问题</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171020987.png"></p>
-<h2 id="活动常用方法"><a href="#活动常用方法" class="headerlink" title="活动常用方法"></a>活动常用方法</h2><h3 id="当前可见活动名称"><a href="#当前可见活动名称" class="headerlink" title="当前可见活动名称"></a>当前可见活动名称</h3><ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202207171020987.png" alt=""></p>
+<h2 id="活动常用方法">活动常用方法</h2>
+<h3 id="当前可见活动名称">当前可见活动名称</h3>
+<ol>
 <li>创建一个 BaseActivity 类</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="keyword">class</span> <span class="title class_">BaseActivity</span> : <span class="type">AppCompatActivity</span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        <span class="comment">// javaClass == getClass()</span></span><br><span class="line">        Log.d(<span class="string">&quot;BaseActivity&quot;</span>, javaClass.simpleName)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="统一活动管理"><a href="#统一活动管理" class="headerlink" title="统一活动管理"></a>统一活动管理</h3><p>当我们的活动栈中存在三个 Activity 时, 如何直接退出程序呢? 这就需要一个数据结构 <code>ActivityCollector()</code> 去维护所有 Activity 的状态, 并统一控制其行为</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">open class BaseActivity : AppCompatActivity() &#123;
+    override fun onCreate(savedInstanceState: Bundle?) &#123;
+        super.onCreate(savedInstanceState)
+        &#x2F;&#x2F; javaClass &#x3D;&#x3D; getClass()
+        Log.d(&quot;BaseActivity&quot;, javaClass.simpleName)
+    &#125;
+&#125;</code></pre>
+<h3 id="统一活动管理">统一活动管理</h3>
+<p>当我们的活动栈中存在三个 Activity 时, 如何直接退出程序呢? 这就需要一个数据结构 <code>ActivityCollector()</code> 去维护所有 Activity 的状态, 并统一控制其行为</p>
 <ol>
 <li>新建 ActivityCollector 类</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ActivityCollector</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> activityCollector = ArrayList&lt;Activity&gt;()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">addActivity</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line">        activityCollector.add(activity)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">removeActivity</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line">        activityCollector.remove(activity)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">finishAll</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">for</span> ( activity <span class="keyword">in</span> activityCollector ) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!activity.isFinishing) &#123;</span><br><span class="line">                activity.finish()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        activityCollector.clear()</span><br><span class="line">        <span class="comment">// 销毁当前进程</span></span><br><span class="line">        android.os.Process.killProcess(android.os.Process.myPid())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class ActivityCollector &#123;
 
+    private val activityCollector &#x3D; ArrayList&lt;Activity&gt;()
+
+    fun addActivity(activity: Activity) &#123;
+        activityCollector.add(activity)
+    &#125;
+
+    fun removeActivity(activity: Activity) &#123;
+        activityCollector.remove(activity)
+    &#125;
+
+    fun finishAll() &#123;
+        for ( activity in activityCollector ) &#123;
+            if (!activity.isFinishing) &#123;
+                activity.finish()
+            &#125;
+        &#125;
+        activityCollector.clear()
+        &#x2F;&#x2F; 销毁当前进程
+        android.os.Process.killProcess(android.os.Process.myPid())
+    &#125;
+
+&#125;</code></pre>
 <ol start="2">
 <li>在 BaseActivity 基类中进行封装维护</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">open</span> <span class="keyword">class</span> <span class="title class_">BaseActivity</span> : <span class="type">AppCompatActivity</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        <span class="comment">// javaClass == getClass()</span></span><br><span class="line">        Log.d(<span class="string">&quot;BaseActivity&quot;</span>, javaClass.simpleName)</span><br><span class="line">        ActivityCollector.addActivity(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDestroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy()</span><br><span class="line">        ActivityCollector.removeActivity(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">open class BaseActivity : AppCompatActivity() &#123;
 
+    override fun onCreate(savedInstanceState: Bundle?) &#123;
+        super.onCreate(savedInstanceState)
+        &#x2F;&#x2F; javaClass &#x3D;&#x3D; getClass()
+        Log.d(&quot;BaseActivity&quot;, javaClass.simpleName)
+        ActivityCollector.addActivity(this)
+    &#125;
+
+    override fun onDestroy() &#123;
+        super.onDestroy()
+        ActivityCollector.removeActivity(this)
+    &#125;
+
+&#125;</code></pre>
 <ol start="3">
 <li>使用 finishAll() 方法实现退出即可</li>
 </ol>
-<h3 id="活动启动接口"><a href="#活动启动接口" class="headerlink" title="活动启动接口"></a>活动启动接口</h3><p>两个活动由不同的开发者开发, 那么相互调用时可能因为不熟悉参数命名导致 intent 无法传参, 因此建议开发活动时, 在活动中声明创建该活动的意图的接口</p>
+<h3 id="活动启动接口">活动启动接口</h3>
+<p>两个活动由不同的开发者开发, 那么相互调用时可能因为不熟悉参数命名导致 intent 无法传参, 因此建议开发活动时, 在活动中声明创建该活动的意图的接口</p>
 <ul>
 <li>这属于活动类的方法, 因此用静态修饰</li>
 <li>Kotlin 提供了 <code>companion object</code> 语法结构, 其中的方法都可以使用类似于 java 静态方法的形式调用</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">actionStart</span><span class="params">(context: <span class="type">Context</span>, username: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> intent = Intent(context, MainActivity::<span class="keyword">class</span>.java).apply &#123;</span><br><span class="line">            putExtra(<span class="string">&quot;username&quot;</span>, username)</span><br><span class="line">        &#125;</span><br><span class="line">        context.startActivity(intent)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h1><p>Context 使用的场景非常多: Toast, 启动 Activity, 发送广播, 操作数据库, 通知….</p>
-<h2 id="全局-Context"><a href="#全局-Context" class="headerlink" title="全局 Context"></a>全局 Context</h2><p>Android 提供 Application 类，每当应用程序启动的时候，系统就会自动将这个类进行初始化</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">companion object &#123;
+    fun actionStart(context: Context, username: String) &#123;
+        val intent &#x3D; Intent(context, MainActivity::class.java).apply &#123;
+            putExtra(&quot;username&quot;, username)
+        &#125;
+        context.startActivity(intent)
+    &#125;
+&#125;</code></pre>
+<h1>Context</h1>
+<p>Context 使用的场景非常多: Toast, 启动 Activity, 发送广播, 操作数据库, 通知…</p>
+<h2 id="全局-Context">全局 Context</h2>
+<p>Android 提供 Application 类，每当应用程序启动的时候，系统就会自动将这个类进行初始化</p>
 <p>而我们可以定制一个自己的 Application 类，以便于管理程序内一些全局的状态信息，比如全局 Context</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyApplication</span> : <span class="type">Application</span>() &#123;</span><br><span class="line">    <span class="comment">// 将 Context 设置成静态变量很容易会产生内存泄漏的问题所以这是一种有风险的做法</span></span><br><span class="line">    <span class="comment">// 但是由于这里获取的不是 Activity 或 Service 中的 Context</span></span><br><span class="line">    <span class="comment">// 而是 Application 中的 Context 它全局只会存在一份实例</span></span><br><span class="line">    <span class="comment">// 并且在整个应用程序的生命周期内都不会回收，因此是不存在内存泄漏风险的</span></span><br><span class="line">    <span class="comment">// 因此可以忽略警告</span></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="meta">@SuppressLint(<span class="string">&quot;StaticFieldLeak&quot;</span>)</span></span><br><span class="line">        <span class="keyword">lateinit</span> <span class="keyword">var</span> context: Context</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate()</span><br><span class="line">        context = applicationContext</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class MyApplication : Application() &#123;
+    &#x2F;&#x2F; 将 Context 设置成静态变量很容易会产生内存泄漏的问题所以这是一种有风险的做法
+    &#x2F;&#x2F; 但是由于这里获取的不是 Activity 或 Service 中的 Context
+    &#x2F;&#x2F; 而是 Application 中的 Context 它全局只会存在一份实例
+    &#x2F;&#x2F; 并且在整个应用程序的生命周期内都不会回收，因此是不存在内存泄漏风险的
+    &#x2F;&#x2F; 因此可以忽略警告
+    companion object &#123;
+        @SuppressLint(&quot;StaticFieldLeak&quot;)
+        lateinit var context: Context
+    &#125;
+    override fun onCreate() &#123;
+        super.onCreate()
+        context &#x3D; applicationContext
+    &#125;
+&#125;</code></pre>
 <p>并且在 Manifest 中修改初始化的 Application 类</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">&lt;application</span><br><span class="line">    android:name=&quot;.MyApplication&quot;&gt;</span><br><span class="line">&lt;/application&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="深色主题"><a href="#深色主题" class="headerlink" title="深色主题"></a>深色主题</h1><p>Android 10.0 及以上系统的手机，都可以在 Settings→Display→Dark theme 中对深色主题进行开启和关闭</p>
-<h2 id="Force-Dark"><a href="#Force-Dark" class="headerlink" title="Force Dark"></a>Force Dark</h2><p>能让应用程序快速适配深色主题，并且几乎不用编写额外代码的方式</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">&lt;application
+    android:name&#x3D;&quot;.MyApplication&quot;&gt;
+&lt;&#x2F;application&gt;</code></pre>
+<h1>深色主题</h1>
+<p>Android 10.0 及以上系统的手机，都可以在 Settings→Display→Dark theme 中对深色主题进行开启和关闭</p>
+<h2 id="Force-Dark">Force Dark</h2>
+<p>能让应用程序快速适配深色主题，并且几乎不用编写额外代码的方式</p>
 <ul>
 <li>分析浅色主题应用下的每一层 View，并且在这些 View 绘制到屏幕之前，自动将它们的颜色转换成更加适合深色主题的颜色</li>
 <li>因此开发者只需要配置好浅色主题的颜色分布即可</li>
 <li>但是不保证美观, 前期可以使用其快速上线, 最后还是建议精心手动配置</li>
 </ul>
-<h3 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h3><p>在 res 目录下新建 values-29 目录, 并在 values-29 目录下创建一个 styles.xml 文件</p>
+<h3 id="Quick-Start">Quick Start</h3>
+<p>在 res 目录下新建 values-29 目录, 并在 values-29 目录下创建一个 styles.xml 文件</p>
 <p>Tips: 这个属性是从 API 29，也就是 Android 10.0 系统开始才有的，之前的系统无法指定这个属性</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span><br><span class="line">    &lt;style name=<span class="string">&quot;AppTheme&quot;</span> parent=<span class="string">&quot;Theme.AppCompat.Light.NoActionBar&quot;</span>&gt;</span><br><span class="line">        &lt;item name=<span class="string">&quot;colorPrimary&quot;</span>&gt;<span class="meta">@color</span>/colorPrimary&lt;/item&gt;</span><br><span class="line">        &lt;item name=<span class="string">&quot;colorPrimaryDark&quot;</span>&gt;<span class="meta">@color</span>/colorPrimaryDark&lt;/item&gt;</span><br><span class="line">        &lt;item name=<span class="string">&quot;colorAccent&quot;</span>&gt;<span class="meta">@color</span>/colorAccent&lt;/item&gt;</span><br><span class="line">        <span class="comment">// 表明允许系统使用 Force Dark 将应用强制转换成深色主题</span></span><br><span class="line">        &lt;item name=<span class="string">&quot;android:forceDarkAllowed&quot;</span>&gt;<span class="literal">true</span>&lt;/item&gt;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/resources&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Manual-Configuration"><a href="#Manual-Configuration" class="headerlink" title="Manual Configuration"></a>Manual Configuration</h2><p>类似的 Theme.AppCompat.Light.NoActionBar 就是浅色主题，而 Theme.AppCompat.NoActionBar 就是深色主题</p>
-<h3 id="Quick-Start-1"><a href="#Quick-Start-1" class="headerlink" title="Quick Start"></a>Quick Start</h3><ol>
-<li>定位到 values&#x2F;style.xml 中, 使用 DayNight 下的主题表明用户在系统设置中开启深色主题时，应用程序会自动使用深色主题，反之则会使用浅色主题</li>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">&lt;resources&gt;
+    &lt;style name&#x3D;&quot;AppTheme&quot; parent&#x3D;&quot;Theme.AppCompat.Light.NoActionBar&quot;&gt;
+        &lt;item name&#x3D;&quot;colorPrimary&quot;&gt;@color&#x2F;colorPrimary&lt;&#x2F;item&gt;
+        &lt;item name&#x3D;&quot;colorPrimaryDark&quot;&gt;@color&#x2F;colorPrimaryDark&lt;&#x2F;item&gt;
+        &lt;item name&#x3D;&quot;colorAccent&quot;&gt;@color&#x2F;colorAccent&lt;&#x2F;item&gt;
+        &#x2F;&#x2F; 表明允许系统使用 Force Dark 将应用强制转换成深色主题
+        &lt;item name&#x3D;&quot;android:forceDarkAllowed&quot;&gt;true&lt;&#x2F;item&gt;
+    &lt;&#x2F;style&gt;
+&lt;&#x2F;resources&gt;</code></pre>
+<h2 id="Manual-Configuration">Manual Configuration</h2>
+<p>类似的 Theme.AppCompat.Light.NoActionBar 就是浅色主题，而 Theme.AppCompat.NoActionBar 就是深色主题</p>
+<h3 id="Quick-Start-2">Quick Start</h3>
+<ol>
+<li>定位到 values/style.xml 中, 使用 DayNight 下的主题表明用户在系统设置中开启深色主题时，应用程序会自动使用深色主题，反之则会使用浅色主题</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Base application theme. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">&quot;AppTheme&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;Theme.AppCompat.DayNight.NoActionBar&quot;</span>&gt;</span><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">        <span class="comment">&lt;!-- Customize your theme here. --&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimary&quot;</span>&gt;</span>@color/colorPrimary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorPrimaryDark&quot;</span>&gt;</span>@color/colorPrimaryDark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">&quot;colorAccent&quot;</span>&gt;</span>@color/colorAccent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;resources&gt;
+    &lt;!-- Base application theme. --&gt;
+    &lt;style name&#x3D;&quot;AppTheme&quot; parent&#x3D;&quot;Theme.AppCompat.DayNight.NoActionBar&quot;&gt;
+        &lt;!-- Customize your theme here. --&gt;
+        &lt;item name&#x3D;&quot;colorPrimary&quot;&gt;@color&#x2F;colorPrimary&lt;&#x2F;item&gt;
+        &lt;item name&#x3D;&quot;colorPrimaryDark&quot;&gt;@color&#x2F;colorPrimaryDark&lt;&#x2F;item&gt;
+        &lt;item name&#x3D;&quot;colorAccent&quot;&gt;@color&#x2F;colorAccent&lt;&#x2F;item&gt;
+    &lt;&#x2F;style&gt;
+    ...
+&lt;&#x2F;resources&gt;</code></pre>
 <ol start="2">
-<li><p>如果涉及到静态编码的颜色值, DayNight 主题是不能对这些颜色进行动态转换, 需要额外创建一个 values-night 目录配置深色主题下的静态颜色值</p>
+<li>
+<p>如果涉及到静态编码的颜色值, DayNight 主题是不能对这些颜色进行动态转换, 需要额外创建一个 values-night 目录配置深色主题下的静态颜色值</p>
 </li>
-<li><p>代码中获取当前的主题状态</p>
+<li>
+<p>代码中获取当前的主题状态</p>
 </li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">isDarkTheme</span><span class="params">(context: <span class="type">Context</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    <span class="comment">// AND 表示按位与</span></span><br><span class="line">    <span class="keyword">val</span> flag = context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK</span><br><span class="line">    <span class="keyword">return</span> flag == Configuration.UI_MODE_NIGHT_YES</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/07/18/03-Android-Activity/,Jiancong Cui,03-Android-Activity,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/08/07/04-Android-UI/" title="04-Android-UI">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/07/18/02-Kotlin-Advanced/" title="02-Kotlin-Advanced">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun isDarkTheme(context: Context): Boolean &#123;
+    &#x2F;&#x2F; AND 表示按位与
+    val flag &#x3D; context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+    return flag &#x3D;&#x3D; Configuration.UI_MODE_NIGHT_YES
+&#125;</code></pre></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/07/18/03-Android-Activity/,Jiancong Cui,03-Android-Activity,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/08/07/04-Android-UI/" title="04-Android-UI">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/07/18/02-Kotlin-Advanced/" title="02-Kotlin-Advanced">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

@@ -1,57 +1,90 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>UDP and UDP Protocol · Jiancong Cui</title><meta name="description" content="传输层
+
 Transport Layer，从通信和信息处理的角度看，传输层向它上面的应用层提供通信服务，它属于面向通信部分的最高层，同时也是用户功能中的最低层；
-基础概念UDPUDP：用户数据报协议（User Datagram Protocol），不需建立连接，提供不可靠交互，效率高
-TCPTCP：传"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>UDP and UDP Protocol</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122204641955.png" alt="image-20211122204641955"></p>
+基础概念
+UDP
+UDP：用户数据报协议（User Datagram Protocol），不需建立连接，提供不可靠交互，效率高
+TCP
+T"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>UDP and UDP Protocol</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>传输层</h1>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122204641955.png" alt="image-20211122204641955"></p>
 <p>Transport Layer，从通信和信息处理的角度看，传输层向它上面的应用层提供通信服务，它属于面向通信部分的最高层，同时也是用户功能中的最低层；</p>
-<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>UDP：用户数据报协议（User Datagram Protocol），不需建立连接，提供不可靠交互，效率高</p>
-<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP：传输控制协议（Transmission Control Protocol），需建立连接，提供可靠交互，效率较低</p>
-<h3 id="传输协议数据单元"><a href="#传输协议数据单元" class="headerlink" title="传输协议数据单元"></a>传输协议数据单元</h3><p>传输协议数据单元，TPDU (Transport Protocol Data Unit)，两个对等传输实体在通信时传送的数据单位，UDP 报文或用户数据报 VS TCP 报文段（segment）</p>
-<h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><p>端口：运输层服务访问点 TSAP，让应用层的各种应用进程都能将其数据通过端口向下交付给传输层，以及让传输层知道应当将其报文段中的数据向上通过端口交付给应用层相应的进程</p>
+<h2 id="基础概念">基础概念</h2>
+<h3 id="UDP">UDP</h3>
+<p>UDP：用户数据报协议（User Datagram Protocol），不需建立连接，提供不可靠交互，效率高</p>
+<h3 id="TCP">TCP</h3>
+<p>TCP：传输控制协议（Transmission Control Protocol），需建立连接，提供可靠交互，效率较低</p>
+<h3 id="传输协议数据单元">传输协议数据单元</h3>
+<p>传输协议数据单元，TPDU (Transport Protocol Data Unit)，两个对等传输实体在通信时传送的数据单位，UDP 报文或用户数据报 VS TCP 报文段（segment）</p>
+<h3 id="端口">端口</h3>
+<p>端口：运输层服务访问点 TSAP，让应用层的各种应用进程都能将其数据通过端口向下交付给传输层，以及让传输层知道应当将其报文段中的数据向上通过端口交付给应用层相应的进程</p>
 <blockquote>
 <p>可以将端口看做是应用层进程的 ID</p>
 <p>熟知端口：0 - 1023</p>
 <p>一般端口：1024 - ，用于随时分配给请求通信的客户进程</p>
 </blockquote>
-<h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>套接字：TCP 使用<strong>连接</strong>作为最基本的抽象，同时将连接端点称为套接字（Socket）</p>
+<h3 id="套接字">套接字</h3>
+<p>套接字：TCP 使用<strong>连接</strong>作为最基本的抽象，同时将连接端点称为套接字（Socket）</p>
 <blockquote>
-<p>套接字 &#x3D; IP 地址 + 端口号</p>
+<p>套接字 = IP 地址 + 端口号</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028150508864.png" alt="image-20211028150508864"></p>
-<h2 id="传输层功能"><a href="#传输层功能" class="headerlink" title="传输层功能"></a>传输层功能</h2><p>1、传输层为<strong>应用进程之间</strong>提供端到端的逻辑通信</p>
+<h2 id="传输层功能">传输层功能</h2>
+<p>1、传输层为<strong>应用进程之间</strong>提供端到端的逻辑通信</p>
 <blockquote>
 <p>网络层为<strong>主机之间</strong>提供逻辑通信</p>
 </blockquote>
 <p>2、对收到的报文提供差错检测</p>
 <p>3、既提供面向连接的 TCP 又提供无连接的 UDP，因此向上提供可靠的和不可靠的逻辑通信信道</p>
-<h1 id="UDP-1"><a href="#UDP-1" class="headerlink" title="UDP"></a>UDP</h1><p>User Datagram Protocol，用户数据报协议，提供了端口功能与差错检测功能</p>
+<h1>UDP</h1>
+<p>User Datagram Protocol，用户数据报协议，提供了端口功能与差错检测功能</p>
 <p>Strength：发送数据前不需要建立连接，不需要维持连接，首部开销小（仅 8 个字节）；对方的传输层收到 UDP 报文后也不需要给出确认；网络出现的拥塞不会使源主机的发送速率降低，这对某些实时应用是很重要的</p>
-<h2 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h2><p>首部有 8 个字节，由源端口、目的端口、长度和校验和 4个字段组成</p>
+<h2 id="报文格式">报文格式</h2>
+<p>首部有 8 个字节，由源端口、目的端口、长度和校验和 4个字段组成</p>
 <p>伪首部：用来生成校验和，只是一种根据真实的首部部分数据抽象出来的一种数据结构。并没有在数据包中真实的存在。包括源 IP，目的 IP，填充，协议号以及 包长度</p>
 <p>校验和：在接收端收到数据时，判断协议首部和数据是否被破坏</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122210359366.png" alt="image-20211122210359366"></p>
 <p><strong>伪首部中为什么要填充 8 个字符</strong></p>
 <p>因为校验和生成的过程要求伪首部的长度应为 16 的倍数，填充前为 11 * 8，填充后为 12 * 8</p>
-<h2 id="校验和计算过程"><a href="#校验和计算过程" class="headerlink" title="校验和计算过程"></a>校验和计算过程</h2><p>1、以 16 位为单位，拆分伪首部，UDP 首部以及数据部分</p>
+<h2 id="校验和计算过程">校验和计算过程</h2>
+<p>1、以 16 位为单位，拆分伪首部，UDP 首部以及数据部分</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211122211410103.png" alt="image-20211122211410103"></p>
 <p>2、按照二进制反码规则执行求和运算：<code>0+0=0</code> <code>1+0=0+1=1</code> <code>1+1=10</code></p>
 <p>3、将求和结果求反码即得到校验和</p>
 <p>4、接收端收到数据后根据 TCP 首部数据构造出伪首部，重复生成校验和一直到取反的前一步，将得到的结果值与 TCP 首部中的校验和相加，如果是 16 个 1，则校验成功</p>
-<h1 id="UDP安全威胁"><a href="#UDP安全威胁" class="headerlink" title="UDP安全威胁"></a>UDP安全威胁</h1><h2 id="UDP-Flood"><a href="#UDP-Flood" class="headerlink" title="UDP Flood"></a>UDP Flood</h2><p>泛洪攻击，属于拒绝服务攻击，通过短时间内产生大量的流量对目标网站或整个网络进行带宽或资源消耗，使目标无法处理大量数据包，导致服务中断或停止</p>
-<h3 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h3><p><strong>Attack Point：</strong>常见的情况是利用大量 UDP 小包冲击 DNS 服务器或 Radius 认证服务器、流媒体视频服务器</p>
+<h1>UDP安全威胁</h1>
+<h2 id="UDP-Flood">UDP Flood</h2>
+<p>泛洪攻击，属于拒绝服务攻击，通过短时间内产生大量的流量对目标网站或整个网络进行带宽或资源消耗，使目标无法处理大量数据包，导致服务中断或停止</p>
+<h3 id="攻击方式">攻击方式</h3>
+<p>**Attack Point：**常见的情况是利用大量 UDP 小包冲击 DNS 服务器或 Radius 认证服务器、流媒体视频服务器</p>
 <p>1、UDP 无连接，因此存在较少的验证和错误检查，使得 Perpetrator 以更小的代价实现 Dos 攻击</p>
 <p>2、目标站点只要开了一个 UDP 端口提供相关服务的话，那么就可针对相关服务进行攻击</p>
-<h3 id="UDP-Flood-检测"><a href="#UDP-Flood-检测" class="headerlink" title="UDP Flood 检测"></a>UDP Flood 检测</h3><p>1、正常应用情况下，UDP 包双向流量会基本相等，而且大小和内容都是随机的，变化很大。</p>
+<h3 id="UDP-Flood-检测">UDP Flood 检测</h3>
+<p>1、正常应用情况下，UDP 包双向流量会基本相等，而且大小和内容都是随机的，变化很大。</p>
 <p>2、针对同一目标的 UDP 包在一侧大量出现，并且内容和大小都比较固定</p>
-<h3 id="UDP-Flood-防御"><a href="#UDP-Flood-防御" class="headerlink" title="UDP Flood 防御"></a>UDP Flood 防御</h3><p>1、限速；</p>
+<h3 id="UDP-Flood-防御">UDP Flood 防御</h3>
+<p>1、限速；</p>
 <p>2、报文内容特征匹配；</p>
 <p>3、IP 特征 - ACL；</p>
 <p>4、随机丢包</p>
-<h3 id="UDP-Flood-评价"><a href="#UDP-Flood-评价" class="headerlink" title="UDP Flood 评价"></a>UDP Flood 评价</h3><p>该攻击是一种消耗对方资源，同时也消耗攻击者自身资源的攻击方式，现在已经逐渐被其变种 UDP 反射放大攻击所代替</p>
-<h2 id="UDP-反射放大攻击"><a href="#UDP-反射放大攻击" class="headerlink" title="UDP 反射放大攻击"></a>UDP 反射放大攻击</h2><p><strong>Principle:</strong> 很多 UDP 应用的响应包远大于请求包，因此通过伪造源 IP 地址，让大量 UDP 响应包攻击受害主机，使其提供正常服务</p>
+<h3 id="UDP-Flood-评价">UDP Flood 评价</h3>
+<p>该攻击是一种消耗对方资源，同时也消耗攻击者自身资源的攻击方式，现在已经逐渐被其变种 UDP 反射放大攻击所代替</p>
+<h2 id="UDP-反射放大攻击">UDP 反射放大攻击</h2>
+<p><strong>Principle:</strong> 很多 UDP 应用的响应包远大于请求包，因此通过伪造源 IP 地址，让大量 UDP 响应包攻击受害主机，使其提供正常服务</p>
 <p><strong>Strength:</strong> 低成本，高隐蔽性</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211028152455221.png" alt="image-20211028152455221"></p>
-<h3 id="常见-UDP-反射放大攻击类型"><a href="#常见-UDP-反射放大攻击类型" class="headerlink" title="常见 UDP 反射放大攻击类型"></a>常见 UDP 反射放大攻击类型</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206133858.png" alt="反射放大攻击类型"></p>
-<h3 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h3><p>1、IP 或 Port 限速</p>
+<h3 id="常见-UDP-反射放大攻击类型">常见 UDP 反射放大攻击类型</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206133858.png" alt="反射放大攻击类型"></p>
+<h3 id="防御">防御</h3>
+<p>1、IP 或 Port 限速</p>
 <p>2、报文特征学习</p>
 <p>3、服务白名单</p>
 <p>4、地理位置过滤</p>

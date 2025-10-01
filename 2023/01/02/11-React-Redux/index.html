@@ -1,93 +1,279 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>11-React-Redux · Jiancong Cui</title><meta name="description" content="FluxFLUX 是一种架构思想，是一种模式
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>11-React-Redux · Jiancong Cui</title><meta name="description" content="Flux
+FLUX 是一种架构思想，是一种模式
 
-Redux-toolkitQuick Start
+Redux-toolkit
+Quick Start
+
 通过 createSlice 创建状态分片, 配置: initialState, action; 导出 actions 以及需要用的状态
 
-1234567891011121314151617181920"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>11-React-Redux</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2023-01-02</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/react/" title="react">react</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Flux"><a href="#Flux" class="headerlink" title="Flux"></a>Flux</h1><p>FLUX 是一种架构思想，是一种模式</p>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301021901680.png"></p>
-<h1 id="Redux-toolkit"><a href="#Redux-toolkit" class="headerlink" title="Redux-toolkit"></a>Redux-toolkit</h1><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><ol>
+import &amp;#123; createSlice &amp;#"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>11-React-Redux</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2023-01-02</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/React/" title="React">React</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/react/" title="react">react</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Flux</h1>
+<p>FLUX 是一种架构思想，是一种模式</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202301021901680.png" alt=""></p>
+<h1>Redux-toolkit</h1>
+<h2 id="Quick-Start">Quick Start</h2>
+<ol>
 <li>通过 createSlice 创建状态分片, 配置: initialState, action; 导出 actions 以及需要用的状态</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createSlice &#125; <span class="keyword">from</span> <span class="string">&#x27;@reduxjs/toolkit&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> initialState = &#123;</span><br><span class="line">    <span class="attr">show</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> slice = <span class="title function_">createSlice</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;tabbar&#x27;</span>,</span><br><span class="line">    initialState,</span><br><span class="line">    <span class="attr">reducers</span>: &#123;</span><br><span class="line">        <span class="attr">showTabbar</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">            state.<span class="property">show</span> = <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">hideTabbar</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">            state.<span class="property">show</span> = <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Action creators are generated for each case reducer function</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> &#123; showTabbar, hideTabbar &#125; = slice.<span class="property">actions</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">selectShow</span> = (<span class="params">state</span>) =&gt; &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> state.<span class="property">tabbar</span>.<span class="property">show</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> slice.<span class="property">reducer</span></span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123; createSlice &#125; from &#39;@reduxjs&#x2F;toolkit&#39;
 
+const initialState &#x3D; &#123;
+    show: true,
+&#125;
+
+export const slice &#x3D; createSlice(&#123;
+    name: &#39;tabbar&#39;,
+    initialState,
+    reducers: &#123;
+        showTabbar: (state) &#x3D;&gt; &#123;
+            state.show &#x3D; true
+        &#125;,
+        hideTabbar: (state) &#x3D;&gt; &#123;
+            state.show &#x3D; false
+        &#125;
+    &#125;,
+&#125;)
+
+&#x2F;&#x2F; Action creators are generated for each case reducer function
+export const &#123; showTabbar, hideTabbar &#125; &#x3D; slice.actions
+export const selectShow &#x3D; (state) &#x3D;&gt; &#123;
+    console.log(1)
+    return state.tabbar.show
+&#125;
+
+export default slice.reducer</code></pre>
 <ol start="2">
 <li>通过 <code>configureStore</code> 以及配置的 reducer 创建 store 对象</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configureStore &#125; <span class="keyword">from</span> <span class="string">&#x27;@reduxjs/toolkit&#x27;</span></span><br><span class="line"><span class="keyword">import</span> tabbarReducer <span class="keyword">from</span> <span class="string">&#x27;./tabbarSlice&#x27;</span></span><br><span class="line"><span class="keyword">import</span> cityReducer <span class="keyword">from</span> <span class="string">&#x27;./citySlice&#x27;</span></span><br><span class="line"><span class="keyword">import</span> cinemaSlice <span class="keyword">from</span> <span class="string">&#x27;./cinemaSlice&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = <span class="title function_">configureStore</span>(&#123;</span><br><span class="line">  <span class="attr">reducer</span>: &#123;</span><br><span class="line">      <span class="attr">tabbar</span>: tabbarReducer,</span><br><span class="line">      <span class="attr">city</span>: cityReducer,</span><br><span class="line">      <span class="attr">cinema</span>: cinemaSlice</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123; configureStore &#125; from &#39;@reduxjs&#x2F;toolkit&#39;
+import tabbarReducer from &#39;.&#x2F;tabbarSlice&#39;
+import cityReducer from &#39;.&#x2F;citySlice&#39;
+import cinemaSlice from &#39;.&#x2F;cinemaSlice&#39;
 
+export const store &#x3D; configureStore(&#123;
+  reducer: &#123;
+      tabbar: tabbarReducer,
+      city: cityReducer,
+      cinema: cinemaSlice
+  &#125;,
+&#125;)</code></pre>
 <ol start="3">
 <li>引入 store 对象, 包装组件</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; store &#125; <span class="keyword">from</span> <span class="string">&#x27;./05-router/redux/store&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Provider</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react-redux&#x27;</span></span><br><span class="line"><span class="keyword">const</span> container = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> root = <span class="title function_">createRoot</span>(container);</span><br><span class="line">root.<span class="title function_">render</span>(<span class="language-xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span><span class="tag">&lt;<span class="name">App</span> /&gt;</span><span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span>);</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123; store &#125; from &#39;.&#x2F;05-router&#x2F;redux&#x2F;store&#39;
+import &#123; Provider &#125; from &#39;react-redux&#39;
+const container &#x3D; document.getElementById(&#39;root&#39;);
+const root &#x3D; createRoot(container);
+root.render(&lt;Provider store&#x3D;&#123;store&#125;&gt;&lt;App &#x2F;&gt;&lt;&#x2F;Provider&gt;);</code></pre>
 <ol start="4">
 <li>消费者中可以通过 dispatch 发出 action</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useDispatch &#125; <span class="keyword">from</span> <span class="string">&#x27;react-redux&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; loadCinemaList &#125; <span class="keyword">from</span> <span class="string">&#x27;../redux/cinemaSlice&#x27;</span></span><br><span class="line"><span class="keyword">const</span> dispatch = <span class="title function_">useDispatch</span>()</span><br><span class="line"><span class="title function_">dispatch</span>(<span class="title function_">loadCinemaList</span>())</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123; useDispatch &#125; from &#39;react-redux&#39;
+import &#123; loadCinemaList &#125; from &#39;..&#x2F;redux&#x2F;cinemaSlice&#39;
+const dispatch &#x3D; useDispatch()
+dispatch(loadCinemaList())</code></pre>
 <ol start="5">
 <li>消费者可以通过 useSelector 获得状态</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useSelector &#125; <span class="keyword">from</span> <span class="string">&#x27;react-redux&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; selectCinemaList &#125; <span class="keyword">from</span> <span class="string">&#x27;../redux/cinemaSlice&#x27;</span></span><br><span class="line"><span class="keyword">const</span> cinemaList = <span class="title function_">useSelector</span>(selectCinemaList)</span><br></pre></td></tr></table></figure>
-
-<h2 id="异步-Trunk-创建"><a href="#异步-Trunk-创建" class="headerlink" title="异步 Trunk 创建"></a>异步 Trunk 创建</h2><p>涉及到异步请求时, 我们要管理异步请求的状态并更新 store 中的状态</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123; useSelector &#125; from &#39;react-redux&#39;
+import &#123; selectCinemaList &#125; from &#39;..&#x2F;redux&#x2F;cinemaSlice&#39;
+const cinemaList &#x3D; useSelector(selectCinemaList)</code></pre>
+<h2 id="异步-Trunk-创建">异步 Trunk 创建</h2>
+<p>涉及到异步请求时, 我们要管理异步请求的状态并更新 store 中的状态</p>
 <ol>
-<li><p>通过 createAsyncThunk 创建异步 Trunk 并导出: 名字方便管理, 将处理正常时的结果进行返回</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&quot;axios&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createAsyncThunk &#125; <span class="keyword">from</span> <span class="string">&quot;@reduxjs/toolkit&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> loadCinemaList = <span class="title function_">createAsyncThunk</span>(<span class="string">&#x27;cinema/loadCinemaList&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> <span class="title function_">axios</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&quot;https://m.maizuo.com/gateway?cityId=110100&amp;ticketFlag=1&amp;k=1237115&quot;</span>,</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&quot;get&quot;</span>,</span><br><span class="line">        <span class="attr">headers</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;X-Client-Info&#x27;</span>: <span class="string">&#x27;&#123;&quot;a&quot;:&quot;3000&quot;,&quot;ch&quot;:&quot;1002&quot;,&quot;v&quot;:&quot;5.2.0&quot;,&quot;e&quot;:&quot;1649749646626811822145537&quot;&#125;&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;X-Host&#x27;</span>: <span class="string">&#x27;mall.film-ticket.cinema.list&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> response.<span class="property">data</span>.<span class="property">data</span>.<span class="property">cinemas</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在状态切片的 <code>extraReducers</code> 属性中配置 asyncThunk 的状态管理: <code>fulfilled</code> 会获取处理结果</p>
-</li>
+<li>通过 createAsyncThunk 创建异步 Trunk 并导出: 名字方便管理, 将处理正常时的结果进行返回</li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> cinemaSlice = <span class="title function_">createSlice</span>(&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;cinema&#x27;</span>,</span><br><span class="line">    initialState,</span><br><span class="line">    <span class="attr">reducers</span>: &#123;</span><br><span class="line">        <span class="attr">setCinemaList</span>: <span class="function">(<span class="params">state, action</span>) =&gt;</span> &#123;</span><br><span class="line">            state.<span class="property">cinemaList</span> = action.<span class="property">payload</span>.<span class="property">cinemaList</span></span><br><span class="line">            </span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">extraReducers</span>: &#123;</span><br><span class="line">        [loadCinemaList.<span class="property">pending</span>] : <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Pending...&quot;</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        [loadCinemaList.<span class="property">fulfilled</span>] : <span class="function">(<span class="params">state, &#123;payload&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Success!&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span> &#123; ...state, <span class="attr">cinemaList</span>: payload&#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        [loadCinemaList.<span class="property">rejected</span>] : <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Rejected!&quot;</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import axios from &quot;axios&quot;;
+import &#123; createAsyncThunk &#125; from &quot;@reduxjs&#x2F;toolkit&quot;;
 
-<h1 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h1><p>仅仅是 Flux 的一种实现, 用于应用状态的管理, 用一个单独的状态向量树(State), 维护一整个应用的状态</p>
-<p>主要有三大原则: </p>
+export const loadCinemaList &#x3D; createAsyncThunk(&#39;cinema&#x2F;loadCinemaList&#39;, async () &#x3D;&gt; &#123;
+    const response &#x3D; await axios(&#123;
+        url: &quot;https:&#x2F;&#x2F;m.maizuo.com&#x2F;gateway?cityId&#x3D;110100&amp;ticketFlag&#x3D;1&amp;k&#x3D;1237115&quot;,
+        method: &quot;get&quot;,
+        headers: &#123;
+            &#39;X-Client-Info&#39;: &#39;&#123;&quot;a&quot;:&quot;3000&quot;,&quot;ch&quot;:&quot;1002&quot;,&quot;v&quot;:&quot;5.2.0&quot;,&quot;e&quot;:&quot;1649749646626811822145537&quot;&#125;&#39;,
+            &#39;X-Host&#39;: &#39;mall.film-ticket.cinema.list&#39;
+        &#125;
+    &#125;)
+    return response.data.data.cinemas
+&#125;)</code></pre>
+<ol start="2">
+<li>在状态切片的 <code>extraReducers</code> 属性中配置 asyncThunk 的状态管理: <code>fulfilled</code> 会获取处理结果</li>
+</ol>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">export const cinemaSlice &#x3D; createSlice(&#123;
+    name: &#39;cinema&#39;,
+    initialState,
+    reducers: &#123;
+        setCinemaList: (state, action) &#x3D;&gt; &#123;
+            state.cinemaList &#x3D; action.payload.cinemaList
+            
+        &#125;,
+    &#125;,
+    extraReducers: &#123;
+        [loadCinemaList.pending] : () &#x3D;&gt; &#123;
+            console.log(&quot;Pending...&quot;)
+        &#125;,
+        [loadCinemaList.fulfilled] : (state, &#123;payload&#125;) &#x3D;&gt; &#123;
+            console.log(&quot;Success!&quot;)
+            return &#123; ...state, cinemaList: payload&#125;
+        &#125;,
+        [loadCinemaList.rejected] : () &#x3D;&gt; &#123;
+            console.log(&quot;Rejected!&quot;)
+        &#125;,
+    &#125;
+&#125;)</code></pre>
+<h1>Redux</h1>
+<p>仅仅是 Flux 的一种实现, 用于应用状态的管理, 用一个单独的状态向量树(State), 维护一整个应用的状态</p>
+<p>主要有三大原则:</p>
 <ol>
 <li>state 以单一对象存储在 store 对象中</li>
 <li>state 只读, 每次都返回一个新的对象</li>
 <li>使用纯函数(对外界没有副作用的函数) reducer 执行 state 更新</li>
 </ol>
-<h2 id="Quick-Start-1"><a href="#Quick-Start-1" class="headerlink" title="Quick Start"></a>Quick Start</h2><p><code>store</code> 对象用于统一接口, 然后 <code>reducer</code> 负责处理状态变化</p>
+<h2 id="Quick-Start-2">Quick Start</h2>
+<p><code>store</code> 对象用于统一接口, 然后 <code>reducer</code> 负责处理状态变化</p>
 <ol>
-<li><p>Installation: <code>npm i redux</code></p>
+<li>
+<p>Installation: <code>npm i redux</code></p>
 </li>
-<li><p>Create <code>store</code> Object and actions:</p>
+<li>
+<p>Create <code>store</code> Object and actions:</p>
 </li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore&#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">reducer</span> = (<span class="params">prevState = &#123;</span></span><br><span class="line"><span class="params">    <span class="string">&#x27;headerName&#x27;</span>: <span class="literal">null</span></span></span><br><span class="line"><span class="params">&#125;, action</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">switch</span>(action.<span class="property">type</span>) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&#x27;header&#x27;</span>:</span><br><span class="line">            <span class="keyword">const</span> state = &#123;...prevState&#125;</span><br><span class="line">            state.<span class="property">headerName</span> = action.<span class="property">headerName</span></span><br><span class="line">            <span class="keyword">return</span> state</span><br><span class="line">        <span class="attr">default</span>:</span><br><span class="line">            <span class="keyword">return</span> prevState</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> headerStore = <span class="title function_">createStore</span>(reducer);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> headerStore</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123;createStore&#125; from &#39;redux&#39;
 
+const reducer &#x3D; (prevState &#x3D; &#123;
+    &#39;headerName&#39;: null
+&#125;, action) &#x3D;&gt; &#123;
+    switch(action.type) &#123;
+        case &#39;header&#39;:
+            const state &#x3D; &#123;...prevState&#125;
+            state.headerName &#x3D; action.headerName
+            return state
+        default:
+            return prevState
+    &#125;
+&#125;
+
+const headerStore &#x3D; createStore(reducer);
+
+export default headerStore</code></pre>
 <p>actions</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">setHeaderNameAction</span>(<span class="params">headerName</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;header&#x27;</span>,</span><br><span class="line">        <span class="attr">headerName</span>: headerName</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123;setHeaderNameAction&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">function setHeaderNameAction(headerName) &#123;
+    return &#123;
+        type: &#39;header&#39;,
+        headerName: headerName
+    &#125;
+&#125;
 
+export &#123;setHeaderNameAction&#125;</code></pre>
 <ol start="3">
-<li>订阅与发布<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;setHeaderNameAction&#125; <span class="keyword">from</span> <span class="string">&#x27;../../../redux/actionCreator/HeaderAction&#x27;</span></span><br><span class="line"><span class="keyword">import</span> headerStore <span class="keyword">from</span> <span class="string">&#x27;../../../redux/HeaderStore&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> setHeaderName = <span class="title function_">useCallback</span>(<span class="function">(<span class="params">headerName</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        headerStore.<span class="title function_">dispatch</span>(<span class="title function_">setHeaderNameAction</span>(headerName))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, [])</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> headerStore <span class="keyword">from</span> <span class="string">&#x27;../../redux/HeaderStore&#x27;</span></span><br><span class="line"><span class="title function_">useEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    headerStore.<span class="title function_">subscribe</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setHeaderName</span>(headerStore.<span class="title function_">getState</span>().<span class="property">headerName</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure></li>
+<li>订阅与发布</li>
 </ol>
-<h2 id="CombineReducers"><a href="#CombineReducers" class="headerlink" title="CombineReducers"></a>CombineReducers</h2><p>如果不同的 action 所处理的属性之间没有联系, 我们可以把 Reducer 函数拆分, 不同的函数负责处理不同属性, 最终把它们合并成一个大的 Reducer 即可</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;createStore, combineReducers&#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> reducer = <span class="title function_">combineReducers</span>(&#123;</span><br><span class="line">    <span class="title class_">CityReducer</span>,</span><br><span class="line">    <span class="title class_">TabbarReducer</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">createStore</span>(reducer)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回状态</span></span><br><span class="line">store.<span class="title function_">getState</span>().<span class="property">CityReducer</span>.<span class="property">XXX</span></span><br></pre></td></tr></table></figure>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123;setHeaderNameAction&#125; from &#39;..&#x2F;..&#x2F;..&#x2F;redux&#x2F;actionCreator&#x2F;HeaderAction&#39;
+import headerStore from &#39;..&#x2F;..&#x2F;..&#x2F;redux&#x2F;HeaderStore&#39;
 
-<h2 id="异步请求的处理"><a href="#异步请求的处理" class="headerlink" title="异步请求的处理"></a>异步请求的处理</h2><h2 id="redux-trunk"><a href="#redux-trunk" class="headerlink" title="redux-trunk"></a>redux-trunk</h2><p>通过 action 与 中间件 进行异步请求处理, 然后下发 action</p>
+const setHeaderName &#x3D; useCallback((headerName) &#x3D;&gt; &#123;
+    return () &#x3D;&gt; &#123;
+        headerStore.dispatch(setHeaderNameAction(headerName))
+    &#125;
+&#125;, [])
+
+import headerStore from &#39;..&#x2F;..&#x2F;redux&#x2F;HeaderStore&#39;
+useEffect(() &#x3D;&gt; &#123;
+    headerStore.subscribe(() &#x3D;&gt; &#123;
+        setHeaderName(headerStore.getState().headerName)
+    &#125;)
+&#125;, [])</code></pre>
+<h2 id="CombineReducers">CombineReducers</h2>
+<p>如果不同的 action 所处理的属性之间没有联系, 我们可以把 Reducer 函数拆分, 不同的函数负责处理不同属性, 最终把它们合并成一个大的 Reducer 即可</p>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import &#123;createStore, combineReducers&#125; from &#39;redux&#39;
+
+const reducer &#x3D; combineReducers(&#123;
+    CityReducer,
+    TabbarReducer,
+&#125;)
+
+const store &#x3D; createStore(reducer)
+
+&#x2F;&#x2F; 返回状态
+store.getState().CityReducer.XXX</code></pre>
+<h2 id="异步请求的处理">异步请求的处理</h2>
+<h2 id="redux-trunk">redux-trunk</h2>
+<p>通过 action 与 中间件 进行异步请求处理, 然后下发 action</p>
 <p>中间件: 是用于处理异步请求的</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">thunkMiddleware</span>(<span class="params">&#123; dispatch, getState &#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">next</span> =&gt;</span> <span class="function"><span class="params">action</span> =&gt;</span> </span><br><span class="line">        <span class="keyword">typeof</span> action === <span class="string">&#x27;function&#x27;</span> ? </span><br><span class="line">            <span class="title function_">action</span>(dispatch, getState) :</span><br><span class="line">            <span class="title function_">next</span>(action);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">export default function thunkMiddleware(&#123; dispatch, getState &#125;) &#123;
+    return next &#x3D;&gt; action &#x3D;&gt; 
+        typeof action &#x3D;&#x3D;&#x3D; &#39;function&#39; ? 
+            action(dispatch, getState) :
+            next(action);
+&#125;</code></pre>
 <p>这时如果 <code>action</code> 是一个函数的话, 那么就会执行, 并将 <code>dispatch</code> 与 <code>getState</code> 函数接口给出, 供异步函数处理完成后回调使用</p>
-<h3 id="Quick-Start-2"><a href="#Quick-Start-2" class="headerlink" title="Quick Start"></a>Quick Start</h3><ol>
-<li><p>Installation: <code>npm i redux-thunk</code></p>
+<h3 id="Quick-Start-3">Quick Start</h3>
+<ol>
+<li>
+<p>Installation: <code>npm i redux-thunk</code></p>
 </li>
-<li><p>应用中间件</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> reduxTrunk <span class="keyword">from</span> <span class="string">&#x27;redux-trunk&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;applyMiddleware, combineReducers, createStore&#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">createStore</span>(reducer, <span class="title function_">applyMiddleware</span>(reduxThunk));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取 <code>dispatch</code> 与 <code>getState</code> 接口</p>
-</li>
-</ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getCinemaListAction</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">axios</span>(&#123;</span><br><span class="line">            <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">            <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">            <span class="attr">headers</span>: &#123;</span><br><span class="line">                <span class="string">&#x27;&#x27;</span>,:<span class="string">&#x27;&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">                <span class="attr">type</span>: <span class="string">&#x27;change-list&#x27;</span>,</span><br><span class="line">                <span class="attr">payload</span>: <span class="string">&#x27;res.data.data.cinemas&#x27;</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="redux-promise"><a href="#redux-promise" class="headerlink" title="redux-promise"></a>redux-promise</h2><ol>
-<li><p>Installation: <code>npm i redux-promise</code></p>
-</li>
-<li><p>应用中间件</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> reduxPromise <span class="keyword">from</span> <span class="string">&#x27;redux-promise&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;applyMiddleware, combineReducers, createStore&#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">createStore</span>(reducer, <span class="title function_">applyMiddleware</span>(reduxThunk, reduxPromise)); <span class="comment">// 支持多个中间件</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这时支持在 <code>dispatch</code> 时传入函数并支持 <code>promise</code> 返回</p>
+<li>
+<p>应用中间件</p>
 </li>
 </ol>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getCinemaListAction</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">axios</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">        <span class="attr">method</span>: <span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">        <span class="attr">headers</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;&#x27;</span>,:<span class="string">&#x27;&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">type</span>: <span class="string">&#x27;change-list&#x27;</span>,</span><br><span class="line">            <span class="attr">payload</span>: <span class="string">&#x27;res.data.data.cinemas&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2023/01/02/11-React-Redux/,Jiancong Cui,11-React-Redux,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/11/19/Favorite-Prompts/" title="Favorite Prompts">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/01/02/10-React-Router/" title="10-React-Router">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import reduxTrunk from &#39;redux-trunk&#39;
+import &#123;applyMiddleware, combineReducers, createStore&#125; from &#39;redux&#39;
+const store &#x3D; createStore(reducer, applyMiddleware(reduxThunk));</code></pre>
+<ol start="3">
+<li>获取 <code>dispatch</code> 与 <code>getState</code> 接口</li>
+</ol>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">function getCinemaListAction() &#123;
+    return (dispatch) &#x3D;&gt; &#123;
+        axios(&#123;
+            url: &#39;&#39;,
+            method: &#39;get&#39;,
+            headers: &#123;
+                &#39;&#39;,:&#39;&#39;
+            &#125;
+        &#125;).then(res &#x3D;&gt; &#123;
+            dispatch(&#123;
+                type: &#39;change-list&#39;,
+                payload: &#39;res.data.data.cinemas&#39;
+            &#125;)
+        &#125;)
+    &#125;
+&#125;</code></pre>
+<h2 id="redux-promise">redux-promise</h2>
+<ol>
+<li>
+<p>Installation: <code>npm i redux-promise</code></p>
+</li>
+<li>
+<p>应用中间件</p>
+</li>
+</ol>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">import reduxPromise from &#39;redux-promise&#39;
+import &#123;applyMiddleware, combineReducers, createStore&#125; from &#39;redux&#39;
+const store &#x3D; createStore(reducer, applyMiddleware(reduxThunk, reduxPromise)); &#x2F;&#x2F; 支持多个中间件</code></pre>
+<ol start="3">
+<li>这时支持在 <code>dispatch</code> 时传入函数并支持 <code>promise</code> 返回</li>
+</ol>
+<pre class="language-jsx" data-language="jsx"><code class="language-jsx">function getCinemaListAction() &#123;
+    return axios(&#123;
+        url: &#39;&#39;,
+        method: &#39;get&#39;,
+        headers: &#123;
+            &#39;&#39;,:&#39;&#39;
+        &#125;
+    &#125;).then(res &#x3D;&gt; &#123;
+        return &#123;
+            type: &#39;change-list&#39;,
+            payload: &#39;res.data.data.cinemas&#39;
+        &#125;
+    &#125;)
+&#125;</code></pre></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2023/01/02/11-React-Redux/,Jiancong Cui,11-React-Redux,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/11/19/Favorite-Prompts/" title="Favorite Prompts">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/01/02/10-React-Router/" title="10-React-Router">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

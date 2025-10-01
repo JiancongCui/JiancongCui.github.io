@@ -1,62 +1,156 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>05-Fragment · Jiancong Cui</title><meta name="description" content="Fragment一种可以嵌入在 Activity 当中的 UI 片段，能让程序更加合理和充分地利用大屏幕的空间，因而在平板上应用得非常广泛
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>05-Fragment · Jiancong Cui</title><meta name="description" content="Fragment
+一种可以嵌入在 Activity 当中的 UI 片段，能让程序更加合理和充分地利用大屏幕的空间，因而在平板上应用得非常广泛
 
 与 Activity 类似, 能包含布局, 拥有自己的声明周期
 但 Activity 中可以包含多个 Fragment 实现分页效果
 
 
-Quick Star"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>05-Fragment</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-08-18</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Fragment"><a href="#Fragment" class="headerlink" title="Fragment"></a>Fragment</h1><p>一种可以嵌入在 Activity 当中的 UI 片段，能让程序更加合理和充分地利用大屏幕的空间，因而在平板上应用得非常广泛</p>
+Quick Sta"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>05-Fragment</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-08-18</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Fragment</h1>
+<p>一种可以嵌入在 Activity 当中的 UI 片段，能让程序更加合理和充分地利用大屏幕的空间，因而在平板上应用得非常广泛</p>
 <ul>
 <li>与 Activity 类似, 能包含布局, 拥有自己的声明周期</li>
 <li>但 Activity 中可以包含多个 Fragment 实现分页效果</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208072008439.png"></p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208072008439.png" alt=""></p>
+<h2 id="Quick-Start">Quick Start</h2>
+<ol>
 <li>为 Fragment 设置好布局</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">LinearLayout</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:orientation</span>=<span class="string">&quot;vertical&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/left_button&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_gravity</span>=<span class="string">&quot;center_horizontal&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:text</span>=<span class="string">&quot;Button&quot;</span></span></span><br><span class="line"><span class="tag">        /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;
+    android:orientation&#x3D;&quot;vertical&quot;
+    android:layout_width&#x3D;&quot;match_parent&quot;
+    android:layout_height&#x3D;&quot;match_parent&quot;&gt;
 
+    &lt;Button
+        android:id&#x3D;&quot;@+id&#x2F;left_button&quot;
+        android:layout_width&#x3D;&quot;wrap_content&quot;
+        android:layout_height&#x3D;&quot;wrap_content&quot;
+        android:layout_gravity&#x3D;&quot;center_horizontal&quot;
+        android:text&#x3D;&quot;Button&quot;
+        &#x2F;&gt;
+&lt;&#x2F;LinearLayout&gt;</code></pre>
 <ol start="2">
 <li>新建 Fragment 类, 使其继承 <code>androidx.fragment.app.Fragment</code> 实现对 Fragment 布局的加载</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LeftFragment</span>: <span class="type">Fragment</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreateView</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">        inflater: <span class="type">LayoutInflater</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        container: <span class="type">ViewGroup</span>?,</span></span></span><br><span class="line"><span class="params"><span class="function">        savedInstanceState: <span class="type">Bundle</span>?</span></span></span><br><span class="line"><span class="params"><span class="function">    )</span></span>: View? &#123;</span><br><span class="line">        <span class="comment">// 通过 LayoutInflater 的 inflate() 方法将刚才定义的 left_fragment 布局动态加载进来</span></span><br><span class="line">        <span class="keyword">return</span> inflater.inflate(R.layout.left_fragment, container, <span class="literal">false</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class LeftFragment: Fragment() &#123;
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? &#123;
+        &#x2F;&#x2F; 通过 LayoutInflater 的 inflate() 方法将刚才定义的 left_fragment 布局动态加载进来
+        return inflater.inflate(R.layout.left_fragment, container, false)
+    &#125;
+
+&#125;</code></pre>
 <ol start="3">
 <li>在主 Activity 中的布局中引入 Fragment</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout xmlns:android=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span><br><span class="line">    android:orientation=<span class="string">&quot;horizontal&quot;</span></span><br><span class="line">    android:layout_width=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">    android:layout_height=<span class="string">&quot;match_parent&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">&quot;@+id/leftFrag&quot;</span></span><br><span class="line">        android:name=<span class="string">&quot;com.example.a07fragment_1.LeftFragment&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;0dp&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_weight=<span class="string">&quot;1&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;fragment</span><br><span class="line">        android:id=<span class="string">&quot;@+id/rightFrag&quot;</span></span><br><span class="line">        android:name=<span class="string">&quot;com.example.a07fragment_1.RightFragment&quot;</span></span><br><span class="line">        android:layout_width=<span class="string">&quot;0dp&quot;</span></span><br><span class="line">        android:layout_height=<span class="string">&quot;match_parent&quot;</span></span><br><span class="line">        android:layout_weight=<span class="string">&quot;1&quot;</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">&lt;LinearLayout xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;
+    android:orientation&#x3D;&quot;horizontal&quot;
+    android:layout_width&#x3D;&quot;match_parent&quot;
+    android:layout_height&#x3D;&quot;match_parent&quot;&gt;
 
-<h2 id="动态添加-Fragment"><a href="#动态添加-Fragment" class="headerlink" title="动态添加 Fragment"></a>动态添加 Fragment</h2><ol>
+    &lt;fragment
+        android:id&#x3D;&quot;@+id&#x2F;leftFrag&quot;
+        android:name&#x3D;&quot;com.example.a07fragment_1.LeftFragment&quot;
+        android:layout_width&#x3D;&quot;0dp&quot;
+        android:layout_height&#x3D;&quot;match_parent&quot;
+        android:layout_weight&#x3D;&quot;1&quot; &#x2F;&gt;
+
+    &lt;fragment
+        android:id&#x3D;&quot;@+id&#x2F;rightFrag&quot;
+        android:name&#x3D;&quot;com.example.a07fragment_1.RightFragment&quot;
+        android:layout_width&#x3D;&quot;0dp&quot;
+        android:layout_height&#x3D;&quot;match_parent&quot;
+        android:layout_weight&#x3D;&quot;1&quot; &#x2F;&gt;
+
+
+&lt;&#x2F;LinearLayout&gt;</code></pre>
+<h2 id="动态添加-Fragment">动态添加 Fragment</h2>
+<ol>
 <li>在主 Activity 中为动态替换的 Fragment 留有布局</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;0dp&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_weight</span>=<span class="string">&quot;1&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/rightLayout&quot;</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;FrameLayout
+    android:layout_width&#x3D;&quot;0dp&quot;
+    android:layout_height&#x3D;&quot;match_parent&quot;
+    android:layout_weight&#x3D;&quot;1&quot;
+    android:id&#x3D;&quot;@+id&#x2F;rightLayout&quot;
+    &#x2F;&gt;</code></pre>
 <ol start="2">
 <li>通过点击或其他事件触发 fragment 的替换加载</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将待添加 Fragment 的实例作为参数传入</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">replaceFragment</span><span class="params">(fragment: <span class="type">Fragment</span>)</span></span> &#123;</span><br><span class="line">    <span class="comment">// 通过 getSupportFragmentManager() 获取 fragment 操作对象</span></span><br><span class="line">    <span class="keyword">val</span> fragmentManager = supportFragmentManager</span><br><span class="line">    <span class="comment">// 开启一个事务，通过调用 beginTransaction() 方法开启</span></span><br><span class="line">    <span class="keyword">val</span> transaction = fragmentManager.beginTransaction()</span><br><span class="line">    <span class="comment">// 使用 replace()方法向容器内替换 Fragment，需要传入容器的id和待添加的 Fragment 实例</span></span><br><span class="line">    transaction.replace(R.id.rightLayout, fragment)</span><br><span class="line">    <span class="comment">// 提交事务</span></span><br><span class="line">    transaction.commit() <span class="comment">// 并行处理</span></span><br><span class="line">    <span class="comment">// transaction.commitNow() // 立即执行，避免其它引用冲突</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="带有参数的-Fragment"><a href="#带有参数的-Fragment" class="headerlink" title="带有参数的 Fragment"></a>带有参数的 Fragment</h2><p>Fragment 显示的内容可能需要其父 Activity 告知, 因此初始化时需要配置相应的参数</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">&#x2F;&#x2F; 将待添加 Fragment 的实例作为参数传入
+private fun replaceFragment(fragment: Fragment) &#123;
+    &#x2F;&#x2F; 通过 getSupportFragmentManager() 获取 fragment 操作对象
+    val fragmentManager &#x3D; supportFragmentManager
+    &#x2F;&#x2F; 开启一个事务，通过调用 beginTransaction() 方法开启
+    val transaction &#x3D; fragmentManager.beginTransaction()
+    &#x2F;&#x2F; 使用 replace()方法向容器内替换 Fragment，需要传入容器的id和待添加的 Fragment 实例
+    transaction.replace(R.id.rightLayout, fragment)
+    &#x2F;&#x2F; 提交事务
+    transaction.commit() &#x2F;&#x2F; 并行处理
+    &#x2F;&#x2F; transaction.commitNow() &#x2F;&#x2F; 立即执行，避免其它引用冲突
+&#125;</code></pre>
+<h2 id="带有参数的-Fragment">带有参数的 Fragment</h2>
+<p>Fragment 显示的内容可能需要其父 Activity 告知, 因此初始化时需要配置相应的参数</p>
 <ol>
 <li>xml 中用 FrameLayout 为 Fragment 占位</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">FrameLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/toolbar_fragment&quot;</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br></pre></td></tr></table></figure>
-
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;FrameLayout
+    android:layout_width&#x3D;&quot;match_parent&quot;
+    android:layout_height&#x3D;&quot;wrap_content&quot;
+    android:id&#x3D;&quot;@+id&#x2F;toolbar_fragment&quot;
+    &#x2F;&gt;</code></pre>
 <ol start="2">
 <li>Activity 中选择适当的时机<a href="#%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0-fragment">动态加载</a>该 Fragment</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> toolbarFragment = ToolbarFragment()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 标题栏左右两侧的图标以及中间的标题名</span></span><br><span class="line"><span class="keyword">val</span> bundle = Bundle().apply &#123;</span><br><span class="line">    putString(<span class="string">&quot;toolbarName&quot;</span>, toolbarNmae)</span><br><span class="line">    toolbarLeft?.let &#123; putInt(<span class="string">&quot;toolbarLeft&quot;</span>, it) &#125;</span><br><span class="line">    toolbarRight?.let &#123; putInt(<span class="string">&quot;toolbarRight&quot;</span>, it) &#125;</span><br><span class="line">&#125;</span><br><span class="line">toolbarFragment.arguments = bundle</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> fragmentManager = supportFragmentManager</span><br><span class="line"><span class="keyword">val</span> transaction = fragmentManager.beginTransaction()</span><br><span class="line">transaction.replace(R.id.toolbar_fragment, toolbarFragment)</span><br><span class="line">transaction.commit()</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> toolbarFragment</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val toolbarFragment &#x3D; ToolbarFragment()
 
+&#x2F;&#x2F; 标题栏左右两侧的图标以及中间的标题名
+val bundle &#x3D; Bundle().apply &#123;
+    putString(&quot;toolbarName&quot;, toolbarNmae)
+    toolbarLeft?.let &#123; putInt(&quot;toolbarLeft&quot;, it) &#125;
+    toolbarRight?.let &#123; putInt(&quot;toolbarRight&quot;, it) &#125;
+&#125;
+toolbarFragment.arguments &#x3D; bundle
+
+val fragmentManager &#x3D; supportFragmentManager
+val transaction &#x3D; fragmentManager.beginTransaction()
+transaction.replace(R.id.toolbar_fragment, toolbarFragment)
+transaction.commit()
+
+return toolbarFragment</code></pre>
 <ol start="3">
 <li>Fragment 中在 onCreateView 中接收参数进行处理</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreateView</span><span class="params">(inflater: <span class="type">LayoutInflater</span>, container: <span class="type">ViewGroup</span>?, savedInstanceState: <span class="type">Bundle</span>?)</span></span>: View &#123;</span><br><span class="line">    <span class="keyword">val</span> view: View = inflater.inflate(R.layout.toolbar_fragment, container, <span class="literal">false</span>)</span><br><span class="line">    <span class="comment">// 省略 findViewByID ...</span></span><br><span class="line">    <span class="comment">// Bundle.getArguments()</span></span><br><span class="line">    toolbarName.text = arguments?.getString(<span class="string">&quot;toolbarName&quot;</span>) </span><br><span class="line">    <span class="comment">// ....</span></span><br><span class="line">    <span class="keyword">return</span> view</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="与主-Activity-的交互"><a href="#与主-Activity-的交互" class="headerlink" title="与主 Activity 的交互"></a>与主 Activity 的交互</h2><p>类似于父组件管理多个子组件, 主要通过 <code>supportFragmentManager</code> 实现</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View &#123;
+    val view: View &#x3D; inflater.inflate(R.layout.toolbar_fragment, container, false)
+    &#x2F;&#x2F; 省略 findViewByID ...
+    &#x2F;&#x2F; Bundle.getArguments()
+    toolbarName.text &#x3D; arguments?.getString(&quot;toolbarName&quot;) 
+    &#x2F;&#x2F; ....
+    return view
+&#125;</code></pre>
+<h2 id="与主-Activity-的交互">与主 Activity 的交互</h2>
+<p>类似于父组件管理多个子组件, 主要通过 <code>supportFragmentManager</code> 实现</p>
 <ul>
 <li>获取 fragment View 实例: <code>supportFragmentManager.findFragmentById(R.id.leftFrag) as LeftFragment</code></li>
 <li>获取主 Activity 实例: <code>val mainActivity = getActivity() as MainActivity</code></li>
 </ul>
-<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><p>与 Activity 类似, 拥有四种状态: 运行状态, 暂停状态, 停止状态, 销毁状态</p>
+<h1>生命周期</h1>
+<p>与 Activity 类似, 拥有四种状态: 运行状态, 暂停状态, 停止状态, 销毁状态</p>
 <ul>
 <li>运行状态: 当一个 Fragment 所关联的 Activity 正处于运行状态时，该 Fragment 也处于运行状态</li>
 <li>暂停状态: 同上</li>
@@ -71,9 +165,11 @@ Quick Star"><meta name="keywords" content="Computer Science, Privacy Security,">
 <li><code>onDestroyView()</code>: 当与 Fragment 关联的视图被移除时</li>
 <li><code>onDetach()</code>: 当 Fragment 和 Activity 解除关联时调用</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208092152914.png"></p>
-<h1 id="动态布局加载技巧"><a href="#动态布局加载技巧" class="headerlink" title="动态布局加载技巧"></a>动态布局加载技巧</h1><p>旨在能更灵活的根据分辨率, 屏幕大小等在运行时决定加载哪个布局</p>
-<h2 id="限定符-qualifier"><a href="#限定符-qualifier" class="headerlink" title="限定符 qualifier"></a>限定符 qualifier</h2><p>准备好单页模式的布局 <code>layout/activity_main.xml</code> 与双页模式的布局 <code>layout-large/activity_main.xml</code> 这里面的 large 就是一个内置的限定符</p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208092152914.png" alt=""></p>
+<h1>动态布局加载技巧</h1>
+<p>旨在能更灵活的根据分辨率, 屏幕大小等在运行时决定加载哪个布局</p>
+<h2 id="限定符-qualifier">限定符 qualifier</h2>
+<p>准备好单页模式的布局 <code>layout/activity_main.xml</code> 与双页模式的布局 <code>layout-large/activity_main.xml</code> 这里面的 large 就是一个内置的限定符</p>
 <p>实际过程中你可以按照双页模式进行布局的绑定初始化, 但是两种布局会根据设备的大小进行展示</p>
 <p>因此如果想要程序有更多的适配, 我们就要为各类限定符作好布局, 常见的限定符有</p>
 <p>大小类限定符</p>
@@ -97,7 +193,8 @@ Quick Star"><meta name="keywords" content="Computer Science, Privacy Security,">
 <li>land: 横屏</li>
 <li>port: 竖屏</li>
 </ul>
-<h1 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h1><p>编写兼容手机和平板的应用程序</p>
+<h1>Project</h1>
+<p>编写兼容手机和平板的应用程序</p>
 <ol>
 <li>MainActivity 中根据 layout 进行动态布局加载, 选择性加载单页布局 <code>newsTitleFrag</code> 和双页布局 <code>newsContentFrag</code></li>
 <li>针对单页模式设置其 Fragment <code>NewsTitleFragment</code>: 在其中加载标题列表所对应的布局 <code>news_title_frag</code>; 在生命周期 <code>onViewCreated</code> 中加载 <code>RecyclerView</code> 的数据 <code>NewsAdapter</code>; <code>NewsAdapter</code> 中通过 <code>ViewHolder</code> 实例为每个数据项添加点击处理事件 <code>holder.itemView.setOnClickListener</code>, 点击处理事件中通过判断当前 Activity 中是否是双页布局来选择性定义点击处理方式 <code>isTwoPane = (activity?.findViewById&lt;View&gt;(R.id.newsContentLayout)) != null</code>:</li>
@@ -106,14 +203,37 @@ Quick Star"><meta name="keywords" content="Computer Science, Privacy Security,">
 <li>如果是双页布局, 则定位到目标 fragment 对象后刷新内容即可</li>
 <li>如果是单页布局, 则需要启动一个新的 Activity 用于展示目标新闻的详细信息</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">holder.itemView.setOnClickListener &#123;</span><br><span class="line">    <span class="keyword">val</span> news = newsList[holder.adapterPosition]</span><br><span class="line">    <span class="keyword">if</span> (isTwoPane) &#123;</span><br><span class="line">        <span class="keyword">val</span> fragment = activity?.supportFragmentManager?.findFragmentById(R.id.newsContentFrag) <span class="keyword">as</span> NewsContentFragment</span><br><span class="line">        fragment.refresh(news.title, news.contennt)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        NewsContentActivity.actionStart(parent.context, news.title, news.contennt)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">holder.itemView.setOnClickListener &#123;
+    val news &#x3D; newsList[holder.adapterPosition]
+    if (isTwoPane) &#123;
+        val fragment &#x3D; activity?.supportFragmentManager?.findFragmentById(R.id.newsContentFrag) as NewsContentFragment
+        fragment.refresh(news.title, news.contennt)
+    &#125; else &#123;
+        NewsContentActivity.actionStart(parent.context, news.title, news.contennt)
+    &#125;
+&#125;</code></pre>
 <ol start="3">
 <li>针对双页模式设置其 Fragment <code>NewsContentFragment</code>: 在其中加载新闻内容所对应的布局, 并定义布局内容刷新的接口函数 <code>refresh</code> 供 MainActivity 调用</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">refresh</span><span class="params">(title: <span class="type">String</span>, content: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    contentLayout.visibility = View.VISIBLE</span><br><span class="line">    newsTitle.text = title</span><br><span class="line">    newsContent.text = content</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun refresh(title: String, content: String) &#123;
+    contentLayout.visibility &#x3D; View.VISIBLE
+    newsTitle.text &#x3D; title
+    newsContent.text &#x3D; content
+&#125;</code></pre>
 <ol>
 <li>针对单页模式的点击事件, 定义新的 Activity 展示新闻内容 <code>NewsContentActivity</code> 通过 <code>companion object</code> 定义静态方法 <code>actionStart</code> 以向外部提供快速启动该 Activity 的接口; 启动后则根据传递来的数据渲染界面即可</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">actionStart</span><span class="params">(context: <span class="type">Context</span>, title: <span class="type">String</span>, content: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(context, NewsContentActivity::<span class="keyword">class</span>.java).apply &#123;</span><br><span class="line">        putExtra(<span class="string">&quot;news_title&quot;</span>, title)</span><br><span class="line">        putExtra(<span class="string">&quot;news_content&quot;</span>, content)</span><br><span class="line">    &#125;</span><br><span class="line">    context.startActivity(intent)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> title = intent.getStringExtra(<span class="string">&quot;news_title&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> content = intent.getStringExtra(<span class="string">&quot;news_content&quot;</span>)</span><br><span class="line"><span class="keyword">if</span> (title != <span class="literal">null</span> &amp;&amp; content != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">val</span> fragment = supportFragmentManager.findFragmentById(R.id.newsContentFrag) <span class="keyword">as</span> NewsContentFragment</span><br><span class="line">    fragment.refresh(title, content)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/08/18/05-Fragment/,Jiancong Cui,05-Fragment,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/08/19/06-broadcast/" title="06-Broadcast">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/08/07/04-Android-UI/" title="04-Android-UI">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">fun actionStart(context: Context, title: String, content: String) &#123;
+    val intent &#x3D; Intent(context, NewsContentActivity::class.java).apply &#123;
+        putExtra(&quot;news_title&quot;, title)
+        putExtra(&quot;news_content&quot;, content)
+    &#125;
+    context.startActivity(intent)
+&#125;
+
+val title &#x3D; intent.getStringExtra(&quot;news_title&quot;)
+val content &#x3D; intent.getStringExtra(&quot;news_content&quot;)
+if (title !&#x3D; null &amp;&amp; content !&#x3D; null) &#123;
+    val fragment &#x3D; supportFragmentManager.findFragmentById(R.id.newsContentFrag) as NewsContentFragment
+    fragment.refresh(title, content)
+&#125;</code></pre></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/08/18/05-Fragment/,Jiancong Cui,05-Fragment,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/08/19/06-broadcast/" title="06-Broadcast">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/08/07/04-Android-UI/" title="04-Android-UI">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

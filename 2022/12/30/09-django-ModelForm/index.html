@@ -1,54 +1,111 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>09-django-ModelForm · Jiancong Cui</title><meta name="description" content="ModelForm借助 Model 的定义快速实现 CRUD 的逻辑任务
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>09-django-ModelForm · Jiancong Cui</title><meta name="description" content="ModelForm
+借助 Model 的定义快速实现 CRUD 的逻辑任务
 Quick Start
+
 创建目标 Model 的 ModelForm 类
 
-123456789101112class UserModelForm(forms.ModelForm):    class Meta:        "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>09-django-ModelForm</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-30</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Django/" title="Django">Django</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/python/" title="python">python</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="ModelForm"><a href="#ModelForm" class="headerlink" title="ModelForm"></a>ModelForm</h1><p>借助 Model 的定义快速实现 CRUD 的逻辑任务</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><ol>
+class UserModelForm(forms.ModelForm):
+    class Meta:
+        model &amp;#x3D"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>09-django-ModelForm</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-12-30</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Django/" title="Django">Django</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/python/" title="python">python</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>ModelForm</h1>
+<p>借助 Model 的定义快速实现 CRUD 的逻辑任务</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<ol>
 <li>创建目标 Model 的 ModelForm 类</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserModelForm</span>(forms.ModelForm):</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        model = UserInfo</span><br><span class="line">        fields = [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;password&#x27;</span>, <span class="string">&#x27;age&#x27;</span>, <span class="string">&#x27;account&#x27;</span>, <span class="string">&#x27;create_time&#x27;</span>, <span class="string">&#x27;department&#x27;</span>, <span class="string">&#x27;gender&#x27;</span>]</span><br><span class="line">        <span class="comment"># fields = &quot;__all__&quot; # 表示选择所有字段</span></span><br><span class="line">        <span class="comment"># exclude = [&#x27;create_time&#x27;, ] # 黑名单</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, *args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> name, field <span class="keyword">in</span> self.fields.items():</span><br><span class="line">            field.widget.attrs = &#123;<span class="string">&quot;class&quot;</span>: <span class="string">&quot;form-control&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">class UserModelForm(forms.ModelForm):
+    class Meta:
+        model &#x3D; UserInfo
+        fields &#x3D; [&#39;name&#39;, &#39;password&#39;, &#39;age&#39;, &#39;account&#39;, &#39;create_time&#39;, &#39;department&#39;, &#39;gender&#39;]
+        # fields &#x3D; &quot;__all__&quot; # 表示选择所有字段
+        # exclude &#x3D; [&#39;create_time&#39;, ] # 黑名单
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
+        for name, field in self.fields.items():
+            field.widget.attrs &#x3D; &#123;&quot;class&quot;: &quot;form-control&quot;&#125;</code></pre>
 <ol start="2">
 <li>将其示例对象传到 Template 中, 并快速实现 Form 的生成</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">form = UserModelForm()</span><br><span class="line"><span class="keyword">return</span> render(request, <span class="string">&#x27;OA/user_add.html&#x27;</span>, &#123;<span class="string">&#x27;form&#x27;</span>: form&#125;)</span><br></pre></td></tr></table></figure>
-
+<pre class="language-python" data-language="python"><code class="language-python">form &#x3D; UserModelForm()
+return render(request, &#39;OA&#x2F;user_add.html&#39;, &#123;&#39;form&#39;: form&#125;)</code></pre>
 <ul>
 <li>通过 label 获取 model 中 verbose_name 属性</li>
 <li>直接渲染将会渲染出等价的 Form</li>
 <li>通过 errors 可以获取错误信息</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% for field in form %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;form-group&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;depart_title&quot;</span>&gt;</span> &#123;&#123; field.label &#125;&#125; <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">        &#123;&#123; field &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color: red;&quot;</span>&gt;</span> &#123;&#123; field.errors.0 &#125;&#125; <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-markup" data-language="markup"><code class="language-markup">&#123;% for field in form %&#125;
+    &lt;div class&#x3D;&quot;form-group&quot;&gt;
+        &lt;label for&#x3D;&quot;depart_title&quot;&gt; &#123;&#123; field.label &#125;&#125; &lt;&#x2F;label&gt;
+        &#123;&#123; field &#125;&#125;
+        &lt;span style&#x3D;&quot;color: red;&quot;&gt; &#123;&#123; field.errors.0 &#125;&#125; &lt;&#x2F;span&gt;
+    &lt;&#x2F;div&gt;
+&#123;% endfor %&#125;</code></pre>
 <ol start="3">
 <li>POST 传递后可以直接通过 ModelForm 类进行实例化, 并进自动行有效性检查, 根据检查结果进行处理</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">form = UserModelForm(data=request.POST)</span><br><span class="line"><span class="keyword">if</span> form.is_valid():</span><br><span class="line">    form.save()</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&quot;OA:user_list&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 自带错误信息</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;OA/user_add.html&#x27;</span>, &#123;<span class="string">&#x27;form&#x27;</span>: form&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="静态数据"><a href="#静态数据" class="headerlink" title="静态数据"></a>静态数据</h2><p>添加新数据时有些数据并非用户交互的, 例如创建时间, 初始工龄等, 这些都可以在后台设置默认值来进行填充</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">form = UserModelForm(data=request.POST)</span><br><span class="line"><span class="keyword">if</span> form.is_valid():</span><br><span class="line">    form.instance.create_time = datetime.now()</span><br><span class="line">    form.save()</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&quot;OA:user_list&quot;</span>)</span><br></pre></td></tr></table></figure>
-
+<pre class="language-python" data-language="python"><code class="language-python">form &#x3D; UserModelForm(data&#x3D;request.POST)
+if form.is_valid():
+    form.save()
+    return redirect(&quot;OA:user_list&quot;)
+else:
+    # 自带错误信息
+    return render(request, &#39;OA&#x2F;user_add.html&#39;, &#123;&#39;form&#39;: form&#125;)</code></pre>
+<h2 id="静态数据">静态数据</h2>
+<p>添加新数据时有些数据并非用户交互的, 例如创建时间, 初始工龄等, 这些都可以在后台设置默认值来进行填充</p>
+<pre class="language-python" data-language="python"><code class="language-python">form &#x3D; UserModelForm(data&#x3D;request.POST)
+if form.is_valid():
+    form.instance.create_time &#x3D; datetime.now()
+    form.save()
+    return redirect(&quot;OA:user_list&quot;)</code></pre>
 <p>在前台可以通过 ModelForm 重新定义, 指定 disabled 属性为 True 使得其不可更改, 或直接在 fields 域中排除</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">mobile = forms.CharField(disalbed=<span class="literal">True</span>, label=<span class="string">&quot;手机号&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h2><p>如果需要详细的数据校验控制, 可以在 ModelForm 中重新定义字段的实例</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.validators <span class="keyword">import</span> RegexValidator</span><br><span class="line">mobile = forms.CharField(</span><br><span class="line">    label=<span class="string">&quot;手机号&quot;</span>,</span><br><span class="line">    validators=[</span><br><span class="line">        RegexValidator(<span class="string">r&#x27;^1[3-9]\d&#123;9&#125;$&#x27;</span>, <span class="string">&#x27;手机号格式错误...&#x27;</span>)</span><br><span class="line">    ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
+<pre class="language-python" data-language="python"><code class="language-python">mobile &#x3D; forms.CharField(disalbed&#x3D;True, label&#x3D;&quot;手机号&quot;)</code></pre>
+<h2 id="数据校验">数据校验</h2>
+<p>如果需要详细的数据校验控制, 可以在 ModelForm 中重新定义字段的实例</p>
+<pre class="language-python" data-language="python"><code class="language-python">from django.core.validators import RegexValidator
+mobile &#x3D; forms.CharField(
+    label&#x3D;&quot;手机号&quot;,
+    validators&#x3D;[
+        RegexValidator(r&#39;^1[3-9]\d&#123;9&#125;$&#39;, &#39;手机号格式错误...&#39;)
+    ]
+)</code></pre>
 <p>或者通过 Hook 方法, 重写 ModelForm 的内部校验过程: <code>mobile</code> 为域名</p>
 <ul>
 <li>常用于复杂验证, 如数据不重复等</li>
 <li>验证不通过返回错误提示</li>
 <li>验证通过, 返回用户输入信息</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">clean_mobile</span>(<span class="params">self</span>):</span><br><span class="line">    mobile = self.cleaned_data[<span class="string">&#x27;mobile&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 编辑时要排除自身</span></span><br><span class="line">    exists_flag = PrettyNum.objects.<span class="built_in">filter</span>(mobile=mobile).exclude(<span class="built_in">id</span>=self.instance.pk).exists()</span><br><span class="line">    <span class="keyword">if</span> exists_flag:</span><br><span class="line">        <span class="keyword">raise</span> ValidationError(<span class="string">&quot;手机号已存在&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mobile</span><br></pre></td></tr></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">def clean_mobile(self):
+    mobile &#x3D; self.cleaned_data[&#39;mobile&#39;]
 
-<h2 id="数据编辑"><a href="#数据编辑" class="headerlink" title="数据编辑"></a>数据编辑</h2><ol>
+    # 编辑时要排除自身
+    exists_flag &#x3D; PrettyNum.objects.filter(mobile&#x3D;mobile).exclude(id&#x3D;self.instance.pk).exists()
+    if exists_flag:
+        raise ValidationError(&quot;手机号已存在&quot;)
+
+    return mobile</code></pre>
+<h2 id="数据编辑">数据编辑</h2>
+<ol>
 <li>根据数据库对象进行实例化</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">form = UserModelForm(instance=UserInfo.objects.<span class="built_in">filter</span>(<span class="built_in">id</span>=user_id).first())</span><br><span class="line"><span class="keyword">return</span> render(request, <span class="string">&#x27;OA/user_edit.html&#x27;</span>, &#123;<span class="string">&#x27;form&#x27;</span>: form&#125;)</span><br></pre></td></tr></table></figure>
-
+<pre class="language-python" data-language="python"><code class="language-python">form &#x3D; UserModelForm(instance&#x3D;UserInfo.objects.filter(id&#x3D;user_id).first())
+return render(request, &#39;OA&#x2F;user_edit.html&#39;, &#123;&#39;form&#39;: form&#125;)</code></pre>
 <ol start="2">
 <li>接收 form 数据时需要指定要更新的数据库实例, 才能使用 <code>save</code> 方法进行<strong>更新操作</strong>而非添加操作</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">form = UserModelForm(data=request.POST, instance=UserInfo.objects.<span class="built_in">filter</span>(<span class="built_in">id</span>=user_id).first())</span><br><span class="line"><span class="keyword">if</span>(form.is_valid()):</span><br><span class="line">    form.save()</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&quot;OA:user_list&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;OA/user_edit.html&#x27;</span>, &#123;<span class="string">&#x27;form&#x27;</span>: form&#125;)</span><br></pre></td></tr></table></figure>
+<pre class="language-python" data-language="python"><code class="language-python">form &#x3D; UserModelForm(data&#x3D;request.POST, instance&#x3D;UserInfo.objects.filter(id&#x3D;user_id).first())
+if(form.is_valid()):
+    form.save()
+    return redirect(&quot;OA:user_list&quot;)
+else:
+    return render(request, &#39;OA&#x2F;user_edit.html&#39;, &#123;&#39;form&#39;: form&#125;)</code></pre>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/12/30/09-django-ModelForm/,Jiancong Cui,09-django-ModelForm,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/12/31/01-React-Create-React-App/" title="01-React-Create React App">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/12/30/08-django-templates/" title="08-django-templates">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

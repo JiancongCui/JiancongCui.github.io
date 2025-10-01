@@ -1,14 +1,30 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>DHCP Protocol and Security · Jiancong Cui</title><meta name="description" content="DHCPDynamic Host Configuration Protocol，动态主机配置协议，提供动态 IP 配置，它增强了 BOOTP，并与 BOOTP 向后兼容
-BOOTP引导程序协议，Bootstrap protocol，BOOTP，使一个客户工作站能够用一个最小的 IP 堆栈进行初始化，"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>DHCP Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h1><p>Dynamic Host Configuration Protocol，动态主机配置协议，提供动态 IP 配置，它增强了 BOOTP，并与 BOOTP 向后兼容</p>
-<h2 id="BOOTP"><a href="#BOOTP" class="headerlink" title="BOOTP"></a>BOOTP</h2><p>引导程序协议，Bootstrap protocol，BOOTP，使一个客户工作站能够用一个最小的 IP 堆栈进行初始化，并向 BOOTP 服务器请求它的 IP 地址、网关地址以及名字服务器的地址，是 DHCP 协议的前身</p>
-<h3 id="BOOTP-工作过程"><a href="#BOOTP-工作过程" class="headerlink" title="BOOTP 工作过程"></a>BOOTP 工作过程</h3><p>1、客户确定它自己的硬件地址，地址一般在硬件的 ROM 内</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>DHCP Protocol and Security · Jiancong Cui</title><meta name="description" content="DHCP
+Dynamic Host Configuration Protocol，动态主机配置协议，提供动态 IP 配置，它增强了 BOOTP，并与 BOOTP 向后兼容
+BOOTP
+引导程序协议，Bootstrap protocol，BOOTP，使一个客户工作站能够用一个最小的 IP 堆栈进行初始"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>DHCP Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-06</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>DHCP</h1>
+<p>Dynamic Host Configuration Protocol，动态主机配置协议，提供动态 IP 配置，它增强了 BOOTP，并与 BOOTP 向后兼容</p>
+<h2 id="BOOTP">BOOTP</h2>
+<p>引导程序协议，Bootstrap protocol，BOOTP，使一个客户工作站能够用一个最小的 IP 堆栈进行初始化，并向 BOOTP 服务器请求它的 IP 地址、网关地址以及名字服务器的地址，是 DHCP 协议的前身</p>
+<h3 id="BOOTP-工作过程">BOOTP 工作过程</h3>
+<p>1、客户确定它自己的硬件地址，地址一般在硬件的 ROM 内</p>
 <p>2、BOOTP 客户在一个 UDP 数据报中把它的硬件地址发送到服务器</p>
 <p>3、服务器接收数据报，并在它的配置文件中查找客户的硬件地址，这个文件包含客户的 IP 地址</p>
-<h2 id="DHCP-功能"><a href="#DHCP-功能" class="headerlink" title="DHCP 功能"></a>DHCP 功能</h2><p>1、保证任何 IP 地址在同一时刻只能由一台 DHCP 客户机所使用</p>
+<h2 id="DHCP-功能">DHCP 功能</h2>
+<p>1、保证任何 IP 地址在同一时刻只能由一台 DHCP 客户机所使用</p>
 <p>2、DHCP 应当可以给用户分配永久固定的 IP 地址</p>
 <p>3、DHCP 应当可以同用其他方法获得 IP 地址的主机共存（如手工配置 IP 地址的主机）</p>
 <p>4、DHCP 服务器应当向现有的 BOOTP 客户端提供服务（向下兼容）</p>
-<h2 id="DHCP-数据包"><a href="#DHCP-数据包" class="headerlink" title="DHCP 数据包"></a>DHCP 数据包</h2><p>DHCP 属于应用层协议，建立在 UDP 协议之上，因此数据包形式如下：</p>
+<h2 id="DHCP-数据包">DHCP 数据包</h2>
+<p>DHCP 属于应用层协议，建立在 UDP 协议之上，因此数据包形式如下：</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211206090640.png" alt="DHCP 数据包"></p>
 <p>1、最外层的以太网标头（ MAC 帧）源 MAC 地址为客户 MAC 地址，目的 MAC 地址未知，因此填入广播 MAC <code>FF-FF-FF-FF-FF-FF</code></p>
 <p>2、内部是 IP 标头，源 IP 地址未知，这里设置为 <code>0.0.0.0</code> 目的 IP 也未知，这里设置为 <code>255.255.255.255</code></p>
@@ -16,26 +32,31 @@ BOOTP引导程序协议，Bootstrap protocol，BOOTP，使一个客户工作站�
 <p><code>255.255.255.255</code> 在 <a target="_blank" rel="noopener" href="https://coming98.github.io/Coming-blog/2021/12/05/ipv4-protocol-and-security/#toc-heading-7">IPv4 Protocol and Security</a> 我们提到过这是受限广播地址，应用于 DHCP 中</p>
 </blockquote>
 <p>3、UDP 标头，源端口固定为 68，目的端口固定为 67</p>
-<h3 id="数据包发送过程"><a href="#数据包发送过程" class="headerlink" title="数据包发送过程"></a>数据包发送过程</h3><p>1、广播发送，子网内每个主机都能收到该包</p>
+<h3 id="数据包发送过程">数据包发送过程</h3>
+<p>1、广播发送，子网内每个主机都能收到该包</p>
 <p>2、根据 MAC 地址无法判断目的地是谁，因此查看 IP 信息(<code>0.0.0.0</code> -&gt; <code>255.255.255.255</code>) DHCP 服务器就能意识到这是 DHCP DISCOVER 包，其它主机将丢弃该包</p>
 <p>3、DHCP 分配好 IP 地址后将返回一个 DHCP OFFER 包，源 MAC 与目的 MAC 都明确了，源 IP 为 DHCP 服务器的 IP，目的 IP 未知，此时仍设置为 <code>255.255.255.255</code> ，源端口为 67，目的端口为 68，分配给请求端的 IP 地址和本网络的具体参数则包含在 Data 部分</p>
 <blockquote>
 <p>通过 MAC 寻址</p>
 </blockquote>
-<h2 id="DHCP-工作过程"><a href="#DHCP-工作过程" class="headerlink" title="DHCP 工作过程"></a>DHCP 工作过程</h2><p>1、客户在它的本地物理子网上广播一个 DHCP DISCOVER 消息</p>
+<h2 id="DHCP-工作过程">DHCP 工作过程</h2>
+<p>1、客户在它的本地物理子网上广播一个 DHCP DISCOVER 消息</p>
 <p>2、每个服务器可以用一个 DHCP OFFER 消息作出响应，这个消息包含一个可用的网络地址和其他配置选项</p>
 <p>3、客户从一个或多个服务器接收到一个或者多个 DHCP OFFER 消息，选择一个</p>
 <p>4、服务器从客户接收 DHCP REQUEST</p>
 <p>5、客户接收到带有配置参数的 DHCP ACK 消息</p>
 <p>6、客户通过发送一个 DHCP RELEASE 消息给服务器，它可以选择不再继续租用地址</p>
-<h2 id="DHCP-欺骗"><a href="#DHCP-欺骗" class="headerlink" title="DHCP 欺骗"></a>DHCP 欺骗</h2><p>1、攻击者首先发起大量的 DHCP 请求（伪造大量的 DHCP 请求包），伪装成 DHCP 客户端</p>
+<h2 id="DHCP-欺骗">DHCP 欺骗</h2>
+<p>1、攻击者首先发起大量的 DHCP 请求（伪造大量的 DHCP 请求包），伪装成 DHCP 客户端</p>
 <p>2、很快正常的 DHCP 服务器的 IP 地址被消耗殆尽，DHCP服务器停止为其他 DHCP 客户端分配 IP 地址</p>
 <p>3、攻击者在网络架设自己的 DHCP 服务器，为真正需要 IP 地址的客户端分配 IP 地址</p>
 <p>4、攻击者的 DHCP 服务器为客户端分配 IP 参数，这些参数里可能包含人为错误设置的参数</p>
 <blockquote>
-<p>DNS 可以指向恶意 DNS 服务器<br>网关指向攻击者控制的路由器，实现中间人攻击</p>
+<p>DNS 可以指向恶意 DNS 服务器网关指向攻击者控制的路由器，实现中间人攻击</p>
 </blockquote>
-<h2 id="DHCP-防御"><a href="#DHCP-防御" class="headerlink" title="DHCP 防御"></a>DHCP 防御</h2><p>1、可以通过建立一张包含有用户 MAC 地址、IP 地址、租用期、VLAN ID、交换机端口等信息的一张表，限制同一端口下的数目，限制 MAC等</p>
+<h2 id="DHCP-防御">DHCP 防御</h2>
+<p>1、可以通过建立一张包含有用户 MAC 地址、IP 地址、租用期、VLAN ID、交换机端口等信息的一张表，限制同一端口下的数目，限制 MAC等</p>
 <p>2、将交换机的端口分为可信任端口和不可信任端口，当交换机从一个不可信任端口收到 DHCP 服务器的报文时，比如 DHCP OFFER 报文、DHCP ACK报文、DHCP NAK 报文，交换机会直接将该报文弃</p>
-<h1 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23337642?sort=created">知乎 - wuxinliulei - DHCP属于OSI的哪一层？</a></p>
+<h1>Refs</h1>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23337642?sort=created">知乎 - wuxinliulei - DHCP属于OSI的哪一层？</a></p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/05/DHCP-Protocol-and-Security/,Jiancong Cui,DHCP Protocol and Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/Overview-of-Routing-Protocol/" title="Overview of Routing Protocol">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/IPv6-Protocol-and-Security/" title="IPv6 Protocol and Security">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

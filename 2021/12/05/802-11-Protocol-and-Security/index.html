@@ -1,9 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>802.11 Protocol and Security · Jiancong Cui</title><meta name="description" content="无线网络协议 802.11无线网络的优势：让网络使用更加自由；网络建设更加经济；通信更加便利；工作更加高效…
-常用名词SSID: Service Set ID 服务集识别码，无线名称
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>802.11 Protocol and Security · Jiancong Cui</title><meta name="description" content="无线网络协议 802.11
+无线网络的优势：让网络使用更加自由；网络建设更加经济；通信更加便利；工作更加高效…
+常用名词
+SSID: Service Set ID 服务集识别码，无线名称
 STA: Station，任何的无线终端设备
 AP: Access Point，接入点
-BSS: Basic Ser"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>802.11 Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="无线网络协议-802-11"><a href="#无线网络协议-802-11" class="headerlink" title="无线网络协议 802.11"></a>无线网络协议 802.11</h1><p>无线网络的优势：让网络使用更加自由；网络建设更加经济；通信更加便利；工作更加高效…</p>
-<h2 id="常用名词"><a href="#常用名词" class="headerlink" title="常用名词"></a>常用名词</h2><p>SSID: Service Set ID 服务集识别码，无线名称</p>
+BSS: Basic S"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>802.11 Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>无线网络协议 802.11</h1>
+<p>无线网络的优势：让网络使用更加自由；网络建设更加经济；通信更加便利；工作更加高效…</p>
+<h2 id="常用名词">常用名词</h2>
+<p>SSID: Service Set ID 服务集识别码，无线名称</p>
 <p>STA: Station，任何的无线终端设备</p>
 <p>AP: Access Point，接入点</p>
 <p>BSS: Basic Service Set, 基本服务集</p>
@@ -11,56 +24,67 @@ BSS: Basic Ser"><meta name="keywords" content="Computer Science, Privacy Securit
 <p>BSS 指代一整个服务范围，范围内 AP 提供服务，AP 的外在名词由 SSID 定义，STA 通过 SSID 选择连接哪个 AP</p>
 </blockquote>
 <img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923153802256.png" alt="image-20210923153802256" style="zoom:50%;" />
-
 <p>ESS: Extended Service Set, 扩展服务集，采用**相同的 SSID **的多个 BSS 形成更大规模的虚拟 BSS</p>
 <p>DS: Distribution System, 分布式系统</p>
 <img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923153934280.png" alt="image-20210923153934280" style="zoom:50%;" />
-
 <p>Ad Hoc: 无线自组网络，构成一种特殊的无线网络应用模式，STA 间可直接互相连接，资源共享，而无需通过 AP</p>
 <img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923154117728.png" alt="image-20210923154117728" style="zoom:50%;" />
-
-<h1 id="无线网络协议安全威胁"><a href="#无线网络协议安全威胁" class="headerlink" title="无线网络协议安全威胁"></a>无线网络协议安全威胁</h1><p>这里主要介绍恶意访问接入点，其方式有二：</p>
-<h2 id="恶意AP假冒成合法AP"><a href="#恶意AP假冒成合法AP" class="headerlink" title="恶意AP假冒成合法AP"></a>恶意AP假冒成合法AP</h2><p>恶意 AP 使用相同或相似的 SSID 标识，冒充正规 AP ，拦截流量</p>
+<h1>无线网络协议安全威胁</h1>
+<p>这里主要介绍恶意访问接入点，其方式有二：</p>
+<h2 id="恶意AP假冒成合法AP">恶意AP假冒成合法AP</h2>
+<p>恶意 AP 使用相同或相似的 SSID 标识，冒充正规 AP ，拦截流量</p>
 <blockquote>
 <p>无线客户端探测软件会误认为该伪造 AP 是合法 AP，于是就连接上此无线接入点</p>
 </blockquote>
-<h2 id="局域网内部人员搭建无线-AP"><a href="#局域网内部人员搭建无线-AP" class="headerlink" title="局域网内部人员搭建无线 AP"></a>局域网内部人员搭建无线 AP</h2><p>内部人员搭设无线 AP 是不安全的，容易让黑客绕过防火墙</p>
-<h1 id="无线网络协议安全机制"><a href="#无线网络协议安全机制" class="headerlink" title="无线网络协议安全机制"></a>无线网络协议安全机制</h1><p>隐藏 SSID 为最简单方便的保证无线网络安全的手段之一</p>
-<h2 id="MAC-层用户接入管理过程"><a href="#MAC-层用户接入管理过程" class="headerlink" title="MAC 层用户接入管理过程"></a>MAC 层用户接入管理过程</h2><h3 id="Scanning"><a href="#Scanning" class="headerlink" title="Scanning"></a>Scanning</h3><p>STA 寻找一个无线网络</p>
+<h2 id="局域网内部人员搭建无线-AP">局域网内部人员搭建无线 AP</h2>
+<p>内部人员搭设无线 AP 是不安全的，容易让黑客绕过防火墙</p>
+<h1>无线网络协议安全机制</h1>
+<p>隐藏 SSID 为最简单方便的保证无线网络安全的手段之一</p>
+<h2 id="MAC-层用户接入管理过程">MAC 层用户接入管理过程</h2>
+<h3 id="Scanning">Scanning</h3>
+<p>STA 寻找一个无线网络</p>
 <p>1、Passive Scanning：找到时间较长但是省电</p>
 <blockquote>
 <p>通过侦听 AP 定期发送的 Beacon 帧来发现网络</p>
 </blockquote>
 <p>2、Active Scannign：能迅速找到</p>
 <blockquote>
-<p>STA 在每个信道上发送 Probe request 报文，从 AP 回应的 Probe response 中获取 SSID 信息<br>应用于发现隐藏 AP</p>
+<p>STA 在每个信道上发送 Probe request 报文，从 AP 回应的 Probe response 中获取 SSID 信息应用于发现隐藏 AP</p>
 </blockquote>
-<h3 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205143718.png" alt="shared-key authentication"></p>
+<h3 id="Authentication">Authentication</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205143718.png" alt="shared-key authentication"></p>
 <p>采用 shared-key authentication 进行认证，加密算法为 WEP</p>
 <blockquote>
-<p>Attackers 可以通过监听 AP 发送的明文和 STA 回复的密文计算出 WEP key<br>因此 WEP 已经不再安全，共享秘钥认证方式已经被 WPA&#x2F;WPA2 代替</p>
+<p>Attackers 可以通过监听 AP 发送的明文和 STA 回复的密文计算出 WEP key<br>
+因此 WEP 已经不再安全，共享秘钥认证方式已经被 WPA/WPA2 代替</p>
 </blockquote>
 <p>详情将 <a href="##%E5%8A%A0%E5%AF%86%E6%96%B9%E5%BC%8F">加密方式</a></p>
-<h3 id="Association"><a href="#Association" class="headerlink" title="Association"></a>Association</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205143915.png" alt="Association"></p>
+<h3 id="Association">Association</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205143915.png" alt="Association"></p>
 <p>关联，STA 和 AP 建立关联，后续的数据报文的收发只能和建立Association关系的AP进行</p>
-<h3 id="数据收发"><a href="#数据收发" class="headerlink" title="数据收发"></a>数据收发</h3><p>略</p>
-<h2 id="CSMA-CA"><a href="#CSMA-CA" class="headerlink" title="CSMA&#x2F;CA"></a>CSMA&#x2F;CA</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205144057.png" alt="CSMA/CA"></p>
+<h3 id="数据收发">数据收发</h3>
+<p>略</p>
+<h2 id="CSMA-CA">CSMA/CA</h2>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205144057.png" alt="CSMA/CA"></p>
 <p>带冲突避免的载波侦听多路访问</p>
-<p>1、冲突避免：送出数据前监听媒体状态，确定没人使用，维持一段时间，再（随机）等待一段随机时间后，依然无人使用送出数据 </p>
+<p>1、冲突避免：送出数据前监听媒体状态，确定没人使用，维持一段时间，再（随机）等待一段随机时间后，依然无人使用送出数据</p>
 <p>2、送出数据前，发送请求传送报文（RTS）给目标端，等待目标端回应 CTS 报文后才，开始传送</p>
 <blockquote>
 <p>询问 + 应答：先站住通信时间</p>
 <p>缺点：网络的效率下降</p>
 <p>优点：两种控制帧都很短，开销小。相反，若不使用，则一旦发生冲突而导致数据帧重发，则浪费的时间就更大。</p>
 </blockquote>
-<h2 id="加密方式"><a href="#加密方式" class="headerlink" title="加密方式"></a>加密方式</h2><p>(仅作了解，Forget it！)<br>WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA&#x2F;WPA2，Wi-Fi Protected Access，无线保护接入</p>
-<h3 id="WEP"><a href="#WEP" class="headerlink" title="WEP"></a>WEP</h3><p>Wired Equivalent Privacy，有线对等私有协议</p>
+<h2 id="加密方式">加密方式</h2>
+<p>(仅作了解，Forget it！)<br>
+WEP，Wired Equivalent Privacy，有线对等私有协议 与 WPA/WPA2，Wi-Fi Protected Access，无线保护接入</p>
+<h3 id="WEP">WEP</h3>
+<p>Wired Equivalent Privacy，有线对等私有协议</p>
 <p>1、初始化向量 IV + 密码 PASSWORD + DATA 明文数据 + CRC-32 明文的完整性校验值</p>
-<p>2、得到 KSA &#x3D; IV + PASSWORD</p>
+<p>2、得到 KSA = IV + PASSWORD</p>
 <blockquote>
 <p>IV向量太短，大量监听用户数据报文后，WEP加密很容易被破解</p>
 </blockquote>
-<p>3、经过 RC4 伪随机数密钥加密得到 PRGA &#x3D; RC4（KSA）</p>
+<p>3、经过 RC4 伪随机数密钥加密得到 PRGA = RC4（KSA）</p>
 <blockquote>
 <p>RC4加密算法过于简单</p>
 </blockquote>
@@ -72,6 +96,7 @@ BSS: Basic Ser"><meta name="keywords" content="Computer Science, Privacy Securit
 </blockquote>
 <p><strong>解密</strong></p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211005192237440.png" alt="image-20211005192237440"></p>
-<h3 id="WPA-WPA2"><a href="#WPA-WPA2" class="headerlink" title="WPA&#x2F;WPA2"></a>WPA&#x2F;WPA2</h3><p>Wi-Fi Protected Access，无线保护接入，了解即可，不必深究</p>
+<h3 id="WPA-WPA2">WPA/WPA2</h3>
+<p>Wi-Fi Protected Access，无线保护接入，了解即可，不必深究</p>
 <p>WPA密码破解时，只要能抓到用户和AP之间的4次握手包中包含的和密码有联系的信息，采用字典进行暴力破解，能否破解就取决于字典和密码的复杂程度了</p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/05/802-11-Protocol-and-Security/,Jiancong Cui,802.11 Protocol and Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/VLAN-and-VLAN-Security/" title="VLAN and VLAN Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/802-3-Protocol-and-Security/" title="802.3 Protocol and Security">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

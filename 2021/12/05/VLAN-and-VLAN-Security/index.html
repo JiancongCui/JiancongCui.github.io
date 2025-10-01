@@ -1,14 +1,27 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>VLAN and VLAN Security · Jiancong Cui</title><meta name="description" content="VLANVLAN 即虚拟局域网，通过端口与 VLAN 的绑定（或其他方式），在逻辑上划分局域网
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>VLAN and VLAN Security · Jiancong Cui</title><meta name="description" content="VLAN
+VLAN 即虚拟局域网，通过端口与 VLAN 的绑定（或其他方式），在逻辑上划分局域网
 
 划分后ARP 等请求广播包将在同一 VLAN 下进行传播
 
-VLAN 的产生原因Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求包需要遍历整个广播域，这一现象被称为广播风暴
+VLAN 的产生原因
+Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求包需要遍历整个广播域，这一现象被称为广播风暴
 
-因此"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>VLAN and VLAN Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><p>VLAN 即虚拟局域网，通过端口与 VLAN 的绑定（或其他方式），在逻辑上划分局域网</p>
+"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>VLAN and VLAN Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>VLAN</h1>
+<p>VLAN 即虚拟局域网，通过端口与 VLAN 的绑定（或其他方式），在逻辑上划分局域网</p>
 <blockquote>
 <p>划分后ARP 等请求广播包将在同一 VLAN 下进行传播</p>
 </blockquote>
-<h2 id="VLAN-的产生原因"><a href="#VLAN-的产生原因" class="headerlink" title="VLAN 的产生原因"></a>VLAN 的产生原因</h2><p>Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求包需要遍历整个广播域，这一现象被称为<strong>广播风暴</strong></p>
+<h2 id="VLAN-的产生原因">VLAN 的产生原因</h2>
+<p>Backdrop：局域网过大时，广播域过大，导致 ARP 这种广播请求包需要遍历整个广播域，这一现象被称为<strong>广播风暴</strong></p>
 <blockquote>
 <p>因此需要分割广播域</p>
 </blockquote>
@@ -16,33 +29,41 @@ VLAN 的产生原因Backdrop：局域网过大时，广播域过大，导致 ARP
 <blockquote>
 <p>广播遇到三层设备就会截止</p>
 </blockquote>
-<h2 id="VLAN-的优势"><a href="#VLAN-的优势" class="headerlink" title="VLAN 的优势"></a>VLAN 的优势</h2><p>与传统 LAN（局域网）相比</p>
+<h2 id="VLAN-的优势">VLAN 的优势</h2>
+<p>与传统 LAN（局域网）相比</p>
 <p>1、隔离广播域，抑制广播报文</p>
 <p>2、减少移动和改变的代价</p>
 <p>3、创建虚拟工作组，超越传统网络的工作方式</p>
 <p>4、增强通讯的安全性</p>
 <p>5、增强网络的健壮性（缩小了广播域，缩小了攻击范围）</p>
-<h2 id="VLAN-实现方式"><a href="#VLAN-实现方式" class="headerlink" title="VLAN 实现方式"></a>VLAN 实现方式</h2><p>基于端口的 VLAN；基于 MAC 的 VLAN；基于协议的 VLAN；基于子网的 VLAN</p>
-<h3 id="基于端口的-VLAN"><a href="#基于端口的-VLAN" class="headerlink" title="基于端口的 VLAN"></a>基于端口的 VLAN</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150331.png" alt="基于端口的 VLAN"></p>
+<h2 id="VLAN-实现方式">VLAN 实现方式</h2>
+<p>基于端口的 VLAN；基于 MAC 的 VLAN；基于协议的 VLAN；基于子网的 VLAN</p>
+<h3 id="基于端口的-VLAN">基于端口的 VLAN</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150331.png" alt="基于端口的 VLAN"></p>
 <p>需要配置 VLAN 表：端口与所属 VLAN 映射表</p>
 <p>优势：操作简单</p>
 <p>劣势：与端口绑定，并未与主机绑定，主机迁移后容易发生错误</p>
-<h3 id="基于-MAC-的-VLAN"><a href="#基于-MAC-的-VLAN" class="headerlink" title="基于 MAC 的 VLAN"></a>基于 MAC 的 VLAN</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150415.png" alt="基于 MAC 的 VLAN"></p>
+<h3 id="基于-MAC-的-VLAN">基于 MAC 的 VLAN</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150415.png" alt="基于 MAC 的 VLAN"></p>
 <p>需要配置 VLAN 表：MAC 与所属 VLAN 映射表</p>
 <p>优势：当用户物理位置移动时，即从一个交换机换到其他的交换机时，VLAN不用重新配置，故认为这种根据 MAC 地址的划分方法是基于用户的 VLAN</p>
 <p>劣势：初始化时，所有的用户都必须进行配置，如果用户很多，配置的工作量是很大的；并且同一端口下可能存在属于不同 VLAN 的多个主机，则该端口不能隔离广播包了</p>
-<h3 id="基于协议的-VLAN"><a href="#基于协议的-VLAN" class="headerlink" title="基于协议的 VLAN"></a>基于协议的 VLAN</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150603.png" alt="基于协议的 VLAN"></p>
+<h3 id="基于协议的-VLAN">基于协议的 VLAN</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150603.png" alt="基于协议的 VLAN"></p>
 <p>需要配置 VLAN 表：协议类型与 VLAN 的映射表（不常见）</p>
 <p>根据二层数据帧中的协议字段进行 VLAN 的划分</p>
-<h3 id="基于子网的-VLAN"><a href="#基于子网的-VLAN" class="headerlink" title="基于子网的 VLAN"></a>基于子网的 VLAN</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150634.png" alt="基于子网的 VLAN"></p>
+<h3 id="基于子网的-VLAN">基于子网的 VLAN</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205150634.png" alt="基于子网的 VLAN"></p>
 <p>需要配置 VLAN 表：IP 网络与 VLAN 的映射表</p>
 <p>优势：用户可以在网络内部自由移动而不用重新配置自己的工作站</p>
 <p>劣势：效率低，检查每一个数据包的网络层地址是很费时的，并且同一个端口下可能存在多个VLAN 的成员，无法隔离广播包</p>
-<h2 id="VLAN-的可跨越性"><a href="#VLAN-的可跨越性" class="headerlink" title="VLAN 的可跨越性"></a>VLAN 的可跨越性</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923160359426.png" alt="image-20210923160359426"></p>
+<h2 id="VLAN-的可跨越性">VLAN 的可跨越性</h2>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923160359426.png" alt="image-20210923160359426"></p>
 <p>1、VLAN 数据可以跨越多台交换机被转递</p>
 <p>2、不同 VLAN 的信息必须通过三层路由处理才能转发到这个端口上</p>
 <p>3、二层的广播只能在一个 VLAN 下进行</p>
-<h2 id="二层交换机与三层交换机"><a href="#二层交换机与三层交换机" class="headerlink" title="二层交换机与三层交换机"></a>二层交换机与三层交换机</h2><p>二层交换技术对于网络层或者高层协议来说是透明的</p>
+<h2 id="二层交换机与三层交换机">二层交换机与三层交换机</h2>
+<p>二层交换技术对于网络层或者高层协议来说是透明的</p>
 <p>优势：数据交换是靠硬件来实现的，其速度相当快</p>
 <blockquote>
 <p>它不处理网络层的IP地址，不处理高层协议的诸如TCP、UDP的端口地址，它只需要数据包的物理地址即MAC地址</p>
@@ -51,18 +72,21 @@ VLAN 的产生原因Backdrop：局域网过大时，广播域过大，导致 ARP
 <blockquote>
 <p>识别不了 IP 协议等</p>
 </blockquote>
-<h3 id="路由器的优缺点"><a href="#路由器的优缺点" class="headerlink" title="路由器的优缺点"></a>路由器的优缺点</h3><p>优势：选择最佳路由、负荷分担、链路备份及和其他网络进行路由信息的交换等</p>
+<h3 id="路由器的优缺点">路由器的优缺点</h3>
+<p>优势：选择最佳路由、负荷分担、链路备份及和其他网络进行路由信息的交换等</p>
 <p>劣势：转发效率较低（处理大量的跨越 IP 子网的数据包）</p>
 <p><strong>因此要想利用二层交换率高这一优点，又要处理三层IP数据包的转发，三层交换技术就诞生了</strong></p>
-<h3 id="三层交换机的优点"><a href="#三层交换机的优点" class="headerlink" title="三层交换机的优点"></a>三层交换机的优点</h3><p>在网络模型中的第三层实现了数据包的高速转发，可以理解为：二层交换技术 + 三层转发技术的结合 &#x3D; 三层交换机</p>
+<h3 id="三层交换机的优点">三层交换机的优点</h3>
+<p>在网络模型中的第三层实现了数据包的高速转发，可以理解为：二层交换技术 + 三层转发技术的结合 = 三层交换机</p>
 <blockquote>
 <p>本质是二层交换机的升级扩充</p>
 </blockquote>
-<p>优势：一次路由，多次转发；对于数据包转发等规律性的过程由硬件高速实现，而像路由信息更新、路由表维护、路由计算、路由确定等功能，由软件实现  </p>
+<p>优势：一次路由，多次转发；对于数据包转发等规律性的过程由硬件高速实现，而像路由信息更新、路由表维护、路由计算、路由确定等功能，由软件实现</p>
 <blockquote>
 <p>三层交换技术的出现，解决了局域网中网段划分之后，网段中子网必须依赖路由器进行管理的局面，解决了传统路由器低速、复杂所造成的网络瓶颈问题。</p>
 </blockquote>
-<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>1、收到一个数据包，查看包的目的 MAC 是自己，但是 IP 不是自己</p>
+<h3 id="工作原理">工作原理</h3>
+<p>1、收到一个数据包，查看包的目的 MAC 是自己，但是 IP 不是自己</p>
 <p>2、查找硬件转发表</p>
 <p>3、如果没查到表项，交由路由进程处理（一旦交由cpu处理，必然会消耗cpu资源）</p>
 <p>4、路由进程将按照 IP 层那一套，查看路由表，查找下一跳的 IP 地址，在通过 ARP 找出此地址对应的 MAC 地址</p>
@@ -70,37 +94,46 @@ VLAN 的产生原因Backdrop：局域网过大时，广播域过大，导致 ARP
 <blockquote>
 <p>这样当一下包过来的时候，交换机就会 查看硬件转发表直接转发而不会再经过路由表的查询了，也即是交换机的<strong>一次路由，多次交换</strong>的原理</p>
 </blockquote>
-<h2 id="VLAN-的链路类型与端口类型"><a href="#VLAN-的链路类型与端口类型" class="headerlink" title="VLAN 的链路类型与端口类型"></a>VLAN 的链路类型与端口类型</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930133649605.png" alt="image-20210930133649605"></p>
+<h2 id="VLAN-的链路类型与端口类型">VLAN 的链路类型与端口类型</h2>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930133649605.png" alt="image-20210930133649605"></p>
 <p>默认情况下，交换机所有端口都是Access-Link端口，并属于VLAN-1</p>
-<h3 id="接入链路"><a href="#接入链路" class="headerlink" title="接入链路"></a>接入链路</h3><p>Access link，交换机与主机之间，通常只涉及一个 VLAN</p>
+<h3 id="接入链路">接入链路</h3>
+<p>Access link，交换机与主机之间，通常只涉及一个 VLAN</p>
 <blockquote>
 <p>这个端口不能直接接收其它 VLAN 的信息，也不能直接向其它 VLAN 发送信息。不同VLAN 的信息必须通过三层路由处理才能转发到这个端口上。</p>
 <p>默认情况下，交换机所有端口都是Access-Link端口，并属于VLAN-1</p>
 </blockquote>
-<h3 id="干道链路"><a href="#干道链路" class="headerlink" title="干道链路"></a>干道链路</h3><p>Trunk link，交换机之间 &#x2F; 交换机路由器之间，可以承载多个 VLAN，因此数据帧在干道链路上传输时，交换机必须要识别数据帧是属于哪个 VLAN 的以转入正确的 Access Link</p>
+<h3 id="干道链路">干道链路</h3>
+<p>Trunk link，交换机之间 / 交换机路由器之间，可以承载多个 VLAN，因此数据帧在干道链路上传输时，交换机必须要识别数据帧是属于哪个 VLAN 的以转入正确的 Access Link</p>
 <blockquote>
 <p>负责传输多个VLAN的数据，Trunk-Link端口默认为1</p>
 </blockquote>
-<h3 id="端口类型"><a href="#端口类型" class="headerlink" title="端口类型"></a>端口类型</h3><p>Access 端口：用于接用户计算机的端口，只能属于一个 VLAN</p>
+<h3 id="端口类型">端口类型</h3>
+<p>Access 端口：用于接用户计算机的端口，只能属于一个 VLAN</p>
 <p>Trunk 端口：用于交换机之间连接的端口，可以属于多个 VLAN</p>
 <p>Hybrid 端口：交换机之间或用于交换机与用户的计算机，可以属于多个 VLAN，</p>
 <blockquote>
 <p>hybrid 端口可以允许多个 VLAN 的报文不打标签，而 trunk 端口只允许缺省 VLAN 的报文不打标签</p>
 <p>同一个交换机上 hybrid 端口和 trunk 端口不能并存</p>
 </blockquote>
-<h3 id="端口的缺省-ID"><a href="#端口的缺省-ID" class="headerlink" title="端口的缺省 ID"></a>端口的缺省 ID</h3><p>Access 端口只属于一个 VLAN，因此其缺省 ID 就是它所在的 VLAN</p>
+<h3 id="端口的缺省-ID">端口的缺省 ID</h3>
+<p>Access 端口只属于一个 VLAN，因此其缺省 ID 就是它所在的 VLAN</p>
 <p>Trunk 端口属于多个 VLAN，所以需要设置缺省 VLAN ID，默认为 VLAN 1</p>
 <blockquote>
-<p>如果报文的 VLAN ID 与 端口的缺省 ID 相同，则系统将去掉报文的 VLAN Tag，再发送报文；所以来自 Native VLAN 的数据帧通过 Trunk 链路时不重新封装，以原有的帧传输<br>华为交换机缺省VLAN被称为 “PvidVlan”，对于思科交换机缺省VLAN被称为 “Native Vlan”</p>
+<p>如果报文的 VLAN ID 与 端口的缺省 ID 相同，则系统将去掉报文的 VLAN Tag，再发送报文；所以来自 Native VLAN 的数据帧通过 Trunk 链路时不重新封装，以原有的帧传输华为交换机缺省VLAN被称为 “PvidVlan”，对于思科交换机缺省VLAN被称为 “Native Vlan”</p>
 </blockquote>
-<h2 id="VLAN-帧格式"><a href="#VLAN-帧格式" class="headerlink" title="VLAN 帧格式"></a>VLAN 帧格式</h2><p>Swith 配置 VLAN 后，会将收到的数据报加入 VLAN 头：<strong>交换机</strong>负责打标签和去标签，对于主机来说是透明的</p>
+<h2 id="VLAN-帧格式">VLAN 帧格式</h2>
+<p>Swith 配置 VLAN 后，会将收到的数据报加入 VLAN 头：<strong>交换机</strong>负责打标签和去标签，对于主机来说是透明的</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930135517564.png" alt="image-20210930135517564"></p>
-<h2 id="VLAN-转发原则"><a href="#VLAN-转发原则" class="headerlink" title="VLAN 转发原则"></a>VLAN 转发原则</h2><h3 id="Access-端口"><a href="#Access-端口" class="headerlink" title="Access 端口"></a>Access 端口</h3><p><strong>Access 端口收到帧时</strong>：计算机 → 交换机</p>
+<h2 id="VLAN-转发原则">VLAN 转发原则</h2>
+<h3 id="Access-端口">Access 端口</h3>
+<p><strong>Access 端口收到帧时</strong>：计算机 → 交换机</p>
 <p>该帧不包含 VLAN 信息（按理说不包含），将打上端口的 PVID （基于端口的Vlan ID）；</p>
 <p>该帧包含 VLAN 信息，检测 VLAN 信息与端口标签是否相同，如果相同直接转发；不相同则丢弃。</p>
 <p><strong>Access 端口发送帧时</strong>：交换机 → 计算机</p>
 <p>只绑定一个 VLAN，因此剥离 VLAN 信息，发出的帧为普通以太网帧</p>
-<h3 id="Trunk-端口"><a href="#Trunk-端口" class="headerlink" title="Trunk 端口"></a>Trunk 端口</h3><p><strong>Trunk 端口收到帧时</strong>：交换机 → 交换机</p>
+<h3 id="Trunk-端口">Trunk 端口</h3>
+<p><strong>Trunk 端口收到帧时</strong>：交换机 → 交换机</p>
 <p>该帧不包含 VLAN 信息（特殊情况），则将报文转发（打标签）到属于缺省 VLAN 的端口</p>
 <p>该帧包含 VLAN 信息（大多数情况），则不改变，直接转发</p>
 <p><strong>Trunk 端口发送帧时</strong>：交换机 → 交换机</p>
@@ -109,23 +142,29 @@ VLAN 的产生原因Backdrop：局域网过大时，广播域过大，导致 ARP
 <blockquote>
 <p>双标签跳跃攻击的关键点</p>
 </blockquote>
-<h1 id="VLAN安全威胁"><a href="#VLAN安全威胁" class="headerlink" title="VLAN安全威胁"></a>VLAN安全威胁</h1><p>主要介绍 跳跃攻击 与 VTP 攻击</p>
-<h2 id="双标签跳跃攻击"><a href="#双标签跳跃攻击" class="headerlink" title="双标签跳跃攻击"></a>双标签跳跃攻击</h2><p>Target：实现跨 VLAN 通信</p>
+<h1>VLAN安全威胁</h1>
+<p>主要介绍 跳跃攻击 与 VTP 攻击</p>
+<h2 id="双标签跳跃攻击">双标签跳跃攻击</h2>
+<p>Target：实现跨 VLAN 通信</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210930140913396.png" alt="image-20210930140913396"></p>
-<h3 id="攻击过程"><a href="#攻击过程" class="headerlink" title="攻击过程"></a>攻击过程</h3><p>1、攻击者使用双层标签，其外层标记为 Trunk 链路的 Native VLAN 号（也是攻击者所处的 VLAN），内层标记为目的 Vlan ID</p>
+<h3 id="攻击过程">攻击过程</h3>
+<p>1、攻击者使用双层标签，其外层标记为 Trunk 链路的 Native VLAN 号（也是攻击者所处的 VLAN），内层标记为目的 Vlan ID</p>
 <p>2、Access 端口收到主机发来的带有 VLAN ID 的包，匹配一致后，转到 Trunk 端口准备发送</p>
 <p>3、Trunk 端口收到包后，发现 VLAN ID 与 缺省 ID 一致，去除外侧 VLAN 后发送</p>
 <p>4、Trunk 端口收到包后，该帧包含 VLAN 信息（大多数情况），则不改变，直接转发</p>
 <p>5、Trunk 端口发送包，该帧的 VLAN 信息与端口的 PVID 不同时，直接转发到 Access 端口</p>
 <p>4、Access 端口收到包后，将会查看到内层的 VLAN ID，就会直接转发了，转发到计算机</p>
-<h3 id="局限"><a href="#局限" class="headerlink" title="局限"></a>局限</h3><p>1、有的交换机从 Access 接口收到带标签的帧，认为是非法的，会直接丢弃</p>
+<h3 id="局限">局限</h3>
+<p>1、有的交换机从 Access 接口收到带标签的帧，认为是非法的，会直接丢弃</p>
 <p>2、双标签攻击只能实现单向攻击</p>
 <blockquote>
 <p>由于是单向攻击，攻击者无法获得被攻击者的 MAC，因此攻击包只能是二层的广播或者组播帧</p>
 </blockquote>
-<h3 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h3><p>1、设置 Trunk 缺省 VLAN ID 为不存在的 VLAN ID 即可；</p>
+<h3 id="防御">防御</h3>
+<p>1、设置 Trunk 缺省 VLAN ID 为不存在的 VLAN ID 即可；</p>
 <p>2、Access 端口不允许带有 VLAN 标签的帧通过；</p>
-<h2 id="DTP-跳跃攻击"><a href="#DTP-跳跃攻击" class="headerlink" title="DTP 跳跃攻击"></a>DTP 跳跃攻击</h2><p>DTP，Dynamic Trunk Protocol，自动协商 Trunk 链路的缺省 ID</p>
+<h2 id="DTP-跳跃攻击">DTP 跳跃攻击</h2>
+<p>DTP，Dynamic Trunk Protocol，自动协商 Trunk 链路的缺省 ID</p>
 <blockquote>
 <p>管理员可以手动指定交换机之间的链路是否形成 Trunk，也可以让交换机使用 DTP 自动协商</p>
 </blockquote>
@@ -133,7 +172,8 @@ VLAN 的产生原因Backdrop：局域网过大时，广播域过大，导致 ARP
 <p>Perpetrator 伪装成交换机，发送 DTP 包，将攻击者与交换机之间的链路协商为为 Trunk 链路，随后攻击者通过该链路，可以收发带任意 VLAN 标签的数据，从而实现访问任意 VLAN 的目的</p>
 <p>特点：实现攻击者和被攻击者之间的双向访问，导致攻击者绕过防火墙直接访问目标主机</p>
 <p>防范：关闭不需要开启的交换机接口；关闭 DTP；</p>
-<h2 id="VTP-攻击"><a href="#VTP-攻击" class="headerlink" title="VTP 攻击"></a>VTP 攻击</h2><p>VTP，VLAN Trunk Protocol，思科私有协议，帮助用户减少枯燥繁重的配置工作</p>
+<h2 id="VTP-攻击">VTP 攻击</h2>
+<p>VTP，VLAN Trunk Protocol，思科私有协议，帮助用户减少枯燥繁重的配置工作</p>
 <p>原理：管理员在网络中设置一个或者多个 VTP Sever，然后在 VTP Sever 上面创建、删除、修改VLAN，VTP协议会将这些变化通告到其他交换机，这些交换机可以更新 VLAN 信息，实现管理的自动化</p>
 <p>1、VLAN 信息的同步是通过 VTP 通告来实现的，VTP 通告只能在 Trunk 链路上传输</p>
 <p>2、通告是以组播帧的方式发送的，通告中有一个字段称为修订号 Revision。每次添加删除或修改时，Revision都会递增</p>

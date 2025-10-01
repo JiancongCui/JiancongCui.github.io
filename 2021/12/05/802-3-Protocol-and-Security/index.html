@@ -1,89 +1,118 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>802.3 Protocol and Security · Jiancong Cui</title><meta name="description" content="有线网络（802.3）协议安全802.3 定义了有线以太网的物理层和数据链路层的介质访问控制 （MAC），涉及到了物理层与数据链路层的子层 MAC 层.
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>802.3 Protocol and Security · Jiancong Cui</title><meta name="description" content="有线网络（802.3）协议安全
+802.3 定义了有线以太网的物理层和数据链路层的介质访问控制 （MAC），涉及到了物理层与数据链路层的子层 MAC 层.
 
 局域网的介质是共享的，而广域网是专用的（点对点）不存在介质冲突问题
 
 理解为总线等结构，需要解决冲突问题
 
-局域网局域网为一个单位所拥有，其地理"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>802.3 Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="有线网络（802-3）协议安全"><a href="#有线网络（802-3）协议安全" class="headerlink" title="有线网络（802.3）协议安全"></a>有线网络（802.3）协议安全</h1><p>802.3 定义了有线以太网的物理层和数据链路层的介质访问控制 （MAC），涉及到了物理层与数据链路层的子层 MAC 层.</p>
+局域网
+局域网为一个单位所拥有，其"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>802.3 Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>有线网络（802.3）协议安全</h1>
+<p>802.3 定义了有线以太网的物理层和数据链路层的介质访问控制 （MAC），涉及到了物理层与数据链路层的子层 MAC 层.</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211130101819.png" alt="802.3"></p>
 <p>局域网的介质是共享的，而广域网是专用的（点对点）不存在介质冲突问题</p>
 <blockquote>
 <p>理解为总线等结构，需要解决冲突问题</p>
 </blockquote>
-<h1 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h1><p>局域网为一个单位所拥有，其地理位置和站点数目有限</p>
+<h1>局域网</h1>
+<p>局域网为一个单位所拥有，其地理位置和站点数目有限</p>
 <p>传输特点：1、用带地址的帧来传送数据；2、不存在中间路由；</p>
 <p>优点：具有广播功能；利于扩展；各设备位置可灵活调整和改变；提高了系统的可靠性、可用性、生存性；</p>
-<h2 id="拓扑结构"><a href="#拓扑结构" class="headerlink" title="拓扑结构"></a>拓扑结构</h2><p>星形，总线，环形，树形</p>
+<h2 id="拓扑结构">拓扑结构</h2>
+<p>星形，总线，环形，树形</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205103954.png" alt="局域网拓扑结构"></p>
-<h2 id="层次划分"><a href="#层次划分" class="headerlink" title="层次划分"></a>层次划分</h2><p>五层协议中属于第二层：传输链路层，但是其所需的层次涉及到物理层（物理连接是基础）以及 IP 层（ARP 协议属于网络层但是工作在链路层）</p>
+<h2 id="层次划分">层次划分</h2>
+<p>五层协议中属于第二层：传输链路层，但是其所需的层次涉及到物理层（物理连接是基础）以及 IP 层（ARP 协议属于网络层但是工作在链路层）</p>
 <p>具体可分为：MAC 层（介质访问控制，和介质密切相关）与 LLC 层（逻辑链路控制，与所用介质、介质访问方法无关）</p>
 <p>MAC 层负责传送时将数据封装成带地址和差错检测的帧，接收时拆帧并执行地址识别和差错检测，以此控制对 LAN 传输介质的访问</p>
 <p>LLC 层给高层提供接口并执行流控和差错检测</p>
-<h2 id="CMSA-CD-工作原理"><a href="#CMSA-CD-工作原理" class="headerlink" title="CMSA&#x2F;CD 工作原理"></a>CMSA&#x2F;CD 工作原理</h2><p>载波监听协议，CSMA&#x2F;CD，Carrier Sense Mutiple Access Collision detect，网络站点监听载波是否存在（既有无传输），并随之采取相应的行动：先听后发，边发边听，冲突停发，随机延迟后重发</p>
+<h2 id="CMSA-CD-工作原理">CMSA/CD 工作原理</h2>
+<p>载波监听协议，CSMA/CD，Carrier Sense Mutiple Access Collision detect，网络站点监听载波是否存在（既有无传输），并随之采取相应的行动：先听后发，边发边听，冲突停发，随机延迟后重发</p>
 <p>1、监听到介质空闲则传输；监听到介质忙，继续监听，直到介质空闲马上传输</p>
 <p>2、在传输期间检测到冲突，发停发送同时发送一简短 JAM 信号</p>
 <p>3、发出 JAM 信号后，等待一随机时间；从头开始</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211130102214.png" alt="CMSA/CD 工作原理"></p>
 <p>存在的问题：等待一定时间都检测到空闲发送，那么又必然相撞，因此采用随机等待，但是更高级的是退避算法的应用：退避算法：随机性等方案；略</p>
 <p>Tips：除此之外，MAC 服务规范即介质访问控制将传输介质带宽有效地分配给网上各站点用户</p>
-<h1 id="以太网-MAC-层"><a href="#以太网-MAC-层" class="headerlink" title="以太网 MAC 层"></a>以太网 MAC 层</h1><p>MAC 地址：网卡出厂时即有的，全球唯一，用于二层中的通信</p>
+<h1>以太网 MAC 层</h1>
+<p>MAC 地址：网卡出厂时即有的，全球唯一，用于二层中的通信</p>
 <p>适配器从网络上每收到一个 MAC 帧就首先用硬件检查 MAC 帧中的 MAC 地址，如果是发往本站的帧则收下，然后再进行其他的处理；否则就将此帧丢弃，不再进行其他的处理；</p>
 <p>可能受到的帧的种类：单播帧；广播帧；多播帧；</p>
 <blockquote>
 <p>广播地址为：<code>FF-FF-FF-FF-FF-FF</code></p>
 </blockquote>
-<h2 id="MAC-帧"><a href="#MAC-帧" class="headerlink" title="MAC 帧"></a>MAC 帧</h2><p>以太网 V2 格式的 MAC 帧：目的 MAC，源 MAC，类型，IP 数据报…</p>
+<h2 id="MAC-帧">MAC 帧</h2>
+<p>以太网 V2 格式的 MAC 帧：目的 MAC，源 MAC，类型，IP 数据报…</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211130102531.png" alt="MAC 帧"></p>
-<h2 id="MAC-层扩展方式"><a href="#MAC-层扩展方式" class="headerlink" title="MAC 层扩展方式"></a>MAC 层扩展方式</h2><p>扩展方式：在物理层扩展局域网，采用集线器（Hub）和交换机（Switching Hub）</p>
+<h2 id="MAC-层扩展方式">MAC 层扩展方式</h2>
+<p>扩展方式：在物理层扩展局域网，采用集线器（Hub）和交换机（Switching Hub）</p>
 <p>扩展的目的：增加局域网内主机的个数；增大局域网的作用范围；</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211130102711.png" alt="MAC 层扩展方式"></p>
-<h3 id="集线器"><a href="#集线器" class="headerlink" title="集线器"></a>集线器</h3><p>优势：使原来属于不同冲突域的局域网上的计算机能够进行跨冲突域的通信；扩大了局域网覆盖的地理范围</p>
+<h3 id="集线器">集线器</h3>
+<p>优势：使原来属于不同冲突域的局域网上的计算机能够进行跨冲突域的通信；扩大了局域网覆盖的地理范围</p>
 <p>劣势：冲突域增大了，但总的吞吐量并未提高（所以机器共享一个带宽导致整体性能下降）；如果不同的冲突域使用不同的数据率，那么就不能用集线器将它们互连起来；</p>
-<h3 id="冲突域"><a href="#冲突域" class="headerlink" title="冲突域"></a>冲突域</h3><p>介质共享冲突的问题，而 Hub 集线器就是总线结构，所有的机器都在一个冲突域内</p>
+<h3 id="冲突域">冲突域</h3>
+<p>介质共享冲突的问题，而 Hub 集线器就是总线结构，所有的机器都在一个冲突域内</p>
 <blockquote>
 <p>为了他提高传输效率就要尽量分割冲突域</p>
 </blockquote>
 <p>交换机背板交换矩阵结构实现了冲突域的划分：其每个端口访问另一个端口时，都有一条专有的线路，不会产生冲突</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211130104103.png" alt="背板交换矩阵结"></p>
-<h2 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h2><p>又名交换式集线器（Switching Hub）与 1990 年问世，显著提高了局域网的性能</p>
+<h2 id="交换机">交换机</h2>
+<p>又名交换式集线器（Switching Hub）与 1990 年问世，显著提高了局域网的性能</p>
 <p>能够根据以太网帧中目标地址智能的转发数据，实现了冲突域的划分</p>
 <blockquote>
 <p>因此交换机工作在第二层，又名第二层交换机</p>
 </blockquote>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>1、隔离冲突域：在共享式以太网中，使用 CSMA&#x2F;CD 算法来进行介质访问控制</p>
+<h3 id="特点">特点</h3>
+<p>1、隔离冲突域：在共享式以太网中，使用 CSMA/CD 算法来进行介质访问控制</p>
 <p>2、增加总容量：交换机的每个端口具有专用容量，交换式局域网总容量随着交换机的端口数量而增加</p>
 <blockquote>
 <p>其下的每一个子网块都会拥有交换机上网口的全部流量，因此使用端口越多，总容量越大</p>
 </blockquote>
 <p>3、数据率灵活：交换机的每个端口可以使用不同的数据率，所以可以以不同数据率部署站点</p>
-<h3 id="通信方式"><a href="#通信方式" class="headerlink" title="通信方式"></a>通信方式</h3><p>1、单工：只有一个信道，传输方向只能是单向的，如寻呼机</p>
+<h3 id="通信方式">通信方式</h3>
+<p>1、单工：只有一个信道，传输方向只能是单向的，如寻呼机</p>
 <p>2、半双工：只有一个信道，在同一时刻，只能是单向传输，如对讲机</p>
 <p>3、双工：双信道，同时可以有双向数据传输，如电话</p>
-<h3 id="数据转发原理"><a href="#数据转发原理" class="headerlink" title="数据转发原理"></a>数据转发原理</h3><p>有四点需要理解：转发，学习，广播与更新</p>
+<h3 id="数据转发原理">数据转发原理</h3>
+<p>有四点需要理解：转发，学习，广播与更新</p>
 <p>1、收到数据帧后查找 MAC 地址表</p>
 <p>2、如果没查到：学习这个帧的源地址到 MAC 地址表，向其他所有端口发送广播</p>
 <blockquote>
-<p>相关主机收到广播包后查看数据包的目标 MAC 地址是不是自己，不是则丢弃数据包；是则接收并处理；<br>学习：MAC 地址表是交换机通过学习接收的数据帧的源 MAC 地址来形成的<br>广播：如果目标地址在 MAC 地址表中没有，交换机就向除接收到该数据帧的端口外的其他所有端口广播该数据帧</p>
+<p>相关主机收到广播包后查看数据包的目标 MAC 地址是不是自己，不是则丢弃数据包；是则接收并处理；学习：MAC 地址表是交换机通过学习接收的数据帧的源 MAC 地址来形成的广播：如果目标地址在 MAC 地址表中没有，交换机就向除接收到该数据帧的端口外的其他所有端口广播该数据帧</p>
 </blockquote>
 <p>3、查到了单播转发即可</p>
 <blockquote>
 <p>转发：交换机根据 MAC 地址表单播转发数据帧</p>
 </blockquote>
 <p>更新：交换机 MAC 地址表的老化时间是 300 秒 (300s 内没收到那个条目，则会删除)；交换机如果发现一个帧的入端口和 MAC 地址表中源 MAC 地址的所在端口不同，交换机将 MAC 地址重新学习到新的端口</p>
-<h1 id="802-3-协议安全威胁"><a href="#802-3-协议安全威胁" class="headerlink" title="802.3 协议安全威胁"></a>802.3 协议安全威胁</h1><p>冲突域：连接在同一到线上的所有工作站的集合（交换机破除冲突域）</p>
+<h1>802.3 协议安全威胁</h1>
+<p>冲突域：连接在同一到线上的所有工作站的集合（交换机破除冲突域）</p>
 <p>广播域：接收同样广播消息的节点的集合，通常来说一个局域网就是一个广播域</p>
-<h2 id="MAC-泛洪攻击"><a href="#MAC-泛洪攻击" class="headerlink" title="MAC 泛洪攻击"></a>MAC 泛洪攻击</h2><p>内容可寻址存储器，Content Addressable Memory，CAM，存储 MAC 地址与端口的映射关系</p>
+<h2 id="MAC-泛洪攻击">MAC 泛洪攻击</h2>
+<p>内容可寻址存储器，Content Addressable Memory，CAM，存储 MAC 地址与端口的映射关系</p>
 <p>Process：在局域网中发送带有欺骗性 MAC 地址源的数据，CAM 表中将会填充伪造的 MAC 地址记录；当 CAM 表中相关的交换机内存将被耗尽时，交换机将以类似于集线器的模式工作，向其它所有的物理端口转发数据</p>
 <blockquote>
 <p>被攻击的现象是网络速度明显降低</p>
 </blockquote>
 <p>Protect：限制端口可以绑定的 MAC 数目；固定写死 CAM （不灵活）；管理员可以根据情况在发生安全违规后对交换机采取：关闭接口（shutdown），限制接口（restrict），保护接口（protect）等操作。</p>
-<h2 id="MAC-欺骗"><a href="#MAC-欺骗" class="headerlink" title="MAC 欺骗"></a>MAC 欺骗</h2><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205140244.png" alt="MAC 欺骗"></p>
+<h2 id="MAC-欺骗">MAC 欺骗</h2>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/20211205140244.png" alt="MAC 欺骗"></p>
 <p>Process：攻击者发送伪造以太网帧：设定源 MAC 为受害者的 MAC；目的 MAC 为攻击者的 MAC，这样交换机就会将发往受害者的数据转给攻击者。</p>
 <blockquote>
 <p>随后发给受害主机的数据帧将发送给攻击者，攻击者可以将数据缓存，让网络正常后（CAM 表中的恶意表项300s自动消失或者受害者主动发起的请求更新了错误表项）再将数据转交</p>
 </blockquote>
-<h2 id="ARP-欺骗"><a href="#ARP-欺骗" class="headerlink" title="ARP 欺骗"></a>ARP 欺骗</h2><p>ARP 为三层协议（存储了 IP 与 MAC 的映射），<strong>但是是唯一一个作用在二层的三层协议</strong>，只有终端和路由器能够识别</p>
+<h2 id="ARP-欺骗">ARP 欺骗</h2>
+<p>ARP 为三层协议（存储了 IP 与 MAC 的映射），<strong>但是是唯一一个作用在二层的三层协议</strong>，只有终端和路由器能够识别</p>
 <p>冲突域：连接在同一导线上的所有工作站的集合（交换机破除冲突域）</p>
 <blockquote>
 <p>冲突域属于第一层，冲突域是由 hub（集线器）组织的</p>
@@ -93,12 +122,14 @@
 <p>广播域属于第二层，Switch（交换机）所有端口都在同一个广播域内，每一个端口就是一个冲突域</p>
 </blockquote>
 <p><strong>Tips</strong>：广播域可以跨网段，冲突域只是发生在同一个网段（网段又名潜在冲突域）</p>
-<h3 id="ARP-缓存表"><a href="#ARP-缓存表" class="headerlink" title="ARP 缓存表"></a>ARP 缓存表</h3><p>用于存储其它主机或网关的 IP 地址与 MAC 地址的对应关系，每台主机、网关都有一个 ARP 缓存表</p>
+<h3 id="ARP-缓存表">ARP 缓存表</h3>
+<p>用于存储其它主机或网关的 IP 地址与 MAC 地址的对应关系，每台主机、网关都有一个 ARP 缓存表</p>
 <blockquote>
 <p>静态 ARP 缓存地址对：人为写入的，不能被 ARP 应答包修改</p>
 <p>动态 ARP 缓存表：能被 ARP 应答包修改</p>
 </blockquote>
-<h3 id="ARP-报文"><a href="#ARP-报文" class="headerlink" title="ARP 报文"></a>ARP 报文</h3><p>ARP 报文直接加封以太网报头，不需要放入 IP 报文内（与 ICMP 不同）。</p>
+<h3 id="ARP-报文">ARP 报文</h3>
+<p>ARP 报文直接加封以太网报头，不需要放入 IP 报文内（与 ICMP 不同）。</p>
 <blockquote>
 <p>使用 <code>arp -a</code> 在 cmd 中查看本机 ARP 表</p>
 </blockquote>
@@ -113,31 +144,34 @@
 <p>知道了 10.10.1.2 这个 IP 对应的 MAC 为 <code>:FA:3C</code></p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20210923142238810.png" alt="image-20210923142238810"></p>
-<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p><strong>Example - 流程（同一个局域网内）</strong>：主机 A 相与 主机 B 通信</p>
-<p>0、（多种方式）通过&#x3D;&#x3D;&nbsp;DNS&nbsp;&#x3D;&#x3D;获取了主机 B 的 IP 地址</p>
+<h3 id="Demo">Demo</h3>
+<p><strong>Example - 流程（同一个局域网内）</strong>：主机 A 相与 主机 B 通信</p>
+<p>0、（多种方式）通过== DNS ==获取了主机 B 的 IP 地址</p>
 <p>1、A 先检查自己的 ARP 缓存中是否有 B 的 IP 地址对应的 MAC 地址</p>
-<p>2、如果没有，那么 A 将发送 &#x3D;&#x3D;ARP&#x3D;&#x3D; 请求报文（广播请求主机 B 的 MAC 地址）</p>
+<p>2、如果没有，那么 A 将发送 <mark>ARP</mark> 请求报文（广播请求主机 B 的 MAC 地址）</p>
 <p>3、主机 B 收到该请求后回答一个单播的 ARP 应答报文</p>
 <p>4、A 主机得到了 B 主机的 MAC 地址，更新 ARP 缓存表</p>
 <p>5、A 主机与 B 主机依靠两者缓存表里的记录发送 MAC 帧来通讯即可</p>
 <p><strong>Example - 流程（不同局域网内）</strong>：主机 A 相与 主机 B 通信，ARP - IP - ARO</p>
-<p>0、（多种方式）通过&#x3D;&#x3D;&nbsp;DNS&nbsp;&#x3D;&#x3D;获取了主机 B 的 IP 地址</p>
+<p>0、（多种方式）通过== DNS ==获取了主机 B 的 IP 地址</p>
 <p>1、已知主机 B 的 IP 地址，目的 MAC 未知，A 先判断主机 B 的 IP 地址是否属于一个网段，不属于则获取网关的 MAC（发送获取网关 MAC 的 ARP），属于则按照上个 Demo 来做</p>
-<p>2、A 检查自己的 ARP 缓存表中是否有网关 IP 对应的 IP 地址，如果没有，那么 A 将发送 &#x3D;&#x3D;ARP&#x3D;&#x3D; 请求报文（广播请求网关的 MAC 地址，ARP 的目的 IP 将是网关的 IP，不在是 B 的了；MAC 帧则是广播形式不变），网关回复 ARP 应答报文，双方都更新了 ARP 缓存</p>
+<p>2、A 检查自己的 ARP 缓存表中是否有网关 IP 对应的 IP 地址，如果没有，那么 A 将发送 <mark>ARP</mark> 请求报文（广播请求网关的 MAC 地址，ARP 的目的 IP 将是网关的 IP，不在是 B 的了；MAC 帧则是广播形式不变），网关回复 ARP 应答报文，双方都更新了 ARP 缓存</p>
 <blockquote>
 <p>此时 A 将 MAC 帧单播到网关即可，网关将会通过内部的 IP 数据包来得知真正的目的地是 B</p>
 </blockquote>
 <p>ff, A_mac, …, A_mac, A_ip, 00, W_ip (网关的 ip)</p>
 <p>3、随后将 MAC 帧发给 A 的网关，网关收到数据包后发现是给 B 的，则通过路由协议发送到 B 所在的网关</p>
 <p>4、B 处的网关先检查自己的 ARP 缓存，如果没有 B 对应的 MAC 则在该局域网内发送 ARP 请求，获取主机 B 对应的 MAC 地址</p>
-<p>5、单播传送数据报 </p>
-<h3 id="ARP-欺骗实现"><a href="#ARP-欺骗实现" class="headerlink" title="ARP 欺骗实现"></a>ARP 欺骗实现</h3><p>同一局域网内模拟发送 ARP 应答报文即可，非同一局域网则需要欺骗网关（路由器）</p>
+<p>5、单播传送数据报</p>
+<h3 id="ARP-欺骗实现">ARP 欺骗实现</h3>
+<p>同一局域网内模拟发送 ARP 应答报文即可，非同一局域网则需要欺骗网关（路由器）</p>
 <p>1、攻击者向主机 A 和 B 分别发送 ARP 欺骗报文，欺骗交换机的 CAM 表</p>
 <p>2、随后攻击者就能从网络接口上嗅探受害主机发过来的数据帧</p>
 <p>3、攻击者将嗅探到的数据发送回原本应该接收的主机</p>
 <p>危害：使同网段的其他用户无法正常上网（频繁断网或者网速慢）；嗅探到交换式局域网内所有数据包，从而得到敏感信息；对信息进行篡改；控制局域网内任何主机，起到“网管”的作用；</p>
 <p>检测：网络频繁掉线，网速突然变慢；<code>arp -a</code> 命令；使用sniffer软件发现局域网内存在大量的ARP reply包，包中指定的MAC就是攻击主机的MAC地址</p>
-<h3 id="ARP-欺骗防御"><a href="#ARP-欺骗防御" class="headerlink" title="ARP 欺骗防御"></a>ARP 欺骗防御</h3><p>1、MAC地址绑定，使网络中每一台计算机的 IP 地址与硬件地址一一对应，不可更改</p>
+<h3 id="ARP-欺骗防御">ARP 欺骗防御</h3>
+<p>1、MAC地址绑定，使网络中每一台计算机的 IP 地址与硬件地址一一对应，不可更改</p>
 <p>2、使用静态 ARP 缓存，用手工方法更新缓存中的记录，使 ARP 欺骗无法进</p>
 <p>3、使用 ARP 服务器，通过该服务器查找自己的 ARP 转换表来响应其他机器的 ARP 广播。确保这台 ARP 服务器不被黑</p>
 <p>4、使用 ARP 欺骗防护软件，如 ARP 防火墙</p>

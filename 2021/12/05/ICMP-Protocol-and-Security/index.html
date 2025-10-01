@@ -1,43 +1,69 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>ICMP Protocol and Security · Jiancong Cui</title><meta name="description" content="ICMPInternet Control Message Protocol，Internet 控制报文协议，用于在IP主机、路由器之间传递控制消息
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>ICMP Protocol and Security · Jiancong Cui</title><meta name="description" content="ICMP
+Internet Control Message Protocol，Internet 控制报文协议，用于在IP主机、路由器之间传递控制消息
 
 控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息
 
 
-报文种类攻击也是从正常的所提供的功能出发：
+报文种类
+攻击也是从正常的所提供的功能出发：
 
-ICMP 攻击Ping of d"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>ICMP Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h1><p>Internet Control Message Protocol，Internet 控制报文协议，用于在IP主机、路由器之间传递控制消息</p>
+ICMP 攻击
+Ping o"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>ICMP Protocol and Security</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2021-12-05</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Protocol-Security/" title="Protocol Security">Protocol Security</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/security/" title="security">security</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>ICMP</h1>
+<p>Internet Control Message Protocol，Internet 控制报文协议，用于在IP主机、路由器之间传递控制消息</p>
 <blockquote>
 <p>控制消息是指网络通不通、主机是否可达、路由是否可用等网络本身的消息</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211127135407400.png" alt="image-20211127135407400"></p>
-<h2 id="报文种类"><a href="#报文种类" class="headerlink" title="报文种类"></a>报文种类</h2><p>攻击也是从正常的所提供的功能出发：</p>
+<h2 id="报文种类">报文种类</h2>
+<p>攻击也是从正常的所提供的功能出发：</p>
 <p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211007133301183.png" alt="image-20211007133301183"></p>
-<h1 id="ICMP-攻击"><a href="#ICMP-攻击" class="headerlink" title="ICMP 攻击"></a>ICMP 攻击</h1><h2 id="Ping-of-death"><a href="#Ping-of-death" class="headerlink" title="Ping of death"></a>Ping of death</h2><p>又名 死亡之 ping</p>
+<h1>ICMP 攻击</h1>
+<h2 id="Ping-of-death">Ping of death</h2>
+<p>又名 死亡之 ping</p>
 <p>Backdrop：当一个 IP 包的长度超过以太网帧的最大尺寸时，包就会被分片，作为多个帧来发送。接收端的机器提取各个分片，并重组为一个完整的 IP 包；</p>
 <p>Attack Point ：IP 协议规范规定了一个 IP 包的最大尺寸（65535）而大多数的包处理程序又<strong>假设</strong>包的长度不会超过这个最大尺寸。因此，包重组代码所分配的内存区域也不会超过这个尺寸</p>
-<h3 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h3><p>Attack：缓存溢出（Buffer Overflow）攻击；构造超过这个最大尺寸的包，包当中的额外数据就会被写入其他正常区域，使得系统进入非稳定状态</p>
+<h3 id="攻击方式">攻击方式</h3>
+<p>Attack：缓存溢出（Buffer Overflow）攻击；构造超过这个最大尺寸的包，包当中的额外数据就会被写入其他正常区域，使得系统进入非稳定状态</p>
 <blockquote>
 <p>在防火墙一级对这种攻击进行检测是相当难的，因为每个分片包看起来都很正常，在内部重组后却出事了</p>
 </blockquote>
-<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>ping 指令将发送一个 ICMP 回声请求消息给目的地并报告是否收到所希望的 ICMP echo，用于检查网络是否通畅或者网络连接速度的命令</p>
+<h3 id="Demo">Demo</h3>
+<p>ping 指令将发送一个 ICMP 回声请求消息给目的地并报告是否收到所希望的 ICMP echo，用于检查网络是否通畅或者网络连接速度的命令</p>
 <blockquote>
 <p>Tips ：ping 只是利用这个漏洞的工具之一</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ping -l 65500 192.168.1.1 -t</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">最终的大小还有加上 ICMP(8) 与 IP(20-60)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h3><p>对操作系统打补丁，使内核将不再对超过规定长度的包进行重组</p>
-<h2 id="ICMP-Smurf-攻击"><a href="#ICMP-Smurf-攻击" class="headerlink" title="ICMP Smurf 攻击"></a>ICMP Smurf 攻击</h2><p>又名反射放大攻击，利用 IP 欺骗和 ICMP 回应包引起目标主机网络阻塞，实现 DoS 攻击</p>
-<h3 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h3><p>在构造数据包时将源地址设置为被攻击主机的地址，而将目的地址设置为广播地址，于是大量 ICMP echo 的回应包 ICMP reply 被发送给被攻击主机，使其因网络阻塞而无法提供服务</p>
-<h3 id="防御-1"><a href="#防御-1" class="headerlink" title="防御"></a>防御</h3><p>防火墙源地址检查过滤</p>
-<h2 id="ICMP-Redirect-攻击"><a href="#ICMP-Redirect-攻击" class="headerlink" title="ICMP Redirect 攻击"></a>ICMP Redirect 攻击</h2><p>Backdrop：当路由器检测到主机在启动时具有一定的路由信息（但不一定是最优的）并检测到 IP 数据报经非最优路由传输，就通过 <strong>ICMP 重定向报文</strong>通知主机去往该目的地的最优路径；其目的旨在保证主机拥有动态的、既小且优的路由表；</p>
-<h3 id="攻击原理-1"><a href="#攻击原理-1" class="headerlink" title="攻击原理"></a>攻击原理</h3><p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211006104322321.png" alt="image-20211006104322321"></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">ping -l 65500 192.168.1.1 -t
+# 最终的大小还有加上 ICMP(8) 与 IP(20-60)</code></pre>
+<h3 id="防御">防御</h3>
+<p>对操作系统打补丁，使内核将不再对超过规定长度的包进行重组</p>
+<h2 id="ICMP-Smurf-攻击">ICMP Smurf 攻击</h2>
+<p>又名反射放大攻击，利用 IP 欺骗和 ICMP 回应包引起目标主机网络阻塞，实现 DoS 攻击</p>
+<h3 id="攻击原理">攻击原理</h3>
+<p>在构造数据包时将源地址设置为被攻击主机的地址，而将目的地址设置为广播地址，于是大量 ICMP echo 的回应包 ICMP reply 被发送给被攻击主机，使其因网络阻塞而无法提供服务</p>
+<h3 id="防御-2">防御</h3>
+<p>防火墙源地址检查过滤</p>
+<h2 id="ICMP-Redirect-攻击">ICMP Redirect 攻击</h2>
+<p>Backdrop：当路由器检测到主机在启动时具有一定的路由信息（但不一定是最优的）并检测到 IP 数据报经非最优路由传输，就通过 <strong>ICMP 重定向报文</strong>通知主机去往该目的地的最优路径；其目的旨在保证主机拥有动态的、既小且优的路由表；</p>
+<h3 id="攻击原理-2">攻击原理</h3>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/image-20211006104322321.png" alt="image-20211006104322321"></p>
 <p>Attack：攻击者通过发送 ICMP 重定向报文可以在受害者主机路由表中添加一条到达特定主机的路由信息，使得受害者发往特定主机的数据包被发往攻击者主机，攻击者进而实施监听、欺骗等攻击行为；</p>
 <p>核心：欺骗路由表。通过添加特定路由表实施</p>
-<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>1、ICMP 重定向机制只能在同一网络的路由器与主机之间使用；</p>
+<h3 id="限制">限制</h3>
+<p>1、ICMP 重定向机制只能在同一网络的路由器与主机之间使用；</p>
 <p>2、ICMP 重定向攻击一次只能指定一个目的地址；</p>
 <p>3、指定的地址路由上必须是直达的；</p>
 <p>4、重定向包必须来自去往目标的当前路由；</p>
 <p>5、重定向包不能通知主机用自己做路由（需要合谋者）；</p>
 <p>6、受害者和攻击者要处于同一网络环境中；</p>
-<h3 id="防御-2"><a href="#防御-2" class="headerlink" title="防御"></a>防御</h3><p>修改系统和防火墙配置，拒绝接收 ICMP 重定向报文</p>
+<h3 id="防御-3">防御</h3>
+<p>修改系统和防火墙配置，拒绝接收 ICMP 重定向报文</p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2021/12/05/ICMP-Protocol-and-Security/,Jiancong Cui,ICMP Protocol and Security,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/IPv4-Protocol-and-Security/" title="IPv4 Protocol and Security">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/12/05/VLAN-and-VLAN-Security/" title="VLAN and VLAN Security">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

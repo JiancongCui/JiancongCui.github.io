@@ -1,77 +1,191 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>10-Service · Jiancong Cui</title><meta name="description" content="Service后台运行的服务, 不需要与用户交互且需要长期执行的任务
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>10-Service · Jiancong Cui</title><meta name="description" content="Service
+后台运行的服务, 不需要与用户交互且需要长期执行的任务
 Service 并不是运行在一个独立的进程当中的，而是依赖于创建 Service 时所在的应用程序进程，当某个应用程序进程被杀掉时，所有依赖于该进程的 Service 也会停止运行
-Definition继承 Service 类, "><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>10-Service</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-08-23</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h1><p>后台运行的服务, 不需要与用户交互且需要长期执行的任务</p>
+Definition
+继承 Service 类"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>10-Service</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2022-08-23</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Android-Dev/" title="Android Dev.">Android Dev.</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Android/" title="Android">Android</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Service</h1>
+<p>后台运行的服务, 不需要与用户交互且需要长期执行的任务</p>
 <p>Service 并不是运行在一个独立的进程当中的，而是依赖于创建 Service 时所在的应用程序进程，当某个应用程序进程被杀掉时，所有依赖于该进程的 Service 也会停止运行</p>
-<h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h2><p>继承 Service 类, onCreate() 方法在 Service 创建时调用; onStartCommand() 在 Service 启动时调用; onDestroy() …;</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyService</span> : <span class="type">Service</span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> TAG = <span class="string">&quot;MyService&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate()</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;onCreate&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onStartCommand</span><span class="params">(intent: <span class="type">Intent</span>?, flags: <span class="type">Int</span>, startId: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;onStartCommand&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDestroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy()</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;onDestroy&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Definition">Definition</h2>
+<p>继承 Service 类, onCreate() 方法在 Service 创建时调用; onStartCommand() 在 Service 启动时调用; onDestroy() …;</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class MyService : Service() &#123;
 
-<h2 id="Contorller"><a href="#Contorller" class="headerlink" title="Contorller"></a>Contorller</h2><p>主要通过 intent 控制 Service 的启动或关闭</p>
+    private val TAG &#x3D; &quot;MyService&quot;
+
+    override fun onCreate() &#123;
+        super.onCreate()
+        Log.d(TAG, &quot;onCreate&quot;)
+    &#125;
+
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int &#123;
+        Log.d(TAG, &quot;onStartCommand&quot;)
+        return super.onStartCommand(intent, flags, startId)
+    &#125;
+
+    override fun onDestroy() &#123;
+        super.onDestroy()
+        Log.d(TAG, &quot;onDestroy&quot;)
+    &#125;
+&#125;</code></pre>
+<h2 id="Contorller">Contorller</h2>
+<p>主要通过 intent 控制 Service 的启动或关闭</p>
 <p>Tips: 从 Android 8.0 开始，应用的后台功能被大幅削减，现在只有当应用保持在前台可见状态的情况下，Service 才能保证稳定运行，一旦应用进入后台之后，Service 随时都有可能被系统回收</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">R.id.startServiceBtn -&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, MyService::<span class="keyword">class</span>.java)</span><br><span class="line">    startService(intent)</span><br><span class="line">&#125;</span><br><span class="line">R.id.stopServiceBtn -&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, MyService::<span class="keyword">class</span>.java)</span><br><span class="line">    stopService(intent)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Communication"><a href="#Communication" class="headerlink" title="Communication"></a>Communication</h2><p>Service 被创建用于执行相应的功能, 那就会涉及到执行结果的反馈, 因此引入 Binder 对象实现 Activity 与 Service 的通信</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">R.id.startServiceBtn -&gt; &#123;
+    val intent &#x3D; Intent(this, MyService::class.java)
+    startService(intent)
+&#125;
+R.id.stopServiceBtn -&gt; &#123;
+    val intent &#x3D; Intent(this, MyService::class.java)
+    stopService(intent)
+&#125;</code></pre>
+<h2 id="Communication">Communication</h2>
+<p>Service 被创建用于执行相应的功能, 那就会涉及到执行结果的反馈, 因此引入 Binder 对象实现 Activity 与 Service 的通信</p>
 <ol>
 <li>在 Service 中定义内部 Binder 类, 实现对所传递消息的封装, 通过 onBind 方法与 Activity 进行交互</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> mBinder = DownloadBinder()</span><br><span class="line"></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">class</span> <span class="title class_">DownloadBinder</span>: <span class="type">Binder</span>() &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">startDownload</span><span class="params">()</span></span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;startDownload&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getProgress</span><span class="params">()</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">        Log.d(TAG, <span class="string">&quot;get process&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onBind</span><span class="params">(intent: <span class="type">Intent</span>)</span></span>: IBinder &#123;</span><br><span class="line">    <span class="keyword">return</span> mBinder</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">private val mBinder &#x3D; DownloadBinder()
 
+inner class DownloadBinder: Binder() &#123;
+    fun startDownload() &#123;
+        Log.d(TAG, &quot;startDownload&quot;)
+    &#125;
+    fun getProgress(): Int &#123;
+        Log.d(TAG, &quot;get process&quot;)
+        return 0
+    &#125;
+&#125;
+
+override fun onBind(intent: Intent): IBinder &#123;
+    return mBinder
+&#125;</code></pre>
 <ol start="2">
 <li>Activity 中通过 bindService 与 unbindService 与目标 Service 进行交互: 主要通过 ServiceConnection 匿名类的实现定义交互的动作</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">lateinit</span> <span class="keyword">var</span> downloadBinder: MyService.DownloadBinder</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> connection = <span class="keyword">object</span>: ServiceConnection &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onServiceConnected</span><span class="params">(name: <span class="type">ComponentName</span>?, service: <span class="type">IBinder</span>?)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 获取 Service Binder 对象</span></span><br><span class="line">        downloadBinder = service <span class="keyword">as</span> MyService.DownloadBinder</span><br><span class="line">        <span class="comment">// 发布命令</span></span><br><span class="line">        downloadBinder.startDownload()</span><br><span class="line">        downloadBinder.getProgress()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onServiceDisconnected</span><span class="params">(name: <span class="type">ComponentName</span>?)</span></span> &#123;</span><br><span class="line">        Log.d(<span class="string">&quot;MyService&quot;</span>, <span class="string">&quot;Service Disconnected&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">R.id.bindServiceBtn -&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, MyService::<span class="keyword">class</span>.java)</span><br><span class="line">    <span class="comment">// Intent, ServiceConnetion, 标志位: BIND_AUTO_CREATE, 表示在 Activity 和 Service 进行绑定后自动创建 Service</span></span><br><span class="line">    bindService(intent, connection, Context.BIND_AUTO_CREATE)</span><br><span class="line">&#125;</span><br><span class="line">R.id.unbindServiceBtn -&gt; &#123;</span><br><span class="line">    unbindService(connection)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">
+lateinit var downloadBinder: MyService.DownloadBinder
 
-<h2 id="Life-Cycle"><a href="#Life-Cycle" class="headerlink" title="Life Cycle"></a>Life Cycle</h2><ul>
+private val connection &#x3D; object: ServiceConnection &#123;
+    override fun onServiceConnected(name: ComponentName?, service: IBinder?) &#123;
+        &#x2F;&#x2F; 获取 Service Binder 对象
+        downloadBinder &#x3D; service as MyService.DownloadBinder
+        &#x2F;&#x2F; 发布命令
+        downloadBinder.startDownload()
+        downloadBinder.getProgress()
+    &#125;
+
+    override fun onServiceDisconnected(name: ComponentName?) &#123;
+        Log.d(&quot;MyService&quot;, &quot;Service Disconnected&quot;)
+    &#125;
+&#125;
+
+R.id.bindServiceBtn -&gt; &#123;
+    val intent &#x3D; Intent(this, MyService::class.java)
+    &#x2F;&#x2F; Intent, ServiceConnetion, 标志位: BIND_AUTO_CREATE, 表示在 Activity 和 Service 进行绑定后自动创建 Service
+    bindService(intent, connection, Context.BIND_AUTO_CREATE)
+&#125;
+R.id.unbindServiceBtn -&gt; &#123;
+    unbindService(connection)
+&#125;</code></pre>
+<h2 id="Life-Cycle">Life Cycle</h2>
+<ul>
 <li>Context.startService() 触发 Service 的 onStartCommand(); 如果 Service 并没有被创建, 还会触发 onCreate()</li>
 <li>Context.stopService() 或 stopSelf() 触发 onDestroy()</li>
 <li>Context.bindService() 触发 onBind(); 如果 Service 并没有被创建, 还会触发 onCreate()</li>
 <li>Context.unbindService() 触发 onDestroy()</li>
 <li>如果先调用了 startService 然后调用了 bindService 那么需要调用 stopService 与 unbindService 才会触发 onDestroy</li>
 </ul>
-<h1 id="Front-Desk-Service"><a href="#Front-Desk-Service" class="headerlink" title="Front Desk Service"></a>Front Desk Service</h1><p>从 Android 8.0 开始，应用的后台功能被大幅削减，现在只有当应用保持在前台可见状态的情况下，Service 才能保证稳定运行，一旦应用进入后台之后，Service 随时都有可能被系统回收</p>
+<h1>Front Desk Service</h1>
+<p>从 Android 8.0 开始，应用的后台功能被大幅削减，现在只有当应用保持在前台可见状态的情况下，Service 才能保证稳定运行，一旦应用进入后台之后，Service 随时都有可能被系统回收</p>
 <p>可以使用前台 Service 使得服务能保持稳定运行状态, 但一直会有一个正在运行的图标在系统的状态栏显示，下拉状态栏后可以看到更加详细的信息（类似于通知的效果）</p>
 <ol>
 <li>在 Service 的 onCreate 声明周期中进行定义</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate()</span><br><span class="line">    Log.d(TAG, <span class="string">&quot;onCreate&quot;</span>)</span><br><span class="line">    <span class="comment">// 定义前台 Service</span></span><br><span class="line">    <span class="keyword">val</span> manager = getSystemService(Context.NOTIFICATION_SERVICE) <span class="keyword">as</span> NotificationManager</span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">        <span class="keyword">val</span> channel = NotificationChannel(<span class="string">&quot;jc Service&quot;</span>, <span class="string">&quot;前台 Service 通知&quot;</span>, NotificationManager.IMPORTANCE_DEFAULT)</span><br><span class="line">        manager.createNotificationChannel(channel)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, MainActivity::<span class="keyword">class</span>.java)</span><br><span class="line">    <span class="keyword">val</span> pi = PendingIntent.getActivity(<span class="keyword">this</span>, <span class="number">0</span>, intent, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">val</span> notification = NotificationCompat.Builder(<span class="keyword">this</span>, <span class="string">&quot;jc Service&quot;</span>)</span><br><span class="line">        .setContentTitle(<span class="string">&quot;JC Service&quot;</span>)</span><br><span class="line">        .setContentText(<span class="string">&quot;This is content text&quot;</span>)</span><br><span class="line">        .setSmallIcon(R.drawable.small_icon)</span><br><span class="line">        .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.large_icon))</span><br><span class="line">        .setContentIntent(pi)</span><br><span class="line">        .build()</span><br><span class="line">    <span class="comment">// 注册前台 Service 等待启动</span></span><br><span class="line">    startForeground(<span class="number">1</span>, notification)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">override fun onCreate() &#123;
+    super.onCreate()
+    Log.d(TAG, &quot;onCreate&quot;)
+    &#x2F;&#x2F; 定义前台 Service
+    val manager &#x3D; getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    if (Build.VERSION.SDK_INT &gt;&#x3D; Build.VERSION_CODES.O) &#123;
+        val channel &#x3D; NotificationChannel(&quot;jc Service&quot;, &quot;前台 Service 通知&quot;, NotificationManager.IMPORTANCE_DEFAULT)
+        manager.createNotificationChannel(channel)
+    &#125;
+    val intent &#x3D; Intent(this, MainActivity::class.java)
+    val pi &#x3D; PendingIntent.getActivity(this, 0, intent, 0)
+    val notification &#x3D; NotificationCompat.Builder(this, &quot;jc Service&quot;)
+        .setContentTitle(&quot;JC Service&quot;)
+        .setContentText(&quot;This is content text&quot;)
+        .setSmallIcon(R.drawable.small_icon)
+        .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.large_icon))
+        .setContentIntent(pi)
+        .build()
+    &#x2F;&#x2F; 注册前台 Service 等待启动
+    startForeground(1, notification)
+&#125;</code></pre>
 <ol start="2">
 <li>在 AndroidManifest 中声明前台 Service 权限</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.FOREGROUND_SERVICE&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="Multi-Thread"><a href="#Multi-Thread" class="headerlink" title="Multi Thread"></a>Multi Thread</h1><p>创建子线程执行相关任务, 防止主线程堵塞</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><ol>
+<pre class="language-markup" data-language="markup"><code class="language-markup">&lt;uses-permission android:name&#x3D;&quot;android.permission.FOREGROUND_SERVICE&quot; &#x2F;&gt;</code></pre>
+<h1>Multi Thread</h1>
+<p>创建子线程执行相关任务, 防止主线程堵塞</p>
+<h2 id="Quick-Start">Quick Start</h2>
+<ol>
 <li>定义一个线程任务类, 实现 Runnable 接口</li>
 </ol>
 <blockquote>
 <p>Tips: 学习 Java 多线程时有提到, 单继承多接口的机制, 导致继承 Thread 耦合度较高, 因此推荐实现 Runnable 接口</p>
 </blockquote>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyThread</span>: <span class="type">Runnable</span> &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">// 编写具体的逻辑</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class MyThread: Runnable &#123;
+    override fun run() &#123;
+        &#x2F;&#x2F; 编写具体的逻辑
+    &#125;
+&#125;</code></pre>
 <ol start="2">
 <li>启动线程</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">val</span> myThread = MyThread()</span><br><span class="line">Thread(myThread).start()</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val myThread &#x3D; MyThread()
+Thread(myThread).start()</code></pre>
 <p>熟悉 Kotlin 的话, 可以直接使用 Lambda 实现快速启动</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">Thread &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;.start()</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">Thread &#123;
+    ...
+&#125;.start()</code></pre>
 <p>更简单的 Kotlin 又进行了封装, 使用 Kotlin 内置的顶层函数</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line">thread &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">thread &#123;
 
-<h2 id="Update-UI-in-thread"><a href="#Update-UI-in-thread" class="headerlink" title="Update UI in thread"></a>Update UI in thread</h2><p>原则上 UI 的更新都是线程不安全的, 因此直接再线程中更新 UI 会触发异常: <code>Only the original thread that created a view hierarchy can touch its views</code></p>
+&#125;</code></pre>
+<h2 id="Update-UI-in-thread">Update UI in thread</h2>
+<p>原则上 UI 的更新都是线程不安全的, 因此直接再线程中更新 UI 会触发异常: <code>Only the original thread that created a view hierarchy can touch its views</code></p>
 <p>如果必须要再线程中更新 UI 那么需要使用异步消息处理机制, 类似于 React 中的消息订阅机制(Redux 那一套)</p>
 <ol>
 <li>创建消息, 指定消息 ID 并发送</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ButtonChangeText.setOnClickListener &#123;</span><br><span class="line">    thread &#123;</span><br><span class="line">        <span class="keyword">val</span> msg = Message()</span><br><span class="line">        msg.what = UPDATE_TEXT</span><br><span class="line">        handler.sendMessage(msg)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">ButtonChangeText.setOnClickListener &#123;
+    thread &#123;
+        val msg &#x3D; Message()
+        msg.what &#x3D; UPDATE_TEXT
+        handler.sendMessage(msg)
+    &#125;
+&#125;</code></pre>
 <ol start="2">
 <li>消息处理</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> handler = <span class="keyword">object</span>: Handler(Looper.getMainLooper()) &#123;</span><br><span class="line">    <span class="comment">// 主线程中执行</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">handleMessage</span><span class="params">(msg: <span class="type">Message</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">when</span> (msg.what) &#123;</span><br><span class="line">            UPDATE_TEXT -&gt; textView.text = <span class="string">&quot;Nice to meet you&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="异步消息处理机制"><a href="#异步消息处理机制" class="headerlink" title="异步消息处理机制"></a>异步消息处理机制</h1><p>组成: Message, Handler, MessageQueue, Looper</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">val handler &#x3D; object: Handler(Looper.getMainLooper()) &#123;
+    &#x2F;&#x2F; 主线程中执行
+    override fun handleMessage(msg: Message) &#123;
+        when (msg.what) &#123;
+            UPDATE_TEXT -&gt; textView.text &#x3D; &quot;Nice to meet you&quot;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h1>异步消息处理机制</h1>
+<p>组成: Message, Handler, MessageQueue, Looper</p>
 <ul>
 <li>Message: 线程之间传递的消息, 可以在内部携带少量的信息，用于在不同线程之间传递数据</li>
 <li>Handler: 用于发送和处理消息的</li>
@@ -84,8 +198,9 @@ Definition继承 Service 类, "><meta name="keywords" content="Computer Science,
 <li>发出的 Message 被添加到 MessageQueue 中等待被处理</li>
 <li>Looper 一直尝试从 MessageQueue 中取出 Message 进行相应处理</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208222155382.png"></p>
-<h2 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h2><p>基于异步消息处理机制的封装, 是一个抽象类, 共<strong>三个泛型参数</strong></p>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/202208222155382.png" alt=""></p>
+<h2 id="AsyncTask">AsyncTask</h2>
+<p>基于异步消息处理机制的封装, 是一个抽象类, 共<strong>三个泛型参数</strong></p>
 <ul>
 <li>Params: 执行相关任务所需的参数</li>
 <li>Progress: 在后台任务执行时，如果需要在界面上显示当前的进度，则使用这里指定的泛型作为进度单位</li>
@@ -98,8 +213,10 @@ Definition继承 Service 类, "><meta name="keywords" content="Computer Science,
 <li>onProgressUpdate(Progress…): 利用参数中的数值就可以对 UI 进行更新</li>
 <li>onPostExecute(Result): 任务执行完毕后调用, 可以利用返回的数据进行一些 UI 操作，比如说提醒任务执行的结果，以及关闭进度条对话框等</li>
 </ul>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DownloadTask</span>: <span class="type">AsyncTask</span>&lt;<span class="type">Unit, Int, Boolean</span>&gt;() &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Service-Multi-Thread-Deprecated-no-good-alternatives-were-found"><a href="#Service-Multi-Thread-Deprecated-no-good-alternatives-were-found" class="headerlink" title="Service + Multi Thread[Deprecated, no good alternatives were found]"></a>Service + Multi Thread[Deprecated, no good alternatives were found]</h1><p>Service 中的代码默认运行在主线程当中，如果直接在 Service 里处理一些耗时的逻辑，就很容易出现 ANR（Application Not Responding）的情况</p>
+<pre class="language-kotlin" data-language="kotlin"><code class="language-kotlin">class DownloadTask: AsyncTask&lt;Unit, Int, Boolean&gt;() &#123;
+    
+&#125;</code></pre>
+<h1>Service + Multi Thread[Deprecated, no good alternatives were found]</h1>
+<p>Service 中的代码默认运行在主线程当中，如果直接在 Service 里处理一些耗时的逻辑，就很容易出现 ANR（Application Not Responding）的情况</p>
 <p>因此推荐 Service 使用多线程, 在 Service 的每个具体方法里开启一个子线程, 处理耗时逻辑, 而 Android 将这种异步且执行完毕后自动停止的 Service 封装为了 IntentService</p>
 </div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2022/08/23/10-Service/,Jiancong Cui,10-Service,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2022/08/30/11-Web/" title="11-Web">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2022/08/22/09-MultiMedia/" title="09-MultiMedia">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
