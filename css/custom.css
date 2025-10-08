@@ -568,7 +568,7 @@ body {
 .post .post-description {
     width: 100%;
     box-sizing: border-box;
-    color: #9b59b6;
+    /* color: #9b59b6; */
     font-weight: 350;
     font-size: 15px;
     line-height: 25px;

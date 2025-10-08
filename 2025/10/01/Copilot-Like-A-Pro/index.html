@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>Copilot Like A Pro · Jiancong Cui</title><meta name="description" content="Keyboard Shortcuts
+You can trigger Ghost Text by writing a comment expressing what you want.
+
+To enable inline chat, press Command + I.
+To open Chat V"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>Copilot Like A Pro</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2025-10-01</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/AI/" title="AI">AI</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/AI/" title="AI">AI</a><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Copilot/" title="Copilot">Copilot</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Keyboard Shortcuts</h1>
+<p>You can trigger Ghost Text by writing a comment expressing what you want.</p>
+<ul>
+<li>To enable inline chat, press <code>Command</code> + <code>I</code>.</li>
+<li>To open Chat View, press <code>Command</code> + <code>Shift</code> + <code>I</code>.</li>
+<li>To make a quick chat, press <code>Shift</code> + <code>Option</code> + <code>Command</code> + <code>I</code>.</li>
+<li>To accept all the Ghost text, press <code>Tab</code>.</li>
+<li>To accept the Ghost by word, press <code>Command</code> + <code>Right Arrow</code>.</li>
+</ul>
+<h1>Copilot - Predefined Actions</h1>
+<blockquote>
+<p>From helping you write commit messages or pull requests descriptions, renaming code symbols, fixing errors in the editor, to semantic search that helps you find relevant files.</p>
+</blockquote>
+<p><strong>Export Chat</strong>: export all prompts and responses for a chat session in a JSON</p>
+<ol>
+<li>Active the chat you want to export.</li>
+<li>Open the command palette (<code>Command</code> + <code>Shift</code> + <code>P</code>).</li>
+<li>Search for <code>Chat: Export Chat</code>.</li>
+</ol>
+<p>Others:</p>
+<ul>
+<li><code>@workspace</code>: use the whole project workspace as the basis to answer this request.</li>
+<li><code>#FILENAME</code>:  pointing copilot to a specific file</li>
+<li><code>/explain</code>: explain the selected code</li>
+<li><code>/doc</code>: add documentation comment for this symbol.</li>
+<li><code>/tests</code>: generate unit tests for the selected code</li>
+<li><code>/fix</code>: propose a fix for the problems in the selected code</li>
+</ul>
+<h1>Various Chat Modes</h1>
+<p>Ask mode is great for asking questions about your codebase, coding and general technology concepts.</p>
+<ul>
+<li>Best for: Understanding of your codebase, brainstorming, Q&amp;A</li>
+<li>Context Level: Diverse</li>
+<li>Change Level: Low</li>
+</ul>
+<p>Edit Mode is optimized for making code edits across multiple files</p>
+<ul>
+<li>Best for: Refactoring, add new features, fix bugs, unit tests, improve code quality or performance</li>
+<li>Context Level: High</li>
+<li>Change Level: Medium</li>
+</ul>
+<p>⭐️ Edit Mode VS Agent Mode:</p>
+<ul>
+<li>Edit scope: you might use edit mode if your request involves only code edits and you know the precise scope for the changes.</li>
+<li>Duration: agent mode involves multiple steps to process a request, so it might take longer to get a response. For example, to determine the relevant context and files to edit, determine the plan of action, and more.</li>
+<li>Non-deterministic: agent mode evaluates the outcome of the generated edits and might iterate multiple times. As a result, agent mode can be more non-deterministic than edit mode.</li>
+<li>Request quota: in agent mode, depending on the complexity of the task, one prompt might result in many requests to the backend.</li>
+</ul>
+<h1>Copilot Context Control</h1>
+<p>By providing the right context, you can get more relevant and accurate responses.</p>
+<ul>
+<li>By default, the currently selected text and the file name of the active editor are used as context.</li>
+<li>For <code>ask mode</code> or <code>edit mode</code>, the active file is used as context.</li>
+<li>For <code>agent mode</code>, the agent tools automatically determine if the active file needs to be added to the context.</li>
+</ul>
+<h2 id="mentions">#-mentions</h2>
+<p>Symbol <code>#</code> enables you to refer to specific context in your codebase.</p>
+<ul>
+<li>Simply add <code>#codebase</code> in your prompt to enable code search for your entire workspace.</li>
+<li>Reference Web Content <code>#fetch</code>: type <code>#fetch</code> followed by a URL of the page you want to reference.
+<ul>
+<li>Example: Update the <a target="_blank" rel="noopener" href="http://asp.net">asp.net</a> app to .net 9 #fetch <a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/aspnet/core/migration/80-90">https://learn.microsoft.com/en-us/aspnet/core/migration/80-90</a>&quot;</li>
+</ul>
+</li>
+<li>Reference Github Repositories <code>#githubRepo</code>: <code>#githubRepo</code> followed by the URL of the <code>Username/repository name</code>.
+<ul>
+<li>Example: Add unit tests for my app. Use the same test setup and structure as #githubRepo rust-lang/rust</li>
+</ul>
+</li>
+</ul>
+<h2 id="mentions-2">@-mentions</h2>
+<p>This symbol is used to invoke a specific chat participant.</p>
+<p>Example: @terminal what are the top 5 largest files in the current directory</p>
+<h2 id="Interact-with-Embeded-Browser">Interact with Embeded Browser</h2>
+<p>Scenario: While you are developing a web application, you want to do a tiny change in the UI, to make it into the context, you can use the embeded browser to quickly reference the specific UI.</p>
+<ol>
+<li>Open the Simple Browser Show: <code>Command</code> + <code>Shift</code> + <code>P</code> -&gt; <code>Simple Browser: Show</code></li>
+<li>Enter the URL of your web application. <code>http://localhost:4000/</code></li>
+<li>Click and select the specific UI you want to reference.</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Coming98/pictures/main/images/Copilot-Like-A-Pro-2025-10-03-23-02-34.png" alt="Copilot-Like-A-Pro-2025-10-03-23-02-34"></p>
+<h1>Other Features</h1>
+<ol>
+<li>Define your own chat modes: <a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/copilot/customization/custom-chat-modes">Link</a></li>
+<li></li>
+</ol>
+<h1>💡 References</h1>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/copilot/overview">GitHub Copilot in VS Code</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.github.com/en/copilot/get-started/quickstart?tool=vscode">Quickstart for GitHub Copilot</a></li>
+</ul>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2025/10/01/Copilot-Like-A-Pro/,Jiancong Cui,Copilot Like A Pro,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2025/10/08/A-Quick-Guide-to-Git-Github/" title="A Quick Guide to Git &amp; Github">prev_post</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2025/10/01/Take-Control-of-Google-Calendar/" title="Take Control of Google Calendar">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

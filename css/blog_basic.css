@@ -61,11 +61,15 @@ mark {
   margin: 2rem 0 1rem;
 }
 
-.post-content h1 {
-  font-size: 2em;
+.post .post-content h1 {
+  font-size: 30px;
+  margin-top: 3em;
   border-left: 4px solid #16a085;
   padding-left: 10px;
   color: #1c2b33;
+}
+.post-content h1:first-of-type {
+    margin-top: 0;
 }
 
 .post-content h2 {
