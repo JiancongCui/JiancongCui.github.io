@@ -63,13 +63,13 @@ mark {
 
 .post .post-content h1 {
   font-size: 30px;
-  margin-top: 3em;
+  margin-top: 2em;
   border-left: 4px solid #16a085;
   padding-left: 10px;
   color: #1c2b33;
 }
 .post-content h1:first-of-type {
-    margin-top: 0;
+    margin-top: 1em;
 }
 
 .post-content h2 {
