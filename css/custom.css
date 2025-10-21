@@ -927,3 +927,40 @@ body {
 }
 
 
+
+
+li code, p code {
+  font-family: 'Fira Code', 'Source Code Pro', monospace;
+  font-size: 0.95em;
+  background-color: #f6f8fa;       /* subtle light gray background */
+  color: #d63384;                  /* soft magenta (matches your screenshot) */
+  padding: 2px 6px;                /* space around the text */
+  border-radius: 4px;              /* rounded edges */
+  border: 1px solid #e1e4e8;       /* thin border */
+  white-space: nowrap;             /* prevent wrapping */
+}
+
+/* Optional: dark mode support */
+@media (prefers-color-scheme: dark) {
+  li code, p code {
+    background-color: #1e1e1e;
+    color: #ff79c6;                /* nice pinkish tone for dark themes */
+    border-color: #333;
+  }
+}
+
+/* Make Prism toolbar always visible */
+div.code-toolbar > .toolbar {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Optional: remove transition animation */
+div.code-toolbar > .toolbar {
+  transition: none !important;
+}
+
+div.code-toolbar .toolbar-item {
+    /* still maintain the original mouse cursor */
+    cursor: default;
+}
