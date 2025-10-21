@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="JCC"><title>LeetCode-BinarySearch · Jiancong Cui</title><meta name="description" content="Binary Search
+What is Binary Search: A search algorithm that can efficiently o(log n) find the position of a target value within a sorted array by rep"><meta name="keywords" content="Computer Science, Privacy Security,"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;display=swap"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/tag.css"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><link rel="shortcut icon" href="/images/jcc.webp"><script src="/js/jquery.js"></script><!-- 主题：可换 one-dark/tomorrow/github 等 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-one-dark.css">
+<!-- 行号 + 工具栏的样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.css">
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><meta name="generator" content="Hexo 7.2.0"></head><body><div class="page-top animated fadeInDown"><div class="nav-container"> <div class="nav"><a class="nav-item logo" href="/">Jiancong Cui </a><a class="nav-item" href="/">About Me</a><a class="nav-item" href="/blogs">Posts</a><a class="nav-item" href="/archives">Archive</a><a class="nav-item" href="/tags">Tags</a><a class="nav-item" href="/quotes">Quotes</a></div></div></div><div id="main-container"><div class="main-content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><a>LeetCode-BinarySearch</a></div><div class="post-labels"><div class="label-item"> <i class="fa fa-clock-o"></i><span class="date">2025-10-20</span></div><div class="label-item"> <i class="fa fa-list"></i><a class="tag" href="/categories/Coding/" title="Coding">Coding</a></div><div class="label-item"><i class="fa fa-bookmark"></i><a class="tag" href="/tags/LeetCode/" title="LeetCode">LeetCode</a><i class="fa fa-bookmark"></i><a class="tag" href="/tags/Binary-Search/" title="Binary Search">Binary Search</a></div><span class="leancloud_visitors"></span></div><div class="post-content"><h1>Binary Search</h1>
+<p>What is Binary Search: A search algorithm that can efficiently <code>o(log n)</code> find the position of a target value within a sorted array by repeatedly dividing the search interval in half.</p>
+<h1>Templates</h1>
+<p>Left-Closed Right-Open: <code>[l, r)</code></p>
+<pre class="language-C++" data-language="C++"><code class="language-C++">int left &#x3D; 0;
+int right &#x3D; nums.size(); &#x2F;&#x2F; right is open, so nums[right] is not included
+
+while (left &lt; right) &#123;
+    int middle &#x3D; left + (right - left) &#x2F; 2; &#x2F;&#x2F; Prevents &#96;left + right&#96; overflow
+    if (nums[middle] &gt; target) &#123;
+        right &#x3D; middle; &#x2F;&#x2F; [left, middle) is the new search space
+    &#125; else if (nums[middle] &lt; target) &#123;
+        left &#x3D; middle + 1; &#x2F;&#x2F; [middle + 1, right) is the new search space
+    &#125; else &#123;
+        return middle; &#x2F;&#x2F; Target found
+    &#125;
+&#125;
+
+return -1; &#x2F;&#x2F; Target not found
+return left; &#x2F;&#x2F; if target not found, left is the right position to insert.</code></pre>
+<p>Left-Closed Right-Closed: <code>[l, r]</code></p>
+<pre class="language-C++" data-language="C++"><code class="language-C++">int left &#x3D; 0;
+int right &#x3D; nums.size() - 1; &#x2F;&#x2F; right is closed, so nums[right] is included
+
+while (left &lt;&#x3D; right) &#123;
+    int middle &#x3D; left + (right - left) &#x2F; 2; &#x2F;&#x2F; Prevents &#96;left + right&#96; overflow
+    if (nums[middle] &gt; target) &#123;
+        right &#x3D; middle - 1; &#x2F;&#x2F; [left, middle - 1] is the new search space
+    &#125; else if (nums[middle] &lt; target) &#123;
+        left &#x3D; middle + 1; &#x2F;&#x2F; [middle + 1, right] is the new search space
+    &#125; else &#123;
+        return middle;
+    &#125;
+&#125;
+
+return -1; &#x2F;&#x2F; Target not found
+return left; &#x2F;&#x2F; if target not found, left is the right position to insert.</code></pre>
+<h1>Problems</h1>
+<h2 id="704-Binary-Search"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/binary-search/">704. Binary Search</a></h2>
+<p>Description: Template problem for binary search.</p>
+<ul>
+<li>Input: A sorted array of integers and a target integer.</li>
+<li>Output: The index of the target integer in the array, or -1 if not found</li>
+</ul>
+<pre class="language-C++" data-language="C++"><code class="language-C++">&#x2F;&#x2F; The same as the above templates.</code></pre>
+<pre class="language-python" data-language="python"><code class="language-python">class Solution:
+    def search(self, nums: List[int], target: int) -&gt; int:
+        left, right &#x3D; 0, len(nums)
+
+        while left &lt; right:
+            middle &#x3D; left + ((right - left) &#x2F;&#x2F; 2)
+
+            if nums[middle] &gt; target:
+                right &#x3D; middle
+            elif nums[middle] &lt; target:
+                left &#x3D; middle + 1
+            else:
+                return middle
+
+        return -1</code></pre>
+<h2 id="35-Search-Insert-Position"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-insert-position/">35. Search Insert Position</a></h2>
+<p>Description:</p>
+<ul>
+<li>Input: A sorted array of distinct integers and a target integer.</li>
+<li>Output:
+<ul>
+<li>If found, return the index of the target integer.</li>
+<li>If not found, return the index where it would be inserted in order.</li>
+</ul>
+</li>
+</ul>
+<pre class="language-C++" data-language="C++"><code class="language-C++">class Solution &#123;
+public:
+    int searchInsert(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int left &#x3D; 0, right &#x3D; nums.size();
+
+        while (left &lt; right) &#123;
+            int middle &#x3D; left + (right - left) &#x2F; 2;
+            if (nums[middle] &lt; target) &#123;
+                left &#x3D; middle + 1;
+            &#125; else if (nums[middle &gt; target]) &#123;
+                right &#x3D; middle;
+            &#125; else &#123;
+                return middle;
+            &#125;
+        &#125;
+
+        return left; &#x2F;&#x2F; if target not found, left is the right position to insert.
+    &#125;
+&#125;;</code></pre>
+<pre class="language-python" data-language="python"><code class="language-python">class Solution:
+    def searchInsert(self, nums: List[int], target: int) -&gt; int:
+        left, right &#x3D; 0, len(nums)
+
+        while left &lt; right:
+            middle &#x3D; left + (right - left) &#x2F;&#x2F; 2
+            middle_value &#x3D; nums[middle]
+            if (middle_value &gt; target):
+                right &#x3D; middle
+            elif (middle_value &lt; target):
+                left &#x3D; middle + 1
+            else:
+                return middle
+        
+        return left</code></pre>
+<h2 id="34-Find-First-and-Last-Position-of-Element-in-Sorted-Array"><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array">34. Find First and Last Position of Element in Sorted Array</a></h2>
+<p>Description:</p>
+<ul>
+<li>Input: A sorted array of integers and a target integer.</li>
+<li>Output:
+<ul>
+<li>If found, return a two-dimensional array.
+<ul>
+<li>The first element is the index of the first occurrence of the target integer.</li>
+<li>The second element is the index of the last occurrence of the target integer.</li>
+</ul>
+</li>
+<li>If the target integer is not found, return [-1, -1].</li>
+</ul>
+</li>
+</ul>
+<p>Prerequisite:</p>
+<ul>
+<li>Vector:
+<ul>
+<li><code>vector&lt;int&gt; vec(size, value)</code> to initialize a vector of given size with all elements set to value.</li>
+<li><code>vector&lt;int&gt; v = &#123;1, 2&#125;;</code> to initialize a vector with given elements.</li>
+<li>Directly return a vector: <code>return &#123;1, 2&#125;;</code> or <code>return vector&lt;int&gt;&#123;1, 2&#125;;</code></li>
+</ul>
+</li>
+</ul>
+<p>Thought Process:</p>
+<ul>
+<li>Use binary search to find the lower bound of the target.</li>
+<li>Then the lower bound of <code>target</code> and the lower bound of <code>target + 1</code> minus one will be the answer.</li>
+</ul>
+<p>Lower-bound-based Solution:</p>
+<pre class="language-C++" data-language="C++"><code class="language-C++">class Solution &#123;
+public:
+    vector&lt;int&gt; searchRange(vector&lt;int&gt;&amp; nums, int target) &#123;
+        int lower_bound &#x3D; binary_search_lower_bound(nums, target);
+        int upper_bound &#x3D; -1;
+        
+        &#x2F;&#x2F; Mistake 1: Since it&#39;s left-closed right-open, so the lower_bound can be equal to nums.size()
+        &#x2F;&#x2F; lower_bound &gt;&#x3D; nums.size(): target is larger than all elements in nums
+        &#x2F;&#x2F; nums[lower_bound] !&#x3D; target: target is lower than all elements in nums or target is in the range but not found in nums
+        if (lower_bound &gt;&#x3D; nums.size() || nums[lower_bound] !&#x3D; target) &#123;
+            lower_bound &#x3D; -1;
+        &#125; else&#123;
+            &#x2F;&#x2F; if found, left indicates the first position of target
+            &#x2F;&#x2F; if not found , left indicates the position to insert target
+            &#x2F;&#x2F; so left is the first element which is larger than target
+            upper_bound &#x3D; binary_search_lower_bound(nums, target + 1) - 1;
+        &#125;
+        return &#123;lower_bound, upper_bound&#125;;
+    &#125;
+
+    int binary_search_lower_bound(vector&lt;int&gt; nums, int target) &#123;
+
+        int left &#x3D; 0, right &#x3D; nums.size();
+
+        while (left &lt; right) &#123;
+            int middle &#x3D; left + (right - left) &#x2F; 2;
+            int middle_value &#x3D; nums[middle];
+
+            if (middle_value &lt; target) &#123;
+                left &#x3D; middle + 1;
+            &#125; else &#123; &#x2F;&#x2F; lower bound, so even middle_value &#x3D;&#x3D; target, we still move the right boundary
+                right &#x3D; middle;
+            &#125;
+        &#125;
+
+        return left;
+    &#125;
+&#125;;</code></pre>
+<p>Upper-bound-based Solution:</p>
+<pre class="language-Python" data-language="Python"><code class="language-Python">class Solution:
+    def searchRange(self, nums: List[int], target: int) -&gt; List[int]:
+        upper_bound &#x3D; self.binarySearchUpperBound(nums, target) - 1
+        lower_bound &#x3D; -1
+
+        if upper_bound &lt; 0 or nums[upper_bound] !&#x3D; target:
+            upper_bound &#x3D; -1
+        else:
+            lower_bound &#x3D; self.binarySearchUpperBound(nums, target - 1)
+        
+        return [lower_bound, upper_bound]
+
+    def binarySearchUpperBound(self, nums, target):
+        left, right &#x3D; 0, len(nums)
+
+        while left &lt; right:
+            middle &#x3D; left + (right - left) &#x2F;&#x2F; 2
+            middle_value &#x3D; nums[middle]
+
+            if middle_value &lt;&#x3D; target:
+                left &#x3D; middle + 1
+            else:
+                right &#x3D; middle
+
+        return left
+</code></pre>
+<h1>END</h1>
+</div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jiancongcui.github.io/2025/10/20/LeetCode-BinarySearch/,Jiancong Cui,LeetCode-BinarySearch,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2025/10/01/Copilot-Like-A-Pro/" title="Copilot Like A Pro">next_post</a></li></ul></div></div></div><div class="footer animated fadeInDown"><div class="p"> <span>© 2024 - 2029 </span><i class="fa fa-star"></i><span> JCC</span></div><div class="by_farbox"><span>Powered by </span><a href="https://sites.google.com/new" target="_blank">Google Sites </a><span> & </span><a href="https://github.com/Ben02/hexo-theme-Anatole" target="_blank">Ben </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core </a></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
